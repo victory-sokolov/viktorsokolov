@@ -1,0 +1,46 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "lib": [
+            "dom",
+            "dom.iterable",
+            "esnext"
+        ],
+        "allowJs": true,
+        "skipLibCheck": true,
+        "strict": false,
+        "forceConsistentCasingInFileNames": true,
+        "allowSyntheticDefaultImports": true,
+        "noEmit": true,
+        "removeComments": true,
+        "moduleResolution": "node",
+        "incremental": true,
+        "esModuleInterop": true,
+        "module": "esnext",
+        "sourceMap": true,
+        "isolatedModules": true,
+        "jsx": "preserve",
+        "resolveJsonModule": true,
+        "baseUrl": ".",
+        "paths": {
+            "@components/*": [
+                "src/components/*"
+            ],
+            "@common/*": [
+                "src/common/*"
+            ],
+            "@hooks/*": [
+                "src/hooks/*"
+            ]
+        }
+    },
+    "include": [
+        "next-env.d.ts",
+        "**/*.ts",
+        "**/*.tsx",
+        "lib/generate-feed.ts"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}

@@ -1,0 +1,195 @@
+---
+title: How to implement  Dependency Injection in Python
+description: How to implement Dependency Injection in Python.
+date: 2022-12-01
+featureImage: Robot-injection.png
+tags: Python
+published: true
+---
+
+Dependency Injection is a well know Design pattern that is being used in Object-Oriented Programming (OOP). It helps to achieve loose coupling inside your components.
+
+Before understanding what is Dependency injection, let's define what is Dependency?
+
+**Dependency** - is a class, component, or another library that is required to fulfill the complete functionality of a program. As an example, you may use some library-like `request.` The requests library is relying on other packages for full-fledged work.
+
+**Injection** - means passing some unit like function or object as an argument.
+
+Now let's identify what is Dependency Injection?
+
+**Dependency Injection** (DI) - is a design pattern that allows passing an object to a class that requires it. Usually, we inject some kind of Service a.k.a a class that contains some business logic. A dependent object is being created outside the class and passed to a constructor.
+
+## **Forms of DI**
+
+Dependency injection has several forms of implementation.
+
+-   Constructor injection is a common form of DI that is being used. Dependency is being passed to a constructor of a particular object.
+-   Method injection. Dependency is being passed to a method as an argument.
+-   Setter injection is appropriate for optional dependencies. Dependency is being passed via the setter function.
+
+## **Advantages of Dependency Injection**
+
+-   Allows to replace the original object with mock objects for testing purposes;
+-   High cohesion, low coupling. Allows to create components more reusable and independent;
+-   Easier to maintain codebase and introduce new changes;
+-   Classes are more extendable that rely on abstraction instead of implementation
+
+## **Types of dependencies**
+
+<br />
+### **Inheritance**
+
+**Inheritance** - defines an is-a relationship. Is-a relationship is considered the strongest dependency relationship between objects. Inheritance introduces high coupling between two objects that is hard to remove.
+
+Your subclasses are using all defined methods and attributes from a superclass. In case of some changes introduced in the superclass that leads to changes in all subclasses.
+
+### **Composition**
+
+**Composition -** defines the `has-a` relationship between objects. It allows creating a composed object by combining objects of other types.
+
+Now let’s build a small API wrapper for [jsonplaceholder](https://jsonplaceholder.typicode.com/) to fetch a list of todos. First of all, we will define a `HttpClient` class that will have a request method for making `POST` or `GET` requests. Let's see the example below.
+
+`client.py`
+
+```python
+import json
+import requests
+
+from enum import Enum
+from typing import Dict
+
+from requests.models import HTTPError
+
+class HttpMethod(Enum):
+	GET  = "GET"
+	POST = "POST"
+
+class HttpClient:
+    def request(
+        self,
+        method: HttpMethod,
+        url: str,
+        data: Optional[dict] = None
+    ):
+        if method == HttpMethod.GET:
+            response = requests.get(url=url, params=data)
+        elif method == HttpMethod.POST:
+            response = requests.post(url=url, data=json.dumps(data))
+
+        if response.ok:
+            return response.json()
+
+        raise HTTPError(response.json())
+```
+
+Here `HttpClient` is a service.
+
+**Service** - is a class that contains some business logic of your application.
+
+We will create an instance of `HttpClient` inside the `__init__` and call a request method of that client to make a Get request.
+
+Now let's create `task_composition.py` file that will use our `HttpClient` and fetch todos.
+
+```python
+from client import HttpClient, HttpMethod
+
+class Task:
+    def __init__(self):
+        self.client = HttpClient()
+
+    def fetch_todos(self):
+        url = "https://jsonplaceholder.typicode.com/todos"
+        return self.client.request(HttpMethod.GET, url)
+
+# createing Task instsance and fetching todos
+task = Task()
+todos = task.fetch_todos()
+```
+
+Our `Task` class is composed of `HttpClient` class. This removes high coupling between our classes and makes it more flexible.
+
+Still, we have some hardcoded dependencies in our Task class. If at some point, we decide to make changes to the HttClient. We decided to add some arguments to the initializer, in this case, we will have to make changes to the Task class.
+To make our Task class more flexible, we can instantiate HttClient class from outside of our Task class and pass its instance to the **init**. Let’s have a look at a new example.
+
+`task.py`
+
+```python
+class Task:
+    def __init__(self, client: HttpClient):
+        self.client = client
+
+    def fetch_todos(self):
+        url = "https://jsonplaceholder.typicode.com/todos"
+        return self.client.request(HttpMethod.GET, url)
+
+# instantiate HttpClient
+client = HttpClient()
+# Injecting client instance of the client to the Task class
+task = Task(client=client)
+todos = task.fetch_todos()
+```
+
+Now `Task` class receives our `HttpClient` outside of the class and can be easily tested by replacing real `HttpClient` with some mock object or with another client implementation.
+This example is not ideal and now we have to remember to manually create and pass our dependency every time any class needs it. To solve this problem we can use something called Dependency Injection Container.
+
+## DI Container
+
+DI Container is an object that keeps track of dependencies. The container handles creating instances of a class and configures objects. The container uses a factory pattern for creating instances of the dependent object and allows us to inject them into our class.
+
+From now on we don’t need to know about how to create and inject dependencies, the container will take care of that for us.
+
+DI Container is very useful when you need to provide lots of dependencies to a class and doing it manually can be a tedious task.
+
+## **Implementing DI with injector library**
+
+Now we will try to modify the above code to use [dependency injector](https://github.com/ets-labs/python-dependency-injector) library.
+
+We will need to understand two key features: container and provider.
+
+The provider is responsible for how an object will be accessed.
+
+The container is a collection of our providers.
+
+Now, let's change our existing example. We will configure and create the `HttpClient` object with the dependency injector. Our `Task` class stays the same, but we introduce a new `Container` class to assemble the Task class.
+
+Let’s install `dependency injector` package.
+
+`pip install dependency_injector`
+
+Now let's create a `Container` class
+
+```python
+from client import HttpClient, HttpMethod
+from dependency_injector import containers, providers
+
+class Task:
+    def __init__(self, client: HttpClient):
+        self.client = client
+
+    def fetch_todos(self):
+        url = "https://jsonplaceholder.typicode.com/todos"
+        return self.client.request(HttpMethod.GET, url)
+
+class Container(containers.DeclarativeContainer):
+    client = providers.Singleton(HttpClient)
+    task_factory = providers.Factory(
+        Task,
+        client=client
+    )
+
+container = Container()
+task = container.task_factory()
+todos = task.fetch_todos()
+```
+
+We have defined two providers, Singleton and Factory.
+
+-   **Singleton provider** - we specify our `HttpClient` (object that needs to be injected) as an singleton so it only creates single instances of a class.
+-   **Factory provider** - requires two arguments, Task class and corresponding and client argument that we create in previous step. Factory provider injects the dependencies every time when creates a new object.
+
+Now we can instantiate the Task class without creating and passing `HttpClient` ourselves. In such a small example, there are no advantages of using DI Container, but in a more complex example with lots of dependencies being used, you should consider using this approach.
+
+## Conclusion
+
+I hope you found it useful. Let's summarize what we learned.
+Use Dependency Injection whenever you need to achieve decoupling, reusability, and testability. You are not required to use classes to use Dependency Injection. It can be used with functions as well, the concept stays the same. You pass some dependency that must be defined outside of the function.
