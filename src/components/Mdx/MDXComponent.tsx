@@ -3,6 +3,7 @@ import Image from "next/image";
 import { H1, H2, H3, H4, H5, H6 } from "./Heading";
 import Link from "next/link";
 import styled from "styled-components";
+import { TechStackList } from "./TechStackList";
 
 interface MdxImgProps extends React.ImgHTMLAttributes<HTMLImageElement> {
     blurDataURL?: string;
@@ -57,7 +58,8 @@ const MDXComponents = {
     h5: H5,
     h6: H6,
     a: CustomLink,
-    ul: Ul
+    ul: Ul,
+    TechStackList: TechStackList
 };
 
 export default MDXComponents;
