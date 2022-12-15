@@ -1,0 +1,387 @@
+---
+title: "SOLID Principles in Action: Real-World Examples Using Typescript"
+description: SOLID principles in TypeScript
+date: 2022-12-10
+featureImage: solid-principles.jpg
+tags: TypeScript
+published: true
+---
+
+SOLID is an acronym used in object-oriented design to achieve maintainable and reusable classes.
+
+The SOLID principle doesn't depend on any particular programming language. It is a principle that could and should be adopted into any medium-large project.
+
+SOLID is 5 principles that stand for:
+
+-   **S**ingle-responsibility Principle
+-   **O**pen-Closed Principle
+-   **L**iskov Substitution Principle
+-   **I**nterface Segregation Principle
+-   **D**ependency inversion Principle
+
+We will look into each principle in detail with some practical examples using TypeScript. All below examples will use classes but the same applies to functions.
+
+By applying the SOLID principles, developers can achieve many benefits, including improved code readability, increased code reusability, and better software design and architecture. These principles provide a set of guidelines for creating maintainable, scalable, and flexible code.
+
+## Single Responsibility principle (SRP)
+
+As the name implies, class or function should have a single responsibility and only one reason to change.
+
+This rule is very simple but often is violated the reason you find yourself in a situation where you don’t know to which class, a specific method belongs. The benefits of following this rule result in better code readability, since it's easier to read and test simple small classes or methods.
+
+Let's take a look at the incorrect example belove
+
+```tsx
+import { writeFile } from "fs";
+
+class HttpClient {
+    constructor(private baseUrl: string) {}
+
+    // Make an HTTP GET request to the specified URL
+    public async get(url: string): Promise<any> {
+        const response = await fetch(this.baseUrl + url);
+        return response.json();
+    }
+
+    // Make an HTTP POST request to the specified URL
+    public async post(url: string, body: any): Promise<any> {
+        const response = await fetch(this.baseUrl + url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(body)
+        });
+        return response.json();
+    }
+
+    public async writeFile(filePath: string, contents: string) {
+        const data = JSON.stringify(contents);
+        writeFile(filePath, data, err => {
+            if (err) {
+                throw err;
+            }
+            console.log("JSON data is saved.");
+        });
+    }
+}
+```
+
+In the above example, the `HttpClient` class is responsible for making HTTP requests, and writing files to disk. This violates the SRP, as the class is performing multiple unrelated tasks.
+
+A better way to implement this class would be to split the different responsibilities into separate classes so each class can be responsible only for a single task.
+
+Here is an example of how the `HttpClient` class can be refactored to adhere to the SRP:
+
+```typescript
+class HttpClient {
+    constructor(private baseUrl: string) {}
+
+    // Make an HTTP GET request to the specified URL
+    public async get(url: string): Promise<any> {
+        const response = await fetch(this.baseUrl + url);
+        return response.json();
+    }
+
+    // Make an HTTP POST request to the specified URL
+    public async post(url: string, body: any): Promise<any> {
+        const response = await fetch(this.baseUrl + url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(body)
+        });
+        return response.json();
+    }
+}
+```
+
+And now we will create a separate class for the `writeFile` method called `FileManager` that will be responsible for handling files
+
+```typescript
+class FileManager {
+    public async writeFile(filePath: string, contents: string) {
+        writeFile(filePath, data, err => {
+            if (err) {
+                throw err;
+            }
+            console.log("JSON data is saved.");
+        });
+    }
+}
+```
+
+If there will be a new requirement for reading/deleting files we can add them to related class `FileManager`
+
+## Open-closed principle (OCP)
+
+The Open/Closed Principle states that a class should be open for extension but closed for modification. This means that the class should not be changed once it has been implemented, but it should provide a way for other developers to extend it by adding new methods
+
+We have an `Invoice` class that is responsible for saving invoice data to storage that was passed to the constructor
+
+```typescript
+class Invoice {
+    constructor(public persistanceStorage: FileManager | DatabaseManager) {}
+
+    public async persistInvoice(data) {
+        if (this.persistanceStorage instanceof FileManager) {
+            this.persistanceStorage.writeFile();
+        } else if (this.persistanceStorage instanceof DatabaseManager) {
+            this.persistanceStorage.writeDb();
+        }
+    }
+}
+```
+
+The issue with this class is that it is tied to a specific class implementation of storing data. If we need to change how data is stored (e.g. by using `Redis` cache), we would have to modify the class and add another storage to the `if/else` clause.
+
+To make the class more flexible and maintainable, we can create an abstraction that separates the storage logic from the `Invoice` class. This will allow us to change the behavior of the class without modifying its code, and will make it easier to swap out different storage implementations as needed.
+
+Let’s create an interface called `PersistanceStorage`
+
+```typescript
+interface PersistanceStorage {
+    saveData(data);
+}
+```
+
+Now each of our storage classes should implement the contract of this interface.
+
+```typescript
+class FileManager implements PersistanceStorage {
+    public async storeData(data) {
+        // Store data to local file
+    }
+}
+
+class DatabaseManager implements PersistanceStorage {
+    public async storeData(data) {
+        // Store data to database
+    }
+}
+
+class CacheManager {
+    public async storeData(data) {
+        // Store data into cache
+    }
+}
+```
+
+Let’s change our `Invoice` class
+
+```typescript
+class Invoice {
+    constructor(public persistanceStorage: PersistanceStorage) {}
+
+    public async persistInvoice(data) {
+        this.persistanceStorage.saveData(data);
+    }
+}
+```
+
+Now when we are adding a new persistence storage, we don’t have to modify our Invoice class, instead we need to pass appropriate storage to the constructor that implements `PersistanceStorage` interface.
+
+## Liskov Substitution (LS)
+
+**LS** states that objects of a superclass should be replaceable with instances \*\*\*\*of a subclass. Subtype behavior should match base type behavior as defined in the base type specification.
+
+Subclasses should not change the behavior of our parent class.
+
+Let’s create a base class called `Database`that represents a generic database, and two subclasses called `SQLiteDatabase` and `PostgresSQLDatabase`. The `Database`class has a method called `getData()` that is used to retrieve data from the database, and the `SQLiteDatabase` and `PostgresSQLDatabase` classes override this method to implement their own versions of the `getData()` behavior.
+
+Let’s look at an example that breaks **LS** principle
+
+```typescript
+class Database {
+    getData(): Array<T> {
+        // Code to retrieve data from the database
+        return data;
+    }
+}
+
+class SQLiteDatabase extends Database {
+    getData(): Array<T> {
+        const result = db.findAll();
+        return data;
+    }
+}
+
+class PostgresSQLDatabase extends Database {
+    getData(): Array<T> {
+        const result = db.findOne();
+        return result;
+    }
+}
+
+let database: Database;
+
+database = new SQLiteDatabase();
+let data = database.getData(); // This comply with Liskov substitution
+
+database = new PostgresSQLDatabase();
+let data = database.getData(); // This violates Liskov substitution
+```
+
+Above example violates **LS** principle since we except that our child classes comply with parent class API contract, in order to fix it we need update `PostgresSQLDatabase` to return list of data instead of single entry.
+
+Here is correct implementation of **LS**
+
+```typescript
+class Database {
+    getData(): Array<T> {
+        // Code to retrieve data from the database
+        return data;
+    }
+}
+
+class SQLiteDatabase extends Database {
+    getData(): Array<T> {
+        const result = db.findAll();
+        return data;
+    }
+}
+
+class PostgresSQLDatabase extends Database {
+    getData(): Array<T> {
+        const result = db.findAll();
+        return result;
+    }
+}
+```
+
+Now both of our classes can be used interchangeably.
+
+## Interface Segregation (IS)
+
+Interface Segregation means principle states that many interfaces are better than one general-purpose interface and classes should not be forced to implement a function they do no need to use.
+
+Let’s take as an example one of our previous interface `PersistanceStorage` and slightly modify it
+
+```typescript
+interface PersistanceStorage {
+    saveData(data);
+    readData();
+    deleteData();
+    moveData();
+}
+```
+
+Now if we implement this interface on the `DatabaseManager` we will be forced to implement all methods, but `moveData` is not directly related to database. Let’s fix this and split our interface into two separate interfaces.
+
+```typescript
+interface PersistanceStorage {
+    saveData(data);
+    readData();
+    deleteData();
+}
+
+interface PersistanceFileStorage {
+    moveData();
+}
+```
+
+The new interface `PersistanceFileStorage` implements all methods defined in `PersistanceStorage` now we can use `PersistanceFileStorage` interface on our `FileManager` class
+
+```typescript
+class FileManager implements PersistanceFileStorage {}
+```
+
+### Dependency Inversion
+
+Software systems consist of modules, which we conditionally divide into low-level and high-level ones.
+
+Example of Low-level utilities:
+
+-   Database queries
+-   HTTP requests
+-   DOM rendering and manipulations
+
+High-level modules (components that provide complex functionality and are relatively more stable) should not depend on low-level modules (components that provide basic functionality and are likely to change more frequently). Both should depend on abstractions (interfaces).
+
+Let's take a `Database` class example that provides a generic interface for connecting to and querying a database. We also have a `UserRepository` class that uses the `Database` class to store and retrieve user data from the database. Without applying the Dependency Inversion Principle, we might have the following code:
+
+```typescript
+class Database {
+    getData(): Array<T> {
+        // Code to retrieve data from the database
+        return data;
+    }
+
+    connect() {
+        // Create database connection
+    }
+}
+```
+
+`UserRepository` class
+
+```typescript
+class UserRepository {
+    private database: Database;
+
+    constructor() {
+        this.database = new Database();
+    }
+
+    public async getUserById(id: number): Promise<User> {
+        this.database.connect();
+        const result = this.database.query(`SELECT * FROM users WHERE id = ${id}`);
+        return result;
+    }
+}
+```
+
+In this example, the `UserRepository` depends directly on the `Database`class, and it creates a new instance of the `Database`in its constructor. This makes the `UserRepository`
+difficult to test and maintain, as we would have to change the `UserRepository`
+code if we wanted to use a different implementation of the `Database`
+class (e.g. a different database engine).
+
+We can apply the Dependency Inversion Principle to this code by defining an interface for the `Database` class and depending on that interface in the `UserRepository` class, like this:
+
+```typescript
+interface Database {
+    connect(): void;
+    getData(): Array<T>;
+}
+
+class PostgreSQLDatabase implements Database {
+    connect(): void {
+        // Connect to a MySQL database
+    }
+
+    getData(): Array<T> {
+        // Execute the given query on the PostgreSQL database
+    }
+}
+
+class MongoDBDatabase implements Database {
+    connect(): void {
+        // Connect to a MongoDB database
+    }
+
+    getData(): Array<T> {
+        // Execute the given query on the MongoDB database
+    }
+}
+
+class UserRepository {
+    private database: Database;
+
+    constructor(database: Database) {
+        this.database = database;
+    }
+
+    public async getUserById(id: number): Promise<User> {
+        this.database.connect();
+        const result = this.database.getData();
+        return result;
+    }
+}
+```
+
+In this example, the `UserRepository` depends on the `Database` interface rather than on a concrete implementation of the `Database` class. This means that we can use any class that implements the `Database` interface as the database for the `UserRepository`, without having to change the `UserRepository` code.
+
+## Conclusion
+
+In conclusion, the SOLID principles are a set of guidelines for object-oriented design that can help developers to create maintainable, reusable, and scalable code. By applying the SOLID principles in their Typescript projects, developers can create high-quality code that is well-suited to meet the needs and requirements of their users.
