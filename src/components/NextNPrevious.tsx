@@ -6,6 +6,7 @@ export const NextPreviousItem = styled.div`
     display: flex;
     justify-content: space-between;
     gap: 2rem;
+    margin-top: 2.5rem;
 
     .next-item {
         margin-right: auto;

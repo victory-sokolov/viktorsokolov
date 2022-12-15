@@ -15,7 +15,6 @@ export const Comments: React.FC = () => {
     useEffect(() => {
         const parent = commentBox?.current;
         const commentScript = document.createElement("script");
-        console.log("Rendered");
         commentScript.async = true;
         commentScript.src = "https://utteranc.es/client.js";
         commentScript.setAttribute("repo", "victory-sokolov/comments");
@@ -36,7 +35,7 @@ export const Comments: React.FC = () => {
     return (
         <CommentSection>
             <h2>Comments</h2>
-            <div ref={commentBox} />
+            <div ref={commentBox} id="comments-container" />
         </CommentSection>
     );
 };
