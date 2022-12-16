@@ -193,13 +193,13 @@ const GlobalStyles = createGlobalStyle`
     }
 
   h1 {
-    font-size: var(--text-xxxl);
-    line-height: calc(4rem * 1.618);
+    font-size: var(--text-xxl);
+    line-height: calc(3.5rem * 1.618);
   }
 
   h2 {
     font-size: var(--text-xxl);
-    line-height: calc(3.5rem * 1.618);
+    line-height: calc(3rem * 1.618);
   }
 
   h3 {
@@ -332,6 +332,13 @@ const GlobalStyles = createGlobalStyle`
    60% { transform: rotate( 0.0deg) }
   100% { transform: rotate( 0.0deg) }
 }
+
+    @media ${props => props.theme.breakpoints.mobile} {        
+        body {
+            font-size: 1.4rem;
+        }
+    }
+
 `;
 
 export const botderGradient = css`

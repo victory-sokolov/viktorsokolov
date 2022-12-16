@@ -55,9 +55,9 @@ const PostPage: React.FC<Post> = ({ frontmatter, mdxSource, next, previous }) =>
                 <div className="image-wrapper">
                     <Image src={featureImage} alt={title} width={800} height={480} />
                 </div>
-                <h3 className="center" itemProp="headline" style={{ color: "var(--text-color-secondary)" }}>
+                <h1 className="center" itemProp="headline" style={{ color: "var(--text-color-secondary)" }}>
                     {title}
-                </h3>
+                </h1>
                 <PostMeta date={date} readTime={readTime} style={{ justifyContent: "center" }}>
                     <GithubLink slug={frontmatter.slug} />
                     <DevToLink />
