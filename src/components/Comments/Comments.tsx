@@ -13,7 +13,6 @@ export const Comments: React.FC = () => {
     const commentBox = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        const parent = commentBox?.current;
         const commentScript = document.createElement("script");
         commentScript.async = true;
         commentScript.src = "https://utteranc.es/client.js";
@@ -22,15 +21,15 @@ export const Comments: React.FC = () => {
         commentScript.setAttribute("id", "utterances");
         commentScript.setAttribute("theme", "github-light");
         commentScript.setAttribute("crossorigin", "anonymous");
-
-        parent?.appendChild(commentScript);
-
-        return () => {
-            while (parent?.firstChild) {
-                parent?.removeChild(parent?.lastChild);
+        commentScript.onload = ev => {
+            const comments = document.getElementById("comments-container");
+            if (comments && comments.children[1]) {
+                comments.children[1].style.display = "none";
             }
         };
-    }, [commentBox]);
+        commentScript.async = true;
+        commentBox.current.appendChild(commentScript);
+    }, []);
 
     return (
         <CommentSection>
