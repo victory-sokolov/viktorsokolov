@@ -86,7 +86,7 @@ const GlobalStyles = createGlobalStyle`
   body {
     background: var(--background-color);
     color: var(--text-color-primary);
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     position: relative;
     height: 100vh;
     line-height: 1.618;

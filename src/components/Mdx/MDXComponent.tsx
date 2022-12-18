@@ -45,7 +45,11 @@ const MdxImg: React.FC<MdxImgProps> = ({ src, width, height, alt, blurDataURL, .
 };
 
 const Ul = ({ children }) => {
-    return <ul style={{ paddingLeft: "3rem" }}>{children}</ul>;
+    return <ul style={{ paddingLeft: "3.5rem", paddingBottom: "2rem" }}>{children}</ul>;
+};
+
+const paragraph = ({ children }) => {
+    return <p style={{ paddingBottom: "2rem" }}>{children}</p>;
 };
 
 const MDXComponents = {
@@ -59,6 +63,7 @@ const MDXComponents = {
     h6: H6,
     a: CustomLink,
     ul: Ul,
+    p: paragraph,
     TechStackList: TechStackList
 };
 

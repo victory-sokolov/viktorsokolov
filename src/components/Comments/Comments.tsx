@@ -24,6 +24,7 @@ export const Comments: React.FC = () => {
         commentScript.onload = ev => {
             const comments = document.getElementById("comments-container");
             if (comments && comments.children[1]) {
+                //@ts-ignore
                 comments.children[1].style.display = "none";
             }
         };
