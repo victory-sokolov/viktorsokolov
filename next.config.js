@@ -9,7 +9,13 @@ const config = {
     },
     images: {
         formats: ["image/webp"],
-        minimumCacheTTL: 60
+        minimumCacheTTL: 60,
+        remotePatterns: [
+            {
+                protocol: "https",
+                hostname: "cdn.buymeacoffee.com"
+            }
+        ]
     }
 };
 

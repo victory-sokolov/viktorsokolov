@@ -1,4 +1,5 @@
 import { getRecentPosts } from "@common/posts";
+import { BuyMeACoffe } from "@components/BuyMeACoffe";
 import NewsLetterForm from "@components/NewsLetter";
 import dynamic from "next/dynamic";
 import Link from "next/link";
@@ -48,6 +49,7 @@ const Home: React.FC = ({ posts }: { posts: PostFrontmatter[] }) => {
                 </svg>
             </Link>
             <NewsLetterForm />
+            <BuyMeACoffe />
         </HomeStyled>
     );
 };
