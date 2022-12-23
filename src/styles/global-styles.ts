@@ -333,7 +333,7 @@ const GlobalStyles = createGlobalStyle`
   100% { transform: rotate( 0.0deg) }
 }
 
-    @media ${props => props.theme.breakpoints.mobile} {        
+    @media only screen and (max-width: 640px) {
         body {
             font-size: 1.4rem;
         }
