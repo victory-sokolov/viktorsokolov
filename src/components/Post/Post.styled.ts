@@ -54,7 +54,7 @@ export const MetaPostWrapper = styled.div`
     gap: 1.5rem;
     font-weight: var(--font-md);
     font-size: var(--text-base);
-    padding: 1.5rem 0;
+    padding: 1.5rem 1rem;
 
     svg {
         margin-right: 0.5rem;

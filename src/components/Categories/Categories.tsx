@@ -3,7 +3,7 @@ import styled from "styled-components";
 import dynamic from "next/dynamic";
 
 const CategorieWrapperStyle = styled.div`
-    padding: 0.5rem 0;
+    padding: 0.5rem 0 2rem;
     text-align: center;
 
     span {

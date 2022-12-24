@@ -4,6 +4,7 @@ import { H1, H2, H3, H4, H5, H6 } from "./Heading";
 import Link from "next/link";
 import styled from "styled-components";
 import { TechStackList } from "./TechStackList";
+import { Blockquote } from "./Blockquote";
 
 interface MdxImgProps extends React.ImgHTMLAttributes<HTMLImageElement> {
     blurDataURL?: string;
@@ -64,7 +65,8 @@ const MDXComponents = {
     a: CustomLink,
     ul: Ul,
     p: paragraph,
-    TechStackList: TechStackList
+    TechStackList,
+    Blockquote
 };
 
 export default MDXComponents;

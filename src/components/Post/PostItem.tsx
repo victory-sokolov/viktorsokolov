@@ -3,13 +3,17 @@ import Link from "next/link";
 import styled from "styled-components";
 import { PostMeta } from "./PostMeta";
 import { useReadTime } from "@hooks/useReadTime";
-import { botderGradient } from "src/styles/global-styles";
+import { borderGradient } from "src/styles/global-styles";
 
 const PostItemStyle = styled.article`
     margin-bottom: var(--space-xl);
     max-width: 80rem;
     &:hover {
-        ${botderGradient}
+        ${borderGradient};
+    }
+
+    a:hover {
+        color: unset;
     }
 
     @keyframes moveGradient {

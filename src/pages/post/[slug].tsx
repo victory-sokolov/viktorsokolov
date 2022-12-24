@@ -13,7 +13,7 @@ import { MDXRemote } from "next-mdx-remote";
 import NextNPrevious from "@components/NextNPrevious";
 import { POST_TYPE } from "src/types/enums";
 import Seo from "@components/Seo";
-import NewsLetterForm from "@components/NewsLetter";
+import { NewsLetterForm } from "@components/NewsLetter";
 import { ContentWrapper } from "src/styles/global-styles";
 
 const IconWrapper = styled.div`

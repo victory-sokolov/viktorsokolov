@@ -341,7 +341,7 @@ const GlobalStyles = createGlobalStyle`
 
 `;
 
-export const botderGradient = css`
+export const borderGradient = css`
     --border-width: 3px;
     position: relative;
     background: var(--background-color);
