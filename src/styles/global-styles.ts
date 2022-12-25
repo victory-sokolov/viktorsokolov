@@ -51,6 +51,18 @@ const GlobalStyles = createGlobalStyle`
     --box-shadow-px: 20px;
     --scrollbar-color: #d6d6d6;
     --paragraph-color: #534a54;
+
+    --accent-gradient: linear-gradient(
+            60deg,
+            hsl(224, 85%, 66%),
+            hsl(269, 85%, 66%),
+            hsl(314, 85%, 66%),
+            hsl(359.18367346938777, 84.97109826589593%, 66.07843137254902%),
+            hsl(44, 85%, 66%),
+            hsl(89, 85%, 66%),
+            hsl(134, 85%, 66%),
+            hsl(179, 85%, 66%)
+        );
   }
 
   [data-theme="dark"] {
@@ -286,6 +298,20 @@ const GlobalStyles = createGlobalStyle`
     }
 }
 
+.sticky {
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transition: all 0.5s ease;
+    animation: smoothScroll 1s forwards;
+    background-color: rgb(46, 52, 64, 0.5);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+}
+
 .flex-row {
     display: flex;
     flex-direction: row;
@@ -320,6 +346,16 @@ const GlobalStyles = createGlobalStyle`
   animation-iteration-count: infinite;
   transform-origin: 70% 70%;
   display: inline-block;
+}
+
+@keyframes smoothScroll {
+  0% {
+    transform: translateY(-142px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
 }
 
 @keyframes wave-animation {
@@ -358,17 +394,7 @@ export const borderGradient = css`
         z-index: -1;
         width: calc(100% + var(--border-width) * 2);
         height: calc(100% + var(--border-width) * 2);
-        background: linear-gradient(
-            60deg,
-            hsl(224, 85%, 66%),
-            hsl(269, 85%, 66%),
-            hsl(314, 85%, 66%),
-            hsl(359.18367346938777, 84.97109826589593%, 66.07843137254902%),
-            hsl(44, 85%, 66%),
-            hsl(89, 85%, 66%),
-            hsl(134, 85%, 66%),
-            hsl(179, 85%, 66%)
-        );
+        background: var(--accent-gradient);
         background-size: 300% 300%;
         background-position: 0 50%;
         border-radius: calc(2 * var(--border-width));
