@@ -8,7 +8,7 @@ import NextNPrevious from "@components/NextNPrevious";
 import { Tip } from "../../types/Post";
 import Seo from "@components/Seo";
 import MDXComponents from "@components/Mdx/MDXComponent";
-import { NewsLetterForm } from "@components/NewsLetter";
+import NewsLetterForm from "@components/NewsLetter";
 import { ContentWrapper } from "src/styles/global-styles";
 
 const TipPage: React.FC<Tip> = ({ frontmatter, mdxSource, next, previous }) => {

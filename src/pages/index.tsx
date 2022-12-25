@@ -1,11 +1,18 @@
 import { getRecentPosts } from "@common/posts";
 import { BuyMeACoffe } from "@components/BuyMeACoffe";
-import { NewsLetterForm } from "@components/NewsLetter";
+import Seo from "@components/Seo";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import React from "react";
 import { PostFrontmatter } from "src/types/Post";
 import styled from "styled-components";
+
+const NewsLetterForm = dynamic(() =>
+    import(
+        /*webpackChunkName: 'NewsLetterForm' */
+        "@components/NewsLetter"
+    ).then(module => module.default)
+);
 
 const HomeStyled = styled.div`
     h2 {
@@ -30,7 +37,8 @@ const PostItem = dynamic(() => import("@components/Post").then(module => module.
 const Home: React.FC = ({ posts }: { posts: PostFrontmatter[] }) => {
     return (
         <HomeStyled>
-            <h2>Featured Posts</h2>
+            <Seo />
+            <h1>Featured Posts</h1>
             <div className="recentrly-published">
                 {posts.map((post: PostFrontmatter, index: number) => (
                     <PostItem key={index} post={post} type="post" />
@@ -49,7 +57,6 @@ const Home: React.FC = ({ posts }: { posts: PostFrontmatter[] }) => {
                 </svg>
             </Link>
             <NewsLetterForm />
-
             <BuyMeACoffe />
         </HomeStyled>
     );
