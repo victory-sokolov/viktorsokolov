@@ -2,8 +2,6 @@ import Image from "next/image";
 import styled from "styled-components";
 
 const BuyMeCoffeWrapper = styled.div`
-    display: flex;
-    align-items: center;
     margin-top: 1rem;
 `;
 

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { HamburgerProps } from "./types";
 
 export const CloseIcon = styled.div`
     @media ${props => props.theme.breakpoints.mobile} {
@@ -119,11 +120,11 @@ export const NavStyles = styled.nav`
     z-index: 1;
 `;
 
-export const Hamburger = styled.div`
+export const Hamburger = styled.div<HamburgerProps>`
     @media ${props => props.theme.breakpoints.mobile} {
         position: absolute;
         top: 0;
-        right: -40px;
+        right: ${props => (props.isSticky ? "0" : "-40px")};
         z-index: 1;
         width: 4.5rem;
         height: 4.5rem;

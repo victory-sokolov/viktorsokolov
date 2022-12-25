@@ -9,6 +9,7 @@ export const HeaderStyles = styled.header`
         align-items: center;
         justify-content: space-between;
         padding: 3rem 0;
+        z-index: 2;
     }
 
     h1 {

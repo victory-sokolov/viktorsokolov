@@ -1,16 +1,26 @@
+import { ScrollIndicator } from "@components/ScrollIndicator";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-import { NavStyles, Hamburger, CloseIcon, Menu, LinkItem, StyledLink } from "./Nav.styled";
+import { NavStyles, CloseIcon, Menu, LinkItem, StyledLink } from "./Nav.styled";
+import { Props } from "./types";
 
-export const Nav: React.FC = () => {
+const Hamburger = dynamic(() =>
+    import(
+        /*webpackChunkName: 'HamburgerMenuComponent' */
+        "@components/Navigation/Nav.styled"
+    ).then(module => module.Hamburger)
+);
+
+export const Nav: React.FC<Props> = ({ isSticky }) => {
     const [isOpen, setIsOpen] = useState(false);
     const router = useRouter();
     const route = router.asPath;
 
     return (
         <NavStyles>
-            <Hamburger isOpen={isOpen} onClick={() => setIsOpen(!isOpen)}>
+            <Hamburger isSticky={isSticky} isOpen={isOpen} onClick={() => setIsOpen(!isOpen)}>
                 <CloseIcon />
             </Hamburger>
             <Menu>
@@ -43,6 +53,7 @@ export const Nav: React.FC = () => {
                             </Link>
                         </LinkItem>
                     </ul>
+                    {isSticky && <ScrollIndicator />}
                 </div>
             </Menu>
         </NavStyles>

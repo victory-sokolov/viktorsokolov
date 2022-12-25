@@ -7,10 +7,11 @@ const NewLetterFormStyle = styled.div`
     ${borderGradient}
 `;
 
-export const NewsLetterForm = () => {
+const NewsLetterForm = () => {
     return (
         <NewLetterFormStyle>
             <iframe
+                title="Embedded Substack email subscription form"
                 src="https://viktorsokolov.substack.com/embed"
                 height="320"
                 style={{
@@ -23,3 +24,5 @@ export const NewsLetterForm = () => {
         </NewLetterFormStyle>
     );
 };
+
+export default NewsLetterForm;

@@ -62,6 +62,10 @@ const CopyButton = styled.div`
     margin-right: 1rem;
     padding: 0 1.2rem;
     cursor: pointer;
+
+    @media ${props => props.theme.breakpoints.mobile} {
+        display: none;
+    }
 `;
 
 export const Code = ({ children }) => {
