@@ -26,7 +26,7 @@ const TipPage: React.FC<Tip> = ({ frontmatter, mdxSource, next, previous }) => {
             <Categories categories={tags} style={{ textAlign: "left" }} />
             <MDXRemote {...mdxSource} components={MDXComponents} />
             <p>{frontmatter.description}</p>
-            <p>
+            <p style={{ paddingTop: "var(--space-md)" }}>
                 Posted on&nbsp;
                 <a href={frontmatter.tweetUrl} target="_blank" rel="noreferrer">
                     Twitter

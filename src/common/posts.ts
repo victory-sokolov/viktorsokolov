@@ -4,7 +4,7 @@ import matter from "gray-matter";
 import { PostFrontmatter } from "src/types/Post";
 import { toLongDate, slugify } from "./utils";
 import { useReadTime } from "../hooks/useReadTime";
-import { getPostData } from "./content-utils";
+import { getPostData, sortPostByDate } from "./content-utils";
 
 export const getAllPosts = async (): Promise<PostFrontmatter[]> => {
     const contentPath = "content/posts";
@@ -46,10 +46,4 @@ export const getRecentPosts = async (amount = 3): Promise<PostFrontmatter[]> => 
 export const getPostBySlug = async (slug: string) => {
     const posts = await getAllPosts();
     return getPostData(posts, slug);
-};
-
-const sortPostByDate = (posts: PostFrontmatter[]): PostFrontmatter[] => {
-    return posts.sort(
-        (post1: PostFrontmatter, post2: PostFrontmatter) => Date.parse(post2.date) - Date.parse(post1.date)
-    );
 };

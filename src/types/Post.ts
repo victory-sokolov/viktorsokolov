@@ -26,6 +26,7 @@ type TipMeta = {
 
 export type PostFrontmatter = Content & PostMeta;
 export type TipFrontmatter = Content & TipMeta;
+export type PostType = TipFrontmatter | PostFrontmatter;
 
 export type Post = {
     frontmatter: PostFrontmatter;

@@ -1,8 +1,8 @@
 import matter from "gray-matter";
 import path from "path";
-import { toLongDate } from "./utils";
+import { filterFalsy, toLongDate } from "./utils";
 import fs from "fs";
-import { getPostData } from "./content-utils";
+import { getPostData, sortPostByDate } from "./content-utils";
 import { TipFrontmatter } from "src/types/Post";
 
 export const getAllTips = (): TipFrontmatter[] => {
@@ -11,7 +11,7 @@ export const getAllTips = (): TipFrontmatter[] => {
 
     const tips = fs.readdirSync(tipsPath).map(slug => {
         const file = matter.read(`${tipsPath}/${slug}/${slug}.mdx`);
-        const data = file.data;
+        const data = filterFalsy(file.data);
 
         return {
             ...data,
@@ -19,8 +19,9 @@ export const getAllTips = (): TipFrontmatter[] => {
             date: toLongDate(data.date),
             featureImage: `/tips/${slug}/${data.featureImage}`
         };
-    });
-    return JSON.parse(JSON.stringify(tips));
+    }) as TipFrontmatter[];
+    const sortedTips = sortPostByDate(tips);
+    return JSON.parse(JSON.stringify(sortedTips));
 };
 
 export const getTipBySlug = async (slug: string) => {

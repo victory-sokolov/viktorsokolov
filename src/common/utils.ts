@@ -16,3 +16,12 @@ export const toLongDate = (date: string): string => {
         day: "numeric"
     });
 };
+
+export const filterFalsy = <T extends Record<string, unknown>>(obj: T): { [k: string]: NonNullable<T[keyof T]> } => {
+    return Object.keys(obj).reduce((acc, key) => {
+        if (obj[key]) {
+            acc[key] = obj[key];
+        }
+        return acc;
+    }, {});
+};

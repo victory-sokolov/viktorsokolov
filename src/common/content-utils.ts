@@ -3,6 +3,7 @@ import { serialize } from "next-mdx-remote/serialize";
 import rehypeSlug from "rehype-slug";
 import fs from "fs";
 import { toLongDate } from "./utils";
+import { PostType } from "src/types/Post";
 
 export const getSerializedContent = async content => {
     const options = {
@@ -32,4 +33,8 @@ export const getContent = async (filePath: string) => {
     // Serialize date field
     frontmatter.date = toLongDate(frontmatter.date);
     return { frontmatter, mdxSource, content };
+};
+
+export const sortPostByDate = (posts: PostType[]): PostType[] => {
+    return posts.sort((post1: PostType, post2: PostType) => Date.parse(post2.date) - Date.parse(post1.date));
 };

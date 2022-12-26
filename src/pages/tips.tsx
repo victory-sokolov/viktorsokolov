@@ -39,8 +39,8 @@ const TipsContainer = styled.div`
 
     .image-wrapper {
         position: relative;
-        max-width: 100%;
-        height: 100%;
+        width: 35rem;
+        height: 20rem;
         img {
             border-radius: 5px;
         }
@@ -92,7 +92,7 @@ const Tips = ({ tips }) => {
                     <TipItem key={index}>
                         <Link href={`/tip/${tip.slug}`}>
                             <div className="image-wrapper">
-                                <Image src={tip.featureImage} width={300} height={180} alt={tip.title} />
+                                <Image src={tip.featureImage} width={400} height={200} alt={tip.title} />
                             </div>
                         </Link>
                         <div className="tip-details">
