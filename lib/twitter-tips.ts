@@ -7,8 +7,13 @@ import { TwitterApi } from "twitter-api-v2";
 
 dotenv.config();
 
+const TIPS_DIR = "content/tips";
+
 const removeCharacters = (text: string) => {
-    return text.replace(/[^\p{L}\p{N}\p{P}\p{Z}^$\n]|#|\./gu, "").replace(/(?:https?|ftp):\/\/[\n\S]+/g, "");
+    return text
+        .replace(/[^\p{L}\p{N}\p{P}\p{Z}^$\n]|#|\./gu, "")
+        .replace(/(?:https?|ftp):\/\/[\n\S]+/g, "")
+        .replace(/,./g, "-");
 };
 
 export default async function getTweets(username: string) {
@@ -32,6 +37,7 @@ export default async function getTweets(username: string) {
         if (tweet.text.startsWith("🔥")) {
             const medias = mediasOfTweet.at(0);
             const code = medias?.alt_text;
+            const entities = tweet?.entities;
 
             if (code) {
                 const tipText = removeCharacters(tweet.text);
@@ -40,9 +46,9 @@ export default async function getTweets(username: string) {
                     url: `https://twitter.com/${username}/status/${tweet.id}`,
                     created_at: tweetDate.toISOString(),
                     text: tipText,
-                    hashTags: tweet?.entities?.hashtags.map(({ tag }) => tag),
                     altText: code,
-                    image: medias.url
+                    image: medias.url,
+                    hashTags: entities.hashtags ? entities.hashtags.map(({ tag }) => tag) : []
                 };
                 tweetData.push(tweetObj);
             }
@@ -57,7 +63,7 @@ async function downloadTweetImage(url: string, slug: string) {
     const response = await axios.get(url, { responseType: "arraybuffer" });
     const buffer = Buffer.from(response.data, "binary");
     const fileType = await fileTypeFromBuffer(buffer);
-    const outputFileName = `content/tips/${slug}/${slug}.${fileType?.ext}`;
+    const outputFileName = `${TIPS_DIR}/${slug}/${slug}.${fileType?.ext}`;
     fs.createWriteStream(outputFileName).write(buffer);
 }
 
@@ -66,10 +72,10 @@ async function renderTips() {
 
     for (const tweet of tweets) {
         // Create tip directory
-        const tipDir = `content/tips`;
-        const description = tweet.text.replace("\n", " ");
+        const description = tweet.text.replace("\n", " ").trim();
         const slug = removeCharacters(tweet.title).toLowerCase().trim().replace(/ /g, "-");
         const imgName = `${slug}.jpg`;
+        const hashTags = tweet.hashTags.join(",") || "text";
 
         let content = `---
 tweetUrl: ${tweet.url}
@@ -78,11 +84,12 @@ description: "${description}"
 slug: ${slug}
 date: ${tweet.created_at}
 featureImage: ${imgName}
-tags: ${tweet.hashTags.join(",")}
+tags: ${hashTags}
 ---`;
-        content += "\n```" + tweet.hashTags[0].toLowerCase() + "\n" + tweet.altText + "\n```";
+
+        content += "\n```" + hashTags.toLowerCase() + "\n" + tweet.altText + "\n```";
         // Create subfolder
-        const subfolder = `${tipDir}/${slug}`;
+        const subfolder = `${TIPS_DIR}/${slug}`;
         if (!fs.existsSync(subfolder)) {
             fs.mkdirSync(subfolder);
             fs.writeFile(`${subfolder}/${slug}.mdx`, content, error => {
