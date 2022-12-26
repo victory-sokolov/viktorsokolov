@@ -1,0 +1,215 @@
+---
+title: "Introduction to Regular expressions"
+description: Beginners friendly introduction to Regular expressions
+date: 2022-12-22
+featureImage: regex.png
+tags: Regex
+published: true
+---
+
+Regular expressions, also known as regex, are a sequence of characters that define a search pattern. They are mainly used to search for text patterns or perform a certain action on a string.
+Regex might seem like a whole other language to learn, but it's a useful skill in your toolbox.
+
+RegEx is a language-agnostic tool used for pattern matching in strings. It can be used in any programming language.
+
+One of the most popular use cases for regexes is the validation of phone numbers, emails, passwords, parsing HTML tags, and much more.
+
+## Structure of Regex
+
+Every regex pattern is enclosed between two slashes and ends with a modifier. Consider the following text example `Hello world` and the following regex pattern: `/Hello/g` - this is a simple regex that searches for the string `Hello` globally.
+
+Note: Below regex is case sensitive so that it will find only Hello with a capital letter.
+
+Let's being with simple patterns, you can follow along and run regexes against text at [https://regexr.com/](https://regexr.com/)
+
+## Anchors
+
+Anchor tags allow you to match a position before or after specific characters, they don't match the particular text.
+
+-   `^` - The caret anchor matches the beginning of the text. `/^H/` - matches any string that starts with the capital letter `H`
+-   `$` - The dollar anchor matches the end of the text. `/\.$/` - match string that ends with a dot.
+
+Note: Dot is a special character that needs to be escaped using a forward slash
+
+## Character Classes
+
+Character classes are used to match the specific sequences of characters.
+
+-   `\d` - Matches a single character that is a digit. `Hello 3292!` → matches `3292`
+-   `\D` - Matches any non-digit character.
+-   `\w` - Matches any word character that is a word character, including numbers and underscore. `Hello 3292!` → matches `Hello 3292`
+-   `\W` - Matches any character that is not a word character or number, and will match any symbol except underscore.
+-   `\s` - Matches any whitespace character.
+-   `.` - Matches any character except line break.
+-   `\t` - Matches any tab character.
+-   `\r` - Matches a carriage return character.
+
+## Modifiers and Flags
+
+In a regular expression, the "modifiers" or "flags" are special characters that can be added to the pattern to change its behavior.
+
+Here is the list of frequently used flags:
+
+-   `i` - Makes the regular expression case-insensitive. For example, the pattern `/hello/i` would match "hello", "HELLO", "HeLLo", etc.
+-   `g` The most common flag you will use in your regular expression. Makes the regular expression global. This means it will continue searching for matches even after finding the first one. Without the flag, the regular expression will stop after finding the first match.
+-   `m` - Multi-line search. When a line break is encountered, this flag will ignore them and will continue the search.
+-   `u` - Enables "Unicode" mode. In this mode, the regular expression is treated as a sequence of Unicode code points, rather than a sequence of ASCII characters.
+
+## Quantifiers
+
+A "quantifier" in a regex is a special symbol that specifies how many times a character, group, or character class should appear in the input string. Here are some common quantifiers:
+
+-   `*` - Character can appear zero or more times. . For example, the pattern `/a*/` would match "", "a", "aa", "aaa", etc.
+-   `+` - Quite similar to the previous one, but instead character class can appear one or more times.
+-   `?` - Matches the character before the `?` zero or one time. For example, we have this string: `abcd adcd` and regex `ab?` it will match `ab a` , since character `b` can appear zero or one time in the string.
+
+Let's see one more real-world example, we have a base HTML5 structure
+
+```html
+<!DOCTYPE html>
+<html>
+    <head>
+        ....
+    </head>
+</html>
+```
+
+and we want to find opening and closing HTML tags, we can achieve it using the following expression: `<\/?html>` . Here we specify that the backward slash `/` can appear zero or one time, since slash is a special character we need to escape it with a forward slash.
+
+-   `{n}` - The preceding character, must appear exactly`n` times. For example, the pattern `/[20]{2}/` would match “20" two times in the following sequence of numbers `20902085`
+-   `{n,}`- The preceding character must appear at least `n`
+    times. For example, the pattern `fiz{3,}` would match `fizzz` but not fizz in the following string
+    `fizz buzz fizzz buzz` character z must appear at least 3 times in a row.
+-   `{2,4}` - The preceding character must appear at least 2 times but no more than 4 times.
+
+## Lookahead and Lookbehind
+
+**Lookahead** will find some regex that is followed immediately after another expression. Structure of lookahead `/match (?=element)/`
+
+For example, we have a list of emails and we want to match only emails that contain the Gmail domain
+
+```text
+myemail@gmail.com
+mysecondmail@outlook.com
+```
+
+Our regex match will look like this `@(?=gmail)`
+
+First, we want to find `@` symbol and match the symbol only if it contains Gmail afterward. If we want to match the whole line then regex will look like this
+
+```text
+^.*\b@(?=gmail)\b.*
+```
+
+**Negative lookahead** is the opposite of lookahead, we use the exclamation mark ( ! ), to denote that we want to find any email but not the one with Gmail domain `@(?!gmail)`
+
+**Positive lookbehind** - is specified with the syntax `(?<=pattern)` and represents the pattern that must immediately precede the main pattern.
+
+Let's consider the following example
+
+```text
+Full price is $100
+Some another text 10
+```
+
+Extract only price from string: `(?<=[$])\d+`
+
+**Negative lookbehind -** opposite of positive look behind, find only numbers that don't contain currency symbol: `(?<![$\d]+)\d+`
+
+## ⌛Time to practice
+
+Let's apply what we learned so far and try to do some common real-world examples.
+
+1. Write a regex that will extract the domain and subdomain.
+
+    Let's define rules for our regex
+
+    - The string should end with `.<domain>` that must contain between 2-3 symbols
+    - Domain names are only allowed to be 63 characters in length
+    - A domain name cannot begin with a hyphen
+
+    Let's consider the following list of valid and invalid domains
+
+    ```text
+    mydomain.com
+    http://youtube.com
+    https://youtube.com
+    www.instagram.com
+    https://www.twitter.com
+    https//twitter.com
+    https://education.edu.com
+    udemy com
+    someotherdomain.de
+    -customdomain.com
+    ```
+
+    - First thing first, we should check that domain doesn't start with a hyphen. We can use anchor with negative lookahead `^(?!-)`
+    - Next, we want to check whether a valid protocol is being used. We will wrap our pattern into parenthesis to create a group. Group can be later referenced if needed. `(https?:\/\/)?` - here we validate that the protocol starts with the `http` and optional `s` that follows colon and two slashes, the protocol should occur zero or one time.
+    - Validate `www` prefix `(w{3}\.)?`, here we are looking for the letter `w` that should occur 3 times in a row and follow a dot.
+    - Next, we validate domain name parts, which should contain a minimum 1 character and maximum of 63 characters - `([a-zA-z{1,63}])+`
+    - Validate subdomain that should contain 2-3 characters followed by dot - `(\.[a-zA-Z]{2,3})?`
+    - Finally, we validate the top-level domain, which should end with a dot and be 2-3 characters long -
+
+    `(\.[a-zA-Z]{2,3})$`
+
+    **Final regex:** `^(?!-)(https?:\/\/)?([a-zA-Z\.{3})?([a-zA-z])+(\.[a-zA-Z]{2,3})?(\.[a-zA-Z]{2,3})$`
+
+1. Regex that will validate password
+
+    Let's define rules for password validation
+
+    - Should contain at least 8 characters
+    - Should contain at least one uppercase character
+    - Should contain at least one special character which includes `!@#$%&*()-+=^`
+    - Doesn't contain any white space
+
+    We have the following list of passwords:
+
+    ```text
+    VerySt@nGPassWord!12
+    WeakPassword
+    qwerty
+    qwer
+    PasswordWith Space12@!
+    verystrongpassword!12
+    ```
+
+    Only the first password should match our pattern
+
+    - `(?=.*[0-9])` a digit must occur at least once in a string.
+    - `(?=.*[a-z])` a lowercase alphabet must occur at least once.
+    - `(?=.*[A-Z])` an upper case alphabet that must occur at least once.
+    - `(?=.*[@#$%^&-+=()]` a special character that must occur at least once.
+    - `(?=\S+$)` white spaces are not allowed in the entire string.
+    - `.{8, 36}` string should contain at least 8 characters and at most 36 characters.
+
+    **Final regex**: `^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%&*()-+=^])(?=\S+$).{8,36}$`
+
+1. Extract text between HTML tags
+
+    Rules for extracting text between any HTML tag are quite simple we should match opening and closing HTML tags and extract any data between them.
+
+    Let's consider the following list of HTML tags
+
+    ```html
+    <PRE>Title</PRE>
+    <H1>Hello world</H1>
+    <strong>BOld text</strong>
+    <>Wrong</>
+    <?php ?>Some text<?php ?>
+    ```
+
+Only first three HTML tags should be matched
+
+-   `^<[a-zA-Z1-6]+>` - string should start with opening tag `<` and contain any alpha character or number from 1-6, this specifically used for H1-H6 tags.
+-   `(.+?)` - match everything between `<>...</>` tags except line breaks
+-   `<\/[a-zA-Z1-6]+>$` - match closing tag
+
+**Final regex**: `^<[a-zA-Z1-6]+>(.+?)<\/[a-zA-Z1-6]+>$`
+
+## Conclusion
+
+Quite a lot of things are covered for the regular expression. This is enough information that will help you to get started on reading and writing regular expressions. The next step would be to practice writing regexes. Here are a few websites where you get hands-on experience writing regexes.
+
+-   [https://regexlearn.com/learn](https://regexlearn.com/learn)
+-   [https://www.hackerrank.com/domains/regex](https://www.hackerrank.com/domains/regex)
