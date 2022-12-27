@@ -6,6 +6,11 @@ import styled from "styled-components";
 const TechContainer = styled.ul`
     list-style: none;
     padding-bottom: 2rem;
+    border-radius: 6px;
+    border: 1px solid var(--color-secondary-900);
+    padding: var(--space-md);
+    background: var(--color-primary-600);
+    color: #fff;
 
     li {
         border: 1px solid white;
