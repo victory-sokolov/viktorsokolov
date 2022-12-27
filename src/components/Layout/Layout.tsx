@@ -5,16 +5,13 @@ import Footer from "@components/Footer";
 import Header from "@components/Header";
 import { darkTheme, lightTheme } from "../../styles/theme";
 import { useDarkMode } from "@hooks/useDarkMode";
+import { ReactProps } from "src/types/types";
 
 const SiteWrapper = styled.div`
     min-height: 100vh;
 `;
 
-export type Props = {
-    children: React.ReactNode;
-};
-
-const Layout: React.FC<Props> = ({ children }) => {
+const Layout: React.FC<ReactProps> = ({ children }) => {
     const [theme, toggleTheme] = useDarkMode();
     const themeType = theme === "dark" ? darkTheme : lightTheme;
 
