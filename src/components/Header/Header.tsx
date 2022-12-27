@@ -23,6 +23,18 @@ export const Header: React.FC<any> = ({ toggleTheme, theme }) => {
         setIsRootUrl(path === "/" ? true : false);
     }, [path]);
 
+    useEffect(() => {
+        const header = headerRef.current.getBoundingClientRect();
+        const handleScrollEvent = () => {
+            handleScroll(header.top, header.height);
+        };
+        window.addEventListener("scroll", handleScrollEvent);
+
+        return () => {
+            window.removeEventListener("scroll", handleScrollEvent);
+        };
+    }, []);
+
     const handleScroll = (elTopOffset, elHeight) => {
         if (window.pageYOffset > elTopOffset + elHeight) {
             setSticky({ isSticky: true, offset: elHeight });
@@ -30,19 +42,6 @@ export const Header: React.FC<any> = ({ toggleTheme, theme }) => {
             setSticky({ isSticky: false, offset: 0 });
         }
     };
-
-    useEffect(() => {
-        const header = headerRef.current.getBoundingClientRect();
-        const handleScrollEvent = () => {
-            handleScroll(header.top, header.height);
-        };
-
-        window.addEventListener("scroll", handleScrollEvent);
-
-        return () => {
-            window.removeEventListener("scroll", handleScrollEvent);
-        };
-    }, []);
 
     return (
         <div>

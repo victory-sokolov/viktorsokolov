@@ -1,9 +1,8 @@
 import styled from "styled-components";
 
-export const HeaderStyles = styled.header`
-    background: var(--background-color);
-    position: relative;
-
+export const HeaderStyles = styled.header.attrs(props => ({
+    className: props.className
+}))`
     .heading-content {
         display: flex;
         align-items: center;
