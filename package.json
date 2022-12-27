@@ -9,7 +9,7 @@
     },
     "scripts": {
         "dev": "next dev",
-        "build": "next build && yarn run prebuild",
+        "build": "next build",
         "start": "next start",
         "lint": "next lint",
         "format": "prettier --config ./.prettierrc src/**/*.{ts,json,js,md,scss,html,java,php} --write",
