@@ -12,6 +12,7 @@ async function markdownToHtml(markdown) {
 }
 
 export default (async () => {
+    console.info("🐾 Generating RSS feed");
     if (process.env.NODE_ENV === "development") {
         return;
     }

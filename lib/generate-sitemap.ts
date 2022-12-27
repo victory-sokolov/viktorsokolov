@@ -4,6 +4,7 @@ import { writeFileSync } from "fs";
 import { config } from "../src/common/appconfig";
 
 export default (async () => {
+    console.info("🗺️ Generating Sitemap");
     const prettierConfig = await prettier.resolveConfig("../.prettierrc");
     //exclude pages below by adding ! in front of the path
     const pages = await globby([

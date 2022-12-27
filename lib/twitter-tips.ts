@@ -68,7 +68,9 @@ async function downloadTweetImage(url: string, slug: string) {
 }
 
 async function renderTips() {
-    const tweets = await getTweets("victorysokolov");
+    const handle = "victorysokolov";
+    console.info(`🕊️ Fetching Tweets for @${handle}`);
+    const tweets = await getTweets(handle);
 
     for (const tweet of tweets) {
         // Create tip directory
