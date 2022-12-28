@@ -53,7 +53,7 @@ export const Nav: React.FC<Props> = ({ isSticky }) => {
                             </Link>
                         </LinkItem>
                     </ul>
-                    {isSticky && <ScrollIndicator />}
+                    {isSticky && !isOpen && <ScrollIndicator />}
                 </div>
             </Menu>
         </NavStyles>

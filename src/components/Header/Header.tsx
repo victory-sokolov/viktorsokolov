@@ -36,7 +36,7 @@ export const Header: React.FC<any> = ({ toggleTheme, theme }) => {
     }, []);
 
     const handleScroll = (elTopOffset, elHeight) => {
-        if (window.pageYOffset > elTopOffset + elHeight) {
+        if (window.pageYOffset > elTopOffset) {
             setSticky({ isSticky: true, offset: elHeight });
         } else {
             setSticky({ isSticky: false, offset: 0 });

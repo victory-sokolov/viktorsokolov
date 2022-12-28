@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 const TechContainer = styled.ul`
     list-style: none;
-    padding-bottom: 2rem;
+    margin: var(--space-sm) 0 var(--space-lg);
     border-radius: 6px;
     border: 1px solid var(--color-secondary-900);
     padding: var(--space-md);

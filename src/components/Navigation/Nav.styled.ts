@@ -38,8 +38,11 @@ export const Menu = styled.div`
         position: fixed;
         top: 0;
         right: 0;
+        left: 0;
+        bottom: 0;
+        z-index: 2;
         width: 100%;
-        height: 100%;
+        min-height: 100vh;
         visibility: hidden;
         overflow: hidden;
         display: flex;
@@ -57,6 +60,7 @@ export const Menu = styled.div`
             justify-content: center;
             transform: scale(0);
             transition: all 0.4s ease;
+            backdrop-filter: blur(6px);
         }
 
         & > div > div {
@@ -125,7 +129,7 @@ export const Hamburger = styled.div<HamburgerProps>`
         position: absolute;
         top: 0;
         right: ${props => (props.isSticky ? "0" : "-40px")};
-        z-index: 1;
+        z-index: 5;
         width: 4.5rem;
         height: 4.5rem;
         padding: 1rem;

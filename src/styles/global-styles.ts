@@ -304,7 +304,7 @@ const GlobalStyles = createGlobalStyle`
     top: 0;
     left: 0;
     width: 100%;
-    transition: all 0.5s ease;
+    transition: all 0.5s ease-in-out;
     animation: smoothScroll 1s forwards;
     background-color: rgb(46, 52, 64, 0.5);
     backdrop-filter: blur(8px);
@@ -329,6 +329,7 @@ const GlobalStyles = createGlobalStyle`
 
 .anchor {
     margin: 1.2rem 0;
+    scroll-margin-top: 12rem;
     &:hover {
         &:before {
             content: '#';
@@ -370,7 +371,7 @@ const GlobalStyles = createGlobalStyle`
 }
 
     @media only screen and (max-width: 640px) {
-        body {
+        html {
             font-size: 1.4rem;
         }
     }
