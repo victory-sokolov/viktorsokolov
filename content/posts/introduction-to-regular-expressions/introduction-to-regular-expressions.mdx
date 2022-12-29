@@ -78,7 +78,7 @@ and we want to find opening and closing HTML tags, we can achieve it using the f
 
 -   `{n}` - The preceding character, must appear exactly`n` times. For example, the pattern `/[20]{2}/` would match “20" two times in the following sequence of numbers `20902085`
 -   `{n,}`- The preceding character must appear at least `n`
-    times. For example, the pattern `fiz{3,}` would match `fizzz` but not fizz in the following string
+    times. For example, the pattern `fiz{3,}` would match `fizzz` but not fizz in the following string <br/>
     `fizz buzz fizzz buzz` character z must appear at least 3 times in a row.
 -   `{2,4}` - The preceding character must appear at least 2 times but no more than 4 times.
 
@@ -152,7 +152,7 @@ Let's apply what we learned so far and try to do some common real-world examples
 
     `(\.[a-zA-Z]{2,3})$`
 
-    **Final regex:** `^(?!-)(https?:\/\/)?([a-zA-Z\.{3})?([a-zA-z])+(\.[a-zA-Z]{2,3})?(\.[a-zA-Z]{2,3})$`
+    **Final regex:** <br/> `^(?!-)(https?:\/\/)?([a-zA-Z\.{3})?([a-zA-z])+(\.[a-zA-Z]{2,3})?(\.[a-zA-Z]{2,3})$`
 
 1. Regex that will validate password
 
