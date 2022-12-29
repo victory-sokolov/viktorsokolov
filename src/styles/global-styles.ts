@@ -45,7 +45,8 @@ const GlobalStyles = createGlobalStyle`
     --selection: #364fc7;
     --tip-box-shadow-color: #fff;
     --background-color: var(--white);
-    --code: #1d1f21;
+    --code: #fff;
+    --code-background: #2b303b99;
     --light-shadow: 0 5px 10px rgba(154,160,185,.5), 0 15px 40px rgba(166,173,201,.2);
     --hover-shadow: 0 25px 50px rgba(154,160,185,.5), 0 35px 80px rgba(166,173,201,.2);
     --box-shadow-px: 20px;
@@ -67,6 +68,7 @@ const GlobalStyles = createGlobalStyle`
 
   [data-theme="dark"] {
     --link-color: #fff;
+    --code: #97a2f3;
     --text-color-primary: #fff;
     --text-color-secondary: #FFB90B;
     --background-color: #03082a;
@@ -245,11 +247,9 @@ const GlobalStyles = createGlobalStyle`
    code {
         font-size: 1.5rem;
         line-height: 3.2rem;
-        color: var(--background-color);
-        background-color: var(--text-color-secondary);
-        border-bottom-width: 4px;
-        border-bottom: groove;
-        border-color: #FFB01B;
+        color: var(--code);
+        background-color: var(--code-background);
+        border: 1px solid var(--color-secondary);
         border-radius: 5px;
         padding: 0.4rem 0.6rem;
     }
