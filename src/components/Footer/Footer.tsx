@@ -10,7 +10,7 @@ export const Footer: React.FC = () => {
                 <Link href="/" aria-label="Home">
                     VictorySokolov.dev
                 </Link>
-                <SocialMedia color={"--text-color-primary"} />
+                <SocialMedia />
                 <p>&copy; {new Date().getFullYear()}. Developed by Viktor Sokolov</p>
             </div>
         </FooterStyles>

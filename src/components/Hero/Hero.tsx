@@ -1,3 +1,4 @@
+import SocialMedia from "@components/Social";
 import React from "react";
 
 import { HeroStyles } from "./Hero.styled";
@@ -13,6 +14,8 @@ export const Hero: React.FC = () => {
                 I’m a Software Engineer mainly working with Python, Node, TypeScript and React. Sharing my learnings and
                 building prodcuts in public.
             </p>
+            <p>Follow me on other platforms:</p>
+            <SocialMedia size={24} />
         </HeroStyles>
     );
 };
