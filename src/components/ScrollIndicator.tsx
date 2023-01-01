@@ -5,7 +5,7 @@ const ScrollIndicatorWrapper = styled.div`
     background: var(--accent-gradient);
     bottom: 0;
     left: 0;
-    height: 5px;
+    height: 3px;
     position: absolute;
     transition: 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
 `;
