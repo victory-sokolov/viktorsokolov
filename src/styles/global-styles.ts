@@ -51,7 +51,6 @@ const GlobalStyles = createGlobalStyle`
     --hover-shadow: 0 25px 50px rgba(154,160,185,.5), 0 35px 80px rgba(166,173,201,.2);
     --box-shadow-px: 20px;
     --scrollbar-color: #d6d6d6;
-    --paragraph-color: #534a54;
 
     --accent-gradient: linear-gradient(
             60deg,
@@ -82,6 +81,13 @@ const GlobalStyles = createGlobalStyle`
     src: local('Oxygen'), url('../fonts/Montserrat-Medium.ttf') format('truetype');
     font-display: optional;
   }
+
+  @media (prefere-reduced-motion: no-preference) {
+	:focus {
+		transition: outline-offset .25s ease;
+		outline-offset: 5px;
+	}
+  }   
 
   *, *:before, *:after {
     box-sizing: border-box;
@@ -308,6 +314,7 @@ const GlobalStyles = createGlobalStyle`
     animation: smoothScroll 1s forwards;
     background-color: rgb(46, 52, 64, 0.5);
     backdrop-filter: blur(8px);
+    color: #fff;
     display: flex;
     justify-content: center;
 }

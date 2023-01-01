@@ -38,7 +38,6 @@ export const Card = styled.div`
     }
 
     .post-description {
-        color: var(--paragraph-color);
         margin-bottom: 0;
     }
 
