@@ -2,7 +2,6 @@ import React from "react";
 import Image from "next/image";
 import { getAllPosts, getPostBySlug } from "@common/posts";
 import { Post } from "src/types/Post";
-import { getGitHubUrl } from "@common/utils";
 import Categories from "@components/Categories";
 import Comments from "@components/Comments";
 import styled from "styled-components";
@@ -24,7 +23,12 @@ const IconWrapper = styled.div`
 `;
 
 const GithubLink = ({ slug }: { slug: string }) => (
-    <a href={getGitHubUrl(slug)} aria-labelledby="Edit this post" target="_blank" rel="noopener noreferrer">
+    <a
+        href={`https://github.com/victory-sokolov/victory-sokolov/tree/master/posts/${slug}index.mdx`}
+        aria-labelledby="Edit this post"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
         <IconWrapper>
             <FaGithub />
             <span>Edit this post</span>

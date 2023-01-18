@@ -1,7 +1,7 @@
 import matter from "gray-matter";
 import path from "path";
-import { filterFalsy, toLongDate } from "./utils";
 import fs from "fs";
+import { toLongDate, filterFalsyFromObject } from "@vsokolov/utils";
 import { getPostData, sortPostByDate } from "./content-utils";
 import { TipFrontmatter } from "src/types/Post";
 
@@ -11,12 +11,12 @@ export const getAllTips = (): TipFrontmatter[] => {
 
     const tips = fs.readdirSync(tipsPath).map(slug => {
         const file = matter.read(`${tipsPath}/${slug}/${slug}.mdx`);
-        const data = filterFalsy(file.data);
+        const data = filterFalsyFromObject(file.data);
 
         return {
             ...data,
             content: file.content,
-            date: toLongDate(data.date),
+            date: toLongDate(data.date as string),
             featureImage: `/tips/${slug}/${data.featureImage}`
         };
     }) as TipFrontmatter[];

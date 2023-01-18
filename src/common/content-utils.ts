@@ -2,7 +2,7 @@ import matter from "gray-matter";
 import { serialize } from "next-mdx-remote/serialize";
 import rehypeSlug from "rehype-slug";
 import fs from "fs";
-import { toLongDate } from "./utils";
+import { toLongDate } from "@vsokolov/utils";
 import { PostType } from "src/types/Post";
 
 export const getSerializedContent = async content => {

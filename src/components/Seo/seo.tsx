@@ -1,4 +1,3 @@
-import { addTrailingSlash } from "@common/utils";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { config } from "../../common/appconfig";
@@ -12,6 +11,10 @@ type SeoType = {
 };
 
 const postType = ["tip", "post"];
+
+const addTrailingSlash = (url: string) => {
+    return url.replace(/\/?$/, "/");
+};
 
 export default function Seo({ title, description, date, keywords, image }: SeoType) {
     const router = useRouter();

@@ -2,14 +2,13 @@ import path from "path";
 import fs from "fs";
 import matter from "gray-matter";
 import { PostFrontmatter } from "src/types/Post";
-import { toLongDate, slugify } from "./utils";
+import { toLongDate, slugify } from "@vsokolov/utils";
 import { useReadTime } from "../hooks/useReadTime";
 import { getPostData, sortPostByDate } from "./content-utils";
 
 export const getAllPosts = async (): Promise<PostFrontmatter[]> => {
     const contentPath = "content/posts";
     const articlePath = path.join(process.cwd(), contentPath);
-
     const postData = await fs.promises.readdir(articlePath);
     const posts = postData
         .map(postSlug => {
