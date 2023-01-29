@@ -82,6 +82,12 @@ const GlobalStyles = createGlobalStyle`
     font-display: optional;
   }
 
+  @supports (font: -apple-system-body) and (-webkit-appearance: none) { 
+    img[loading="lazy"] { 
+        clip-path: inset(0.6px) 
+    } 
+  }
+
   @media (prefere-reduced-motion: no-preference) {
 	:focus {
 		transition: outline-offset .25s ease;
@@ -326,6 +332,12 @@ const GlobalStyles = createGlobalStyle`
     text-align: center;
 }
 
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .flex-column {
     display: flex;
     flex-direction: column;
@@ -418,7 +430,7 @@ const ContainerStyle = styled.div`
 `;
 
 const MainStyles = styled.main`
-    max-width: 80rem;
+    max-width: 85rem;
     padding-left: 4rem;
     padding-right: 4rem;
     margin-left: auto;
@@ -434,7 +446,7 @@ const ContentWrapper = styled.article`
 
     .image-wrapper {
         img {
-            height: 50rem;
+            height: 40rem;
         }
     }
 

@@ -13,12 +13,12 @@ type PostMetaInfo = {
 export const PostMeta: React.FC<PostMetaInfo> = ({ date, readTime, children, style }) => {
     return (
         <MetaPostWrapper style={style}>
-            <time dateTime={date} itemProp="datePublished">
+            <time dateTime={date} itemProp="datePublished" className="flex-center">
                 <FaRegCalendarCheck />
                 {date}
             </time>
             {readTime && (
-                <span>
+                <span className="flex-center">
                     <FaRegClock />
                     {readTime}
                 </span>

@@ -61,7 +61,7 @@ export const MetaPostWrapper = styled.div`
     }
 
     span:not(:first-child) {
-        margin-left: 0.5rem;
+        margin-left: 0.3rem;
     }
 
     time:not(:first-child) {
