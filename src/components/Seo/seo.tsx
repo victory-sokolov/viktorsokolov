@@ -22,6 +22,10 @@ export default function Seo({ title, description, date, keywords, image }: SeoTy
     const ogImgSrc = image ? `${config.siteUrl}${image}` : `${config.siteUrl}/static/OG.png`;
     const defaultTitle = title ? `${title} - ${config.author}` : `${config.author} Blog`;
 
+    // Cannonical URL
+    const path = router.asPath.split("#")[0].split("?")[0];
+    const canonicalUrl = `${config.siteUrl}` + (router.asPath === "/" ? "" : path);
+
     return (
         <Head>
             <title>{defaultTitle}</title>
@@ -31,7 +35,7 @@ export default function Seo({ title, description, date, keywords, image }: SeoTy
             <meta name="robots" content="follow, index" />
             <meta name="keywords" content={config.keywords.join(", ")} />
             <meta name="image" content={ogImgSrc} />
-            <link rel="canonical" href={`${config.siteUrl}${router.asPath}`} />
+            <link rel="canonical" href={canonicalUrl} />
             <link rel="icon" type="image/png" sizes="16x16" href="static/favicons/favicon-16x16.png" />
             <link rel="icon" type="image/png" sizes="32x32" href="static/favicons/favicon-32x32.png" />
             <link rel="apple-touch-icon" sizes="180x180" href="static/favicons/apple-touch-icon.png" />
