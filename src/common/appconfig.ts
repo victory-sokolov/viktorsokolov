@@ -2,7 +2,7 @@ export const config = {
     title: "Viktor Sokolov - Developer, creator, writer",
     siteUrl: "https://viktorsokolov.com",
     lang: "en",
-    siteLogo: "static/logo.png",
+    siteLogo: "../../public/static/logo.svg",
     siteName: "victory-sokolov",
     description: "Blog about Software Enginnering, TypeScript, Python, Node.js, React",
     author: "Viktor Sokolov",
