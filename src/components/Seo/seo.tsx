@@ -19,7 +19,7 @@ const addTrailingSlash = (url: string) => {
 export default function Seo({ title, description, date, keywords, image }: SeoType) {
     const router = useRouter();
     const isPost = postType.includes(router.asPath) ? true : false;
-    const ogImgSrc = isPost ? image : `${config.siteUrl}/static/OG.png`;
+    const ogImgSrc = image ? image : `${config.siteUrl}/static/OG.png`;
     const defaultTitle = title ? `${title} - ${config.author}` : `${config.author} Blog`;
 
     return (
