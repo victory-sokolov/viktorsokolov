@@ -1,5 +1,6 @@
 import { FaPython, FaNodeJs } from "react-icons/fa";
 import { SiJavascript, SiTypescript, SiReact, SiNestjs, SiPostgresql, SiDjango } from "react-icons/si";
+import { BsKeyboard } from "react-icons/bs";
 import { TbBrandNextjs } from "react-icons/tb";
 import styled from "styled-components";
 
@@ -96,6 +97,15 @@ export const PostgreSQL = (size: number = 22) => {
     );
 };
 
+export const Other = (size: number = 22) => {
+    return (
+        <TagWrapper style={{ background: "#27AE60", border: "1px solid #15F674" }}>
+            <span>Other</span>
+            <BsKeyboard size={size} style={{ color: "##15bbe8" }} />
+        </TagWrapper>
+    );
+};
+
 export const TagsMapping = {
     python: Python,
     django: Django,
@@ -105,5 +115,6 @@ export const TagsMapping = {
     nestjs: NestJs,
     react: React,
     nodejs: NodeJs,
-    javascript: JavaScript
+    javascript: JavaScript,
+    other: Other
 };
