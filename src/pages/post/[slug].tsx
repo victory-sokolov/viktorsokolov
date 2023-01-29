@@ -60,7 +60,7 @@ const PostPage: React.FC<Post> = ({ frontmatter, mdxSource, next, previous }) =>
             <Seo title={title} description={frontmatter.description} date={date} keywords={tags} image={featureImage} />
             <ContentWrapper>
                 <div className="image-wrapper">
-                    <Image src={featureImage} alt={title} width={800} height={500} quality={100} priority />
+                    <Image src={featureImage} alt={title} width={800} height={400} quality={100} priority />
                 </div>
                 <h1 className="center" itemProp="headline" style={{ color: "var(--text-color-secondary)" }}>
                     {title}

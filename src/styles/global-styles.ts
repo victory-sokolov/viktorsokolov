@@ -460,7 +460,7 @@ const ContentWrapper = styled.article`
 
         .image-wrapper {
             img {
-                height: 40rem;
+                height: 25rem;
             }
         }
     }
