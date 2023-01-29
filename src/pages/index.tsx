@@ -43,7 +43,7 @@ const Home: React.FC = ({ posts }: { posts: PostFrontmatter[] }) => {
     return (
         <HomeStyled>
             <Seo />
-            <h1>Featured Posts</h1>
+            <h2>Featured Posts</h2>
             <div className="recently-published">
                 {posts.map((post: PostFrontmatter, index: number) => (
                     <PostItem key={index} post={post} type="post" />

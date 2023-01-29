@@ -23,7 +23,7 @@ const PostItemStyle = styled.article`
     }
 
     .post-data {
-        padding: 0.5rem var(--space-sm) 0 var(--space-sm);
+        padding: 1rem var(--space-sm) 1.5rem var(--space-sm);
         max-width: 34rem;
     }
 
