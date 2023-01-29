@@ -3,7 +3,7 @@ import path from "path";
 
 const fsPromises = fs.promises;
 const imagesDirs = ["content/posts", "content/tips"];
-const extensisons = [".png", ".jpg"];
+const extensisons = [".png", ".jpg", ".svg"];
 const publicPath = path.join(process.cwd(), "public");
 
 const getDirectories = path => {
