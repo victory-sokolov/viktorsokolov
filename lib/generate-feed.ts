@@ -4,7 +4,8 @@ import { config } from "../src/common/appconfig";
 import { remark } from "remark";
 import remarkHtml from "remark-html";
 import { getAllPosts } from "../src/common/posts";
-import { PostFrontmatter } from "src/types/Post";
+import { PostFrontmatter, TipFrontmatter } from "src/types/Post";
+import { getAllTips } from "../src/common/tips";
 
 async function markdownToHtml(markdown) {
     const result = await remark().use(remarkHtml).process(markdown);
@@ -42,15 +43,15 @@ export default (async () => {
         author
     });
     const posts = await getAllPosts();
+    const tips = await getAllTips();
 
-    const postPromises = posts.map(async (post: PostFrontmatter) => {
-        //convert the markdown to HTML that we'll pass to the RSS feed
+    const postPromise = posts.map(async (post: PostFrontmatter) => {
         const content = await markdownToHtml(post.content);
-        const url = `${baseUrl}${post.slug}`;
+        const url = `${baseUrl}/blog/${post.slug}`;
 
         feed.addItem({
             title: post.title,
-            id: post.slug,
+            id: url,
             link: url,
             description: post.description,
             content: content,
@@ -59,7 +60,24 @@ export default (async () => {
             date: new Date(post.date)
         });
     });
-    await Promise.all(postPromises);
+
+    const tipPromise = tips.map(async (tip: TipFrontmatter) => {
+        const content = await markdownToHtml(tip.content);
+        const url = `${baseUrl}/tip/${tip.slug}`;
+
+        feed.addItem({
+            title: tip.title,
+            id: url,
+            link: url,
+            description: tip.description,
+            content: content,
+            author: [author],
+            contributor: [author],
+            date: new Date(tip.date)
+        });
+    });
+
+    await Promise.all([postPromise, tipPromise]);
 
     writeFileSync("./public/rss.xml", feed.rss2());
     writeFileSync("./public/atom.xml", feed.atom1());
