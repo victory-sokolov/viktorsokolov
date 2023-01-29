@@ -19,6 +19,10 @@ const HomeStyled = styled.div`
         padding-bottom: var(--space-lg);
     }
 
+    .recentrly-published {
+        margin-top: var(--space-md);
+    }
+
     .arrow {
         width: 25px;
         height: 25px;
@@ -39,7 +43,7 @@ const Home: React.FC = ({ posts }: { posts: PostFrontmatter[] }) => {
         <HomeStyled>
             <Seo />
             <h1>Featured Posts</h1>
-            <div className="recentrly-published">
+            <div className="recently-published">
                 {posts.map((post: PostFrontmatter, index: number) => (
                     <PostItem key={index} post={post} type="post" />
                 ))}
