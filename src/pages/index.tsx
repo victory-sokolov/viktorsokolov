@@ -15,6 +15,7 @@ const NewsLetterForm = dynamic(() =>
 );
 
 const HomeStyled = styled.div`
+    h1,
     h2 {
         padding-bottom: var(--space-lg);
     }
