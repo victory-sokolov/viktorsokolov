@@ -8,6 +8,10 @@ export const NextPreviousItem = styled.div`
     gap: 2rem;
     margin-top: 2.5rem;
 
+    @media ${props => props.theme.breakpoints.mobile} {
+        flex-direction: column;
+    }
+
     .next-item {
         margin-right: auto;
     }
