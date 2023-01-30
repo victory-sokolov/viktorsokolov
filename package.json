@@ -21,6 +21,7 @@
         "generate:tips": "node --loader ts-node/esm --experimental-specifier-resolution=node ./lib/twitter-tips.ts"
     },
     "dependencies": {
+        "@vercel/analytics": "^0.1.8",
         "@vsokolov/utils": "^0.6.0",
         "axios": "^1.2.6",
         "dotenv": "^16.0.3",
