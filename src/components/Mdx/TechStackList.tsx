@@ -22,10 +22,21 @@ const TechContainer = styled.ul`
 `;
 
 export const TechStackList = ({ children }) => {
-    const size = 22;
+    const TECH_STACK_LIST = [
+        "python",
+        "django",
+        "typescript",
+        "postgresql",
+        "nextjs",
+        "nestjs",
+        "react",
+        "nodejs",
+        "javascript"
+    ];
+    const tags = Object.entries(TagsMapping).filter(([key, _]) => TECH_STACK_LIST.includes(key));
     return (
         <TechContainer>
-            {Object.entries(TagsMapping).map(([key, value]) => (
+            {tags.map(([key, value]) => (
                 <li key={key}>{value()}</li>
             ))}
         </TechContainer>
