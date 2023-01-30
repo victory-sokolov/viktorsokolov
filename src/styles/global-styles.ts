@@ -137,7 +137,7 @@ const GlobalStyles = createGlobalStyle`
     text-shadow: 0.5px 0.5px 0 rgba(0,0,0,0.2);
     transition: all 0.2s;
     background:none;
-    font-size: 1.6rem;
+    font-size: var(--text-base);
     letter-spacing: .6px;
     border: 2px solid var(--color-secondary-700);
     font-weight: var(--font-medium);
@@ -173,7 +173,7 @@ const GlobalStyles = createGlobalStyle`
 
   a {
     text-decoration: none;
-    font-size: 1.6rem;
+    font-size: var(--text-base);
     line-height: calc(18px * 1.618);
     color: var(--link-color);
     &:hover {
@@ -192,7 +192,7 @@ const GlobalStyles = createGlobalStyle`
     padding: 1.6rem;
     border-radius: 4px;
     color: var(--text-color-primary);
-    font-size: 1.6rem;
+    font-size: var(--text-base);
     text-align: left;
   }
 
@@ -267,7 +267,7 @@ const GlobalStyles = createGlobalStyle`
     }
 
     pre {
-        font-size: 1.6rem;
+        font-size: var(--text-base);
         padding: .8rem;
         margin-top: 1rem;
         border-bottom-left-radius: 8px;
