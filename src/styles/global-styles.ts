@@ -79,7 +79,7 @@ const GlobalStyles = createGlobalStyle`
   @font-face {
     font-family: 'Montserrat', sans-serif;
     src: local('Oxygen'), url('../fonts/Montserrat-Medium.ttf') format('truetype');
-    font-display: optional;
+    font-display: swap;
   }
 
   @supports (font: -apple-system-body) and (-webkit-appearance: none) { 
