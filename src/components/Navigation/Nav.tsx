@@ -38,12 +38,26 @@ export const Nav: React.FC<Props> = ({ isSticky }) => {
                         </LinkItem>
 
                         <LinkItem onClick={() => setIsOpen(!isOpen)}>
-                            <Link href="/about" passHref legacyBehavior data-hover="About" aria-label="About me page">
+                            <Link
+                                href="/about"
+                                passHref
+                                legacyBehavior
+                                data-hover="About"
+                                aria-label="About me page"
+                                prefetch={false}
+                            >
                                 <StyledLink className={route == "/about" ? "active" : ""}>About</StyledLink>
                             </Link>
                         </LinkItem>
                         <LinkItem onClick={() => setIsOpen(!isOpen)}>
-                            <Link href="/uses" passHref legacyBehavior data-hover="Uses" aria-label="Uses page">
+                            <Link
+                                href="/uses"
+                                passHref
+                                legacyBehavior
+                                data-hover="Uses"
+                                aria-label="Uses page"
+                                prefetch={false}
+                            >
                                 <StyledLink className={route == "/uses" ? "active" : ""}>Uses</StyledLink>
                             </Link>
                         </LinkItem>
