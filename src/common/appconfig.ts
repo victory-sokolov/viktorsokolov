@@ -3,7 +3,7 @@ export const config = {
     siteUrl: "https://viktorsokolov.com",
     lang: "en",
     siteLogo: `https://viktorsokolov.com/static/logo.png`,
-    siteName: "victory-sokolov",
+    siteName: "viktorsokolov",
     description: "Blog about Software Enginnering, TypeScript, Python, Node.js, React",
     author: "Viktor Sokolov",
     email: process.env.EMAIL_ADDRESS,
