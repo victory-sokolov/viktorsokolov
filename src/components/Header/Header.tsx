@@ -13,7 +13,7 @@ const Nav = dynamic(() =>
 
 const Hero = dynamic(() =>
     import(
-        /*webpackChunkName: 'Navigation' */
+        /*webpackChunkName: 'Hero' */
         "@components/Hero"
     ).then(module => module.default)
 );
@@ -39,7 +39,7 @@ export const Header: React.FC<any> = ({ toggleTheme, theme }) => {
         return () => {
             window.removeEventListener("scroll", handleScrollEvent);
         };
-    }, []);
+    }, [sticky]);
 
     const handleScroll = (elTopOffset, elHeight) => {
         if (window.pageYOffset > elTopOffset) {
@@ -50,7 +50,7 @@ export const Header: React.FC<any> = ({ toggleTheme, theme }) => {
     };
 
     return (
-        <div>
+        <div style={{ position: "relative" }}>
             <HeaderStyles className={`${sticky.isSticky ? "sticky" : ""}`} ref={headerRef}>
                 <div className="heading-content">
                     <Nav isSticky={sticky.isSticky} />

@@ -1,11 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-
-import Seo from "../components/Seo";
-import { getAllTips } from "@common/tips";
-import { TipFrontmatter } from "src/types/Post";
 import Image from "next/image";
 import Link from "next/link";
+import Seo from "../components/Seo";
+import { getAllTips } from "@common/tips";
+import type { TipFrontmatter } from "src/types/Post";
 
 const TipsWrapper = styled.div`
     height: 100%;

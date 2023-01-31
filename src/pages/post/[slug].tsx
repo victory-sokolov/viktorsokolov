@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "next/image";
 import { getAllPosts, getPostBySlug } from "@common/posts";
-import { Post } from "src/types/Post";
 import Categories from "@components/Categories";
 import Comments from "@components/Comments";
 import styled from "styled-components";
@@ -11,6 +10,7 @@ import MDXComponents from "@components/Mdx/MDXComponent";
 import { MDXRemote } from "next-mdx-remote";
 import NextNPrevious from "@components/NextNPrevious";
 import { POST_TYPE } from "src/types/enums";
+import type { Post } from "src/types/Post";
 import Seo from "@components/Seo";
 import NewsLetterForm from "@components/NewsLetter";
 import { ContentWrapper } from "src/styles/global-styles";

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { HamburgerProps } from "./types";
+import type { HamburgerProps } from "./types";
 
 export const CloseIcon = styled.div`
     @media ${props => props.theme.breakpoints.mobile} {

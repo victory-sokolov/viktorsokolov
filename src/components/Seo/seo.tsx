@@ -20,7 +20,7 @@ export default function Seo({ title, description, date, keywords, image }: SeoTy
     const router = useRouter();
     const isPost = postType.includes(router.asPath) ? true : false;
     const ogImgSrc = image ? `${config.siteUrl}${image}` : `${config.siteUrl}/static/OG.png`;
-    const defaultTitle = title ? `${title} - ${config.author}` : `${config.author} Blog`;
+    const defaultTitle = title ? `${title} - ${config.author}` : `${config.author} Development Blog`;
 
     // Cannonical URL
     const path = router.asPath.split("#")[0].split("?")[0];

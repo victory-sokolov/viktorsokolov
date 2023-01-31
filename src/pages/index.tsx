@@ -4,8 +4,8 @@ import Seo from "@components/Seo";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import React from "react";
-import { PostFrontmatter } from "src/types/Post";
 import styled from "styled-components";
+import type { PostFrontmatter } from "src/types/Post";
 
 const NewsLetterForm = dynamic(() =>
     import(

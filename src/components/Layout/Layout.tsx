@@ -5,7 +5,7 @@ import Footer from "@components/Footer";
 import Header from "@components/Header";
 import { darkTheme, lightTheme } from "../../styles/theme";
 import { useDarkMode } from "@hooks/useDarkMode";
-import { ReactProps } from "src/types/types";
+import type { ReactProps } from "src/types/types";
 
 const SiteWrapper = styled.div`
     min-height: 100vh;

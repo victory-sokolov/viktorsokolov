@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { NavStyles, CloseIcon, Menu, LinkItem, StyledLink } from "./Nav.styled";
-import { Props } from "./types";
+import type { Props } from "./types";
 
 const Hamburger = dynamic(() =>
     import(

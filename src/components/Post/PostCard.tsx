@@ -2,9 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import React from "react";
 import { Card } from "./Post.styled";
-
 import { PostMeta } from "./PostMeta";
-import { PostFrontmatter } from "src/types/Post";
+import type { PostFrontmatter } from "src/types/Post";
 
 export const PostCard: React.FC<PostFrontmatter> = ({ title, date, slug, excerpt, image, readTime, id }) => {
     return (
