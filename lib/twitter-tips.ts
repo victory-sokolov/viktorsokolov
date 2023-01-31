@@ -19,7 +19,6 @@ const removeCharacters = (text: string) => {
 export default async function getTweets(username: string) {
     const startTime = new Date(new Date().setUTCHours(0, 0, 0, 0));
     const endTime = new Date(new Date().setUTCHours(23, 59, 59, 999));
-    console.log("Token", process.env.TWITTER_TOKEN);
     const client = new TwitterApi(process.env.TWITTER_TOKEN);
     const timeline = await client.v2.userTimeline(process.env.TWITTER_TIMELINE_ID, {
         "tweet.fields": ["id", "created_at", "attachments", "entities", "text"],
