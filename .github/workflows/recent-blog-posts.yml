@@ -3,6 +3,10 @@ on:
   schedule:
     - cron: "* */24 * * *"
 
+env:
+  TWITTER_TIMELINE_ID: ${{ secrets.TWITTER_TIMELINE_ID }}
+  TWITTER_TOKEN: ${{ secrets.TWITTER_TOKEN }}
+
 jobs:
   fetch-recent-blog-posts:
     name: Fetch recent blog posts
@@ -17,9 +21,6 @@ jobs:
       - name: Install node dependencies
         run: yarn
       - name: Run node script
-        env:
-          TWITTER_TIMELINE_ID: ${{ secrets.TWITTER_TIMELINE_ID }}
-          TWITTER_TOKEN: ${{ secrets.TWITTER_TOKEN }}
         run: yarn build
       - name: Git setup
         run: git config --global user.email readme-bot@example.com && git config --global user.name readme-bot
