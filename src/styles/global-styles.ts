@@ -113,6 +113,9 @@ const GlobalStyles = createGlobalStyle`
     background: var(--background-color);
     color: var(--text-color-primary);
     font-size: 1.8rem;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     position: relative;
     height: 100vh;
     line-height: 1.618;
