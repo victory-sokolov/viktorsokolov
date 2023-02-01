@@ -42,7 +42,7 @@ const TipPage: React.FC<Tip> = ({ frontmatter, mdxSource, next, previous }) => {
 export default TipPage;
 
 export async function getStaticPaths() {
-    const tips = getAllTips();
+    const tips = await getAllTips();
 
     const paths = tips.map(tip => {
         return {

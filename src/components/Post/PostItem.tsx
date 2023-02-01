@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { PostMeta } from "./PostMeta";
 import { useReadTime } from "@hooks/useReadTime";
 import { borderGradient } from "src/styles/global-styles";
+import { BlurryImage } from "@components/BlurryImage";
 
 const PostItemStyle = styled.article`
     margin-bottom: var(--space-xl);
@@ -50,6 +51,7 @@ const PostItemStyle = styled.article`
 
         .image-wrapper {
             width: 100%;
+            height: 100%;
         }
 
         .flex-row {
@@ -73,7 +75,7 @@ export const PostItem = ({ post, type }) => {
         <PostItemStyle className="border-gradient">
             <Link href={`${type}/${post.slug}`} aria-label={post.title} className="flex-row">
                 <div className="image-wrapper">
-                    <Image src={post.featureImage} alt={post.title} width={400} height={450} quality={100} priority />
+                    <BlurryImage featureImage={post.featureImage} blurhash={post.blurhash} title={post.title} />
                 </div>
                 <div className="post-data">
                     <h3 className="post-title">{post.title}</h3>

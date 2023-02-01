@@ -5,16 +5,20 @@ import { PostFrontmatter } from "src/types/Post";
 import { slugify, toLongDate } from "@vsokolov/utils";
 import { useReadTime } from "../hooks/useReadTime";
 import { getPostData, sortPostByDate } from "./content-utils";
+import { getPlaiceholder } from "plaiceholder";
 
 export const getAllPosts = async (): Promise<PostFrontmatter[]> => {
     const contentPath = "content/posts";
     const articlePath = path.join(process.cwd(), contentPath);
     const postData = await fs.promises.readdir(articlePath);
+
     const posts = postData
-        .map(postSlug => {
+        .map(async postSlug => {
             const file = matter.read(`${articlePath}/${postSlug}/${postSlug}.mdx`);
             const post = file.data;
             const slug = slugify(postSlug);
+            const imgPath = `/posts/${slug}/${post.featureImage}`;
+            const { blurhash } = await getPlaiceholder(imgPath);
 
             if (post.published) {
                 return {
@@ -26,14 +30,16 @@ export const getAllPosts = async (): Promise<PostFrontmatter[]> => {
                     date: toLongDate(post.date),
                     slug: slug,
                     excerpt: `${file.content.substring(0, 150)}...`,
-                    featureImage: `/posts/${slug}/${post.featureImage}`,
+                    featureImage: imgPath,
+                    blurhash: blurhash,
                     readTime: useReadTime(file.content)
                 };
             }
         })
         .filter(Boolean);
 
-    const sortedPosts = sortPostByDate(posts);
+    const allPosts = await Promise.all(posts);
+    const sortedPosts = sortPostByDate(allPosts);
     return JSON.parse(JSON.stringify(sortedPosts));
 };
 

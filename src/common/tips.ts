@@ -4,27 +4,33 @@ import fs from "fs";
 import { toLongDate, filterFalsyFromObject } from "@vsokolov/utils";
 import { getPostData, sortPostByDate } from "./content-utils";
 import { TipFrontmatter } from "src/types/Post";
+import { getPlaiceholder } from "plaiceholder";
 
-export const getAllTips = (): TipFrontmatter[] => {
+export const getAllTips = async (): Promise<TipFrontmatter[]> => {
     const twitterTipsPath = "content/tips";
     const tipsPath = path.join(process.cwd(), twitterTipsPath);
+    const tipsData = await fs.promises.readdir(tipsPath);
 
-    const tips = fs.readdirSync(tipsPath).map(slug => {
+    const tips = tipsData.map(async slug => {
         const file = matter.read(`${tipsPath}/${slug}/${slug}.mdx`);
         const data = filterFalsyFromObject(file.data);
+        const imgPath = `/tips/${slug}/${data.featureImage}`;
+        const { blurhash } = await getPlaiceholder(imgPath);
 
         return {
             ...data,
             content: file.content,
             date: toLongDate(data.date as string),
-            featureImage: `/tips/${slug}/${data.featureImage}`
+            featureImage: imgPath,
+            blurhash: blurhash
         };
-    }) as TipFrontmatter[];
-    const sortedTips = sortPostByDate(tips);
+    });
+    const allTips = await Promise.all(tips);
+    const sortedTips = sortPostByDate(allTips as TipFrontmatter[]);
     return JSON.parse(JSON.stringify(sortedTips));
 };
 
 export const getTipBySlug = async (slug: string) => {
-    const tips = getAllTips();
+    const tips = await getAllTips();
     return getPostData(tips, slug);
 };

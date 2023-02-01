@@ -5,6 +5,7 @@ import Link from "next/link";
 import Seo from "../components/Seo";
 import { getAllTips } from "@common/tips";
 import type { TipFrontmatter } from "src/types/Post";
+import { BlurryImage } from "../components/BlurryImage";
 
 const TipsWrapper = styled.div`
     height: 100%;
@@ -91,7 +92,11 @@ const Tips = ({ tips }) => {
                     <TipItem key={index}>
                         <Link href={`/tip/${tip.slug}`}>
                             <div className="image-wrapper">
-                                <Image src={tip.featureImage} width={400} height={200} alt={tip.title} />
+                                <BlurryImage
+                                    featureImage={tip.featureImage}
+                                    blurhash={tip.blurhash}
+                                    title={tip.title}
+                                />
                             </div>
                         </Link>
                         <div className="tip-details">
@@ -116,7 +121,7 @@ const Tips = ({ tips }) => {
 export default Tips;
 
 export async function getStaticProps() {
-    const tips = getAllTips();
+    const tips = await getAllTips();
     return {
         props: {
             tips: tips

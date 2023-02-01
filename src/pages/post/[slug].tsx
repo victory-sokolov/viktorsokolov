@@ -1,5 +1,4 @@
-import React from "react";
-import Image from "next/image";
+import React, { useState } from "react";
 import { getAllPosts, getPostBySlug } from "@common/posts";
 import Categories from "@components/Categories";
 import Comments from "@components/Comments";
@@ -14,6 +13,7 @@ import type { Post } from "src/types/Post";
 import Seo from "@components/Seo";
 import NewsLetterForm from "@components/NewsLetter";
 import { ContentWrapper } from "src/styles/global-styles";
+import { BlurryImage } from "@components/BlurryImage";
 
 const IconWrapper = styled.div`
     display: flex;
@@ -60,7 +60,7 @@ const PostPage: React.FC<Post> = ({ frontmatter, mdxSource, next, previous }) =>
             <Seo title={title} description={frontmatter.description} date={date} keywords={tags} image={featureImage} />
             <ContentWrapper>
                 <div className="image-wrapper">
-                    <Image src={featureImage} alt={title} width={800} height={400} quality={100} priority />
+                    <BlurryImage featureImage={featureImage} blurhash={frontmatter.blurhash} title={title} />
                 </div>
                 <h1 className="center" itemProp="headline" style={{ color: "var(--text-color-secondary)" }}>
                     {title}
