@@ -22,7 +22,7 @@ export default function Seo({ title, description, date, keywords, image }: SeoTy
     const ogImgSrc = image ? `${config.siteUrl}${image}` : `${config.siteUrl}/static/OG.png`;
     const defaultTitle = title ? `${title} - ${config.author}` : `${config.author} Development Blog`;
 
-    // Cannonical URL
+    // Canonical URL
     const path = router.asPath.split("#")[0].split("?")[0];
     const canonicalUrl = `${config.siteUrl}` + (router.asPath === "/" ? "" : path);
 
@@ -63,13 +63,12 @@ export default function Seo({ title, description, date, keywords, image }: SeoTy
             <meta property="twitter:image" content={ogImgSrc} />
             <meta name="twitter:creator" content={config.social.twitterHandle} />
             <meta name="twitter:site" content={config.social.twitterHandle} />
-            {isPost && (
-                <script
-                    type="application/ld+json"
-                    key="ldjson"
-                    // eslint-disable-next-line react/no-danger
-                    dangerouslySetInnerHTML={{
-                        __html: `
+            <script
+                type="application/ld+json"
+                key="ldjson"
+                // eslint-disable-next-line react/no-danger
+                dangerouslySetInnerHTML={{
+                    __html: `
                             {
                                 "description": "${description ? description : config.description}",
                                 "author": {
@@ -90,9 +89,8 @@ export default function Seo({ title, description, date, keywords, image }: SeoTy
                                 },
                                 "@context": "http://schema.org"
                             }`
-                    }}
-                />
-            )}
+                }}
+            />
         </Head>
     );
 }
