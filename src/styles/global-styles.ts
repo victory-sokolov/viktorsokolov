@@ -186,6 +186,7 @@ const GlobalStyles = createGlobalStyle`
 
   h1,h2,h3,h4,h5,h6 {
     margin: 0;
+    line-height: calc(2.5rem * 1.618);
   }
 
   input {
@@ -212,6 +213,7 @@ const GlobalStyles = createGlobalStyle`
         border: 1px solid green;
         -webkit-text-fill-color: var(--color-secondary);
         -webkit-box-shadow: 0 0 0 1000px #000 inset;
+        box-shadow: 0 0 0 1000px #000 inset;
         transition: background-color 5000s ease-in-out 0s;
     }
 
@@ -221,36 +223,11 @@ const GlobalStyles = createGlobalStyle`
         background: none;
     }
 
-  h1 {
-    font-size: var(--text-xxl);
-    line-height: calc(3.5rem * 1.618);
-  }
-
-  h2 {
-    font-size: var(--text-xxl);
-    line-height: calc(3rem * 1.618);
-  }
-
-  h3 {
-    font-size: var(--text-lg);
-    line-height: calc(2.5rem * 1.618);
-  }
-
-  h4 {
-    font-size: var(--text-md);
-    line-height: calc(2rem * 1.618);
-  }
-
- h5 {
-    font-size: var(--text-sm);
-    line-height: calc(2rem * 1.618);
-  }
-
-  .tilt {
+    .tilt {
         transform: rotate(-2deg);
         position: relative;
         display: inline-block;
-  }
+    }
 
   a.anchor > svg {
         fill: var(--background-color);
@@ -446,12 +423,6 @@ const ContentWrapper = styled.article`
     margin-top: var(--text-md);
     position: relative;
     line-height: 32px;
-
-    .image-wrapper {
-        img {
-            height: 40rem;
-        }
-    }
 
     @media ${props => props.theme.breakpoints.mobile} {
         padding: 0;
