@@ -73,26 +73,19 @@ export default function Seo({ title, description, date, keywords, image }: SeoTy
                             {
                                 "description": "${description ? description : config.description}",
                                 "author": {
-                                "@type": "Person",
-                                "name": "${config.author}"
-                                },,
+                                    "@type": "Person",
+                                    "name": "${config.author}"
+                                },
                                 "@type": "BlogPosting",
                                 "url": "${config.siteUrl}${router.basePath}${addTrailingSlash(router.asPath)}",
-                                "publisher": {
-                                "@type": "Organization",
-                                "logo": {
-                                    "@type": "ImageObject",
-                                    "url": "${config.siteUrl}${router.basePath}/assets/images/logo.png"
-                                },
-                                "name": "${config.author}"
-                                },
+                                "name": "${config.author}",
                                 "headline": "${title} | ${config.siteName}",
                                 "image": ["${config.siteUrl}${router.basePath}${ogImgSrc}"],
                                 "datePublished": "${new Date(date).toISOString()}",
                                 "dateModified": "${new Date(date).toISOString()}",
                                 "mainEntityOfPage": {
-                                "@type": "WebPage",
-                                "@id": "${config.siteUrl}${router.basePath}${addTrailingSlash(router.asPath)}"
+                                    "@type": "WebPage",
+                                    "@id": "${config.siteUrl}${router.basePath}${addTrailingSlash(router.asPath)}"
                                 },
                                 "@context": "http://schema.org"
                             }`
