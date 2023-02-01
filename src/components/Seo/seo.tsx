@@ -74,13 +74,14 @@ export default function Seo({ title, description, date, keywords, image }: SeoTy
                                 "description": "${description ? description : config.description}",
                                 "author": {
                                     "@type": "Person",
-                                    "name": "${config.author}"
+                                    "name": "${config.author}",
+                                    "url": "${config.siteUrl}"
                                 },
                                 "@type": "BlogPosting",
                                 "url": "${config.siteUrl}${router.basePath}${addTrailingSlash(router.asPath)}",
                                 "name": "${config.author}",
                                 "headline": "${title} | ${config.siteName}",
-                                "image": ["${config.siteUrl}${router.basePath}${ogImgSrc}"],
+                                "image": ["${ogImgSrc}"],
                                 "datePublished": "${new Date(date).toISOString()}",
                                 "dateModified": "${new Date(date).toISOString()}",
                                 "mainEntityOfPage": {
