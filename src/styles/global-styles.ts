@@ -252,7 +252,6 @@ const GlobalStyles = createGlobalStyle`
         margin-top: 1rem;
         border-bottom-left-radius: 8px;
         border-bottom-right-radius: 8px;
-        box-shadow: rgb(38, 57, 77) 0px 15px 20px -15px;
         margin-bottom: 2.5rem;
         position: relative;
         overflow-x: auto;
