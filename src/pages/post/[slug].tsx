@@ -27,7 +27,7 @@ const IconWrapper = styled.div`
 
 const GithubLink = ({ slug }: { slug: string }) => (
     <a
-        href={`https://github.com/victory-sokolov/victory-sokolov/tree/master/posts/${slug}index.mdx`}
+        href={`https://github.com/victory-sokolov/viktorsokolov/tree/master/content/posts/${slug}/${slug}.mdx`}
         aria-labelledby="Edit this post"
         target="_blank"
         rel="noopener noreferrer"
