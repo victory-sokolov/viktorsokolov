@@ -36,8 +36,7 @@ export default function Seo({ title, description, date, keywords, image }: SeoTy
             <meta name="keywords" content={config.keywords.join(", ")} />
             <meta name="image" content={ogImgSrc} />
             <link rel="canonical" href={canonicalUrl} />
-            <link rel="icon" type="image/png" sizes="16x16" href="static/favicons/favicon-16x16.png" />
-            <link rel="icon" type="image/png" sizes="32x32" href="static/favicons/favicon-32x32.png" />
+            <link rel="icon" type="image/svg" href="static/favicons/favicon.svg" />
             <link rel="apple-touch-icon" sizes="180x180" href="static/favicons/apple-touch-icon.png" />
             <link rel="android-touch-icon" sizes="192x192" href="static/favicons/android-chrome-192x192.png" />
             <link rel="android-touch-icon" sizes="512x512" href="static/favicons/android-chrome-512x512.png" />
