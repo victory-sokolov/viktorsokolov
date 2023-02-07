@@ -1,6 +1,6 @@
 ---
 title: "Introduction to Regular Expressions"
-description: Beginners friendly introduction to Regular expressions
+description: Beginners-friendly introduction to Regular expressions
 date: 2022-12-22
 featureImage: introduction-to-regular-expressions.png
 tags: Other
@@ -61,7 +61,7 @@ A "quantifier" in a regex is a special symbol that specifies how many times a ch
 
 -   `*` - Character can appear zero or more times. . For example, the pattern `/a*/` would match "", "a", "aa", "aaa", etc.
 -   `+` - Quite similar to the previous one, but instead character class can appear one or more times.
--   `?` - Matches the character before the `?` zero or one time. For example, we have this string: `abcd adcd` and regex `ab?` it will match `ab a` , since character `b` can appear zero or one time in the string.
+-   `?` - Matches the character before the `?` zero or one time. For example, we have this string: `abcd adcd` and regex `ab?` it will match `ab a`, since character `b` can appear zero or one time in the string.
 
 Let's see one more real-world example, we have a base HTML5 structure
 
@@ -74,9 +74,9 @@ Let's see one more real-world example, we have a base HTML5 structure
 </html>
 ```
 
-and we want to find opening and closing HTML tags, we can achieve it using the following expression: `<\/?html>` . Here we specify that the backward slash `/` can appear zero or one time, since slash is a special character we need to escape it with a forward slash.
+and we want to find an opening and closing HTML tags, we can achieve it using the following expression: `<\/?html>`. Here we specify that the backward slash `/` can appear zero or one time, since slash is a special character we need to escape it with a forward slash.
 
--   `{n}` - The preceding character, must appear exactly`n` times. For example, the pattern `/[20]{2}/` would match “20" two times in the following sequence of numbers `20902085`
+-   `{n}` - The preceding character, must appear exactly `n` times. For example, the pattern `/[20]{2}/` would match “20" two times in the following sequence of numbers `20902085`
 -   `{n,}`- The preceding character must appear at least `n`
     times. For example, the pattern `fiz{3,}` would match `fizzz` but not fizz in the following string <br/>
     `fizz buzz fizzz buzz` character z must appear at least 3 times in a row.
@@ -101,7 +101,7 @@ First, we want to find `@` symbol and match the symbol only if it contains Gmail
 ^.*\b@(?=gmail)\b.*
 ```
 
-**Negative lookahead** is the opposite of lookahead, we use the exclamation mark ( ! ), to denote that we want to find any email but not the one with Gmail domain `@(?!gmail)`
+**Negative lookahead** is the opposite of lookahead, we use the exclamation mark ( ! ), to denote that we want to find any email but not the one with the Gmail domain `@(?!gmail)``
 
 **Positive lookbehind** - is specified with the syntax `(?<=pattern)` and represents the pattern that must immediately precede the main pattern.
 
@@ -144,9 +144,9 @@ Let's apply what we learned so far and try to do some common real-world examples
     ```
 
     - First thing first, we should check that domain doesn't start with a hyphen. We can use anchor with negative lookahead `^(?!-)`
-    - Next, we want to check whether a valid protocol is being used. We will wrap our pattern into parenthesis to create a group. Group can be later referenced if needed. `(https?:\/\/)?` - here we validate that the protocol starts with the `http` and optional `s` that follows colon and two slashes, the protocol should occur zero or one time.
-    - Validate `www` prefix `(w{3}\.)?`, here we are looking for the letter `w` that should occur 3 times in a row and follow a dot.
-    - Next, we validate domain name parts, which should contain a minimum 1 character and maximum of 63 characters - `([a-zA-z{1,63}])+`
+    - Next, we want to check whether a valid protocol is being used. We will wrap our pattern into parenthesis to create a group. The group can be later referenced if needed. `(https?:\/\/)?` - here we validate that the protocol starts with the `http` and optional `s` that follow the colon and two slashes, the protocol should occur zero or one time.
+    - Validate `www` prefix `(w{3}\.)?`, here we are looking for the letter `w` that should occur 3 times in a row and **follow** a dot.
+    - Next, we validate domain name parts, which should contain a minimum of 1 character and a maximum of 63 characters - `([a-zA-z{1,63}])+`
     - Validate subdomain that should contain 2-3 characters followed by dot - `(\.[a-zA-Z]{2,3})?`
     - Finally, we validate the top-level domain, which should end with a dot and be 2-3 characters long -
 
@@ -190,18 +190,9 @@ Let's apply what we learned so far and try to do some common real-world examples
     Rules for extracting text between any HTML tag are quite simple we should match opening and closing HTML tags and extract any data between them.
 
     Let's consider the following list of HTML tags
+Only the first three HTML tags should be matched
 
-    ```html
-    <PRE>Title</PRE>
-    <H1>Hello world</H1>
-    <strong>BOld text</strong>
-    <>Wrong</>
-    <?php ?>Some text<?php ?>
-    ```
-
-Only first three HTML tags should be matched
-
--   `^<[a-zA-Z1-6]+>` - string should start with opening tag `<` and contain any alpha character or number from 1-6, this specifically used for H1-H6 tags.
+-   `^<[a-zA-Z1-6]+>` - string should start with opening tag `<` and contain any alpha character or number from 1-6, this is specifically used for H1-H6 tags.
 -   `(.+?)` - match everything between `<>...</>` tags except line breaks
 -   `<\/[a-zA-Z1-6]+>$` - match closing tag
 
@@ -209,7 +200,7 @@ Only first three HTML tags should be matched
 
 ## Conclusion
 
-Quite a lot of things are covered for the regular expression. This is enough information that will help you to get started on reading and writing regular expressions. The next step would be to practice writing regexes. Here are a few websites where you get hands-on experience writing regexes.
+Quite a lot of things were covered. This is the bare minimum information that will help you to get started on reading and writing regular expressions. The next step would be to practice writing regexes. Here are a few websites where you get hands-on experience writing regexes.
 
 -   [https://regexlearn.com/learn](https://regexlearn.com/learn)
 -   [https://www.hackerrank.com/domains/regex](https://www.hackerrank.com/domains/regex)

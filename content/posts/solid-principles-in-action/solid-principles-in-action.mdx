@@ -112,7 +112,7 @@ class FileManager {
 }
 ```
 
-If there will be a new requirement for reading/deleting files we can add them to related class `FileManager`
+If there will be a new requirement for reading/deleting files we can add them to the related class `FileManager`
 
 ## Open-closed principle (OCP)
 
@@ -136,7 +136,7 @@ class Invoice {
 
 The issue with this class is that it is tied to a specific class implementation of storing data. If we need to change how data is stored (e.g. by using `Redis` cache), we would have to modify the class and add another storage to the `if/else` clause.
 
-To make the class more flexible and maintainable, we can create an abstraction that separates the storage logic from the `Invoice` class. This will allow us to change the behavior of the class without modifying its code, and will make it easier to swap out different storage implementations as needed.
+To make the class more flexible and maintainable, we can create an abstraction that separates the storage logic from the `Invoice` class. This will allow us to change the behavior of the class without modifying its code and will make it easier to swap out different storage implementations as needed.
 
 Let’s create an interface called `PersistanceStorage`
 
@@ -180,7 +180,7 @@ class Invoice {
 }
 ```
 
-Now when we are adding a new persistence storage, we don’t have to modify our Invoice class, instead we need to pass appropriate storage to the constructor that implements `PersistanceStorage` interface.
+Now when we are adding new persistence storage, we don’t have to modify our Invoice class, instead, we need to pass appropriate storage to the constructor that implements `PersistanceStorage` interface.
 
 ## Liskov Substitution (LS)
 
@@ -188,9 +188,9 @@ Now when we are adding a new persistence storage, we don’t have to modify our 
 
 Subclasses should not change the behavior of our parent class.
 
-Let’s create a base class called `Database`that represents a generic database, and two subclasses called `SQLiteDatabase` and `PostgresSQLDatabase`. The `Database`class has a method called `getData()` that is used to retrieve data from the database, and the `SQLiteDatabase` and `PostgresSQLDatabase` classes override this method to implement their own versions of the `getData()` behavior.
+Let’s create a base class called `Database` that represents a generic database, and two subclasses called `SQLiteDatabase` and `PostgresSQLDatabase`. The `Database` class has a method called `getData()` that is used to retrieve data from the database, and the `SQLiteDatabase` and `PostgresSQLDatabase` classes override this method to implement their versions of the `getData()` behavior.
 
-Let’s look at an example that breaks **LS** principle
+Let’s look at an example that breaks the **LS** principle
 
 ```typescript
 class Database {
@@ -223,9 +223,9 @@ database = new PostgresSQLDatabase();
 let data = database.getData(); // This violates Liskov substitution
 ```
 
-Above example violates **LS** principle since we except that our child classes comply with parent class API contract, in order to fix it we need update `PostgresSQLDatabase` to return list of data instead of single entry.
+The above example violates the **LS** principle since we accept that our child classes comply with the parent class API contract, to fix it we need to update `PostgresSQLDatabase` to return a list of data instead of a single entry.
 
-Here is correct implementation of **LS**
+Here is the correct implementation of the **LS**
 
 ```typescript
 class Database {
@@ -254,9 +254,9 @@ Now both of our classes can be used interchangeably.
 
 ## Interface Segregation (IS)
 
-Interface Segregation means principle states that many interfaces are better than one general-purpose interface and classes should not be forced to implement a function they do no need to use.
+Interface Segregation means the principle states that many interfaces are better than one general-purpose interface and classes should not be forced to implement a function they do not need to use.
 
-Let’s take as an example one of our previous interface `PersistanceStorage` and slightly modify it
+Let’s take as an example one of our previous Interfaces `PersistanceStorage` and slightly modify it
 
 ```typescript
 interface PersistanceStorage {
@@ -267,7 +267,7 @@ interface PersistanceStorage {
 }
 ```
 
-Now if we implement this interface on the `DatabaseManager` we will be forced to implement all methods, but `moveData` is not directly related to database. Let’s fix this and split our interface into two separate interfaces.
+Now if we implement this interface on the `DatabaseManager` we will be forced to implement all methods, but `moveData` is not directly related to the database. Let’s fix this and split our interface into two separate interfaces.
 
 ```typescript
 interface PersistanceStorage {
@@ -332,7 +332,7 @@ class UserRepository {
 }
 ```
 
-In this example, the `UserRepository` depends directly on the `Database`class, and it creates a new instance of the `Database`in its constructor. This makes the `UserRepository`
+In this example, the `UserRepository` depends directly on the `Database` class, and it creates a new instance of the `Database` in its constructor. This makes the `UserRepository`
 difficult to test and maintain, as we would have to change the `UserRepository`
 code if we wanted to use a different implementation of the `Database`
 class (e.g. a different database engine).
