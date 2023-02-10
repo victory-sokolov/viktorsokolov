@@ -47,7 +47,7 @@ export default (async () => {
 
     const postPromise = posts.map(async (post: PostFrontmatter) => {
         const content = await markdownToHtml(post.content);
-        const url = `${baseUrl}/blog/${post.slug}`;
+        const url = `${baseUrl}/post/${post.slug}`;
 
         feed.addItem({
             title: post.title,
