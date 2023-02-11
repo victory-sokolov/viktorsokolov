@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 
 const ContentSecurityPolicy = `
-    default-src 'self';
+    default-src 'self' https://vitals.vercel-insights.com/v1/vitals;
     img-src * self 'unsafe-inline' blob: data:;
     script-src 'unsafe-inline' 'unsafe-eval';
     script-src-elem 'self' 'unsafe-inline' https://cdn.vercel-insights.com/v1/script.debug.js https://utteranc.es/client.js;
