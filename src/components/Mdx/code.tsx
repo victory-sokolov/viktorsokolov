@@ -95,7 +95,6 @@ export const Code = ({ children }) => {
                             {isCopied ? "🎉 Copied!" : <BsClipboardCheck onClick={copyToClipboard} />}
                         </CopyButton>
 
-                        {/* <CopyButton onClick={copyToClipboard}>{isCopied ? "🎉 Copied!" : "Copy"}</CopyButton> */}
                         {tokens.map((line, i) => (
                             <Line key={i} {...getLineProps({ line, key: i })}>
                                 <LineNo>{i + 1}</LineNo>
