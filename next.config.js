@@ -3,7 +3,7 @@
 const ContentSecurityPolicy = `
     default-src 'self' https://vitals.vercel-insights.com/v1/vitals;
     img-src * self 'unsafe-inline' blob: data:;
-    script-src 'unsafe-inline' 'unsafe-eval';
+    script-src 'unsafe-eval';
     script-src-elem 'self' 'unsafe-inline' https://cdn.vercel-insights.com/v1/script.debug.js https://utteranc.es/client.js;
     style-src 'unsafe-inline';
     frame-src *.substack.com https://utteranc.es/;
@@ -30,7 +30,7 @@ const config = {
                     },
                     {
                         key: "Referrer-Policy",
-                        value: "origin-when-cross-origin"
+                        value: "same-origin"
                     },
                     {
                         key: "Strict-Transport-Security",
@@ -39,6 +39,10 @@ const config = {
                     {
                         key: "Permissions-Policy",
                         value: "camera=(); battery=(self); geolocation=();"
+                    },
+                    {
+                        key: "X-XSS-Protection",
+                        value: "1; mode=block"
                     }
                 ]
             }
