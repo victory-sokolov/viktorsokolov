@@ -16,10 +16,6 @@ const config = {
             {
                 source: "/:path*",
                 headers: [
-                    // {
-                    //     key: "Content-Security-Policy",
-                    //     value: "default-src 'unsafe-inline'; image-src 'self'; font-src 'self' 'https://fonts.googleapis.com'; script-src 'unsafe-inline'; frame-src *.substack.com"
-                    // },
                     {
                         key: "Content-Security-Policy",
                         value: ContentSecurityPolicy.replace(/\s{2,}/g, " ").trim()
@@ -39,6 +35,10 @@ const config = {
                     {
                         key: "Strict-Transport-Security",
                         value: "max-age=63072000; includeSubDomains; preload"
+                    },
+                    {
+                        key: "Permissions-Policy",
+                        value: "camera=(); battery=(self); geolocation=();"
                     }
                 ]
             }
