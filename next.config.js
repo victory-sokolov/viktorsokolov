@@ -10,6 +10,7 @@ const ContentSecurityPolicy = `
     form-action 'self';
     base-uri 'self';
     font-src 'self' data: https://fonts.googleapis.com;
+    default-src: 'none';
     connect-src *;
 `;
 
