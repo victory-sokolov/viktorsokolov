@@ -1,50 +1,59 @@
 /** @type {import('next').NextConfig} */
 
 const ContentSecurityPolicy = `
-    default-src 'self' https://vitals.vercel-insights.com/v1/vitals;
-    img-src * self 'unsafe-inline' blob: data:;
-    script-src 'unsafe-eval';
-    script-src-elem 'self' 'unsafe-inline' https://cdn.vercel-insights.com/v1/script.debug.js https://utteranc.es/client.js;
+    default-src 'self' vercel.live;
+    img-src * self blob: data:;
+    script-src 'self' 'unsafe-eval' 'unsafe-inline' cdn.vercel-insights.com vercel.live;
     style-src 'unsafe-inline';
     frame-src *.substack.com https://utteranc.es/;
+    frame-ancestors true;
+    form-action 'self';
+    base-uri 'self';
     font-src 'self' data: https://fonts.googleapis.com;
+    connect-src *;
 `;
+
+const securityHeaders = [
+    {
+        key: "Content-Security-Policy",
+        value: ContentSecurityPolicy.replace(/\s{2,}/g, " ").trim()
+    },
+    {
+        key: "X-Frame-Options",
+        value: "DENY"
+    },
+    {
+        key: "X-Content-Type-Options",
+        value: "nosniff"
+    },
+    {
+        key: "Referrer-Policy",
+        value: "same-origin"
+    },
+    {
+        key: "Strict-Transport-Security",
+        value: "max-age=63072000; includeSubDomains; preload"
+    },
+    {
+        key: "Permissions-Policy",
+        value: "camera=(), geolocation=(), microphone=()"
+    },
+    {
+        key: "X-XSS-Protection",
+        value: "1; mode=block"
+    },
+    {
+        key: "X-DNS-Prefetch-Control",
+        value: "on"
+    }
+];
 
 const config = {
     async headers() {
         return [
             {
-                source: "/:path*",
-                headers: [
-                    {
-                        key: "Content-Security-Policy",
-                        value: ContentSecurityPolicy.replace(/\s{2,}/g, " ").trim()
-                    },
-                    {
-                        key: "X-Frame-Options",
-                        value: "DENY"
-                    },
-                    {
-                        key: "X-Content-Type-Options",
-                        value: "nosniff"
-                    },
-                    {
-                        key: "Referrer-Policy",
-                        value: "same-origin"
-                    },
-                    {
-                        key: "Strict-Transport-Security",
-                        value: "max-age=63072000; includeSubDomains; preload"
-                    },
-                    {
-                        key: "Permissions-Policy",
-                        value: "camera=(); battery=(self); geolocation=();"
-                    },
-                    {
-                        key: "X-XSS-Protection",
-                        value: "1; mode=block"
-                    }
-                ]
+                source: "/(.*)",
+                headers: securityHeaders
             }
         ];
     },
@@ -55,7 +64,7 @@ const config = {
         styledComponents: true
     },
     images: {
-        formats: ["image/webp"],
+        formats: ["image/webp", "image/avif"],
         minimumCacheTTL: 60,
         remotePatterns: [
             {
