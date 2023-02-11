@@ -3,9 +3,9 @@
 const ContentSecurityPolicy = `
     default-src 'self' vercel.live;
     img-src * self blob: data:;
-    script-src 'self' 'unsafe-eval' 'unsafe-inline' cdn.vercel-insights.com vercel.live;
+    script-src 'self' 'unsafe-eval' 'unsafe-inline' cdn.vercel-insights.com vercel.live 'utteranc.es;
     style-src 'unsafe-inline';
-    frame-src *.substack.com https://utteranc.es/;
+    frame-src *.substack.com utteranc.es;
     frame-ancestors true;
     form-action 'self';
     base-uri 'self';
@@ -28,7 +28,7 @@ const securityHeaders = [
     },
     {
         key: "Referrer-Policy",
-        value: "same-origin"
+        value: "origin-when-cross-origin"
     },
     {
         key: "Strict-Transport-Security",
