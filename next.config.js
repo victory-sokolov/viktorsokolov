@@ -1,4 +1,14 @@
 /** @type {import('next').NextConfig} */
+import nextPWA from "next-pwa";
+import runtimeCaching from "next-pwa/cache.js";
+
+const withPWA = nextPWA({
+    dest: "public",
+    runtimeCaching,
+    register: true,
+    skipWaiting: true,
+    disable: process.env.NODE_ENV === "development"
+});
 
 const ContentSecurityPolicy = `
     default-src 'self' vercel.live;
@@ -76,4 +86,4 @@ const config = {
     }
 };
 
-export default config;
+export default withPWA(config);

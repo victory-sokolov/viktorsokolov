@@ -36,6 +36,7 @@ export default function Seo({ title, description, date, keywords, image }: SeoTy
             <meta name="keywords" content={config.keywords.join(", ")} />
             <meta name="image" content={ogImgSrc} />
             <link rel="canonical" href={canonicalUrl} />
+            <link rel="shortcut icon" href="static/favicons/favicon.svg" />
             <link rel="icon" type="image/svg" href="static/favicons/favicon.svg" />
             <link rel="apple-touch-icon" sizes="180x180" href="static/favicons/apple-touch-icon.png" />
             <link rel="android-touch-icon" sizes="192x192" href="static/favicons/android-chrome-192x192.png" />
@@ -62,6 +63,16 @@ export default function Seo({ title, description, date, keywords, image }: SeoTy
             <meta property="twitter:image" content={ogImgSrc} />
             <meta name="twitter:creator" content={config.social.twitterHandle} />
             <meta name="twitter:site" content={config.social.twitterHandle} />
+            {/* PWA */}
+            <meta name="application-name" content={defaultTitle} />
+            <meta name="apple-mobile-web-app-capable" content="yes" />
+            <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+            <meta name="apple-mobile-web-app-title" content={defaultTitle} />
+            <meta name="description" content={description} />
+            <meta name="format-detection" content="telephone=no" />
+            <meta name="mobile-web-app-capable" content="yes" />
+            <meta name="msapplication-TileColor" content="#030936" />
+            <meta name="msapplication-tap-highlight" content="no" />
             {isPost && (
                 <script
                     type="application/ld+json"
