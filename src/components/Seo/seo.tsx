@@ -68,7 +68,6 @@ export default function Seo({ title, description, date, keywords, image }: SeoTy
             <meta name="apple-mobile-web-app-capable" content="yes" />
             <meta name="apple-mobile-web-app-status-bar-style" content="default" />
             <meta name="apple-mobile-web-app-title" content={defaultTitle} />
-            <meta name="description" content={description} />
             <meta name="format-detection" content="telephone=no" />
             <meta name="mobile-web-app-capable" content="yes" />
             <meta name="msapplication-TileColor" content="#030936" />

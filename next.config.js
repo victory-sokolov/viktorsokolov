@@ -11,16 +11,15 @@ const withPWA = nextPWA({
 });
 
 const ContentSecurityPolicy = `
-    default-src 'self' vercel.live;
+    default-src 'self';
     img-src * self blob: data:;
-    script-src 'self' 'unsafe-eval' 'unsafe-inline' cdn.vercel-insights.com vercel.live 'utteranc.es;
+    script-src 'self' 'unsafe-eval' 'unsafe-inline' cdn.vercel-insights.com vercel.live utteranc.es;
     style-src 'unsafe-inline';
     frame-src *.substack.com utteranc.es;
     frame-ancestors true;
     form-action 'self';
     base-uri 'self';
     font-src 'self' data: https://fonts.googleapis.com;
-    default-src: 'none';
     connect-src *;
 `;
 
