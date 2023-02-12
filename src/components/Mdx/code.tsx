@@ -94,17 +94,18 @@ export const Code = ({ children }) => {
                         <CopyButton>
                             {isCopied ? "🎉 Copied!" : <BsClipboardCheck onClick={copyToClipboard} />}
                         </CopyButton>
-
-                        {tokens.map((line, i) => (
-                            <Line key={i} {...getLineProps({ line, key: i })}>
-                                <LineNo>{i + 1}</LineNo>
-                                <LineContent>
-                                    {line.map((token, key) => (
-                                        <span key={key} {...getTokenProps({ token, key })} />
-                                    ))}
-                                </LineContent>
-                            </Line>
-                        ))}
+                        <code>
+                            {tokens.map((line, i) => (
+                                <Line key={i} {...getLineProps({ line, key: i })}>
+                                    <LineNo>{i + 1}</LineNo>
+                                    <LineContent>
+                                        {line.map((token, key) => (
+                                            <span key={key} {...getTokenProps({ token, key })} />
+                                        ))}
+                                    </LineContent>
+                                </Line>
+                            ))}
+                        </code>
                     </pre>
                 </div>
             )}

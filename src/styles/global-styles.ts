@@ -239,11 +239,16 @@ const GlobalStyles = createGlobalStyle`
    code {
         font-size: 1.5rem;
         line-height: 3.2rem;
+        padding: 0.4rem 0.6rem;
+        display: block;
+    }
+
+    code:not(:has(pre, span, div)) {
+        display: inline;
         color: var(--code);
         background-color: var(--code-background);
         border: 1px solid var(--color-secondary);
         border-radius: 5px;
-        padding: 0.4rem 0.6rem;
     }
 
     pre {
