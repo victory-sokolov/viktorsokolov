@@ -90,11 +90,11 @@ export const Code = ({ children }) => {
                         <span className="yellow"></span>
                         <span className="green"></span>
                     </MacIcons>
-                    <pre className={className} style={style}>
+                    <pre style={style}>
                         <CopyButton>
                             {isCopied ? "🎉 Copied!" : <BsClipboardCheck onClick={copyToClipboard} />}
                         </CopyButton>
-                        <code>
+                        <code className={className}>
                             {tokens.map((line, i) => (
                                 <Line key={i} {...getLineProps({ line, key: i })}>
                                     <LineNo>{i + 1}</LineNo>
