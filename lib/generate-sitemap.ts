@@ -2,6 +2,8 @@ import { globby } from "globby";
 import prettier from "prettier";
 import { writeFileSync } from "fs";
 import { config } from "../src/common/appconfig";
+import { getAllPosts } from "../src/common/posts";
+import { getAllTips } from "../src/common/tips";
 
 export default (async () => {
     console.info("🗺️ Generating Sitemap");
@@ -16,6 +18,14 @@ export default (async () => {
         "!src/pages/[*.tsx",
         "!src/pages/api"
     ]);
+
+    // Get posts urls
+    const post = await getAllPosts();
+    const postPaths = post.map(item => `/post/${item.slug}`);
+
+    const tips = await getAllTips();
+    const tipsPath = tips.map(item => `/tip/${item.slug}`);
+    pages.push(...postPaths, ...tipsPath);
 
     const sitemap = `
         <?xml version="1.0" encoding="UTF-8"?>
