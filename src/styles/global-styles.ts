@@ -237,7 +237,7 @@ const GlobalStyles = createGlobalStyle`
     }
 
    code {
-        font-size: 1.5rem;
+        font-size: var(--text-base);
         line-height: 3.2rem;
         padding: 0.4rem 0.6rem;
         display: block;
