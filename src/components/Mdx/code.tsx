@@ -1,9 +1,8 @@
-import { language } from "gray-matter";
 import Highlight, { defaultProps, Language } from "prism-react-renderer";
-import dracula from "prism-react-renderer/themes/dracula";
 import React, { useState } from "react";
 import styled from "styled-components";
 import { BsClipboardCheck } from "react-icons/bs";
+import theme from "prism-react-renderer/themes/vsDark";
 
 type Code = {
     codeString: string;
@@ -82,7 +81,7 @@ export const Code = ({ children }) => {
     };
 
     return (
-        <Highlight {...defaultProps} code={codeString} language={language} theme={dracula}>
+        <Highlight {...defaultProps} code={codeString} language={language} theme={theme}>
             {({ className, style, tokens, getLineProps, getTokenProps }) => (
                 <div className="code-highlight" data-language={language}>
                     <MacIcons>
