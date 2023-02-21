@@ -1,10 +1,18 @@
 {
     "extends": [
         "next/core-web-vitals",
-        "plugin:prettier/recommended",
-        "plugin:mdx/recommended"
+        "plugin:prettier/recommended"
     ],
-    "settings": {
-        "mdx/code-blocks": true
-    }
+    "overrides": [
+        {
+            "files": [
+                "*.mdx",
+                "*.tsx"
+            ],
+            "extends": "plugin:mdx/recommended",
+            "settings": {
+                "mdx/code-blocks": true
+            }
+        }
+    ]
 }
