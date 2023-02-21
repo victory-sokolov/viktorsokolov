@@ -27,11 +27,11 @@ By applying the SOLID principles, developers can achieve many benefits, includin
 
 As the name implies, class or function should have a single responsibility and only one reason to change.
 
-This rule is very simple but often is violated the reason you find yourself in a situation where you don’t know to which class, a specific method belongs. The benefits of following this rule result in better code readability, since it's easier to read and test simple small classes or methods.
+This rule is very simple but often is violated the reason you find yourself in a situation where you don’t know to which class, a specific method belongs to. The benefits of following this rule result in better code readability, since it's easier to read and test simple small classes or methods.
 
 Let's take a look at the incorrect example belove
 
-```tsx
+```typescript
 import { writeFile } from "fs";
 
 class HttpClient {

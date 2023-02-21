@@ -10,10 +10,11 @@ date: 2022-05-29T10:08:28.000Z
 featureImage: auto-reload-celery-on-any-code-changes.jpg
 tags: Python
 ---
+
 ```python
-watchmedo auto-restart 
-    --directory=./ 
-    --pattern=*.py 
-    --recursive -- 
+watchmedo auto-restart
+    --directory=./
+    --pattern=*.py
+    --recursive --
 	celery -A djangoblog worker -l info
 ```
