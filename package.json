@@ -13,6 +13,7 @@
         "start": "next start",
         "lint": "next lint content/**/*.mdx",
         "commit": "cz",
+        "prepare": "husky install",
         "format": "prettier --config ./.prettierrc src/**/*.{ts,json,js,md,mdx,scss,html} --write",
         "prebuild": "yarn run generate && yarn run copyimages",
         "copyimages": "node --loader ts-node/esm --experimental-specifier-resolution=node ./lib/copy-images.ts",
