@@ -23,9 +23,12 @@ const Blog = ({ posts }) => {
 
     return (
         <BlogContainer>
-            <Seo title="Blog posts" description="List of blogs posts" />
+            <Seo
+                title="Blog posts"
+                description="Browse throught Viktor Sokolov's blog posts to learn more about frontend and backend development"
+            />
             <TopBlogMeta>
-                <h2>Blog Posts ↓</h2>
+                <h1>Blog Posts ↓</h1>
                 <h4>{posts.length} Articles</h4>
             </TopBlogMeta>
 
