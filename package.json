@@ -28,6 +28,7 @@
         "axios": "^1.2.6",
         "dotenv": "^16.0.3",
         "file-type": "^18.2.0",
+        "framer-motion": "^10.12.4",
         "gray-matter": "^4.0.3",
         "marked": "^4.2.12",
         "mdx-prism": "^0.3.4",
