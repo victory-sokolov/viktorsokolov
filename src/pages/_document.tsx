@@ -1,4 +1,4 @@
-import Document, { Html, Head, Main, NextScript, DocumentContext } from "next/document";
+import Document, { DocumentContext, Head, Html, Main, NextScript } from "next/document";
 import { ServerStyleSheet } from "styled-components";
 
 export default class MyDocument extends Document {
@@ -31,6 +31,13 @@ export default class MyDocument extends Document {
                             __html: blockingSetInitialColorMode
                         }}
                     ></script>
+                    <script id="clarity" strategy="afterInteractive">
+                        {`(function(c,l,a,r,i,t,y){
+                            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+                            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+                        })(window, document, "clarity", "script", "gztloqgp40");`}
+                    </script>
                 </Head>
                 <body>
                     <Main />
