@@ -187,6 +187,7 @@ const GlobalStyles = createGlobalStyle`
   h1,h2,h3,h4,h5,h6 {
     margin: 0;
     line-height: calc(2.5rem * 1.618);
+    text-wrap: balance;
   }
 
   input {

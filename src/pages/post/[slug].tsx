@@ -1,19 +1,19 @@
-import React, { useState } from "react";
 import { getAllPosts, getPostBySlug } from "@common/posts";
+import { BlurryImage } from "@components/BlurryImage";
 import Categories from "@components/Categories";
 import Comments from "@components/Comments";
-import styled from "styled-components";
-import { FaDev, FaGithub } from "react-icons/fa";
-import { PostMeta } from "@components/Post/PostMeta";
 import MDXComponents from "@components/Mdx/MDXComponent";
-import { MDXRemote } from "next-mdx-remote";
-import NextNPrevious from "@components/NextNPrevious";
-import { POST_TYPE } from "src/types/enums";
-import type { Post } from "src/types/Post";
-import Seo from "@components/Seo";
 import NewsLetterForm from "@components/NewsLetter";
+import NextNPrevious from "@components/NextNPrevious";
+import { PostMeta } from "@components/Post/PostMeta";
+import Seo from "@components/Seo";
+import { MDXRemote } from "next-mdx-remote";
+import React from "react";
+import { FaDev, FaGithub } from "react-icons/fa";
 import { ContentWrapper } from "src/styles/global-styles";
-import { BlurryImage } from "@components/BlurryImage";
+import type { Post } from "src/types/Post";
+import { POST_TYPE } from "src/types/enums";
+import styled from "styled-components";
 
 const IconWrapper = styled.div`
     display: flex;

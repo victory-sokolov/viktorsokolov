@@ -1,11 +1,10 @@
-import React from "react";
-import styled from "styled-components";
+import { getAllTips } from "@common/tips";
 import Image from "next/image";
 import Link from "next/link";
-import Seo from "../components/Seo";
-import { getAllTips } from "@common/tips";
 import type { TipFrontmatter } from "src/types/Post";
+import styled from "styled-components";
 import { BlurryImage } from "../components/BlurryImage";
+import Seo from "../components/Seo";
 
 const TipsWrapper = styled.div`
     height: 100%;
@@ -82,7 +81,12 @@ const Tips = ({ tips }) => {
                 <h1>🔥 Hot Development Tips</h1>
                 <p>
                     Development tips and snippets that i share on my&nbsp;
-                    <a href="https://twitter.com/VictorySokolov" target="_blank" rel="noreferrer">
+                    <a
+                        href="https://twitter.com/VictorySokolov"
+                        target="_blank"
+                        rel="noreferrer"
+                        arial-label="Twitter account"
+                    >
                         Twitter account
                     </a>
                 </p>
@@ -104,7 +108,7 @@ const Tips = ({ tips }) => {
                                 <h3>{tip.title}</h3>
                             </Link>
                             <p>{tip.date}</p>
-                            <a href={tip.tweetUrl} target="_blank" rel="noreferrer">
+                            <a href={tip.tweetUrl} target="_blank" rel="noreferrer" aria-label="Tweet URL">
                                 <div className="tweet-link">
                                     <Image src="/static/twitter.svg" alt="Twitter logo" width={30} height={30} />
                                 </div>

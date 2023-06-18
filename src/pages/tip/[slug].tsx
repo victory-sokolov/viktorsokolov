@@ -1,15 +1,15 @@
-import React from "react";
-import { MDXRemote } from "next-mdx-remote";
 import { getTipBySlug } from "@common/tips";
 import Categories from "@components/Categories";
-import { getAllTips } from "../../common/tips";
-import { POST_TYPE } from "src/types/enums";
-import type { Tip } from "src/types/Post";
-import NextNPrevious from "@components/NextNPrevious";
-import Seo from "@components/Seo";
 import MDXComponents from "@components/Mdx/MDXComponent";
 import NewsLetterForm from "@components/NewsLetter";
+import NextNPrevious from "@components/NextNPrevious";
+import Seo from "@components/Seo";
+import { MDXRemote } from "next-mdx-remote";
+import React from "react";
 import { ContentWrapper } from "src/styles/global-styles";
+import type { Tip } from "src/types/Post";
+import { POST_TYPE } from "src/types/enums";
+import { getAllTips } from "../../common/tips";
 
 const TipPage: React.FC<Tip> = ({ frontmatter, mdxSource, next, previous }) => {
     if (!frontmatter) {
@@ -28,7 +28,7 @@ const TipPage: React.FC<Tip> = ({ frontmatter, mdxSource, next, previous }) => {
             <p>{frontmatter.description}</p>
             <p style={{ paddingTop: "var(--space-md)" }}>
                 Posted on&nbsp;
-                <a href={frontmatter.tweetUrl} target="_blank" rel="noreferrer">
+                <a href={frontmatter.tweetUrl} target="_blank" rel="noreferrer" aria-label="Tweet link">
                     Twitter
                 </a>{" "}
                 &nbsp; on {date}.
