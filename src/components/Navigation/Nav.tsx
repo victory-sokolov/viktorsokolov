@@ -1,10 +1,15 @@
 import { ScrollIndicator } from "@components/ScrollIndicator";
+import isPropValid from "@emotion/is-prop-valid";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-import { NavStyles, CloseIcon, Menu, LinkItem, StyledLink } from "./Nav.styled";
-import type { Props } from "./types";
+import { StyleSheetManager } from "styled-components";
+import { CloseIcon, LinkItem, Menu, NavStyles, StyledLink } from "./Nav.styled";
+
+type Props = {
+    isSticky: boolean;
+};
 
 const Hamburger = dynamic(() =>
     import(
@@ -20,9 +25,11 @@ export const Nav: React.FC<Props> = ({ isSticky }) => {
 
     return (
         <NavStyles>
-            <Hamburger isSticky={isSticky} isOpen={isOpen} onClick={() => setIsOpen(!isOpen)}>
-                <CloseIcon />
-            </Hamburger>
+            <StyleSheetManager shouldForwardProp={prop => isPropValid(prop)}>
+                <Hamburger isSticky={isSticky} isOpen={isOpen} onClick={() => setIsOpen(!isOpen)}>
+                    <CloseIcon />
+                </Hamburger>
+            </StyleSheetManager>
             <Menu>
                 <div>
                     <ul>

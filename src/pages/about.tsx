@@ -1,8 +1,8 @@
 import { getContent } from "@common/content-utils";
-import { MDXRemote } from "next-mdx-remote";
-import Seo from "@components/Seo";
-import type { MDXProps } from "src/types/Post";
 import MDXComponents from "@components/Mdx/MDXComponent";
+import Seo from "@components/Seo";
+import { MDXRemote } from "next-mdx-remote";
+import type { MDXProps } from "src/types/Post";
 
 const AboutPage: React.FC<MDXProps> = ({ mdxSource, frontmatter }) => {
     const { title, description, date } = frontmatter;
