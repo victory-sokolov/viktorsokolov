@@ -1,8 +1,8 @@
-import { useRouter } from "next/router";
-import React, { useEffect, useState, useRef } from "react";
-import { HeaderStyles } from "./Header.styled";
 import Toggle from "@components/Toggle";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
+import React, { useEffect, useRef, useState } from "react";
+import { HeaderStyles } from "./Header.styled";
 
 const Nav = dynamic(() =>
     import(
@@ -42,7 +42,7 @@ export const Header: React.FC<any> = ({ toggleTheme, theme }) => {
     }, [sticky]);
 
     const handleScroll = (elTopOffset, elHeight) => {
-        if (window.pageYOffset > elTopOffset) {
+        if (window.scrollY > elTopOffset) {
             setSticky({ isSticky: true, offset: elHeight });
         } else {
             setSticky({ isSticky: false, offset: 0 });
