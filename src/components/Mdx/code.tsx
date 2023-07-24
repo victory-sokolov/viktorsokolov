@@ -1,8 +1,10 @@
-import Highlight, { defaultProps, Language } from "prism-react-renderer";
-import React, { useState } from "react";
-import styled from "styled-components";
+import { Highlight, Language, Prism, themes } from "prism-react-renderer";
+import { useState } from "react";
 import { BsClipboardCheck } from "react-icons/bs";
-import theme from "prism-react-renderer/themes/vsDark";
+import styled from "styled-components";
+
+(typeof global !== "undefined" ? global : window).Prism = Prism;
+require("prismjs/components/prism-python");
 
 type Code = {
     codeString: string;
@@ -81,7 +83,7 @@ export const Code = ({ children }) => {
     };
 
     return (
-        <Highlight {...defaultProps} code={codeString} language={language} theme={theme}>
+        <Highlight code={codeString} language={language} theme={themes.vsDark}>
             {({ className, style, tokens, getLineProps, getTokenProps }) => (
                 <div className="code-highlight" data-language={language}>
                     <MacIcons>
