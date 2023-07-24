@@ -239,7 +239,7 @@ const GlobalStyles = createGlobalStyle`
 
    code {
         font-size: var(--text-base);
-        line-height: 3.2rem;
+        line-height: 3.5rem;
         padding: 0.4rem 0.6rem;
         display: block;
     }
@@ -260,6 +260,7 @@ const GlobalStyles = createGlobalStyle`
         border-bottom-right-radius: 8px;
         margin-bottom: 2.5rem;
         position: relative;
+        tab-size: 2;
         overflow-x: auto;
     }
 
@@ -294,6 +295,14 @@ const GlobalStyles = createGlobalStyle`
       transform: scaleX(1);
     }
 }
+
+    a.mdx-link {
+        color: var(--color-secondary);
+        &:hover {
+            color: var(--color-secondary-600);
+            text-decoration: underline;
+        }
+    }
 
 .sticky {
     position: fixed;
