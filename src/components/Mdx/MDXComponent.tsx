@@ -1,48 +1,35 @@
-import { Code } from "./code";
-import Image from "next/image";
-import { H1, H2, H3, H4, H5, H6 } from "./Heading";
+import Image, { ImageProps } from "next/image";
 import Link from "next/link";
-import styled from "styled-components";
-import { TechStackList } from "./TechStackList";
+import { useRouter } from "next/router";
 import { Blockquote } from "./Blockquote";
-
-interface MdxImgProps extends React.ImgHTMLAttributes<HTMLImageElement> {
-    blurDataURL?: string;
-}
-
-const CustomStyledLink = styled(Link)`
-    color: var(--color-secondary);
-    &:hover {
-        color: var(--color-secondary-600);
-        text-decoration: underline;
-    }
-`;
+import { H1, H2, H3, H4, H5, H6 } from "./Heading";
+import { TechStackList } from "./TechStackList";
+import { Code } from "./code";
 
 const CustomLink = ({ href, children }) => {
     return (
-        <CustomStyledLink href={href} target="_blank" rel="noopener noreferrer">
+        <Link href={href} target="_blank" rel="noopener noreferrer" className="mdx-link">
             {children}
-        </CustomStyledLink>
+        </Link>
     );
 };
 
-const MdxImg: React.FC<MdxImgProps> = ({ src, width, height, alt, blurDataURL, ...prop }) => {
-    const props: any = {
-        layout: "responsive",
+const MdxImg: React.FC<ImageProps> = ({ src, width, height, alt, blurDataURL, ...prop }) => {
+    const router = useRouter();
+    const blogPostUrl = router.asPath.replace("/post", "posts");
+    const imgSrc = `/${blogPostUrl}/${src}`;
+
+    const props = {
         loading: "lazy",
-        src: src,
-        height: height,
-        width: width,
+        src: imgSrc,
+        height: height || "500",
+        width: width || "700",
         blurDataURL,
         placeholder: blurDataURL ? "blur" : "empty",
         ...prop
     } as const;
 
-    return (
-        <div className="image-wrapper">
-            <Image alt={alt} {...props} />;
-        </div>
-    );
+    return <Image alt={alt} {...props} />;
 };
 
 const Ul = ({ children }) => {
@@ -67,6 +54,6 @@ const MDXComponents = {
     p: paragraph,
     TechStackList,
     Blockquote
-};
+} as any;
 
 export default MDXComponents;
