@@ -1,6 +1,6 @@
-import { FaPython, FaNodeJs } from "react-icons/fa";
-import { SiJavascript, SiTypescript, SiReact, SiNestjs, SiPostgresql, SiDjango } from "react-icons/si";
 import { BsKeyboard } from "react-icons/bs";
+import { FaNodeJs, FaPython } from "react-icons/fa";
+import { SiDjango, SiJavascript, SiNestjs, SiPostgresql, SiReact, SiTypescript } from "react-icons/si";
 import { TbBrandNextjs } from "react-icons/tb";
 import styled from "styled-components";
 

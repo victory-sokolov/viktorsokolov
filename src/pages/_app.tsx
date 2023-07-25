@@ -1,6 +1,6 @@
 import { Analytics } from "@vercel/analytics/react";
-
 import { AnimatePresence } from "framer-motion";
+
 import Layout from "../components/Layout/Layout";
 import "../styles/global-styles";
 

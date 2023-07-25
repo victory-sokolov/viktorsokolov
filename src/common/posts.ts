@@ -1,11 +1,12 @@
-import path from "path";
+import { slugify, toLongDate } from "@vsokolov/utils";
 import fs from "fs";
 import matter from "gray-matter";
+import path from "path";
+import { getPlaiceholder } from "plaiceholder";
 import { PostFrontmatter } from "src/types/Post";
-import { slugify, toLongDate } from "@vsokolov/utils";
+
 import { useReadTime } from "../hooks/useReadTime";
 import { getPostData, sortPostByDate } from "./content-utils";
-import { getPlaiceholder } from "plaiceholder";
 
 export const getAllPosts = async (): Promise<PostFrontmatter[]> => {
     const contentPath = "content/posts";

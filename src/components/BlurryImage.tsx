@@ -1,6 +1,6 @@
+import Image from "next/image";
 import { useState } from "react";
 import { BlurhashCanvas } from "react-blurhash";
-import Image from "next/image";
 import type { PostFrontmatter } from "src/types/Post";
 
 type BlurryImageProp = Pick<PostFrontmatter, "blurhash" | "featureImage" | "title">;

@@ -1,9 +1,8 @@
+import { getAllPosts } from "@common/posts";
+import { PostItem } from "@components/Post";
+import Seo from "@components/Seo";
 import React from "react";
 import styled from "styled-components";
-
-import { PostItem } from "@components/Post";
-import { getAllPosts } from "@common/posts";
-import Seo from "@components/Seo";
 
 const BlogContainer = styled.div`
     display: flex;
