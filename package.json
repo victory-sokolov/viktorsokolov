@@ -54,6 +54,7 @@
         "twitter-api-v2": "^1.15.1"
     },
     "devDependencies": {
+        "@trivago/prettier-plugin-sort-imports": "^4.2.0",
         "@types/node": "^20.4.4",
         "@types/react": "^18.2.15",
         "@types/styled-components": "^5.1.26",
