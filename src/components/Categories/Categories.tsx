@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+
 import { TagsMapping } from "../PostLabels";
 
 const CategorieWrapperStyle = styled.div`

@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import { BiInfoCircle } from "react-icons/bi";
+import styled from "styled-components";
 
 export const BlockquoteContainer = styled.div`
     display: flex;

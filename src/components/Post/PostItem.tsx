@@ -1,10 +1,11 @@
+import { BlurryImage } from "@components/BlurryImage";
+import { useReadTime } from "@hooks/useReadTime";
 import Image from "next/image";
 import Link from "next/link";
-import styled from "styled-components";
-import { PostMeta } from "./PostMeta";
-import { useReadTime } from "@hooks/useReadTime";
 import { borderGradient } from "src/styles/global-styles";
-import { BlurryImage } from "@components/BlurryImage";
+import styled from "styled-components";
+
+import { PostMeta } from "./PostMeta";
 
 const PostItemStyle = styled.article`
     margin-bottom: var(--space-xl);

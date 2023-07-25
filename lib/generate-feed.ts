@@ -1,10 +1,11 @@
-import { writeFileSync } from "fs";
 import { Feed } from "feed";
-import { config } from "../src/common/appconfig";
+import { writeFileSync } from "fs";
 import { remark } from "remark";
 import remarkHtml from "remark-html";
-import { getAllPosts } from "../src/common/posts";
 import { PostFrontmatter, TipFrontmatter } from "src/types/Post";
+
+import { config } from "../src/common/appconfig";
+import { getAllPosts } from "../src/common/posts";
 import { getAllTips } from "../src/common/tips";
 
 async function markdownToHtml(markdown) {

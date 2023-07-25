@@ -1,8 +1,8 @@
+import axios from "axios";
 import { Buffer } from "buffer";
+import dotenv from "dotenv";
 import { fileTypeFromBuffer } from "file-type";
 import fs from "fs";
-import dotenv from "dotenv";
-import axios from "axios";
 import { TwitterApi } from "twitter-api-v2";
 
 dotenv.config();

@@ -1,8 +1,8 @@
+import { config } from "@common/appconfig";
+import SocialMedia from "@components/Social";
 import Link from "next/link";
 
 import { FooterStyles } from "./Footer.styled";
-import SocialMedia from "@components/Social";
-import { config } from "@common/appconfig";
 
 export const Footer: React.FC = () => {
     return (

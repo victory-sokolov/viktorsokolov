@@ -1,10 +1,11 @@
 import Image, { ImageProps } from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
+
 import { Blockquote } from "./Blockquote";
+import { Code } from "./code";
 import { H1, H2, H3, H4, H5, H6 } from "./Heading";
 import { TechStackList } from "./TechStackList";
-import { Code } from "./code";
 
 const CustomLink = ({ href, children }) => {
     return (

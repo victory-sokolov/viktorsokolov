@@ -11,8 +11,8 @@ import { MDXRemote } from "next-mdx-remote";
 import React from "react";
 import { FaDev, FaGithub } from "react-icons/fa";
 import { ContentWrapper } from "src/styles/global-styles";
-import type { Post } from "src/types/Post";
 import { POST_TYPE } from "src/types/enums";
+import type { Post } from "src/types/Post";
 import styled from "styled-components";
 
 const IconWrapper = styled.div`

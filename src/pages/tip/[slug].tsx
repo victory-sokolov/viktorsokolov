@@ -7,8 +7,9 @@ import Seo from "@components/Seo";
 import { MDXRemote } from "next-mdx-remote";
 import React from "react";
 import { ContentWrapper } from "src/styles/global-styles";
-import type { Tip } from "src/types/Post";
 import { POST_TYPE } from "src/types/enums";
+import type { Tip } from "src/types/Post";
+
 import { getAllTips } from "../../common/tips";
 
 const TipPage: React.FC<Tip> = ({ frontmatter, mdxSource, next, previous }) => {

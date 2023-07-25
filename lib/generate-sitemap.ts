@@ -1,6 +1,7 @@
+import { writeFileSync } from "fs";
 import { globby } from "globby";
 import prettier from "prettier";
-import { writeFileSync } from "fs";
+
 import { config } from "../src/common/appconfig";
 import { getAllPosts } from "../src/common/posts";
 import { getAllTips } from "../src/common/tips";

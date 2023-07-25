@@ -1,10 +1,11 @@
-import Link from "next/link";
+import { BlurryImage } from "@components/BlurryImage";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
+import type { PostFrontmatter } from "src/types/Post";
+
 import { Card } from "./Post.styled";
 import { PostMeta } from "./PostMeta";
-import type { PostFrontmatter } from "src/types/Post";
-import { BlurryImage } from "@components/BlurryImage";
 
 export const PostCard: React.FC<PostFrontmatter> = ({ title, date, slug, excerpt, image, readTime, id, blurhash }) => {
     return (

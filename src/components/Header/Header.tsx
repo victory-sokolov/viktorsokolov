@@ -2,6 +2,7 @@ import Toggle from "@components/Toggle";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import React, { useEffect, useRef, useState } from "react";
+
 import { HeaderStyles } from "./Header.styled";
 
 const Nav = dynamic(() =>

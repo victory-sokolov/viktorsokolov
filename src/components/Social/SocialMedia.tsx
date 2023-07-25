@@ -1,6 +1,7 @@
 import React from "react";
 import { FaDev, FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import styled from "styled-components";
+
 import { config } from "../../common/appconfig";
 
 type SocialMediaType = {

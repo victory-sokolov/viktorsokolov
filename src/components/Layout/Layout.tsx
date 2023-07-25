@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import type { ReactProps } from "src/types/types";
 import styled, { ThemeProvider } from "styled-components";
+
 import { ContainerStyle, GlobalStyles, MainStyles } from "../../styles/global-styles";
 import { darkTheme, lightTheme } from "../../styles/theme";
 

@@ -1,7 +1,6 @@
 import React from "react";
 import { CgSun } from "react-icons/cg";
 import { HiMoon } from "react-icons/hi";
-
 import styled from "styled-components";
 
 const ToggleButton = styled.button`
