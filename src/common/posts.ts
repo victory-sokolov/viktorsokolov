@@ -12,8 +12,9 @@ export const getAllPosts = async (): Promise<PostFrontmatter[]> => {
     const contentPath = "content/posts";
     const articlePath = path.join(process.cwd(), contentPath);
     const postData = await fs.promises.readdir(articlePath);
+    const filteredPostData = postData.filter(file => !file.startsWith("."));
 
-    const posts = postData
+    const posts = filteredPostData
         .map(async postSlug => {
             const file = matter.read(`${articlePath}/${postSlug}/${postSlug}.mdx`);
             const post = file.data;
