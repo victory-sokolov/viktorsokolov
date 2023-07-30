@@ -105,4 +105,4 @@ tags: ${hashTags}
     }
 }
 
-renderTips();
+await renderTips();

@@ -59,7 +59,7 @@ ${readmeContentChunkBreakAfter}
 }
 
 try {
-    main();
+    await main();
 } catch (error) {
     console.error(error);
 }
