@@ -107,7 +107,7 @@ const GlobalStyles = createGlobalStyle`
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
     font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
+  }
 
   body {
     background: var(--background-color);
@@ -139,7 +139,7 @@ const GlobalStyles = createGlobalStyle`
     box-shadow: var(--cast) var(--cast) 0 var(--grey);
     text-shadow: 0.5px 0.5px 0 rgba(0,0,0,0.2);
     transition: all 0.2s;
-    background:none;
+    background: none;
     font-size: var(--text-base);
     letter-spacing: .6px;
     border: 2px solid var(--color-secondary-700);
@@ -385,7 +385,7 @@ const GlobalStyles = createGlobalStyle`
 
     @media only screen and (max-width: 640px) {
         html {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
         }
     }
 

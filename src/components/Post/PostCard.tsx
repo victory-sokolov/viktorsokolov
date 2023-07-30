@@ -1,5 +1,4 @@
 import { BlurryImage } from "@components/BlurryImage";
-import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import type { PostFrontmatter } from "src/types/Post";
