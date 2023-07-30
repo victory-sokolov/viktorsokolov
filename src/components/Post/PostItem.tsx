@@ -1,6 +1,5 @@
 import { BlurryImage } from "@components/BlurryImage";
 import { useReadTime } from "@hooks/useReadTime";
-import Image from "next/image";
 import Link from "next/link";
 import { borderGradient } from "src/styles/global-styles";
 import styled from "styled-components";

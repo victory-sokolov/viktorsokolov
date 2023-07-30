@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import { TagsMapping } from "../PostLabels";
+import { TagsMapping } from "../Post/PostLabels";
 
 const CategorieWrapperStyle = styled.div`
     padding: 0.5rem 0 2rem;
