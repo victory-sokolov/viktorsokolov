@@ -51,6 +51,7 @@
         "remark-html": "^15.0.2",
         "sharp": "^0.32.4",
         "styled-components": "^6.0.5",
+        "styled-react-modal": "^3.0.1",
         "twitter-api-v2": "^1.15.1"
     },
     "devDependencies": {
@@ -62,8 +63,11 @@
         "eslint": "^8.45.0",
         "eslint-config-next": "^13.4.12",
         "eslint-config-prettier": "^8.8.0",
+        "eslint-plugin-jsx-a11y": "^6.7.1",
         "eslint-plugin-mdx": "^2.0.5",
+        "eslint-plugin-no-floating-promise": "^1.0.2",
         "eslint-plugin-prettier": "^5.0.0",
+        "eslint-plugin-styled-components-a11y": "^2.1.31",
         "esno": "^0.17.0",
         "feed": "^4.2.2",
         "globby": "^13.2.2",
