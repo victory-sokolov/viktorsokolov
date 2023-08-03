@@ -7,6 +7,7 @@ import NewsLetterForm from "@components/NewsLetter";
 import NextNPrevious from "@components/NextNPrevious";
 import { PostMeta } from "@components/Post/PostMeta";
 import Seo from "@components/Seo";
+import ShareToSocialLink from "@components/ShareToSocial";
 import { MDXRemote } from "next-mdx-remote";
 import React from "react";
 import { FaDev, FaGithub } from "react-icons/fa";
@@ -14,6 +15,7 @@ import { ContentWrapper } from "src/styles/global-styles";
 import { POST_TYPE } from "src/types/enums";
 import type { Post } from "src/types/Post";
 import styled from "styled-components";
+import { ModalProvider } from "styled-react-modal";
 
 const IconWrapper = styled.div`
     display: flex;
@@ -59,20 +61,23 @@ const PostPage: React.FC<Post> = ({ frontmatter, mdxSource, next, previous }) =>
         <>
             <Seo title={title} description={frontmatter.description} date={date} keywords={tags} image={featureImage} />
             <ContentWrapper>
-                <div className="image-wrapper">
-                    <BlurryImage featureImage={featureImage} blurhash={frontmatter.blurhash} title={title} />
-                </div>
-                <h1 className="center" itemProp="headline" style={{ color: "var(--text-color-secondary)" }}>
-                    {title}
-                </h1>
-                <PostMeta date={date} readTime={readTime} style={{ justifyContent: "center" }}>
-                    <GithubLink slug={frontmatter.slug} />
-                    <DevToLink />
-                </PostMeta>
-                <Categories categories={tags} />
-                <MDXRemote {...mdxSource} components={MDXComponents} />
-                <NextNPrevious next={next} prev={previous} postType={POST_TYPE.POST} />
-                <NewsLetterForm />
+                <ModalProvider>
+                    <div className="image-wrapper">
+                        <BlurryImage featureImage={featureImage} blurhash={frontmatter.blurhash} title={title} />
+                    </div>
+                    <h1 className="center" itemProp="headline" style={{ color: "var(--text-color-secondary)" }}>
+                        {title}
+                    </h1>
+                    <PostMeta date={date} readTime={readTime} style={{ justifyContent: "center" }}>
+                        <GithubLink slug={frontmatter.slug} />
+                        <DevToLink />
+                        <ShareToSocialLink title={title} />
+                    </PostMeta>
+                    {tags && <Categories categories={tags} />}
+                    <MDXRemote {...mdxSource} components={MDXComponents} />
+                    <NextNPrevious next={next} prev={previous} postType={POST_TYPE.POST} />
+                    <NewsLetterForm />
+                </ModalProvider>
             </ContentWrapper>
             <Comments />
         </>
