@@ -7,7 +7,7 @@ export const HeaderStyles = styled.header.attrs(props => ({
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 3rem 0;
+        padding: 2rem 0;
         z-index: 2;
     }
 
