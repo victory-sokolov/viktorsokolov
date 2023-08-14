@@ -120,78 +120,78 @@ Extract only price from string: `(?<=[$])\d+`
 
 Let's apply what we learned so far and try to do some common real-world examples.
 
-1.  Write a regex that will extract the domain and subdomain.
+1. Write a regex that will extract the domain and subdomain.
 
-    Let's define rules for our regex
+Let's define rules for our regex
 
-    -   The string should end with `.<domain>` that must contain between 2-3 symbols
-    -   Domain names are only allowed to be 63 characters in length
-    -   A domain name cannot begin with a hyphen
+-   The string should end with `.<domain>` that must contain between 2-3 symbols
+-   Domain names are only allowed to be 63 characters in length
+-   A domain name cannot begin with a hyphen
 
-    Let's consider the following list of valid and invalid domains
+Let's consider the following list of valid and invalid domains
 
-    ```text
-    mydomain.com
-    http://youtube.com
-    https://youtube.com
-    www.instagram.com
-    https://www.twitter.com
-    https//twitter.com
-    https://education.edu.com
-    udemy com
-    someotherdomain.de
-    -customdomain.com
-    ```
+```text
+mydomain.com
+http://youtube.com
+https://youtube.com
+www.instagram.com
+https://www.twitter.com
+https//twitter.com
+https://education.edu.com
+udemy com
+someotherdomain.de
+-customdomain.com
+```
 
-    -   First thing first, we should check that domain doesn't start with a hyphen. We can use anchor with negative lookahead `^(?!-)`
-    -   Next, we want to check whether a valid protocol is being used. We will wrap our pattern into parenthesis to create a group. The group can be later referenced if needed. `(https?:\/\/)?` - here we validate that the protocol starts with the `http` and optional `s` that follow the colon and two slashes, the protocol should occur zero or one time.
-    -   Validate `www` prefix `(w{3}\.)?`, here we are looking for the letter `w` that should occur 3 times in a row and **follow** a dot.
-    -   Next, we validate domain name parts, which should contain a minimum of 1 character and a maximum of 63 characters - `([a-zA-z{1,63}])+`
-    -   Validate subdomain that should contain 2-3 characters followed by dot - `(\.[a-zA-Z]{2,3})?`
-    -   Finally, we validate the top-level domain, which should end with a dot and be 2-3 characters long -
+-   First thing first, we should check that domain doesn't start with a hyphen. We can use anchor with negative lookahead `^(?!-)`
+-   Next, we want to check whether a valid protocol is being used. We will wrap our pattern into parenthesis to create a group. The group can be later referenced if needed. `(https?:\/\/)?` - here we validate that the protocol starts with the `http` and optional `s` that follow the colon and two slashes, the protocol should occur zero or one time.
+-   Validate `www` prefix `(w{3}\.)?`, here we are looking for the letter `w` that should occur 3 times in a row and **follow** a dot.
+-   Next, we validate domain name parts, which should contain a minimum of 1 character and a maximum of 63 characters - `([a-zA-z{1,63}])+`
+-   Validate subdomain that should contain 2-3 characters followed by dot - `(\.[a-zA-Z]{2,3})?`
+-   Finally, we validate the top-level domain, which should end with a dot and be 2-3 characters long -
 
-    `(\.[a-zA-Z]{2,3})$`
+`(\.[a-zA-Z]{2,3})$`
 
-    **Final regex:** <br/> `^(?!-)(https?:\/\/)?([a-zA-Z\.{3})?([a-zA-z])+(\.[a-zA-Z]{2,3})?(\.[a-zA-Z]{2,3})$`
+**Final regex:** <br/> `^(?!-)(https?:\/\/)?([a-zA-Z\.{3})?([a-zA-z])+(\.[a-zA-Z]{2,3})?(\.[a-zA-Z]{2,3})$`
 
-1.  Regex that will validate password
+2. Regex that will validate password
 
-    Let's define rules for password validation
+Let's define rules for password validation
 
-    -   Should contain at least 8 characters
-    -   Should contain at least one uppercase character
-    -   Should contain at least one special character which includes `!@#$%&*()-+=^`
-    -   Doesn't contain any white space
+-   Should contain at least 8 characters
+-   Should contain at least one uppercase character
+-   Should contain at least one special character which includes `!@#$%&*()-+=^`
+-   Doesn't contain any white space
 
-    We have the following list of passwords:
+We have the following list of passwords:
 
-    ```text
-    VerySt@nGPassWord!12
-    WeakPassword
-    qwerty
-    qwer
-    PasswordWith Space12@!
-    verystrongpassword!12
-    ```
+```text
+VerySt@nGPassWord!12
+WeakPassword
+qwerty
+qwer
+PasswordWith Space12@!
+verystrongpassword!12
+```
 
-    Only the first password should match our pattern
+Only the first password should match our pattern
 
-    -   `(?=.*[0-9])` a digit must occur at least once in a string.
-    -   `(?=.*[a-z])` a lowercase alphabet must occur at least once.
-    -   `(?=.*[A-Z])` an upper case alphabet that must occur at least once.
-    -   `(?=.*[@#$%^&-+=()]` a special character that must occur at least once.
-    -   `(?=\S+$)` white spaces are not allowed in the entire string.
-    -   `.{8, 36}` string should contain at least 8 characters and at most 36 characters.
+-   `(?=.*[0-9])` a digit must occur at least once in a string.
+-   `(?=.*[a-z])` a lowercase alphabet must occur at least once.
+-   `(?=.*[A-Z])` an upper case alphabet that must occur at least once.
+-   `(?=.*[@#$%^&-+=()]` a special character that must occur at least once.
+-   `(?=\S+$)` white spaces are not allowed in the entire string.
+-   `.{8, 36}` string should contain at least 8 characters and at most 36 characters.
 
-    **Final regex**: `^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%&*()-+=^])(?=\S+$).{8,36}$`
+**Final regex**: `^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%&*()-+=^])(?=\S+$).{8,36}$`
 
-1.  Extract text between HTML tags
+3. Extract text between HTML tags
 
-        Rules for extracting text between any HTML tag are quite simple we should match opening and closing HTML tags and extract any data between them.
+Rules for extracting text between any HTML tag are quite simple we should match opening and closing HTML tags and extract any data between them.
 
-        Let's consider the following list of HTML tags
+Let's consider the following list of HTML tags
 
-    Only the first three HTML tags should be matched
+Only the first three HTML tags should be matched
 
 -   `^<[a-zA-Z1-6]+>` - string should start with opening tag `<` and contain any alpha character or number from 1-6, this is specifically used for H1-H6 tags.
 -   `(.+?)` - match everything between `<>...</>` tags except line breaks
