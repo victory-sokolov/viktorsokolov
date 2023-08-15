@@ -239,8 +239,8 @@ const GlobalStyles = createGlobalStyle`
 
    code {
         font-size: var(--text-base);
-        line-height: 3.5rem;
-        padding: 0.4rem 0.6rem;
+        line-height: 3rem;
+        padding: 0.3rem 0.6rem;
         display: block;
     }
 
@@ -250,6 +250,7 @@ const GlobalStyles = createGlobalStyle`
         background-color: var(--code-background);
         border: 1px solid var(--color-secondary);
         border-radius: 5px;
+        line-height: 3.8rem;
     }
 
     pre {
