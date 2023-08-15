@@ -38,8 +38,8 @@ const MacIcons = styled.div`
     border-radius: 6px 6px 0 0;
 
     > span {
-        width: 1.4rem;
-        height: 1.4rem;
+        width: 1.2rem;
+        height: 1.2rem;
         border-radius: 100%;
         margin-right: 0.6rem;
     }
