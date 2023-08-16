@@ -8,7 +8,7 @@ import { config } from "../src/common/appconfig";
 import { getAllPosts } from "../src/common/posts";
 import { getAllTips } from "../src/common/tips";
 
-const getPostModTime = async (filePath: string): string => {
+const getPostModTime = async (filePath: string): Promise<string> => {
     const baseDir = path.resolve(process.cwd());
     const options = {
         baseDir,
@@ -23,7 +23,7 @@ const getPostModTime = async (filePath: string): string => {
     return fileLog.latest?.date?.toString();
 };
 
-const getPostPath = (file: string) => {
+const getPostPath = (file: string): string => {
     let path = file;
     if (file.startsWith("/post")) {
         path = file.replace("post", "posts");
@@ -33,7 +33,7 @@ const getPostPath = (file: string) => {
     return `content${path}/${file.split("/").at(-1)}.mdx`;
 };
 
-const isPost = (file: string) => {
+const isPost = (file: string): boolean => {
     if (file.startsWith("/post/") || file.startsWith("/tip/")) {
         return true;
     }
