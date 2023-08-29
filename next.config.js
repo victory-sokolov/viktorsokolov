@@ -68,6 +68,7 @@ const config = {
         ];
     },
     reactStrictMode: true,
+    poweredByHeader: false,
     swcMinify: true,
     experimental: { esmExternals: true },
     compiler: {
@@ -82,6 +83,19 @@ const config = {
                 hostname: "cdn.buymeacoffee.com"
             }
         ]
+    },
+    webpack: (config, { dev, isServer }) => {
+        // Replace React with Preact only in client production build
+        if (!dev && !isServer) {
+            Object.assign(config.resolve.alias, {
+                react: "preact/compat",
+                "react-dom": "preact/compat",
+                "create-react-class": "preact-compat/lib/create-react-class",
+                "react-dom-factories": "preact-compat/lib/react-dom-factories"
+            });
+        }
+
+        return config;
     }
 };
 
