@@ -88,10 +88,10 @@ const config = {
         // Replace React with Preact only in client production build
         if (!dev && !isServer) {
             Object.assign(config.resolve.alias, {
+                "react/jsx-runtime.js": "preact/compat/jsx-runtime",
                 react: "preact/compat",
-                "react-dom": "preact/compat",
-                "create-react-class": "preact-compat/lib/create-react-class",
-                "react-dom-factories": "preact-compat/lib/react-dom-factories"
+                "react-dom/test-utils": "preact/test-utils",
+                "react-dom": "preact/compat"
             });
         }
 
