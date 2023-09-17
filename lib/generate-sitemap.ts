@@ -66,6 +66,7 @@ export default (async () => {
                 .replace("articles", "/blog")
                 .replace("content/", "")
                 .replace("content//", "")
+                .replace("/index", "")
                 .replace(".tsx", "")
                 .replace(".mdx", "")
                 .replace("src//", "");
