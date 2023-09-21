@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 
 import { config } from "../../common/appconfig";
 

@@ -47,7 +47,7 @@ async function main() {
         const indexAfter = readme.indexOf(tag.close);
         const readmeContentChunkBreakBefore = readme.substring(0, indexBefore);
         const readmeContentChunkBreakAfter = readme.substring(indexAfter);
-        const contentType = tag.open.split("-").at(2).toLowerCase().trim();
+        const contentType = tag.open.split("-").at(2)?.toLowerCase()?.trim() as string;
         const latestContent = `
 ${readmeContentChunkBreakBefore}
 ${content[contentType]}

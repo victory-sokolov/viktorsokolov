@@ -1,3 +1,9 @@
-User-Agent: *
+# *
+User-agent: *
 Allow: /
-Sitemap: https://www.viktorsokolov.com/sitemap.xml
+
+# Host
+Host: https://viktorsokolov.com
+
+# Sitemaps
+Sitemap: https://viktorsokolov.com/sitemap.xml
