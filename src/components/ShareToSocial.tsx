@@ -1,6 +1,8 @@
+"use client";
+
 import { config } from "@common/appconfig";
 import share from "@common/share";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { CiFacebook, CiLinkedin, CiTwitter } from "react-icons/ci";
 import { DiHackernews } from "react-icons/di";
@@ -55,8 +57,8 @@ const ShareIcon = styled.span`
 `;
 
 export default function ShareToSocialLink({ title }) {
-    const router = useRouter();
-    const url = `${config.siteUrl}${router.asPath}`;
+    const pathname = usePathname();
+    const url = `${config.siteUrl}${pathname}`;
 
     const [isOpen, setIsOpen] = useState(false);
 

@@ -1,3 +1,5 @@
+"use client";
+
 import { borderGradient } from "src/styles/global-styles";
 import styled from "styled-components";
 

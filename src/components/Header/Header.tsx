@@ -1,6 +1,6 @@
 import Toggle from "@components/Toggle";
 import dynamic from "next/dynamic";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 
 import { HeaderStyles } from "./Header.styled";
@@ -20,15 +20,14 @@ const Hero = dynamic(() =>
 );
 
 export const Header: React.FC<any> = ({ toggleTheme, theme }) => {
-    const router = useRouter();
-    const path = router.pathname;
-    const [isRootUrl, setIsRootUrl] = useState(path === "/" ? true : false);
+    const pathname = usePathname();
+    const [isRootUrl, setIsRootUrl] = useState(pathname === "/" ? true : false);
     const [sticky, setSticky] = useState({ isSticky: false, offset: 0 });
     const headerRef = useRef(null);
 
     useEffect(() => {
-        setIsRootUrl(path === "/" ? true : false);
-    }, [path]);
+        setIsRootUrl(pathname === "/" ? true : false);
+    }, [pathname]);
 
     useEffect(() => {
         const header = headerRef.current.getBoundingClientRect();

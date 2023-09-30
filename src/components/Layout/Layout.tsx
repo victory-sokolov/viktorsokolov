@@ -1,14 +1,16 @@
+"use client";
+
 import Footer from "@components/Footer";
 import Header from "@components/Header";
 import { useDarkMode } from "@hooks/useDarkMode";
 import { motion } from "framer-motion";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 import React from "react";
 import type { ReactProps } from "src/types/types";
 import styled, { ThemeProvider } from "styled-components";
 
 import { ContainerStyle, GlobalStyles, MainStyles } from "../../styles/global-styles";
-import { darkTheme, lightTheme } from "../../styles/theme";
+import { darkTheme } from "../../styles/theme";
 
 const variants = {
     hidden: { opacity: 0, x: -150, y: 0 },
@@ -22,8 +24,8 @@ const SiteWrapper = styled.div`
 
 const Layout: React.FC<ReactProps> = ({ children }) => {
     const [theme, toggleTheme] = useDarkMode();
-    const themeType = theme === "dark" ? darkTheme : lightTheme;
-    const router = useRouter();
+    const themeType = darkTheme;
+    const pathname = usePathname();
 
     return (
         <ThemeProvider theme={themeType}>
@@ -31,7 +33,7 @@ const Layout: React.FC<ReactProps> = ({ children }) => {
                 <GlobalStyles />
                 <MainStyles>
                     <motion.main
-                        key={router.route}
+                        key={pathname}
                         initial="hidden"
                         animate="enter"
                         exit="exit"

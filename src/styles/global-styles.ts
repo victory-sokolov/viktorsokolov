@@ -1,3 +1,5 @@
+"use client";
+
 import styled, { createGlobalStyle, css } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
@@ -40,17 +42,23 @@ const GlobalStyles = createGlobalStyle`
 
     --black: #2E2E2E;
     --white: #fff;
-    --text-color-primary: var(--black);
-    --text-color-secondary: var(--black);
     --selection: #364fc7;
     --tip-box-shadow-color: #fff;
-    --background-color: var(--white);
     --code: #fff;
     --code-background: #2b303b99;
     --light-shadow: 0 5px 10px rgba(154,160,185,.5), 0 15px 40px rgba(166,173,201,.2);
     --hover-shadow: 0 25px 50px rgba(154,160,185,.5), 0 35px 80px rgba(166,173,201,.2);
     --box-shadow-px: 20px;
     --scrollbar-color: #d6d6d6;
+
+    --link-color: #fff;
+    --code: #97a2f3;
+    --text-color-primary: #fff;
+    --text-color-secondary: #FFB90B;
+    --background-color: #03082a;
+    --tip-box-shadow-color: #134c79;
+    --light-shadow: none;
+    --box-shadow-px: 70px;
 
     --accent-gradient: linear-gradient(
             60deg,
@@ -186,7 +194,7 @@ const GlobalStyles = createGlobalStyle`
 
   h1,h2,h3,h4,h5,h6 {
     margin: 0;
-    line-height: calc(2.5rem * 1.618);
+    line-height: calc(1.8rem * 1.618);
     text-wrap: balance;
   }
 

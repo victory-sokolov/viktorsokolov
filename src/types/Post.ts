@@ -13,7 +13,7 @@ type Content = {
         height?: number;
         width?: number;
     };
-    image?: string;
+    image: string;
 };
 
 type PostMeta = {

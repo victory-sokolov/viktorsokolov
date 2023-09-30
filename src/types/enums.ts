@@ -1,4 +1,4 @@
 export enum POST_TYPE {
-    POST = "post",
+    POST = "blog",
     TIP = "tips"
 }

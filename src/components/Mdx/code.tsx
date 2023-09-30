@@ -1,3 +1,5 @@
+"use client";
+
 import { Highlight, Language, Prism, themes } from "prism-react-renderer";
 import { useState } from "react";
 import { BsClipboardCheck } from "react-icons/bs";
