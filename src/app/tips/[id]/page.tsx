@@ -6,15 +6,13 @@ import NextNPrevious from "@components/NextNPrevious";
 import React from "react";
 import { ContentWrapper } from "src/styles/global-styles";
 import { POST_TYPE } from "src/types/enums";
-import type { Tip } from "src/types/Post";
 
-const TipPage: React.FC<Tip> = async ({ params }) => {
+const TipPage: React.FC = async (id: string) => {
     const {
         currentPost: { frontmatter, mdxSource },
         nextPost,
         previousPost
-    } = await getTipBySlug(params.id);
-
+    } = await getTipBySlug(id);
     if (!frontmatter) {
         return <h1>Tip is not found!</h1>;
     }
@@ -31,7 +29,12 @@ const TipPage: React.FC<Tip> = async ({ params }) => {
             <p>{frontmatter.description}</p>
             <p style={{ paddingTop: "var(--space-md)" }}>
                 Posted on&nbsp;
-                <a href={frontmatter.tweetUrl} target="_blank" rel="noreferrer" aria-label="Tweet link">
+                <a
+                    href={frontmatter.tweetUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Tweet link"
+                >
                     Twitter
                 </a>{" "}
                 &nbsp; on {date}.

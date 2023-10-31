@@ -1,8 +1,7 @@
 import { getContent } from "@common/content-utils";
 import { MdxRemote } from "@components/Mdx";
-import type { MDXProps } from "src/types/Post";
 
-const AboutPage: React.FC<MDXProps> = async () => {
+const AboutPage: React.FC = async () => {
     const { frontmatter, mdxSource } = await getContent("pages/about");
     const { title, description, date } = frontmatter;
 

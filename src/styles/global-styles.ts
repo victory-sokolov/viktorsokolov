@@ -107,6 +107,16 @@ const GlobalStyles = createGlobalStyle`
     margin: 0;
   }
 
+    @media (prefers-reduced-motion: reduce) {
+        * {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
+            scroll-behavior: smooth;
+        }
+    }
+
   html {
     scrollbar-width: thin;
     scrollbar-color: var(--scrollbar-color);

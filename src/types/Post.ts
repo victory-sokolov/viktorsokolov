@@ -8,12 +8,6 @@ type Content = {
     date: string;
     slug: string;
     featureImage: string;
-    blurhash: {
-        hash: string;
-        height?: number;
-        width?: number;
-    };
-    image: string;
 };
 
 type PostMeta = {

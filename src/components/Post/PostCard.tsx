@@ -13,16 +13,15 @@ export const PostCard: React.FC<PostFrontmatter> = ({
     date,
     slug,
     excerpt,
-    image,
+    featureImage,
     readTime,
-    id,
-    blurhash
+    id
 }) => {
     return (
         <Card key={id}>
             <Link href={`${slug}`} aria-label={title}>
                 <div className="post-meta-data">
-                    <Image src={image} alt={title} title={title} />
+                    <Image src={featureImage} alt={title} title={title} />
                     <div className="post-data">
                         <h3 className="post-title">{title}</h3>
                         <p className="post-description">{excerpt}</p>

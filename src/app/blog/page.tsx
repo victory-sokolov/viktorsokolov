@@ -20,7 +20,7 @@ const Blog = async () => {
 
             <div className="blog-posts-list">
                 {posts.map((post, index) => (
-                    <PostItem key={index} post={post} type="blog" />
+                    <PostItem key={index} post={post} />
                 ))}
             </div>
         </BlogContainer>
