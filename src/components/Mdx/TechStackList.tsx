@@ -21,7 +21,7 @@ const TechContainer = styled.ul`
     }
 `;
 
-export const TechStackList = ({ children }) => {
+export const TechStackList = () => {
     const TECH_STACK_LIST = [
         "python",
         "django",

@@ -1,4 +1,5 @@
 import { BiInfoCircle } from "react-icons/bi";
+import { ReactProps } from "src/types/types";
 import styled from "styled-components";
 
 export const BlockquoteContainer = styled.div`
@@ -15,7 +16,7 @@ export const BlockquoteContainer = styled.div`
     }
 `;
 
-export const Blockquote = ({ children }) => {
+export const Blockquote = ({ children }: ReactProps) => {
     return (
         <BlockquoteContainer>
             <BiInfoCircle size={26} />

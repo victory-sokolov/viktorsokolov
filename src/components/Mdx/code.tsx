@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 "use client";
 
 import { Highlight, Language, Prism, themes } from "prism-react-renderer";
@@ -71,7 +72,7 @@ const CopyButton = styled.div`
     }
 `;
 
-export const Code = ({ children }) => {
+export const Code = ({ children }: { children: any }) => {
     const [isCopied, setIsCopied] = useState(false);
 
     const props = children.props;
@@ -95,7 +96,11 @@ export const Code = ({ children }) => {
                     </MacIcons>
                     <pre style={style}>
                         <CopyButton>
-                            {isCopied ? "🎉 Copied!" : <BsClipboardCheck onClick={copyToClipboard} />}
+                            {isCopied ? (
+                                "🎉 Copied!"
+                            ) : (
+                                <BsClipboardCheck onClick={copyToClipboard} />
+                            )}
                         </CopyButton>
                         <code className={className}>
                             {tokens.map((line, i) => (

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import Image, { ImageProps } from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
