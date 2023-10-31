@@ -36,5 +36,7 @@ export const getContent = async (filePath: string) => {
 };
 
 export const sortPostByDate = (posts: PostType[]): PostType[] => {
-    return posts.sort((post1: PostType, post2: PostType) => Date.parse(post2.date) - Date.parse(post1.date));
+    return posts.sort(
+        (post1: PostType, post2: PostType) => Date.parse(post2.date) - Date.parse(post1.date)
+    );
 };

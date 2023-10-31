@@ -56,7 +56,7 @@ const ShareIcon = styled.span`
     font-size: 2.2rem;
 `;
 
-export default function ShareToSocialLink({ title }) {
+export default function ShareToSocialLink({ title }: { title: string }) {
     const pathname = usePathname();
     const url = `${config.siteUrl}${pathname}`;
 

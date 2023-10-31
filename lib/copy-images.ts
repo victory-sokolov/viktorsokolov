@@ -3,7 +3,7 @@ import path from "path";
 
 const fsPromises = fs.promises;
 const imagesDirs = ["content/posts", "content/tips"];
-const extensisons = [".png", ".jpg", ".svg"];
+const extensisons = [".png", ".jpg", ".svg", "webp"];
 const publicPath = path.join(process.cwd(), "public");
 
 const getDirectories = path => {
@@ -22,6 +22,10 @@ const endsWithAny = (data: string) => {
 };
 
 export default (async () => {
+    const publicPosts = `${publicPath}/posts`;
+    if (!fs.existsSync(publicPosts)) {
+        fs.mkdirSync(publicPosts);
+    }
     // Get all images from posts and tips folder
     imagesDirs.forEach(async folder => {
         const subDirectories = getDirectories(folder);

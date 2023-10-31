@@ -2,7 +2,6 @@
 
 import Footer from "@components/Footer";
 import Header from "@components/Header";
-import { useDarkMode } from "@hooks/useDarkMode";
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import React from "react";
@@ -10,7 +9,7 @@ import type { ReactProps } from "src/types/types";
 import styled, { ThemeProvider } from "styled-components";
 
 import { ContainerStyle, GlobalStyles, MainStyles } from "../../styles/global-styles";
-import { darkTheme } from "../../styles/theme";
+import { theme } from "../../styles/theme";
 
 const variants = {
     hidden: { opacity: 0, x: -150, y: 0 },
@@ -23,8 +22,7 @@ const SiteWrapper = styled.div`
 `;
 
 const Layout: React.FC<ReactProps> = ({ children }) => {
-    const [theme, toggleTheme] = useDarkMode();
-    const themeType = darkTheme;
+    const themeType = theme;
     const pathname = usePathname();
 
     return (
@@ -40,7 +38,7 @@ const Layout: React.FC<ReactProps> = ({ children }) => {
                         variants={variants}
                         transition={{ type: "linear", duration: 0.75 }}
                     >
-                        <Header toggleTheme={toggleTheme} theme={theme} />
+                        <Header theme={theme} />
                         <ContainerStyle>{children}</ContainerStyle>
                         <Footer />
                     </motion.main>

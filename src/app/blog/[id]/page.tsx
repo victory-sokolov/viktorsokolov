@@ -31,9 +31,19 @@ export default async function Page({ params }) {
             <ContentWrapper>
                 <Modal>
                     <div className="image-wrapper">
-                        <Image src={featureImage} title={title} alt={title} width={800} height={400} />
+                        <Image
+                            src={featureImage}
+                            title={title}
+                            alt={title}
+                            width={800}
+                            height={400}
+                        />
                     </div>
-                    <h1 className="center" itemProp="headline" style={{ color: "var(--text-color-secondary)" }}>
+                    <h1
+                        className="center"
+                        itemProp="headline"
+                        style={{ color: "var(--text-color-secondary)" }}
+                    >
                         {title}
                     </h1>
                     <PostMeta date={date} readTime={readTime} style={{ justifyContent: "center" }}>

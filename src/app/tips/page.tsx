@@ -22,7 +22,7 @@ const Tips = async () => {
                         href="https://twitter.com/VictorySokolov"
                         target="_blank"
                         rel="noreferrer"
-                        arial-label="Twitter account"
+                        aria-label="Twitter account"
                     >
                         Twitter account
                     </a>
@@ -47,9 +47,19 @@ const Tips = async () => {
                                 <h3>{tip.title}</h3>
                             </Link>
                             <p>{tip.date}</p>
-                            <a href={tip.tweetUrl} target="_blank" rel="noreferrer" aria-label="Tweet URL">
+                            <a
+                                href={tip.tweetUrl}
+                                target="_blank"
+                                rel="noreferrer"
+                                aria-label="Tweet URL"
+                            >
                                 <div className="tweet-link">
-                                    <Image src="/static/twitter.svg" alt="Twitter logo" width={30} height={30} />
+                                    <Image
+                                        src="/static/twitter.svg"
+                                        alt="Twitter logo"
+                                        width={30}
+                                        height={30}
+                                    />
                                 </div>
                                 <p>Tweet Url</p>
                             </a>

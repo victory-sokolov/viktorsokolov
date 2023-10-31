@@ -1,39 +1,8 @@
+import { HomeStyled } from "@/styles/Home";
 import { getRecentPosts } from "@common/posts";
 import { PostItem } from "@components/Post";
 import Link from "next/link";
 import type { PostFrontmatter } from "src/types/Post";
-
-// import styled from "styled-components";
-
-// const NewsLetterForm = dynamic(() =>
-//     import(
-//         /*webpackChunkName: 'NewsLetterForm' */
-//         "@components/NewsLetter"
-//     ).then(module => module.default)
-// );
-
-// const HomeStyled = styled.div`
-//     h1,
-//     h2 {
-//         padding-bottom: var(--space-lg);
-//     }
-
-//     .recentrly-published {
-//         margin-top: var(--space-md);
-//     }
-
-//     .arrow {
-//         width: 25px;
-//         height: 25px;
-//         position: relative;
-//         left: 12px;
-//         top: 10px;
-//     }
-
-//     @media ${props => props.theme.breakpoints.mobile} {
-//         text-align: center;
-//     }
-// `;
 
 // const PostItem = dynamic(() => import("@components/Post").then(module => module.PostItem));
 
@@ -41,8 +10,7 @@ export default async function Main() {
     const posts = await getRecentPosts();
 
     return (
-        // <HomeStyled>
-        <>
+        <HomeStyled>
             <h2>Featured Posts</h2>
             <div className="recently-published">
                 {posts.map((post: PostFrontmatter, index: number) => (
@@ -70,7 +38,6 @@ export default async function Main() {
             </Link>
             {/* <NewsLetterForm /> */}
             {/* <BuyMeACoffe /> */}
-            {/* </HomeStyled> */}
-        </>
+        </HomeStyled>
     );
 }

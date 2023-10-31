@@ -8,7 +8,16 @@ import type { PostFrontmatter } from "src/types/Post";
 import { Card } from "./Post.styled";
 import { PostMeta } from "./PostMeta";
 
-export const PostCard: React.FC<PostFrontmatter> = ({ title, date, slug, excerpt, image, readTime, id, blurhash }) => {
+export const PostCard: React.FC<PostFrontmatter> = ({
+    title,
+    date,
+    slug,
+    excerpt,
+    image,
+    readTime,
+    id,
+    blurhash
+}) => {
     return (
         <Card key={id}>
             <Link href={`${slug}`} aria-label={title}>

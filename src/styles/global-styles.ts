@@ -60,6 +60,15 @@ const GlobalStyles = createGlobalStyle`
     --light-shadow: none;
     --box-shadow-px: 70px;
 
+    --link-color: #fff;
+    --code: #97a2f3;
+    --text-color-primary: #fff;
+    --text-color-secondary: #FFB90B;
+    --background-color: #03082a;
+    --tip-box-shadow-color: #134c79;
+    --light-shadow: none;
+    --box-shadow-px: 70px;
+
     --accent-gradient: linear-gradient(
             60deg,
             hsl(224, 85%, 66%),
@@ -71,17 +80,6 @@ const GlobalStyles = createGlobalStyle`
             hsl(134, 85%, 66%),
             hsl(179, 85%, 66%)
         );
-  }
-
-  [data-theme="dark"] {
-    --link-color: #fff;
-    --code: #97a2f3;
-    --text-color-primary: #fff;
-    --text-color-secondary: #FFB90B;
-    --background-color: #03082a;
-    --tip-box-shadow-color: #134c79;
-    --light-shadow: none;
-    --box-shadow-px: 70px;
   }
 
   @font-face {

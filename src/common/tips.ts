@@ -2,7 +2,7 @@ import { filterFalsyFromObject, toLongDate } from "@vsokolov/utils";
 import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
-import { getPlaiceholder } from "plaiceholder";
+// import { getPlaiceholder } from "plaiceholder";
 import { TipFrontmatter } from "src/types/Post";
 
 import { getPostData, sortPostByDate } from "./content-utils";
@@ -16,14 +16,14 @@ export const getAllTips = async (): Promise<TipFrontmatter[]> => {
         const file = matter.read(`${tipsPath}/${slug}/${slug}.mdx`);
         const data = filterFalsyFromObject(file.data);
         const imgPath = `/tips/${slug}/${data.featureImage}`;
-        const { blurhash } = await getPlaiceholder(imgPath);
+        // const { blurhash } = await getPlaiceholder(imgPath);
 
         return {
             ...data,
             content: file.content,
             date: toLongDate(data.date as string),
-            featureImage: imgPath,
-            blurhash: blurhash
+            featureImage: imgPath
+            // blurhash: blurhash
         };
     });
     const allTips = await Promise.all(tips);
