@@ -4,8 +4,6 @@ import { PostItem } from "@components/Post";
 import Link from "next/link";
 import type { PostFrontmatter } from "src/types/Post";
 
-// const PostItem = dynamic(() => import("@components/Post").then(module => module.PostItem));
-
 export default async function Main() {
     const posts = await getRecentPosts();
 

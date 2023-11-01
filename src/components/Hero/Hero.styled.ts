@@ -8,7 +8,7 @@ export const HeroStyles = styled.section`
     p {
         line-height: 3rem;
         font-size: var(--text-base);
-        padding-bottom: var(--space-md);
+        padding: var(--space-md) 0 var(--space-md);
         &:before {
             content: "";
             height: 15rem;
