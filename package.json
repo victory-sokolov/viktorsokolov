@@ -27,7 +27,7 @@
         "@emotion/is-prop-valid": "^1.2.1",
         "@vercel/analytics": "^1.0.2",
         "@vsokolov/utils": "^0.11.0",
-        "axios": "^1.5.0",
+        "axios": "^1.6.0",
         "dotenv": "^16.0.3",
         "file-type": "^18.2.1",
         "framer-motion": "^10.16.4",
