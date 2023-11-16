@@ -51,7 +51,7 @@
         "remark": "^14.0.2",
         "remark-code-titles": "^0.1.2",
         "remark-html": "^15.0.2",
-        "sharp": "^0.32.5",
+        "sharp": "^0.32.6",
         "styled-components": "^6.0.8",
         "styled-react-modal": "^3.0.1",
         "twitter-api-v2": "^1.15.1"
