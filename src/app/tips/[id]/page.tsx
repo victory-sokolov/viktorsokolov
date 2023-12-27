@@ -3,9 +3,43 @@ import Categories from "@components/Categories";
 import { MdxRemote } from "@components/Mdx";
 import NewsLetterForm from "@components/NewsLetter";
 import NextNPrevious from "@components/NextNPrevious";
+import { Metadata } from "next/types";
 import React from "react";
 import { ContentWrapper } from "src/styles/global-styles";
 import { POST_TYPE } from "src/types/enums";
+
+export async function generateMetadata({ params }): Promise<Metadata | undefined> {
+    const {
+        currentPost: { frontmatter }
+    } = await getTipBySlug(params.id);
+    if (!frontmatter) {
+        return;
+    }
+
+    const { title, description, featureImage, slug } = frontmatter;
+    const ogImage = `${process.env.BASE_URL}/${featureImage}`;
+    return {
+        title: title,
+        description: description,
+        openGraph: {
+            title,
+            description,
+            type: "article",
+            url: `${process.env.BASE_URL}/tips/${slug}`,
+            images: [
+                {
+                    url: ogImage
+                }
+            ]
+        },
+        twitter: {
+            card: "summary_large_image",
+            title,
+            description,
+            images: [ogImage]
+        }
+    };
+}
 
 const TipPage: React.FC = async (id: string) => {
     const {
@@ -22,7 +56,6 @@ const TipPage: React.FC = async (id: string) => {
 
     return (
         <ContentWrapper>
-            {/* <Seo title={frontmatter.title} image={frontmatter.featureImage} date={date} /> */}
             <h1>{frontmatter.title}</h1>
             <Categories categories={tags} style={{ textAlign: "left" }} />
             <MdxRemote mdxSource={mdxSource} />

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const ScrollIndicatorWrapper = styled.div`
@@ -14,7 +14,6 @@ const ScrollIndicatorWrapper = styled.div`
 
 export const ScrollIndicator = () => {
     const [progress, setProgress] = useState<number>(0);
-    const ref = useRef(null);
 
     const updateProgressIndicator = () => {
         const winScroll = document.body.scrollTop || document.documentElement.scrollTop;

@@ -2,7 +2,7 @@
 "use client";
 
 import { Highlight, Language, Prism, themes } from "prism-react-renderer";
-import { useState } from "react";
+import React, { useState } from 'react';
 import { BsClipboardCheck } from "react-icons/bs";
 import styled from "styled-components";
 
@@ -12,7 +12,7 @@ require("prismjs/components/prism-python");
 type Code = {
     codeString: string;
     language: Language;
-    props: any;
+    props: React.ReactNode;
 };
 
 const Line = styled.div`
@@ -72,12 +72,11 @@ const CopyButton = styled.div`
     }
 `;
 
-export const Code = ({ children }: { children: any }) => {
+// @ts-expect-error ignore type
+export const Code: React.FC<unknown> = ({ children}) => {
     const [isCopied, setIsCopied] = useState(false);
-
-    const props = children.props;
-    const codeString = props.children.trim();
-    const language = props.className.split("-")[1];
+    const codeString = children.props.children.trim();
+    const language = children.props.className.split("-")[1];
 
     const copyToClipboard = () => {
         navigator.clipboard.writeText(codeString);

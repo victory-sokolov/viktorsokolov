@@ -33,7 +33,7 @@ export const TechStackList = () => {
         "nodejs",
         "javascript"
     ];
-    const tags = Object.entries(TagsMapping).filter(([key, _]) => TECH_STACK_LIST.includes(key));
+    const tags = Object.entries(TagsMapping).filter(([key]) => TECH_STACK_LIST.includes(key));
     return (
         <TechContainer>
             {tags.map(([key, value]) => (

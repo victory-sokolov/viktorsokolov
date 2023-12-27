@@ -1,7 +1,15 @@
 import { getAllPosts } from "@common/posts";
 import { PostItem } from "@components/Post";
+import type { Metadata } from "next";
 
 import { BlogContainer, TopBlogMeta } from "./styles";
+import { config } from '@common/appconfig';
+
+export const metadata: Metadata = {
+    title: "Blog posts",
+    description:
+        `Browse through ${config.author}'s blog posts to learn more about frontend and backend development`
+};
 
 const Blog = async () => {
     const posts = await getAllPosts();
@@ -9,10 +17,6 @@ const Blog = async () => {
 
     return (
         <BlogContainer>
-            {/* <Seo
-                title="Blog posts"
-                description="Browse throught Viktor Sokolov's blog posts to learn more about frontend and backend development"
-            /> */}
             <TopBlogMeta>
                 <h1>Blog Posts ↓</h1>
                 <h4>{posts.length} Articles</h4>

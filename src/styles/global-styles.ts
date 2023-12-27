@@ -332,8 +332,6 @@ const GlobalStyles = createGlobalStyle`
     background-color: rgb(46, 52, 64, 0.5);
     backdrop-filter: blur(8px);
     color: #fff;
-    display: flex;
-    justify-content: center;
 }
 
 .flex-row {

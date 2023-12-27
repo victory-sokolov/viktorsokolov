@@ -1,11 +1,15 @@
 import { getAllTips } from "@common/tips";
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import type { TipFrontmatter } from "src/types/Post";
 
 import { DevelopmentTipsTop, TipItem, TipsContainer, TipsWrapper } from "./styles";
 
-// import Seo from "../../components/Seo";
+export const metadata: Metadata = {
+    title: "Developments tips",
+    description: "Developments tips and snippets."
+};
 
 const Tips = async () => {
     const tips = await getAllTips();
@@ -13,7 +17,6 @@ const Tips = async () => {
 
     return (
         <TipsWrapper>
-            {/* <Seo title="Developments tips" description="Short developments tips and snippets posted on Twitter" /> */}
             <DevelopmentTipsTop>
                 <h1>🔥 Hot Development Tips</h1>
                 <p>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { usePathname } from "next/navigation";
+import { title } from "process";
 
 import { config } from "../../common/appconfig";
 
@@ -9,6 +10,51 @@ type SeoType = {
     keywords?: string[];
     date?: string;
     image?: string;
+};
+
+const ogImg = `/OG.png`;
+
+export const metadata: Metadata = {
+    metadataBase: new URL(process.env.BASE_URL),
+    title: {
+        default: `${config.author} Development Blog`,
+        template: `%s | ${config.author}`
+    },
+    description: config.description,
+    applicationName: `${config.author} Blog`,
+    authors: [{ name: config.author, url: config.siteUrl }],
+    keywords: config.keywords.join(", "),
+    alternates: {
+        canonical: config.siteUrl,
+        languages: {
+            "en-US": "/en-US"
+        }
+    },
+    generator: `${config.author} uses NextJs!`,
+    openGraph: {
+        type: "website",
+        url: config.siteUrl,
+        description: config.description,
+        siteName: config.siteName,
+        images: [{ url: ogImg }],
+        locale: "en_US"
+    },
+    twitter: {
+        description: config.description,
+        title: title || config.title,
+        card: "summary_large_image",
+        site: config.social.twitterHandle,
+        creator: config.social.twitterHandle,
+        images: ogImg
+    },
+    referrer: "origin",
+    robots: { index: true, follow: true },
+    manifest: "manifest.json",
+    appleWebApp: {
+        capable: true,
+        title: config.siteName,
+        statusBarStyle: "black-translucent"
+    }
 };
 
 const postType = ["tip", "post"];
@@ -30,17 +76,16 @@ export default function Seo({ title, description, date, keywords, image }: SeoTy
     return {
         title: {
             default: defaultTitle,
-            template: "%s | Viktor Sokolov"
+            template: `%s | ${config.author}`
         },
-        applicationName: "Viktor Sokolovs Blog",
+        applicationName: `${config.author} Blog`,
         description: description || config.description,
         authors: [{ name: config.author, url: config.siteUrl }],
         keywords: config.keywords.join(", "),
-        // image: ogImgSrc,
         alternates: {
             canonical: canonicalUrl
         },
-        generator: "Victory Sokolov uses NextJs!",
+        generator: `${config.author} uses NextJs!`,
         openGraph: {
             type: "website",
             url: `${config.siteUrl}${pathname}`,
@@ -59,17 +104,12 @@ export default function Seo({ title, description, date, keywords, image }: SeoTy
         },
         referrer: "origin",
         robots: { index: true, follow: true },
-        // alternates: {
-        //     icon: "static/favicons/favicon.svg"
-        //     apple: "static/favicons/apple-touch-icon.png",
-        // },
         manifest: "manifest.json",
         appleWebApp: {
             capable: true,
             title: config.siteName,
             statusBarStyle: "black-translucent"
-        },
-        formatDetection: { telephone: false }
+        }
     };
 
     // <meta name="robots" content="follow, index" />
@@ -87,7 +127,7 @@ export default function Seo({ title, description, date, keywords, image }: SeoTy
     // <meta property="og:type" content={isPost ? "article" : "website"} />
     // <meta property="og:locale" content="en_US" />
     // <meta property="og:image:alt" content={title || config.title} />
-    // // <meta name="theme-color" content="#030936" />
+    // <meta name="theme-color" content="#030936" />
     // {date && <meta property="article:published_time" content={date} />}
     {
         /* Twitter Card tags */

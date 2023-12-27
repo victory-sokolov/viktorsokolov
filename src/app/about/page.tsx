@@ -1,16 +1,16 @@
 import { getContent } from "@common/content-utils";
 import { MdxRemote } from "@components/Mdx";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "About",
+    description: "About me and my work."
+};
 
 const AboutPage: React.FC = async () => {
-    const { frontmatter, mdxSource } = await getContent("pages/about");
-    const { title, description, date } = frontmatter;
+    const { mdxSource } = await getContent("pages/about");
 
-    return (
-        <>
-            {/* <Seo title={title} description={description} date={date} /> */}
-            <MdxRemote mdxSource={mdxSource} />
-        </>
-    );
+    return <MdxRemote mdxSource={mdxSource} />;
 };
 
 export default AboutPage;

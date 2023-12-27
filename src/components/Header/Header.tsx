@@ -18,7 +18,7 @@ const Hero = dynamic(() =>
     ).then(module => module.default)
 );
 
-export const Header: React.FC<any> = () => {
+export const Header: React.FC = () => {
     const pathname = usePathname();
     const [isRootUrl, setIsRootUrl] = useState(pathname === "/" ? true : false);
     const [sticky, setSticky] = useState({ isSticky: false, offset: 0 });

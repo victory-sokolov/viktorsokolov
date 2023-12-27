@@ -56,6 +56,6 @@ const MDXComponents = {
     p: paragraph,
     TechStackList,
     Blockquote
-} as any;
+} as const;
 
 export default MDXComponents;

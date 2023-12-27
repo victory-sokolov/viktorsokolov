@@ -8,7 +8,11 @@ export const BlogContainer = styled.div`
 `;
 
 export const TopBlogMeta = styled.div`
-    padding-bottom: var(--space-md);
+    padding-bottom: var(--space-xl);
+
+    h1 {
+        padding-bottom: var(--space-sm);
+    }
 
     @media ${props => props.theme.breakpoints.tablet} {
         text-align: center;

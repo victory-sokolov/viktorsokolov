@@ -8,9 +8,43 @@ import NextNPrevious from "@components/NextNPrevious";
 import { PostMeta } from "@components/Post/PostMeta";
 import ShareToSocialLink from "@components/ShareToSocial";
 import { DevToLink, GithubLink } from "@components/Social/SocialMedia";
+import { Metadata } from "next";
 import Image from "next/image";
 import { ContentWrapper } from "src/styles/global-styles";
 import { POST_TYPE } from "src/types/enums";
+
+export async function generateMetadata({ params }): Promise<Metadata | undefined> {
+    const {
+        currentPost: { frontmatter }
+    } = await getPostBySlug(params.id);
+    if (!frontmatter) {
+        return;
+    }
+
+    const { title, description, featureImage, slug } = frontmatter;
+    const ogImage = `${process.env.BASE_URL}/${featureImage}`;
+    return {
+        title: title,
+        description: description,
+        openGraph: {
+            title,
+            description,
+            type: "article",
+            url: `${process.env.BASE_URL}/blog/${slug}`,
+            images: [
+                {
+                    url: ogImage
+                }
+            ]
+        },
+        twitter: {
+            card: "summary_large_image",
+            title,
+            description,
+            images: [ogImage]
+        }
+    };
+}
 
 export default async function Page({ params }) {
     const {
@@ -27,7 +61,6 @@ export default async function Page({ params }) {
 
     return (
         <>
-            {/* <Seo title={title} description={frontmatter.description} date={date} keywords={tags} image={featureImage} /> */}
             <ContentWrapper>
                 <Modal>
                     <div className="image-wrapper">

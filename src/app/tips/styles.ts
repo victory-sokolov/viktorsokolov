@@ -7,8 +7,11 @@ export const TipsWrapper = styled.div`
 `;
 
 export const DevelopmentTipsTop = styled.div`
-    padding-bottom: 3rem;
+    padding-bottom: var(--space-xl);
     text-align: center;
+    h1 {
+        padding-bottom: var(--space-md);
+    }
 `;
 
 export const TipItem = styled.div`

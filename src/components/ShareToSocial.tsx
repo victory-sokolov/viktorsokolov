@@ -62,7 +62,7 @@ export default function ShareToSocialLink({ title }: { title: string }) {
 
     const [isOpen, setIsOpen] = useState(false);
 
-    const toggleModal = e => {
+    const toggleModal = () => {
         setIsOpen(!isOpen);
     };
 

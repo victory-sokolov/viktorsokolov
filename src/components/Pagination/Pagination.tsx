@@ -47,7 +47,7 @@ const PaginationElement = styled(props => <Link {...props} />)`
 
 export const Pagination: React.FC<PaginationProps> = ({ isFirst, isLast, prevPage, nextPage }) => {
     return (
-        // @ts-ignore
+        // @ts-expect-error Disable isFirst
         <PaginationWrapper isFirst={isFirst} isLast={isLast}>
             <PaginationElement to={prevPage}>Previous Page</PaginationElement>
             <PaginationElement to={nextPage}>Next Page</PaginationElement>
