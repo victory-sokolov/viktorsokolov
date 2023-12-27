@@ -20,7 +20,7 @@ const CategorieStyle = styled.div`
     }
 `;
 
-export const Categories: React.FC<any> = ({ categories, style }) => {
+export const Categories: React.FC<unknown> = ({ categories, style }) => {
     return (
         <CategorieWrapperStyle style={{ ...style }}>
             {categories
