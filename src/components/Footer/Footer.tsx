@@ -12,7 +12,7 @@ export const Footer: React.FC = () => {
                     {config.siteName}.com
                 </Link>
                 <SocialMedia />
-                <p>&copy; {new Date().getFullYear()}. Developed by Viktor Sokolov</p>
+                <p>&copy; {new Date().getFullYear()}. Developed by {config.author}</p>
             </div>
         </FooterStyles>
     );

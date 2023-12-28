@@ -25,7 +25,7 @@ export const Nav: React.FC<Props> = ({ isSticky }) => {
 
     return (
         <NavStyles>
-            <StyleSheetManager shouldForwardProp={prop => isPropValid(prop)}>
+            <StyleSheetManager enableVendorPrefixes shouldForwardProp={prop => isPropValid(prop)}>
                 <Hamburger isSticky={isSticky} isOpen={isOpen} onClick={() => setIsOpen(!isOpen)}>
                     <CloseIcon />
                 </Hamburger>
@@ -34,13 +34,29 @@ export const Nav: React.FC<Props> = ({ isSticky }) => {
                 <div>
                     <ul>
                         <LinkItem onClick={() => setIsOpen(!isOpen)}>
-                            <Link href="/" passHref legacyBehavior data-hover="Home" aria-label="Home page">
-                                <StyledLink className={pathname == "/" ? "active" : ""}>Home</StyledLink>
+                            <Link
+                                href="/"
+                                passHref
+                                legacyBehavior
+                                data-hover="Home"
+                                aria-label="Home page"
+                            >
+                                <StyledLink className={pathname == "/" ? "active" : ""}>
+                                    Home
+                                </StyledLink>
                             </Link>
                         </LinkItem>
                         <LinkItem onClick={() => setIsOpen(!isOpen)}>
-                            <Link href="/blog" passHref legacyBehavior data-hover="Blog" aria-label="Blog posts page">
-                                <StyledLink className={pathname == "/blog" ? "active" : ""}>Blog</StyledLink>
+                            <Link
+                                href="/blog"
+                                passHref
+                                legacyBehavior
+                                data-hover="Blog"
+                                aria-label="Blog posts page"
+                            >
+                                <StyledLink className={pathname == "/blog" ? "active" : ""}>
+                                    Blog
+                                </StyledLink>
                             </Link>
                         </LinkItem>
 
@@ -53,7 +69,9 @@ export const Nav: React.FC<Props> = ({ isSticky }) => {
                                 aria-label="About me page"
                                 prefetch={false}
                             >
-                                <StyledLink className={pathname == "/about" ? "active" : ""}>About</StyledLink>
+                                <StyledLink className={pathname == "/about" ? "active" : ""}>
+                                    About
+                                </StyledLink>
                             </Link>
                         </LinkItem>
                         <LinkItem onClick={() => setIsOpen(!isOpen)}>
@@ -65,12 +83,22 @@ export const Nav: React.FC<Props> = ({ isSticky }) => {
                                 aria-label="Uses page"
                                 prefetch={false}
                             >
-                                <StyledLink className={pathname == "/uses" ? "active" : ""}>Uses</StyledLink>
+                                <StyledLink className={pathname == "/uses" ? "active" : ""}>
+                                    Uses
+                                </StyledLink>
                             </Link>
                         </LinkItem>
                         <LinkItem onClick={() => setIsOpen(!isOpen)}>
-                            <Link href="/tips" legacyBehavior passHref data-hover="Tips" aria-label="Tips page">
-                                <StyledLink className={pathname == "/tips" ? "active" : ""}>Tips</StyledLink>
+                            <Link
+                                href="/tips"
+                                legacyBehavior
+                                passHref
+                                data-hover="Tips"
+                                aria-label="Tips page"
+                            >
+                                <StyledLink className={pathname == "/tips" ? "active" : ""}>
+                                    Tips
+                                </StyledLink>
                             </Link>
                         </LinkItem>
                     </ul>

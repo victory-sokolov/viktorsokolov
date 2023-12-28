@@ -8,7 +8,7 @@ import { CiFacebook, CiLinkedin, CiTwitter } from "react-icons/ci";
 import { DiHackernews } from "react-icons/di";
 import { FaCreativeCommonsShare, FaShareAlt } from "react-icons/fa";
 import { FcReddit } from "react-icons/fc";
-import { styled } from "styled-components";
+import styled from "styled-components";
 import Modal from "styled-react-modal";
 
 const SharingContainer = styled.div`

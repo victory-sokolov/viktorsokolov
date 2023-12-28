@@ -9,7 +9,7 @@ type PaginationProps = {
     nextPage: string;
 };
 
-const PaginationWrapper = styled.div.attrs<PaginationProps>(props => props)`
+const PaginationWrapper = styled.div<PaginationProps>`
     grid-column: 2 / span 12;
     padding: 3rem 0;
     display: flex;
@@ -49,8 +49,12 @@ export const Pagination: React.FC<PaginationProps> = ({ isFirst, isLast, prevPag
     return (
         // @ts-expect-error Disable isFirst
         <PaginationWrapper isFirst={isFirst} isLast={isLast}>
-            <PaginationElement to={prevPage}>Previous Page</PaginationElement>
-            <PaginationElement to={nextPage}>Next Page</PaginationElement>
+            <PaginationElement to={prevPage} aria-label="Previous Page">
+                Previous Page
+            </PaginationElement>
+            <PaginationElement to={nextPage} aria-label="Next Page">
+                Next Page
+            </PaginationElement>
         </PaginationWrapper>
     );
 };

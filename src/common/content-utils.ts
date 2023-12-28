@@ -3,7 +3,7 @@ import fs from "fs";
 import matter from "gray-matter";
 import { serialize } from "next-mdx-remote/serialize";
 import rehypeSlug from "rehype-slug";
-import { PostType } from "src/types/Post";
+import type { PostFrontmatter, PostType, TipFrontmatter } from "src/types/Post";
 
 export const getSerializedContent = async content => {
     const options = {
@@ -14,15 +14,15 @@ export const getSerializedContent = async content => {
     return serialize(content, options);
 };
 
-export const getPostData = async (data, slug: string) => {
-    const currentIndex = data.findIndex(data => data.slug === slug);
-    const currentPost = data.at(currentIndex);
+export const getPostData = async (posts: PostFrontmatter[] | TipFrontmatter[], slug: string) => {
+    const currentIndex = posts.findIndex(post => post.slug === slug);
+    const currentPost = posts.at(currentIndex);
     const mdxSource = await getSerializedContent(currentPost.content);
 
     return {
         currentPost: { frontmatter: currentPost, mdxSource },
-        nextPost: data[currentIndex + 1] || null,
-        previousPost: data[currentIndex - 1] || null
+        nextPost: posts[currentIndex + 1] || null,
+        previousPost: posts[currentIndex - 1] || null
     };
 };
 

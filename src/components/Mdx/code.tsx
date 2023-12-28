@@ -2,9 +2,11 @@
 "use client";
 
 import { Highlight, Language, Prism, themes } from "prism-react-renderer";
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { BsClipboardCheck } from "react-icons/bs";
 import styled from "styled-components";
+
+/* eslint-disable react/prop-types */
 
 (typeof global !== "undefined" ? global : window).Prism = Prism;
 require("prismjs/components/prism-python");
@@ -72,8 +74,7 @@ const CopyButton = styled.div`
     }
 `;
 
-// @ts-expect-error ignore type
-export const Code: React.FC<unknown> = ({ children}) => {
+export const Code: React.FC<unknown> = ({ children }) => {
     const [isCopied, setIsCopied] = useState(false);
     const codeString = children.props.children.trim();
     const language = children.props.className.split("-")[1];

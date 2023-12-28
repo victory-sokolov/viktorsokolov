@@ -38,7 +38,7 @@ const Layout: React.FC<ReactProps> = ({ children }) => {
                         variants={variants}
                         transition={{ type: "linear", duration: 0.75 }}
                     >
-                        <Header theme={theme} />
+                        <Header />
                         <ContainerStyle>{children}</ContainerStyle>
                         <Footer />
                     </motion.main>

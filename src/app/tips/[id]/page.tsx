@@ -7,6 +7,7 @@ import { Metadata } from "next/types";
 import React from "react";
 import { ContentWrapper } from "src/styles/global-styles";
 import { POST_TYPE } from "src/types/enums";
+import type { TipFrontmatter } from "src/types/Post";
 
 export async function generateMetadata({ params }): Promise<Metadata | undefined> {
     const {
@@ -47,7 +48,9 @@ const TipPage: React.FC = async (id: string) => {
         nextPost,
         previousPost
     } = await getTipBySlug(id);
-    if (!frontmatter) {
+    const tipFrontmatter = frontmatter as TipFrontmatter;
+
+    if (!tipFrontmatter) {
         return <h1>Tip is not found!</h1>;
     }
 
@@ -56,14 +59,14 @@ const TipPage: React.FC = async (id: string) => {
 
     return (
         <ContentWrapper>
-            <h1>{frontmatter.title}</h1>
+            <h1>{tipFrontmatter.title}</h1>
             <Categories categories={tags} style={{ textAlign: "left" }} />
             <MdxRemote mdxSource={mdxSource} />
-            <p>{frontmatter.description}</p>
+            <p>{tipFrontmatter.description}</p>
             <p style={{ paddingTop: "var(--space-md)" }}>
                 Posted on&nbsp;
                 <a
-                    href={frontmatter.tweetUrl}
+                    href={tipFrontmatter.tweetUrl}
                     target="_blank"
                     rel="noreferrer"
                     aria-label="Tweet link"
