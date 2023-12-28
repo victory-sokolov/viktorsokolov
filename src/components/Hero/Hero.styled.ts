@@ -3,12 +3,11 @@ import styled from "styled-components";
 export const HeroStyles = styled.section`
     max-width: 65rem;
     position: relative;
-    padding: 1.5rem 0 4rem;
+    padding: var(--space-xl) 0 4rem;
 
     p {
         line-height: 3rem;
-        font-size: var(--text-base);
-        padding-bottom: var(--space-md);
+        padding: var(--space-md) 0 var(--space-md);
         &:before {
             content: "";
             height: 15rem;

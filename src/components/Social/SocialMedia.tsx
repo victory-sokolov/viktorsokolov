@@ -1,5 +1,8 @@
+"use client";
+
 import React from "react";
 import { FaDev, FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { IconWrapper } from "src/app/blog/styles";
 import styled from "styled-components";
 
 import { config } from "../../common/appconfig";
@@ -54,3 +57,26 @@ export const SocialMedia: React.FC<SocialMediaType> = ({ color = "--text-color-p
         </SocialMedias>
     );
 };
+
+export const GithubLink = ({ slug }: { slug: string }) => (
+    <a
+        href={`https://github.com/victory-sokolov/viktorsokolov/tree/master/content/posts/${slug}/${slug}.mdx`}
+        aria-labelledby="Edit this post"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+        <IconWrapper>
+            <FaGithub />
+            <span>Edit this post</span>
+        </IconWrapper>
+    </a>
+);
+
+export const DevToLink = () => (
+    <a href="#" aria-labelledby="Read on DevTo" target="_blank" rel="noopener noreferrer">
+        <IconWrapper>
+            <FaDev size={18} />
+            <span>Read on DevTo</span>
+        </IconWrapper>
+    </a>
+);

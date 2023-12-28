@@ -1,7 +1,10 @@
-import { BlurryImage } from "@components/BlurryImage";
+"use client";
+
 import { useReadTime } from "@hooks/useReadTime";
+import Image from "next/image";
 import Link from "next/link";
 import { borderGradient } from "src/styles/global-styles";
+import { PostFrontmatter } from "src/types/Post";
 import styled from "styled-components";
 
 import { PostMeta } from "./PostMeta";
@@ -70,12 +73,18 @@ const PostItemStyle = styled.article`
     }
 `;
 
-export const PostItem = ({ post, type }) => {
+export const PostItem = ({ post }: { post: PostFrontmatter }) => {
     return (
         <PostItemStyle className="border-gradient">
-            <Link href={`${type}/${post.slug}`} aria-label={post.title} className="flex-row">
+            <Link href={`blog/${post.slug}`} aria-label={post.title} className="flex-row">
                 <div className="image-wrapper">
-                    <BlurryImage featureImage={post.featureImage} blurhash={post.blurhash} title={post.title} />
+                    <Image
+                        src={post.featureImage}
+                        alt={post.title}
+                        title={post.title}
+                        width={400}
+                        height={500}
+                    />
                 </div>
                 <div className="post-data">
                     <h3 className="post-title">{post.title}</h3>

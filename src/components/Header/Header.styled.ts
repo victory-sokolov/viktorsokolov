@@ -6,7 +6,7 @@ export const HeaderStyles = styled.header.attrs(props => ({
     .heading-content {
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: center;
         padding: 2rem 0;
         z-index: 2;
     }

@@ -1,5 +1,9 @@
 import { MDXRemoteSerializeResult } from "next-mdx-remote";
 
+type Prettify<T> = {
+    [K in keyof T]: T[K];
+} & object;
+
 type Content = {
     id?: string;
     title: string;
@@ -8,12 +12,6 @@ type Content = {
     date: string;
     slug: string;
     featureImage: string;
-    blurhash: {
-        hash: string;
-        height?: number;
-        width?: number;
-    };
-    image?: string;
 };
 
 type PostMeta = {
@@ -27,10 +25,11 @@ type PostMeta = {
 type TipMeta = {
     tweetUrl: string;
     tags: string;
+    readTime?: string;
 };
 
-export type PostFrontmatter = Content & PostMeta;
-export type TipFrontmatter = Content & TipMeta;
+export type PostFrontmatter = Prettify<Content & PostMeta>;
+export type TipFrontmatter = Prettify<Content & TipMeta>;
 export type PostType = TipFrontmatter | PostFrontmatter;
 
 export type Post = {

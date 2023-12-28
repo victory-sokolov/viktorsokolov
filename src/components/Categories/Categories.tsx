@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+
 import styled from "styled-components";
 
 import { TagsMapping } from "../Post/PostLabels";
@@ -18,7 +19,7 @@ const CategorieStyle = styled.div`
     }
 `;
 
-export const Categories: React.FC<any> = ({ categories, style }) => {
+export const Categories = ({ categories, style }: { categories: string[]; style?: object }) => {
     return (
         <CategorieWrapperStyle style={{ ...style }}>
             {categories

@@ -45,3 +45,4 @@ public/feed.json
 **/public/sw.js.map
 **/public/workbox-*.js.map
 **/public/worker-*.js.map
+tsconfig.tsbuildinfo

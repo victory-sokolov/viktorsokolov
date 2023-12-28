@@ -21,7 +21,7 @@ const TechContainer = styled.ul`
     }
 `;
 
-export const TechStackList = ({ children }) => {
+export const TechStackList = () => {
     const TECH_STACK_LIST = [
         "python",
         "django",
@@ -33,7 +33,7 @@ export const TechStackList = ({ children }) => {
         "nodejs",
         "javascript"
     ];
-    const tags = Object.entries(TagsMapping).filter(([key, _]) => TECH_STACK_LIST.includes(key));
+    const tags = Object.entries(TagsMapping).filter(([key]) => TECH_STACK_LIST.includes(key));
     return (
         <TechContainer>
             {tags.map(([key, value]) => (

@@ -5,15 +5,3 @@ export const theme = {
         laptop: "only screen and (max-width: 1024px)"
     }
 };
-
-export const lightTheme = {
-    ...theme,
-    background: "var(--background-color)",
-    textColor: "var(--text-color)"
-};
-
-export const darkTheme = {
-    ...theme,
-    background: "var(--background-color)",
-    textColor: "var(--text-color)"
-};

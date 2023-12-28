@@ -1,6 +1,7 @@
+/* eslint-disable react/prop-types */
 import Image, { ImageProps } from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 
 import { Blockquote } from "./Blockquote";
 import { Code } from "./code";
@@ -16,9 +17,9 @@ const CustomLink = ({ href, children }) => {
 };
 
 const MdxImg: React.FC<ImageProps> = ({ src, width, height, alt, blurDataURL, ...prop }) => {
-    const router = useRouter();
-    const blogPostUrl = router.asPath.replace("/post", "posts");
-    const imgSrc = `/${blogPostUrl}/${src}`;
+    const pathname = usePathname();
+    const blogPostUrl = pathname.replace("/post", "posts");
+    const imgSrc = `${blogPostUrl}/${src}`;
 
     const props = {
         loading: "lazy",
@@ -55,6 +56,6 @@ const MDXComponents = {
     p: paragraph,
     TechStackList,
     Blockquote
-} as any;
+} as const;
 
 export default MDXComponents;

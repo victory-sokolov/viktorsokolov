@@ -4,7 +4,13 @@ import styled from "styled-components";
 const SeparatorContainer = styled.div`
     margin-top: 3rem;
     .zig {
-        background: linear-gradient(45deg, transparent, transparent 39%, var(--color-secondary-600) 0, transparent 51%);
+        background: linear-gradient(
+            45deg,
+            transparent,
+            transparent 39%,
+            var(--color-secondary-600) 0,
+            transparent 51%
+        );
     }
     .zag {
         background: linear-gradient(

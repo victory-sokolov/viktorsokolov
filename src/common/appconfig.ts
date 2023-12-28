@@ -8,7 +8,14 @@ export const config = {
         "Viktor Sokolov's blog about Software Enginnering, TypeScript, Python, Node.js, React. Sharing journey on building side project",
     author: "Viktor Sokolov",
     email: process.env.EMAIL_ADDRESS,
-    keywords: ["Software Engineering", "Sass business", "Web development", "Python", "JavaScript", "TypeScript"],
+    keywords: [
+        "Software Engineering",
+        "Sass business",
+        "Web development",
+        "Python",
+        "JavaScript",
+        "TypeScript"
+    ],
     social: {
         twitter: "https://twitter.com/victorysokolov",
         twitterHandle: "@victorysokolov",

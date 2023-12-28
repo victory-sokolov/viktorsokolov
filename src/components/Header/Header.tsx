@@ -1,6 +1,5 @@
-import Toggle from "@components/Toggle";
 import dynamic from "next/dynamic";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 
 import { HeaderStyles } from "./Header.styled";
@@ -19,16 +18,15 @@ const Hero = dynamic(() =>
     ).then(module => module.default)
 );
 
-export const Header: React.FC<any> = ({ toggleTheme, theme }) => {
-    const router = useRouter();
-    const path = router.pathname;
-    const [isRootUrl, setIsRootUrl] = useState(path === "/" ? true : false);
+export const Header: React.FC = () => {
+    const pathname = usePathname();
+    const [isRootUrl, setIsRootUrl] = useState(pathname === "/" ? true : false);
     const [sticky, setSticky] = useState({ isSticky: false, offset: 0 });
     const headerRef = useRef(null);
 
     useEffect(() => {
-        setIsRootUrl(path === "/" ? true : false);
-    }, [path]);
+        setIsRootUrl(pathname === "/" ? true : false);
+    }, [pathname]);
 
     useEffect(() => {
         const header = headerRef.current.getBoundingClientRect();
@@ -55,7 +53,6 @@ export const Header: React.FC<any> = ({ toggleTheme, theme }) => {
             <HeaderStyles className={`${sticky.isSticky ? "sticky" : ""}`} ref={headerRef}>
                 <div className="heading-content">
                     <Nav isSticky={sticky.isSticky} />
-                    <Toggle toggleTheme={toggleTheme} theme={theme} />
                 </div>
             </HeaderStyles>
             {isRootUrl && <Hero />}

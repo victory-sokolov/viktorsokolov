@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 
@@ -21,10 +23,10 @@ export const Comments: React.FC = () => {
         commentScript.setAttribute("id", "utterances");
         commentScript.setAttribute("theme", "github-light");
         commentScript.setAttribute("crossorigin", "anonymous");
-        commentScript.onload = ev => {
+        commentScript.onload = () => {
             const comments = document.getElementById("comments-container");
             if (comments && comments.children[1]) {
-                //@ts-ignore
+                // @ts-expect-error ignore type
                 comments.children[1].style.display = "none";
             }
         };

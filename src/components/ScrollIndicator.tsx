@@ -1,4 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+"use client";
+
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const ScrollIndicatorWrapper = styled.div`
@@ -12,12 +14,12 @@ const ScrollIndicatorWrapper = styled.div`
 
 export const ScrollIndicator = () => {
     const [progress, setProgress] = useState<number>(0);
-    const ref = useRef(null);
 
     const updateProgressIndicator = () => {
         const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
         //Full height
-        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const height =
+            document.documentElement.scrollHeight - document.documentElement.clientHeight;
         //Percentage scrolled
         const scrolledPercentage = (winScroll / height) * 100;
         setProgress(scrolledPercentage);

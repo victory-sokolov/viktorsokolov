@@ -31,6 +31,9 @@
             ],
             "@hooks/*": [
                 "src/hooks/*"
+            ],
+            "@/styles/*": [
+                "src/styles/*"
             ]
         },
         "plugins": [

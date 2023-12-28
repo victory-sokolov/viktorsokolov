@@ -2,8 +2,7 @@ import { slugify, toLongDate } from "@vsokolov/utils";
 import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
-import { getPlaiceholder } from "plaiceholder";
-import { PostFrontmatter } from "src/types/Post";
+import type { PostFrontmatter } from "src/types/Post";
 
 import { useReadTime } from "../hooks/useReadTime";
 import { getPostData, sortPostByDate } from "./content-utils";
@@ -20,7 +19,6 @@ export const getAllPosts = async (): Promise<PostFrontmatter[]> => {
             const post = file.data;
             const slug = slugify(postSlug);
             const imgPath = `/posts/${slug}/${post.featureImage}`;
-            const { blurhash } = await getPlaiceholder(imgPath);
 
             if (post.published) {
                 return {
@@ -33,7 +31,6 @@ export const getAllPosts = async (): Promise<PostFrontmatter[]> => {
                     slug: slug,
                     excerpt: `${file.content.substring(0, 150)}...`,
                     featureImage: imgPath,
-                    blurhash: blurhash,
                     readTime: useReadTime(file.content)
                 };
             }

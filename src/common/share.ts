@@ -13,11 +13,15 @@ export function shareToTwitter(url: string, title: string, author?: string) {
 }
 
 export function shareToReddit(url: string, title: string) {
-    return `https://www.reddit.com/submit?url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}`;
+    return `https://www.reddit.com/submit?url=${encodeURIComponent(url)}&title=${encodeURIComponent(
+        title
+    )}`;
 }
 
 export function shareToHackerNews(url: string, title: string) {
-    return `https://news.ycombinator.com/submitlink?u=${encodeURIComponent(url)}&t=${encodeURIComponent(title)}`;
+    return `https://news.ycombinator.com/submitlink?u=${encodeURIComponent(
+        url
+    )}&t=${encodeURIComponent(title)}`;
 }
 
 export function shareToFacebook(url: string) {

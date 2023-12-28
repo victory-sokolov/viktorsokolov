@@ -1,12 +1,14 @@
+"use client";
+
 import { config } from "@common/appconfig";
 import share from "@common/share";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { CiFacebook, CiLinkedin, CiTwitter } from "react-icons/ci";
 import { DiHackernews } from "react-icons/di";
 import { FaCreativeCommonsShare, FaShareAlt } from "react-icons/fa";
 import { FcReddit } from "react-icons/fc";
-import { styled } from "styled-components";
+import styled from "styled-components";
 import Modal from "styled-react-modal";
 
 const SharingContainer = styled.div`
@@ -54,13 +56,13 @@ const ShareIcon = styled.span`
     font-size: 2.2rem;
 `;
 
-export default function ShareToSocialLink({ title }) {
-    const router = useRouter();
-    const url = `${config.siteUrl}${router.asPath}`;
+export default function ShareToSocialLink({ title }: { title: string }) {
+    const pathname = usePathname();
+    const url = `${config.siteUrl}${pathname}`;
 
     const [isOpen, setIsOpen] = useState(false);
 
-    const toggleModal = e => {
+    const toggleModal = () => {
         setIsOpen(!isOpen);
     };
 
