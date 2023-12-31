@@ -1,4 +1,4 @@
-import { ScrollIndicator } from "@components/ScrollIndicator";
+import { ScrollIndicator } from "@/components/ScrollIndicator";
 import isPropValid from "@emotion/is-prop-valid";
 import dynamic from "next/dynamic";
 import Link from "next/link";
@@ -15,7 +15,7 @@ type Props = {
 const Hamburger = dynamic(() =>
     import(
         /*webpackChunkName: 'HamburgerMenuComponent' */
-        "@components/Navigation/Nav.styled"
+        "@/components/Navigation/Nav.styled"
     ).then(module => module.Hamburger)
 );
 

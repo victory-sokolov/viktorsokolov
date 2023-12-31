@@ -1,6 +1,6 @@
 "use client";
 
-import { useReadTime } from "@hooks/useReadTime";
+import { useReadTime } from "@/hooks/useReadTime";
 import Image from "next/image";
 import Link from "next/link";
 import { borderGradient } from "src/styles/global-styles";

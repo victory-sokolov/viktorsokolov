@@ -1,4 +1,4 @@
-import SocialMedia from "@components/Social";
+import SocialMedia from "@/components/Social";
 import React from "react";
 
 import { HeroStyles } from "./Hero.styled";
@@ -11,8 +11,8 @@ export const Hero: React.FC = () => {
                 <span className="wavy">👋</span>
             </h1>
             <p>
-                I’m a Software Engineer mainly working with Python, Node, TypeScript and React. Sharing my learnings and
-                building prodcuts in public.
+                I’m a Software Engineer mainly working with Python, Node, TypeScript and React.
+                Sharing my learnings and building prodcuts in public.
             </p>
             <p>Follow me on other platforms:</p>
             <SocialMedia size={24} />

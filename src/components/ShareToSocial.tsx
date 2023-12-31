@@ -1,7 +1,7 @@
 "use client";
 
-import { config } from "@common/appconfig";
-import share from "@common/share";
+import { config } from "@/common/appconfig";
+import share from "@/common/share";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { CiFacebook, CiLinkedin, CiTwitter } from "react-icons/ci";

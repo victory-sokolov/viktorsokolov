@@ -1,8 +1,8 @@
-import { getTipBySlug } from "@common/tips";
-import Categories from "@components/Categories";
-import { MdxRemote } from "@components/Mdx";
-import NewsLetterForm from "@components/NewsLetter";
-import NextNPrevious from "@components/NextNPrevious";
+import { getTipBySlug } from "@/common/tips";
+import Categories from "@/components/Categories";
+import { MdxRemote } from "@/components/Mdx";
+import NewsLetterForm from "@/components/NewsLetter";
+import NextNPrevious from "@/components/NextNPrevious";
 import { Metadata } from "next/types";
 import React from "react";
 import { ContentWrapper } from "src/styles/global-styles";

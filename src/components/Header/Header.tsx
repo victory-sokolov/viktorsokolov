@@ -7,14 +7,14 @@ import { HeaderStyles } from "./Header.styled";
 const Nav = dynamic(() =>
     import(
         /*webpackChunkName: 'Navigation' */
-        "@components/Navigation"
+        "@/components/Navigation"
     ).then(module => module.default)
 );
 
 const Hero = dynamic(() =>
     import(
         /*webpackChunkName: 'Hero' */
-        "@components/Hero"
+        "@/components/Hero"
     ).then(module => module.default)
 );
 

@@ -1,10 +1,10 @@
+import { useReadTime } from "@/hooks/useReadTime";
 import { slugify, toLongDate } from "@vsokolov/utils";
 import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
 import type { PostFrontmatter } from "src/types/Post";
 
-import { useReadTime } from "../hooks/useReadTime";
 import { getPostData, sortPostByDate } from "./content-utils";
 
 export const getAllPosts = async (): Promise<PostFrontmatter[]> => {

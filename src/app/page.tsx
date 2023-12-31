@@ -1,6 +1,6 @@
+import { getRecentPosts } from "@/common/posts";
+import { PostItem } from "@/components/Post";
 import { HomeStyled } from "@/styles/Home";
-import { getRecentPosts } from "@common/posts";
-import { PostItem } from "@components/Post";
 import Link from "next/link";
 import type { PostFrontmatter } from "src/types/Post";
 

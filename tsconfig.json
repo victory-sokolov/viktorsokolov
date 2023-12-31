@@ -23,13 +23,16 @@
         "resolveJsonModule": true,
         "baseUrl": ".",
         "paths": {
-            "@components/*": [
+            "@/*": [
+                "./*"
+            ],
+            "@/components/*": [
                 "src/components/*"
             ],
-            "@common/*": [
+            "@/common/*": [
                 "src/common/*"
             ],
-            "@hooks/*": [
+            "@/hooks/*": [
                 "src/hooks/*"
             ],
             "@/styles/*": [

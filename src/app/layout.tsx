@@ -1,5 +1,5 @@
-import { config } from "@common/appconfig";
-import Layout from "@components/Layout/Layout";
+import { config } from "@/common/appconfig";
+import Layout from "@/components/Layout/Layout";
 import { Analytics } from "@vercel/analytics/react";
 import { Metadata } from "next";
 import StyledComponentsRegistry from "src/registry";

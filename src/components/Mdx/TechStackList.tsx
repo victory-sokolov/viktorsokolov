@@ -1,4 +1,4 @@
-import { TagsMapping } from "@components/Post/PostLabels";
+import { TagsMapping } from "@/components/Post/PostLabels";
 import styled from "styled-components";
 
 const TechContainer = styled.ul`

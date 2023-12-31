@@ -1,14 +1,13 @@
-import { getAllPosts } from "@common/posts";
-import { PostItem } from "@components/Post";
+import { config } from "@/common/appconfig";
+import { getAllPosts } from "@/common/posts";
+import { PostItem } from "@/components/Post";
 import type { Metadata } from "next";
 
 import { BlogContainer, TopBlogMeta } from "./styles";
-import { config } from '@common/appconfig';
 
 export const metadata: Metadata = {
     title: "Blog posts",
-    description:
-        `Browse through ${config.author}'s blog posts to learn more about frontend and backend development`
+    description: `Browse through ${config.author}'s blog posts to learn more about frontend and backend development`
 };
 
 const Blog = async () => {

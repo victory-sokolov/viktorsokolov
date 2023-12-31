@@ -1,5 +1,5 @@
-import { getContent } from "@common/content-utils";
-import { MdxRemote } from "@components/Mdx";
+import { getContent } from "@/common/content-utils";
+import { MdxRemote } from "@/components/Mdx";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
