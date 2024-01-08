@@ -65,10 +65,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: ReactProps) {
     return (
         <html lang="en">
-            <head>
-                <meta charSet="utf-8" />
-                <meta name="viewport" content="width=device-width" />
-            </head>
+            <head></head>
             <body suppressHydrationWarning>
                 <Layout>
                     <Analytics />
