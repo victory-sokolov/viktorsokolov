@@ -51,7 +51,8 @@
         "**/*.ts",
         "**/*.tsx",
         "lib/generate-feed.ts",
-        ".next/types/**/*.ts"
+        ".next/types/**/*.ts",
+        "src/common/content-utils.ts"
     ],
     "exclude": [
         "node_modules"

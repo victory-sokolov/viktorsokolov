@@ -67,10 +67,6 @@ const config = {
             }
         ];
     },
-    experimental: {
-        ppr: true,
-        useLightningcss: true
-    },
     poweredByHeader: false,
     swcMinify: true,
     // experimental: { esmExternals: true },
