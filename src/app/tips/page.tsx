@@ -34,7 +34,7 @@ const Tips = async () => {
             <TipsContainer>
                 {tips.map((tip: TipFrontmatter, index: number) => (
                     <TipItem key={index}>
-                        <Link href={`/tip/${tip.slug}`}>
+                        <Link href={`/tips/${tip.slug}`}>
                             <div className="image-wrapper">
                                 <Image
                                     src={tip.featureImage}

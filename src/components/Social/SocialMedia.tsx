@@ -1,11 +1,10 @@
 "use client";
 
+import { config } from "@/src/common/appconfig";
 import React from "react";
 import { FaDev, FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { IconWrapper } from "src/app/blog/styles";
 import styled from "styled-components";
-
-import { config } from "../../common/appconfig";
 
 type SocialMediaType = {
     color?: string;
@@ -27,29 +26,52 @@ const SocialMedias = styled.div`
     }
 `;
 
-export const SocialMedia: React.FC<SocialMediaType> = ({ color = "--text-color-primary", size = 22 }) => {
+export const SocialMedia: React.FC<SocialMediaType> = ({
+    color = "--text-color-primary",
+    size = 22
+}) => {
     const meta = config;
 
     return (
         <SocialMedias>
             <ul>
                 <li>
-                    <a href={meta.social.twitter} target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                    <a
+                        href={meta.social.twitter}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Twitter"
+                    >
                         <FaTwitter color={`var(${color})`} size={size} />
                     </a>
                 </li>
                 <li>
-                    <a href={meta.social.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                    <a
+                        href={meta.social.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="LinkedIn"
+                    >
                         <FaLinkedin color={`var(${color})`} size={size} />
                     </a>
                 </li>
                 <li>
-                    <a href={meta.social.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                    <a
+                        href={meta.social.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="GitHub"
+                    >
                         <FaGithub color={`var(${color})`} size={size} />
                     </a>
                 </li>
                 <li>
-                    <a href={meta.social.devto} target="_blank" rel="noopener noreferrer" aria-label="Devto">
+                    <a
+                        href={meta.social.devto}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Devto"
+                    >
                         <FaDev color={`var(${color})`} size={size} />
                     </a>
                 </li>

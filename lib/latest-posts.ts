@@ -1,8 +1,7 @@
+import { config } from "@/src/common/appconfig";
 import axios from "axios";
 import fs from "fs";
 import parser from "xml2json";
-
-import { config } from "../src/common/appconfig";
 
 const FEED_URL = `${config.siteUrl}/rss.xml`;
 const TEMPLATE = [
@@ -28,8 +27,12 @@ const fetchLatestContent = async () => {
     const articles = await axios.get(FEED_URL);
     const articlesText = await articles.data;
     const articlesJSON = parser.toJson(articlesText);
-    const posts = JSON.parse(articlesJSON).rss.channel.item.filter(item => !item.link.includes("/tip/"));
-    const tips = JSON.parse(articlesJSON).rss.channel.item.filter(item => item.link.includes("/tip/"));
+    const posts = JSON.parse(articlesJSON).rss.channel.item.filter(
+        item => !item.link.includes("/tips/")
+    );
+    const tips = JSON.parse(articlesJSON).rss.channel.item.filter(item =>
+        item.link.includes("/tips/")
+    );
 
     return {
         post: toMarkDownLinks(posts),

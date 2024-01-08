@@ -1,12 +1,11 @@
+import { config } from "@/src/common/appconfig";
+import { getAllPosts } from "@/src/common/posts";
+import { getAllTips } from "@/src/common/tips";
 import { Feed } from "feed";
 import { writeFileSync } from "fs";
 import { remark } from "remark";
 import remarkHtml from "remark-html";
 import { PostFrontmatter, TipFrontmatter } from "src/types/Post";
-
-import { config } from "../src/common/appconfig";
-import { getAllPosts } from "../src/common/posts";
-import { getAllTips } from "../src/common/tips";
 
 async function markdownToHtml(markdown) {
     const result = await remark().use(remarkHtml).process(markdown);
@@ -64,7 +63,7 @@ export default (async () => {
 
     const tipPromise = tips.map(async (tip: TipFrontmatter) => {
         const content = await markdownToHtml(tip.content);
-        const url = `${baseUrl}/tip/${tip.slug}`;
+        const url = `${baseUrl}/tips/${tip.slug}`;
 
         feed.addItem({
             title: tip.title,
