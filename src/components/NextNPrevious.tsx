@@ -11,6 +11,8 @@ import styled from "styled-components";
 /* eslint-disable react/prop-types */
 
 /* eslint-disable react/prop-types */
+
+/* eslint-disable react/prop-types */
 export const NextPreviousItem = styled.div`
     display: flex;
     justify-content: space-between;
