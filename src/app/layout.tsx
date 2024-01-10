@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     authors: [{ name: config.author, url: process.env.BASE_URL }],
     keywords: config.keywords.join(", "),
     alternates: {
-        canonical: process.env.BASE_URL,
+        canonical: "/",
         languages: {
             "en-US": "/en-US"
         }
