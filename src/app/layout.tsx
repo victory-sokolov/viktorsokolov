@@ -20,9 +20,12 @@ export const metadata: Metadata = {
     authors: [{ name: config.author, url: process.env.BASE_URL }],
     keywords: config.keywords.join(", "),
     alternates: {
-        canonical: "/",
+        canonical: process.env.BASE_URL,
         languages: {
             "en-US": "/en-US"
+        },
+        types: {
+            "application/rss+xml": `${process.env.BASE_URL}/rss`
         }
     },
     generator: `${config.author} uses NextJs!`,
