@@ -19,6 +19,15 @@ export const metadata: Metadata = {
     applicationName: `${config.author} Blog`,
     authors: [{ name: config.author, url: process.env.BASE_URL }],
     keywords: config.keywords.join(", "),
+    icons: {
+        icon: [
+            {
+                media: "(prefers-color-scheme: dark)",
+                url: "/favicons/favicon.svg",
+                href: "/favicons/favicon.png"
+            }
+        ]
+    },
     alternates: {
         canonical: process.env.BASE_URL,
         languages: {
