@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 "use client";
 
 import { Highlight, Language, Prism, themes } from "prism-react-renderer";
@@ -7,23 +6,6 @@ import { BsClipboardCheck } from "react-icons/bs";
 import styled from "styled-components";
 
 /* eslint-disable react/prop-types */
-
-/* eslint-disable react/prop-types */
-
-/* eslint-disable react/prop-types */
-
-/* eslint-disable react/prop-types */
-
-/* eslint-disable react/prop-types */
-
-/* eslint-disable react/prop-types */
-
-/* eslint-disable react/prop-types */
-
-/* eslint-disable react/prop-types */
-
-/* eslint-disable react/prop-types */
-
 (typeof global !== "undefined" ? global : window).Prism = Prism;
 require("prismjs/components/prism-python");
 

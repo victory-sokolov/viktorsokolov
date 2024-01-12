@@ -52,7 +52,7 @@ export const Header: React.FC = () => {
         <div style={{ position: "relative" }}>
             <HeaderStyles className={`${sticky.isSticky ? "sticky" : ""}`} ref={headerRef}>
                 <div className="heading-content">
-                    <Nav isSticky={sticky.isSticky} />
+                    <Nav aria-label="Navigation" isSticky={sticky.isSticky} />
                 </div>
             </HeaderStyles>
             {isRootUrl && <Hero />}

@@ -438,7 +438,7 @@ const ContainerStyle = styled.div`
     position: relative;
 `;
 
-const MainStyles = styled.main`
+const MainStyles = styled.div`
     max-width: 85rem;
     padding-left: 4rem;
     padding-right: 4rem;
