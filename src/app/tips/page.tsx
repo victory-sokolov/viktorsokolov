@@ -40,8 +40,9 @@ const Tips = async () => {
                                     src={tip.featureImage}
                                     title={tip.title}
                                     alt={tip.title}
-                                    width={500}
-                                    height={360}
+                                    fill
+                                    priority
+                                    sizes="(max-width: 640px) 100vw, (max-width: 760px) 50vw. 33.3vw"
                                 />
                             </div>
                         </Link>

@@ -36,14 +36,6 @@ const PostItemStyle = styled.article`
         color: var(--text-color-secondary);
     }
 
-    .image-wrapper {
-        width: 52%;
-        img {
-            height: 100%;
-            width: 100%;
-        }
-    }
-
     .post-description {
         margin: 0;
     }
@@ -52,10 +44,6 @@ const PostItemStyle = styled.article`
         position: relative;
         margin: 2rem auto;
 
-        .image-wrapper {
-            width: 100%;
-            height: 100%;
-        }
 
         .flex-row {
             display: flex;
@@ -82,8 +70,10 @@ export const PostItem = ({ post }: { post: PostFrontmatter }) => {
                         src={post.featureImage}
                         alt={post.title}
                         title={post.title}
+                        priority
                         width={400}
                         height={500}
+                        sizes="(max-width: 640px) 100vw, (max-width: 760px) 50vw. 33.3vw"
                     />
                 </div>
                 <div className="post-data">

@@ -21,7 +21,17 @@ export const PostCard: React.FC<PostFrontmatter> = ({
         <Card key={id}>
             <Link href={`${slug}`} aria-label={title}>
                 <div className="post-meta-data">
-                    <Image src={featureImage} alt={title} title={title} />
+                    <Image
+                        src={featureImage}
+                        alt={title}
+                        title={title}
+                        priority
+                        fill
+                        width="0"
+                        height="0"
+                        style={{ width: "100%", height: "auto" }}
+                        sizes="(max-width: 640px) 100vw, (max-width: 760px) 50vw. 33.3vw"
+                    />
                     <div className="post-data">
                         <h3 className="post-title">{title}</h3>
                         <p className="post-description">{excerpt}</p>

@@ -70,6 +70,8 @@ export default async function Page({ params }) {
                             alt={title}
                             width={800}
                             height={400}
+                            priority
+                            sizes="(max-width: 640px) 100vw, (max-width: 760px) 50vw. 33.3vw"
                         />
                     </div>
                     <h1
