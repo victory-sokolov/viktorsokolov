@@ -1,6 +1,11 @@
 /** @type {import('next').NextConfig} */
 import nextPWA from "next-pwa";
 import runtimeCaching from "next-pwa/cache.js";
+import NextBundleAnalyzer from "@next/bundle-analyzer"
+
+const withBundleAnalyzer = NextBundleAnalyzer({
+    enabled: process.env.ANALYZE === "true"
+});
 
 const withPWA = nextPWA({
     dest: "public",
@@ -85,4 +90,4 @@ const config = {
     }
 };
 
-export default withPWA(config);
+export default withBundleAnalyzer(withPWA(config));
