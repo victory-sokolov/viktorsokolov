@@ -44,7 +44,6 @@ const PostItemStyle = styled.article`
         position: relative;
         margin: 2rem auto;
 
-
         .flex-row {
             display: flex;
             flex-direction: column;
