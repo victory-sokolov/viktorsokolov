@@ -31,6 +31,10 @@ export const metadata: Metadata = {
     },
     alternates: {
         canonical: process.env.BASE_URL,
+        [process.env.BASE_URL]: {
+            href: process.env.BASE_URL,
+            rel: "alternate"
+        },
         languages: {
             "en-US": "/en-US"
         },
