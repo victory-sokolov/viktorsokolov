@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 const AboutPage: React.FC = async () => {
     const { mdxSource } = await getContent("pages/about");
 
-    return <MdxRemote mdxSource={mdxSource} />;
+    return <MdxRemote source={mdxSource} />;
 };
 
 export default AboutPage;

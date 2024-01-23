@@ -61,7 +61,7 @@ const TipPage: React.FC = async (id: string) => {
         <ContentWrapper>
             <h1>{tipFrontmatter.title}</h1>
             <Categories categories={tags} style={{ textAlign: "left" }} />
-            <MdxRemote mdxSource={mdxSource} />
+            <MdxRemote source={mdxSource} />
             <p>{tipFrontmatter.description}</p>
             <p style={{ paddingTop: "var(--space-md)" }}>
                 Posted on&nbsp;

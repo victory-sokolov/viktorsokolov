@@ -87,7 +87,7 @@ export default async function Page({ params }) {
                         <ShareToSocialLink title={title} />
                     </PostMeta>
                     {tags && <Categories categories={tags} />}
-                    <MdxRemote mdxSource={mdxSource} />
+                    <MdxRemote source={mdxSource} />
                     <NextNPrevious next={nextPost} prev={previousPost} postType={POST_TYPE.POST} />
                     <NewsLetterForm />
                 </Modal>

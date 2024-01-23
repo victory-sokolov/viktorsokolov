@@ -12,7 +12,7 @@ const UsesPage: React.FC = async () => {
 
     return (
         <>
-            <MdxRemote mdxSource={mdxSource} />
+            <MdxRemote source={mdxSource} />
         </>
     );
 };
