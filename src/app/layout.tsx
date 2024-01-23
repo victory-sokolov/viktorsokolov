@@ -1,6 +1,7 @@
 import { config } from "@/common/appconfig";
 import Layout from "@/components/Layout/Layout";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Metadata } from "next";
 import StyledComponentsRegistry from "src/registry";
 import { ReactProps } from "src/types/types";
@@ -81,6 +82,7 @@ export default function RootLayout({ children }: ReactProps) {
             <body suppressHydrationWarning>
                 <Layout>
                     <Analytics />
+                    <SpeedInsights />
                     <StyledComponentsRegistry>
                         <Providers>{children}</Providers>
                     </StyledComponentsRegistry>

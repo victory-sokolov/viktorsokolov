@@ -20,11 +20,15 @@
         "format": "prettier --config ./.prettierrc src/**/*.{ts,tsx} --write",
         "prebuild": "yarn format && yarn generate",
         "generate": "npm-run-all generate:**",
-        "generate:copyimages": "tsx ./lib/copy-images.ts"
+        "generate:copyimages": "tsx ./lib/copy-images.ts",
+        "spell-check": "spellchecker --config .spellcheckerrc.json",
+        "knip": "knip",
+        "knip:fix": "knip --fix"
     },
     "dependencies": {
         "@emotion/is-prop-valid": "^1.2.1",
         "@vercel/analytics": "^1.1.1",
+        "@vercel/speed-insights": "1.0.7",
         "@vsokolov/utils": "0.13.2",
         "axios": "^1.6.5",
         "dotenv": "^16.0.3",
@@ -70,9 +74,11 @@
         "eslint-plugin-styled-components-a11y": "^2.1.31",
         "feed": "^4.2.2",
         "husky": "^8.0.3",
+        "knip": "4.2.1",
         "lint-staged": "^15.2.0",
         "npm-run-all": "^4.1.5",
         "prettier": "^3.2.2",
+        "spellchecker-cli": "6.1.1",
         "tsx": "4.7.0",
         "typescript": "^5.3.3",
         "xml2json": "^0.12.0"
