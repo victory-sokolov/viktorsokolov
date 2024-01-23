@@ -45,14 +45,3 @@ export type Tip = {
     previous: TipFrontmatter;
     mdxSource: MDXRemoteSerializeResult;
 };
-
-type MDXFrontmatter = {
-    title: string;
-    description: string;
-    date: string;
-};
-
-export type MDXProps = {
-    mdxSource: MDXRemoteSerializeResult;
-    frontmatter: MDXFrontmatter;
-};

@@ -2,11 +2,16 @@
 import Image, { ImageProps } from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { ComponentType } from "react";
 
 import { Blockquote } from "./Blockquote";
 import { Code } from "./code";
 import { H1, H2, H3, H4, H5, H6 } from "./Heading";
 import { TechStackList } from "./TechStackList";
+
+type MDXComponentsProp = {
+    [key: string]: ComponentType<unknown>;
+};
 
 const CustomLink = ({ href, children }) => {
     return (
@@ -42,7 +47,7 @@ const paragraph = ({ children }) => {
     return <p style={{ paddingBottom: "2rem" }}>{children}</p>;
 };
 
-const MDXComponents = {
+const MDXComponents: MDXComponentsProp = {
     img: MdxImg,
     pre: Code,
     h1: H1,
@@ -56,6 +61,6 @@ const MDXComponents = {
     p: paragraph,
     TechStackList,
     Blockquote
-} as const;
+};
 
 export default MDXComponents;
