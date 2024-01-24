@@ -13,6 +13,7 @@ import Image from "next/image";
 import { ContentWrapper } from "src/styles/global-styles";
 import { POST_TYPE } from "src/types/enums";
 
+
 export async function generateMetadata({ params }): Promise<Metadata | undefined> {
     const {
         currentPost: { frontmatter }
@@ -21,11 +22,19 @@ export async function generateMetadata({ params }): Promise<Metadata | undefined
         return;
     }
 
+    const baseUrl = process.env.BASE_URL;
     const { title, description, featureImage, slug } = frontmatter;
-    const ogImage = `${process.env.BASE_URL}/${featureImage}`;
+    const ogImage = `${baseUrl}/${featureImage}`;
+
     return {
         title: title,
         description: description,
+        alternates: {
+            canonical: `${baseUrl}/blog/${slug}`,
+            languages: {
+                "en-US": "/en-US"
+            }
+        },
         openGraph: {
             title,
             description,

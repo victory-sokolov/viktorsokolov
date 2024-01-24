@@ -17,11 +17,18 @@ export async function generateMetadata({ params }): Promise<Metadata | undefined
         return;
     }
 
+    const baseUrl = process.env.BASE_URL;
     const { title, description, featureImage, slug } = frontmatter;
-    const ogImage = `${process.env.BASE_URL}/${featureImage}`;
+    const ogImage = `${baseUrl}/${featureImage}`;
     return {
         title: title,
         description: description,
+        alternates: {
+            canonical: `${baseUrl}/tips/${slug}`,
+            languages: {
+                "en-US": "/en-US"
+            }
+        },
         openGraph: {
             title,
             description,
