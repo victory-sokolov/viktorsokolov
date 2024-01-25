@@ -13,7 +13,6 @@ import Image from "next/image";
 import { ContentWrapper } from "src/styles/global-styles";
 import { POST_TYPE } from "src/types/enums";
 
-
 export async function generateMetadata({ params }): Promise<Metadata | undefined> {
     const {
         currentPost: { frontmatter }
