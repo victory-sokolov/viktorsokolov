@@ -1,6 +1,8 @@
 import { getContent } from "@/common/content-utils";
 import { MdxRemote } from "@/components/Mdx";
+import { config } from "@/src/common/appconfig";
 import type { Metadata } from "next";
+import { WebPageJsonLd } from "next-seo";
 
 export const metadata: Metadata = {
     title: "Uses",
@@ -12,6 +14,11 @@ const UsesPage: React.FC = async () => {
 
     return (
         <>
+            <WebPageJsonLd
+                description={metadata.description}
+                title="My Tech Uses"
+                id={config.siteUrl}
+            />
             <MdxRemote source={mdxSource} />
         </>
     );

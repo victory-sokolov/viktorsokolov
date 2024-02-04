@@ -8,10 +8,14 @@ import NextNPrevious from "@/components/NextNPrevious";
 import { PostMeta } from "@/components/Post/PostMeta";
 import ShareToSocialLink from "@/components/ShareToSocial";
 import { DevToLink, GithubLink } from "@/components/Social/SocialMedia";
+import { config } from "@/src/common/appconfig";
 import { Metadata } from "next";
+import { ArticleJsonLd } from "next-seo";
 import Image from "next/image";
 import { ContentWrapper } from "src/styles/global-styles";
 import { POST_TYPE } from "src/types/enums";
+
+const baseUrl = process.env.BASE_URL;
 
 export async function generateMetadata({ params }): Promise<Metadata | undefined> {
     const {
@@ -21,7 +25,6 @@ export async function generateMetadata({ params }): Promise<Metadata | undefined
         return;
     }
 
-    const baseUrl = process.env.BASE_URL;
     const { title, description, featureImage, slug } = frontmatter;
     const ogImage = `${baseUrl}/${featureImage}`;
 
@@ -69,6 +72,16 @@ export default async function Page({ params }) {
 
     return (
         <>
+            <ArticleJsonLd
+                useAppDir={true}
+                url={`${baseUrl}/blog/${frontmatter.slug}`}
+                title={title}
+                images={[featureImage]}
+                datePublished={date}
+                dateModified={frontmatter.lastModified}
+                authorName={config.author}
+                description={frontmatter.description}
+            />
             <ContentWrapper>
                 <Modal>
                     <div className="image-wrapper">

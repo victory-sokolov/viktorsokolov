@@ -3,11 +3,15 @@ import Categories from "@/components/Categories";
 import { MdxRemote } from "@/components/Mdx";
 import NewsLetterForm from "@/components/NewsLetter";
 import NextNPrevious from "@/components/NextNPrevious";
+import { config } from "@/src/common/appconfig";
+import { ArticleJsonLd } from "next-seo";
 import { Metadata } from "next/types";
 import React from "react";
 import { ContentWrapper } from "src/styles/global-styles";
 import { POST_TYPE } from "src/types/enums";
 import type { TipFrontmatter } from "src/types/Post";
+
+const baseUrl = process.env.BASE_URL;
 
 export async function generateMetadata({ params }): Promise<Metadata | undefined> {
     const {
@@ -17,9 +21,9 @@ export async function generateMetadata({ params }): Promise<Metadata | undefined
         return;
     }
 
-    const baseUrl = process.env.BASE_URL;
     const { title, description, featureImage, slug } = frontmatter;
     const ogImage = `${baseUrl}/${featureImage}`;
+
     return {
         title: title,
         description: description,
@@ -33,7 +37,7 @@ export async function generateMetadata({ params }): Promise<Metadata | undefined
             title,
             description,
             type: "article",
-            url: `${process.env.BASE_URL}/tips/${slug}`,
+            url: `${baseUrl}/tips/${slug}`,
             images: [
                 {
                     url: ogImage
@@ -66,6 +70,16 @@ const TipPage: React.FC = async (id: string) => {
 
     return (
         <ContentWrapper>
+            <ArticleJsonLd
+                useAppDir={true}
+                url={`${baseUrl}/blog/${frontmatter.slug}`}
+                title={frontmatter.title}
+                images={[frontmatter.featureImage]}
+                datePublished={date}
+                dateModified={frontmatter.lastModified}
+                authorName={config.author}
+                description={frontmatter.description}
+            />
             <h1>{tipFrontmatter.title}</h1>
             <Categories categories={tags} style={{ textAlign: "left" }} />
             <MdxRemote source={mdxSource} />
