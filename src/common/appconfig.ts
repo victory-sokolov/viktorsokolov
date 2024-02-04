@@ -3,6 +3,7 @@ export const config = {
     siteUrl: "https://viktorsokolov.com",
     lang: "en",
     siteLogo: `https://viktorsokolov.com/static/logo.png`,
+    ogImage: '/static/OG.png',
     siteName: "viktorsokolov",
     description:
         "Viktor Sokolov's blog about Software Enginnering, TypeScript, Python, Node.js, React. Sharing journey on building side project",
