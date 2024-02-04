@@ -16,7 +16,7 @@ export const getAllTips = async (): Promise<TipFrontmatter[]> => {
         const file = matter.read(filePath);
         const data = filterFalsyFromObject(file.data);
         const imgPath = `/tips/${slug}/${data.featureImage}`;
-        const lastModified = fs.statSync(filePath).mtime;
+        const lastModified = fs.statSync(filePath).mtime.toString();
 
         return {
             ...data,

@@ -17,10 +17,10 @@ export const getAllPosts = async (): Promise<PostFrontmatter[]> => {
         .map(async postSlug => {
             const filePath = `${articlePath}/${postSlug}/${postSlug}.mdx`;
             const file = matter.read(filePath);
-            const post = file.data;
+            const post = file.data as PostFrontmatter;
             const slug = slugify(postSlug);
             const imgPath = `/posts/${slug}/${post.featureImage}`;
-            const lastModified = fs.statSync(filePath).mtime;
+            const lastModified = fs.statSync(filePath).mtime.toString();
 
             if (post.published) {
                 return {

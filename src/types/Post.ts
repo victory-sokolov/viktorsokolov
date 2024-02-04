@@ -10,8 +10,8 @@ type Content = {
     content: string;
     description: string;
     date: string;
-    lastModified: string;
     slug: string;
+    lastModified?: string;
     featureImage: string;
 };
 
@@ -20,7 +20,6 @@ type PostMeta = {
     tags: string;
     published: boolean;
     readTime?: string;
-    lastModified?: Date;
 };
 
 type TipMeta = {
