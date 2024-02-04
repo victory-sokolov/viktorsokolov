@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
+import NextBundleAnalyzer from "@next/bundle-analyzer";
 import nextPWA from "next-pwa";
 import runtimeCaching from "next-pwa/cache.js";
-import NextBundleAnalyzer from "@next/bundle-analyzer"
 
 const withBundleAnalyzer = NextBundleAnalyzer({
     enabled: process.env.ANALYZE === "true"
@@ -18,20 +18,20 @@ const withPWA = nextPWA({
 const ContentSecurityPolicy = `
     default-src 'self';
     img-src * self blob: data:;
-    script-src 'self' 'unsafe-eval' 'unsafe-inline' cdn.vercel-insights.com vercel.live utteranc.es;
-    style-src 'unsafe-inline';
+    script-src 'self' 'unsafe-eval' 'unsafe-inline' cdn.vercel-insights.com vercel.live va.vercel-scripts.com; utteranc.es;
+    style-src 'self' 'unsafe-inline';
     frame-src *.substack.com utteranc.es;
     frame-ancestors true;
     form-action 'self';
+    font-src 'self' data:;
     base-uri 'self';
-    font-src 'self' data: https://fonts.googleapis.com;
     connect-src *;
 `;
 
 const securityHeaders = [
     {
         key: "Content-Security-Policy",
-        value: ContentSecurityPolicy.replace(/\s{2,}/g, " ").trim()
+        value: ContentSecurityPolicy.replace(/\n/g, "").trim()
     },
     {
         key: "X-Frame-Options",

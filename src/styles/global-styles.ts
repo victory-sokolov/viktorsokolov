@@ -82,12 +82,6 @@ const GlobalStyles = createGlobalStyle`
         );
   }
 
-  @font-face {
-    font-family: 'Montserrat', sans-serif;
-    src: local('Oxygen'), url('../fonts/Montserrat-Medium.ttf') format('truetype');
-    font-display: swap;
-  }
-
   @supports (font: -apple-system-body) and (-webkit-appearance: none) { 
     img[loading="lazy"] { 
         clip-path: inset(0.6px) 
@@ -122,7 +116,6 @@ const GlobalStyles = createGlobalStyle`
     scrollbar-color: var(--scrollbar-color);
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
-    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
 
   body {

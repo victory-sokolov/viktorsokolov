@@ -3,12 +3,17 @@ import Layout from "@/components/Layout/Layout";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Metadata } from "next";
+import { Cairo } from "next/font/google";
 import StyledComponentsRegistry from "src/registry";
 import { ReactProps } from "src/types/types";
 
-import Providers from "./providers";
+import { GlobalStyles } from "../styles/global-styles";
 
-const ogImg = `/static/OG.png`;
+const cairo = Cairo({
+    subsets: ["latin"],
+    display: "swap",
+    variable: "--cairo-font"
+});
 
 export const metadata: Metadata = {
     metadataBase: new URL(process.env.BASE_URL),
@@ -44,7 +49,7 @@ export const metadata: Metadata = {
         url: process.env.BASE_URL,
         description: config.description,
         siteName: config.siteName,
-        images: [{ url: ogImg }],
+        images: [{ url: config.ogImage }],
         locale: "en_US"
     },
     twitter: {
@@ -53,7 +58,7 @@ export const metadata: Metadata = {
         card: "summary_large_image",
         site: config.social.twitterHandle,
         creator: config.social.twitterHandle,
-        images: ogImg
+        images: config.ogImage
     },
     referrer: "origin",
     manifest: "manifest.json",
@@ -77,15 +82,14 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: ReactProps) {
     return (
-        <html lang="en">
+        <html lang="en" className={cairo.className}>
             <head></head>
             <body suppressHydrationWarning>
                 <Layout>
                     <Analytics />
                     <SpeedInsights />
-                    <StyledComponentsRegistry>
-                        <Providers>{children}</Providers>
-                    </StyledComponentsRegistry>
+                    <GlobalStyles />
+                    <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
                 </Layout>
             </body>
         </html>
