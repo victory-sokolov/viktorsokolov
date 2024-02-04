@@ -10,6 +10,7 @@ type Content = {
     content: string;
     description: string;
     date: string;
+    lastModified: string;
     slug: string;
     featureImage: string;
 };

@@ -15,10 +15,12 @@ export const getAllPosts = async (): Promise<PostFrontmatter[]> => {
 
     const posts = filteredPostData
         .map(async postSlug => {
-            const file = matter.read(`${articlePath}/${postSlug}/${postSlug}.mdx`);
+            const filePath = `${articlePath}/${postSlug}/${postSlug}.mdx`;
+            const file = matter.read(filePath);
             const post = file.data;
             const slug = slugify(postSlug);
             const imgPath = `/posts/${slug}/${post.featureImage}`;
+            const lastModified = fs.statSync(filePath).mtime;
 
             if (post.published) {
                 return {
@@ -28,6 +30,7 @@ export const getAllPosts = async (): Promise<PostFrontmatter[]> => {
                     published: post.published,
                     content: file.content,
                     date: toLongDate(post.date),
+                    lastModified: lastModified,
                     slug: slug,
                     excerpt: `${file.content.substring(0, 150)}...`,
                     featureImage: imgPath,

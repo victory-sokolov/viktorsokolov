@@ -12,15 +12,18 @@ export const getAllTips = async (): Promise<TipFrontmatter[]> => {
     const tipsData = await fs.promises.readdir(tipsPath);
 
     const tips = tipsData.map(async slug => {
-        const file = matter.read(`${tipsPath}/${slug}/${slug}.mdx`);
+        const filePath = `${tipsPath}/${slug}/${slug}.mdx`;
+        const file = matter.read(filePath);
         const data = filterFalsyFromObject(file.data);
         const imgPath = `/tips/${slug}/${data.featureImage}`;
+        const lastModified = fs.statSync(filePath).mtime;
 
         return {
             ...data,
             content: file.content,
             date: toLongDate(data.date as string),
-            featureImage: imgPath
+            featureImage: imgPath,
+            lastModified: lastModified
         };
     });
     const allTips = await Promise.all(tips);
