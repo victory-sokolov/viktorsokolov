@@ -84,7 +84,7 @@ export const Code: React.FC<unknown> = ({ children }) => {
     };
 
     return (
-        <Highlight code={codeString} language={language} theme={themes.vsDark}>
+        <Highlight code={codeString} language={language} theme={themes.jettwaveDark}>
             {({ className, style, tokens, getLineProps, getTokenProps }) => (
                 <div className="code-highlight" data-language={language}>
                     <MacIcons>
