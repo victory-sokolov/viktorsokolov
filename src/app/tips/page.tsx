@@ -8,7 +8,13 @@ import { DevelopmentTipsTop, TipItem, TipsContainer, TipsWrapper } from "./style
 
 export const metadata: Metadata = {
     title: "Developments tips",
-    description: "Developments tips and snippets."
+    description: "Developments tips and snippets.",
+    alternates: {
+        canonical: `${process.env.BASE_URL}/tips`,
+        languages: {
+            "en-US": "/en-US"
+        }
+    }
 };
 
 const Tips = async () => {

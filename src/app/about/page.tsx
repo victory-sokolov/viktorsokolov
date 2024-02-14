@@ -4,7 +4,13 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
     title: "About",
-    description: "About me and my work."
+    description: "About me and my work.",
+    alternates: {
+        canonical: `${process.env.BASE_URL}/about`,
+        languages: {
+            "en-US": "/en-US"
+        }
+    }
 };
 
 const AboutPage: React.FC = async () => {

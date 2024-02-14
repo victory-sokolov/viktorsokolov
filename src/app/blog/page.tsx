@@ -7,7 +7,13 @@ import { BlogContainer, TopBlogMeta } from "./styles";
 
 export const metadata: Metadata = {
     title: "Blog posts",
-    description: `Browse through ${config.author}'s blog posts to learn more about frontend and backend development`
+    description: `Browse through ${config.author}'s blog posts to learn more about frontend and backend development`,
+    alternates: {
+        canonical: `${process.env.BASE_URL}/blog`,
+        languages: {
+            "en-US": "/en-US"
+        }
+    }
 };
 
 const Blog = async () => {
