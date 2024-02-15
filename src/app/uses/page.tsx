@@ -2,7 +2,6 @@ import { getContent } from "@/common/content-utils";
 import { MdxRemote } from "@/components/Mdx";
 import type { Metadata } from "next";
 
-
 export const metadata: Metadata = {
     title: "Uses",
     description: "Tech I'm currently using for coding.",
