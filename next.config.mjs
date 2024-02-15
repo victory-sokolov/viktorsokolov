@@ -78,6 +78,11 @@ const config = {
     compiler: {
         styledComponents: true
     },
+    modularizeImports: {
+        "react-icons": {
+            transform: "react-icons/{{member}}"
+        }
+    },
     images: {
         formats: ["image/webp", "image/avif"],
         minimumCacheTTL: 60,
@@ -87,6 +92,15 @@ const config = {
                 hostname: "cdn.buymeacoffee.com"
             }
         ]
+    },
+    async redirects() {
+        return [
+            {
+                source: "/index",
+                destination: "/",
+                permanent: true
+            }
+        ];
     }
 };
 
