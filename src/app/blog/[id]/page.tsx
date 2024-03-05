@@ -9,6 +9,7 @@ import { PostMeta } from "@/components/Post/PostMeta";
 import ShareToSocialLink from "@/components/ShareToSocial";
 import { DevToLink, GithubLink } from "@/components/Social/SocialMedia";
 import { config } from "@/src/common/appconfig";
+import { PageParams } from "@/src/types/types";
 import { Metadata } from "next";
 import { ArticleJsonLd } from "next-seo";
 import Image from "next/image";
@@ -57,7 +58,7 @@ export async function generateMetadata({ params }): Promise<Metadata | undefined
     };
 }
 
-export default async function Page({ params }) {
+export default async function Page({ params }: PageParams) {
     const {
         currentPost: { frontmatter, mdxSource },
         nextPost,
