@@ -2,6 +2,7 @@ import { getAllTips } from "@/common/tips";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import Balancer from "react-wrap-balancer";
 import type { TipFrontmatter } from "src/types/Post";
 
 import { DevelopmentTipsTop, TipItem, TipsContainer, TipsWrapper } from "./styles";
@@ -54,7 +55,9 @@ const Tips = async () => {
                         </Link>
                         <div className="tip-details">
                             <Link href={`/tips/${tip.slug}`}>
-                                <h3>{tip.title}</h3>
+                                <h3>
+                                    <Balancer>{tip.title}</Balancer>
+                                </h3>
                             </Link>
                             <p>{tip.date}</p>
                             <a

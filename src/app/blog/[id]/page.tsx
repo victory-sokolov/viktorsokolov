@@ -13,6 +13,7 @@ import { PageParams } from "@/src/types/types";
 import { Metadata } from "next";
 import { ArticleJsonLd } from "next-seo";
 import Image from "next/image";
+import Balancer from "react-wrap-balancer";
 import { ContentWrapper } from "src/styles/global-styles";
 import { POST_TYPE } from "src/types/enums";
 
@@ -101,7 +102,7 @@ export default async function Page({ params }: PageParams) {
                         itemProp="headline"
                         style={{ color: "var(--text-color-secondary)" }}
                     >
-                        {title}
+                        <Balancer>{title}</Balancer>
                     </h1>
                     <PostMeta date={date} readTime={readTime} style={{ justifyContent: "center" }}>
                         <GithubLink slug={frontmatter.slug} />

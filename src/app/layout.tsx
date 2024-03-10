@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Metadata } from "next";
 import { Cairo } from "next/font/google";
+import { Provider } from "react-wrap-balancer";
 import StyledComponentsRegistry from "src/registry";
 import { ReactProps } from "src/types/types";
 
@@ -89,7 +90,9 @@ export default function RootLayout({ children }: ReactProps) {
                     <Analytics />
                     <SpeedInsights />
                     <GlobalStyles />
-                    <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+                    <StyledComponentsRegistry>
+                        <Provider>{children}</Provider>
+                    </StyledComponentsRegistry>
                 </Layout>
             </body>
         </html>

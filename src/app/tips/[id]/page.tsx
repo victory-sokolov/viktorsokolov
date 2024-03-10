@@ -7,6 +7,7 @@ import { config } from "@/src/common/appconfig";
 import { ArticleJsonLd } from "next-seo";
 import { Metadata } from "next/types";
 import React from "react";
+import Balancer from "react-wrap-balancer";
 import { ContentWrapper } from "src/styles/global-styles";
 import { POST_TYPE } from "src/types/enums";
 import type { TipFrontmatter } from "src/types/Post";
@@ -80,7 +81,9 @@ const TipPage: React.FC = async (id: string) => {
                 authorName={config.author}
                 description={frontmatter.description}
             />
-            <h1>{tipFrontmatter.title}</h1>
+            <h1>
+                <Balancer>{tipFrontmatter.title}</Balancer>
+            </h1>
             <Categories categories={tags} style={{ textAlign: "left" }} />
             <MdxRemote source={mdxSource} />
             <p>{tipFrontmatter.description}</p>

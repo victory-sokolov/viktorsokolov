@@ -3,6 +3,7 @@
 import { useReadTime } from "@/hooks/useReadTime";
 import Image from "next/image";
 import Link from "next/link";
+import Balancer from "react-wrap-balancer";
 import { borderGradient } from "src/styles/global-styles";
 import { PostFrontmatter } from "src/types/Post";
 import styled from "styled-components";
@@ -76,7 +77,9 @@ export const PostItem = ({ post }: { post: PostFrontmatter }) => {
                     />
                 </div>
                 <div className="post-data">
-                    <h3 className="post-title">{post.title}</h3>
+                    <h3 className="post-title">
+                        <Balancer>{post.title}</Balancer>
+                    </h3>
                     <PostMeta
                         date={post.date}
                         readTime={useReadTime(post.content)}
