@@ -27,10 +27,10 @@ jobs:
           node-version: ${{ steps.nvm.outputs.NODE_VERSION }}
 
       - name: Install node dependencies
-        run: yarn
+        run: pnpm install
 
       - name: Run node script
-        run: yarn build
+        run: pnpm build
 
       - name: Git setup
         run: git config --global user.email readme-bot@example.com && git config --global user.name readme-bot
