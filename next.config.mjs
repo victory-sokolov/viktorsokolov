@@ -99,6 +99,16 @@ const config = {
                 source: "/index",
                 destination: "/",
                 permanent: true
+            },
+            {
+                source: "/tip/:slug",
+                destination: "/tips/:slug",
+                permanent: true
+            },
+            {
+                source: "/post/:slug",
+                destination: "/blog/:slug",
+                permanent: true
             }
         ];
     }
