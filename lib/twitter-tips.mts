@@ -16,8 +16,9 @@ const removeCharacters = (text: string) => {
 export default async function getTweets(username: string) {
     const startTime = new Date(new Date().setUTCHours(0, 0, 0, 0));
     const endTime = new Date(new Date().setUTCHours(23, 59, 59, 999));
-    const client = new TwitterApi(process.env.TWITTER_TOKEN);
-    const timeline = await client.v2.userTimeline(process.env.TWITTER_TIMELINE_ID, {
+    const client = new TwitterApi(process.env.TWITTER_TOKEN!);
+
+    const timeline = await client.v2.userTimeline(process.env.TWITTER_TIMELINE_ID!, {
         "tweet.fields": ["id", "created_at", "attachments", "entities", "text"],
         "media.fields": ["url", "alt_text", "media_key"],
         exclude: ["replies", "retweets"],
@@ -25,6 +26,7 @@ export default async function getTweets(username: string) {
         start_time: startTime.toISOString(),
         end_time: endTime.toISOString()
     });
+    console.log("TImeline", timeline);
     const tweetData = [];
 
     for await (const tweet of timeline) {
