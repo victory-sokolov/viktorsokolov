@@ -23,9 +23,9 @@ const CustomLink = ({ href, children }) => {
 
 const MdxImg: React.FC<ImageProps> = ({ src, width, height, alt, blurDataURL, ...prop }) => {
     const pathname = usePathname();
-    const blogPostUrl = pathname.replace("/post", "posts");
+    const blogPostUrl = pathname.replace("blog", "posts");
     const imgSrc = `${blogPostUrl}/${src}`;
-
+    
     const props = {
         loading: "lazy",
         src: imgSrc,
