@@ -7,18 +7,18 @@ tags: Devops
 published: true
 ---
 
-Github Actions is a continuous integration and deployment tool offered by GitHub.
+GitHub Actions is a continuous integration and deployment tool offered by GitHub.
 With GitHub actions, you can automate workflows and tasks directly within your GitHub repository.
 
 GitHub Actions are made up of one or more jobs, which can be triggered by a specific event, such as a push to a branch or a pull request being opened. Each job is made up of one or more steps, which define a specific action to be taken. These actions can include running a script, deploying code, sending notifications, and more.
 
-GitHub actions provides a wide range of pre-built actions that can be used out of the box, as well as the ability to define your own custom actions. Actions are defined in the YAML file, which can be stored in your repository inside the `.github/workflows` directory.
+GitHub actions provide a wide range of pre-built actions that can be used out of the box, as well as the ability to define your own custom actions. Actions are defined in the YAML file, which can be stored in your repository inside the `.github/workflows` directory.
 
-GitHub has a section of large variety of pre-made [actions](https://github.com/marketplace?type=actions) that can be added to your project.
+GitHub has a section of a large variety of pre-made [actions](https://github.com/marketplace?type=actions) that can be added to your project.
 
 ## Creating first action
 
-Lets create an action from scratch. In `.github/workflows` directory create file with `.yaml` or `.yml` extension. Here's an example of a simple GitHub Actions workflow that installs NPM dependencies and runs tests:
+Let's create an action from scratch. In `.github/workflows` directory create a file with the `.yaml` or `.yml` extension. Here's an example of a simple GitHub Actions workflow that installs NPM dependencies and runs tests:
 
 ```yaml
 name: Node Tests
@@ -41,9 +41,9 @@ jobs:
       run: npm test
 ```
 
-- `push` - workflow is triggered by any  `git push` event, and runs a series of steps on an Ubuntu-based runner.
+- `push` - workflow is triggered by any  `git push` event and runs a series of steps on an Ubuntu-based runner.
 - `jobs` -  defines a list of jobs we want to be executed.
-- `checkout` -  is considered a third party action. Checkout step clones your repository into the runner environment, so further any files from your repository can be accessed by the runner
+- `checkout` -  is considered a third-party action. The checkout step clones your repository into the runner environment, so further any files from your repository can be accessed by the runner
 - `run` - in the next two steps we run `npm install` to install all dependencies, and run tests.
 
 
@@ -51,7 +51,7 @@ jobs:
 
 ## Environment variables
 
-Environment variables can be defined globally or scoped to specific job. Global variables are available to all jobs.
+Environment variables can be defined globally or scoped to specific jobs. Global variables are available to all jobs.
 Here is an example of  environment variable configuration
 
 ```yaml
@@ -61,23 +61,23 @@ on:
   push
 
 env:
-	MY_KEY: R@ndomKey2023
+  MY_KEY: R@ndomKey2023
 
 jobs:
-	env-vars:
-	runs-on: ubuntu-latest
-	env:
-		API_KEY: RandomAPIKey
-	steps:
-		- name: Print Global Environment Variables
-		  run: echo $MY_KEY
-		- name: Print Job Environment Variables
-		  run: echo ${{ env.API_KEY }}
+  env-vars:
+  runs-on: ubuntu-latest
+  env:
+    API_KEY: RandomAPIKey
+  steps:
+    - name: Print Global Environment Variables
+    run: echo $MY_KEY
+    - name: Print Job Environment Variables
+      run: echo ${{ env.API_KEY }}
 ```
 
-We defined two steps, first one for accessing global environment variable and second for accessing local environment variable that is defined under the `jobs`.
+We defined two steps, the first one for accessing the global environment variable and the second for accessing the local environment variable that is defined under the `jobs`.
 
-Notice that we are using different syntax for accessing env variables, although its not necessary which syntax you will use, although there is difference between them.
+Notice that we are using different syntax for accessing env variables, although it's not necessary which syntax you will use, although there is a difference between them.
 
 1. **Interpolation** `${{ env.API_KEY }}` -  typically used when you want to explicitly indicate that you are accessing an environment variable defined within the workflow.
 2. **Variable reference** `$API_KEY` - looks for environment variable in the shell instance
@@ -85,8 +85,8 @@ Notice that we are using different syntax for accessing env variables, although 
 
 ## Schedule job
 
-GitHub actions support events that allows to run some jobs periodically using crontab syntax.
-Here is simple example how we can run Python script every hour.
+GitHub actions support events that allow to run some jobs periodically using crontab syntax.
+Here a is simple example of how we can run a Python script every hour.
 
 ```yaml
 name: Periodic job
@@ -103,17 +103,16 @@ jobs:
         run: my_script.py
 ```
 
-
 > NOTE: [Crontab.guru](https://crontab.guru/) allows to use of crontab syntax with ease of use.
 
 ## Conditions
-Conditions allow to use `if` statement if you need to skip some job or step. For example we would like to run a job only when changes are being pushed or merged into `main` branch.
+Conditions allow to use the `if` statement if you need to skip some job or step. For example, we would like to run a job only when changes are being pushed or merged into `main` branch.
 
 ```yaml
-name: Run on main branch
+name: Run on the main branch
 
 on:
-	push
+  push
 
 jobs:
   run-if-main:
@@ -131,7 +130,7 @@ jobs:
 By default job doesn't persist any data, since each job runs within its own isolated runner.
 To persist data between runners and jobs we will use [outputs](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idoutputs). The outputs of a job will be accessible to all other jobs that have a dependency on it.
 
-Let's see an example of how to read `.nvmrc` file and use its output to install specific Node version.
+Let's see an example of how to read `.nvmrc` file and use its output to install a specific Node version.
 
 ```yaml
 name: outputs-demo
@@ -168,17 +167,17 @@ jobs:
 
 
 - `outputs` -  map an output to a job output, `nodev` will be like a global variable that can be accessed at any step.
-- `${{steps.step1.outputs.nodev}}` - here we're accessing specific step with id `step1` and specifying that result should be stored in the `nodev`.
+- `${{steps.step1.outputs.nodev}}` - here we're accessing a specific step with id `step1` and specifying that result should be stored in the `nodev`.
 - `run: echo "nodev=$(cat .nvmrc)" >> "$GITHUB_OUTPUT"` - in this step data from `.nvmrc` file is printed using `cat` and stored in the `nodev` variable
-	- `$GITHUB_OUTPUT` - env variable is used so the `GitHub` can recognise output variables
-- `needs: job1` - `needs` property specifies that this job should run sequentially in order to avoid race conditions, when executing jobs.
+	- `$GITHUB_OUTPUT` - env variable is used so the `GitHub` can recognize output variables
+- `needs: job1` - `needs` property specifies that this job should run sequentially to avoid race conditions when executing jobs.
 - `node-version: ${{needs.job1.outputs.nodev}}` - finally we are accessing data output from `job1` that is stored in the `nodev` variable.
 
 There is other way how you can persist data using [actions/cache](https://github.com/actions/cache) or using [strategy.matrix](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstrategy)
 
 ## Creating Reusable Workflows
 
-Reusable workflows allows to reference entire workflow inside another workflow. Let's take our previous example and include this workflow into another workflow file, but before we will slightly modify it
+Reusable workflows allow to reference entire workflow inside another workflow. Let's take our previous example and include this workflow into another workflow file, but before we will slightly modify it
 
 ```yaml
 name: output-reusable-workflow
@@ -190,17 +189,16 @@ on:
         required: true
         type: string
 
-# Jobs from previous section
+# Jobs from the previous section
 jobs:
-	job1:
-		...
+    job1:
+      ...
 
-	job2:
-		...
+    job2:
+      ...
 
-	    - name: Print message
-		    run: echo ${{ inputs.message }}
-
+      - name: Print message
+          run: echo ${{ inputs.message }}
 ```
 
 `workflow_call` - event that helps us define some parameters that can be passed to workflow with the name `message`
@@ -244,4 +242,4 @@ This will add `Run workflow` button in the GitHub UI
 
 ## Conclusion
 
-We've explored some essential functionality of the Github actions. There is a lot of thins to explore and you definitely should visit they're [documentation](https://docs.github.com/en/actions). All examples that we explored in this article can be found in this [repository](https://github.com/victory-sokolov/playground/tree/main/.github/workflows).
+We've explored some essential functionality of the GitHub actions. There is a lot of thins to explore and you definitely should visit they're [documentation](https://docs.github.com/en/actions). All examples that we explored in this article can be found in this [repository](https://github.com/victory-sokolov/playground/tree/main/.github/workflows).
