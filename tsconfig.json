@@ -52,7 +52,8 @@
         "**/*.tsx",
         "lib/generate-feed.ts",
         ".next/types/**/*.ts",
-        "src/common/content-utils.ts"
+        "src/common/content-utils.ts",
+        "eslint.config.mjs"
     ],
     "exclude": [
         "node_modules"
