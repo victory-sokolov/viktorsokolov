@@ -1,8 +1,8 @@
-import fs from "node:fs";
-import type { MetadataRoute } from "next/types";
 import { getAllPosts } from "@/common/posts";
 import { getAllTips } from "@/common/tips";
 import { config } from "@/src/common/appconfig";
+import type { MetadataRoute } from "next/types";
+import fs from "node:fs";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const allPosts = await getAllPosts();
@@ -13,7 +13,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
         return {
             url: `${config.siteUrl}/blog/${post.slug}`,
-            lastModified,
+            lastModified
         };
     });
 
@@ -23,13 +23,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
         return {
             url: `${config.siteUrl}/tips/${tip.slug}`,
-            lastModified,
+            lastModified
         };
     });
 
     const routes = ["", "/tips", "/blog", "/about", "/uses"].map(route => ({
         url: `${config.siteUrl}${route}`,
-        lastModified: new Date().toISOString(),
+        lastModified: new Date().toISOString()
     }));
 
     return [...routes, ...posts, ...tips];

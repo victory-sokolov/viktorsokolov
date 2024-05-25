@@ -1,12 +1,12 @@
+import { useReadTime } from "@/hooks/useReadTime";
+import { slugify, toLongDate } from "@vsokolov/utils";
+import matter from "gray-matter";
 import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
-import { slugify, toLongDate } from "@vsokolov/utils";
-import matter from "gray-matter";
 import type { PostFrontmatter } from "src/types/Post";
 
 import { getPostData, sortPostByDate } from "./content-utils";
-import { useReadTime } from "@/hooks/useReadTime";
 
 export const getAllPosts = async (): Promise<PostFrontmatter[]> => {
     const contentPath = "content/posts";
@@ -35,7 +35,7 @@ export const getAllPosts = async (): Promise<PostFrontmatter[]> => {
                     slug,
                     excerpt: `${file.content.substring(0, 150)}...`,
                     featureImage: imgPath,
-                    readTime: useReadTime(file.content),
+                    readTime: useReadTime(file.content)
                 };
             }
         })

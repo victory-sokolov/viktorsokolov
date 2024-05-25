@@ -61,9 +61,7 @@ const NextNPrevious = ({ next, prev, postType }) => {
                     <div className="next-item">
                         <p>
                             Next
-                            {postType}
-                            {" "}
-                            ⇢
+                            {postType} ⇢
                         </p>
                         {next.title}
                     </div>

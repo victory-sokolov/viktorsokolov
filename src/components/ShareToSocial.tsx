@@ -1,5 +1,7 @@
 "use client";
 
+import { config } from "@/common/appconfig";
+import share from "@/common/share";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { CiFacebook, CiLinkedin, CiTwitter } from "react-icons/ci";
@@ -8,8 +10,6 @@ import { FaCreativeCommonsShare, FaShareAlt } from "react-icons/fa";
 import { FcReddit } from "react-icons/fc";
 import styled from "styled-components";
 import Modal from "styled-react-modal";
-import share from "@/common/share";
-import { config } from "@/common/appconfig";
 
 const SharingContainer = styled.div`
     margin-top: 2rem;

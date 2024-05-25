@@ -4,10 +4,10 @@ export default function robots() {
     return {
         rules: [
             {
-                userAgent: "*",
-            },
+                userAgent: "*"
+            }
         ],
         sitemap: `${config.siteUrl}/sitemap.xml`,
-        host: config.siteUrl,
+        host: config.siteUrl
     };
 }

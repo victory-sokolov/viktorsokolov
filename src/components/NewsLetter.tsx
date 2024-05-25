@@ -20,10 +20,9 @@ const NewsLetterForm = () => {
                     border: "none",
                     background: "#fff",
                     height: "100%",
-                    width: "100%",
+                    width: "100%"
                 }}
-            >
-            </iframe>
+            ></iframe>
         </NewLetterFormStyle>
     );
 };
