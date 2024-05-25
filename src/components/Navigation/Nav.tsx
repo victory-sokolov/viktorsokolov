@@ -1,4 +1,3 @@
-import { ScrollIndicator } from "@/components/ScrollIndicator";
 import isPropValid from "@emotion/is-prop-valid";
 import dynamic from "next/dynamic";
 import Link from "next/link";
@@ -7,6 +6,7 @@ import React, { useState } from "react";
 import { StyleSheetManager } from "styled-components";
 
 import { CloseIcon, LinkItem, Menu, NavStyles, StyledLink } from "./Nav.styled";
+import { ScrollIndicator } from "@/components/ScrollIndicator";
 
 type Props = {
     isSticky: boolean;
@@ -14,9 +14,9 @@ type Props = {
 
 const Hamburger = dynamic(() =>
     import(
-        /*webpackChunkName: 'HamburgerMenuComponent' */
+        /* webpackChunkName: 'HamburgerMenuComponent' */
         "@/components/Navigation/Nav.styled"
-    ).then(module => module.Hamburger)
+    ).then(module => module.Hamburger),
 );
 
 export const Nav: React.FC<Props> = ({ isSticky }) => {
@@ -41,7 +41,7 @@ export const Nav: React.FC<Props> = ({ isSticky }) => {
                                 data-hover="Home"
                                 aria-label="Home page"
                             >
-                                <StyledLink className={pathname == "/" ? "active" : ""}>
+                                <StyledLink className={pathname === "/" ? "active" : ""}>
                                     Home
                                 </StyledLink>
                             </Link>
@@ -54,7 +54,7 @@ export const Nav: React.FC<Props> = ({ isSticky }) => {
                                 data-hover="Blog"
                                 aria-label="Blog posts page"
                             >
-                                <StyledLink className={pathname == "/blog" ? "active" : ""}>
+                                <StyledLink className={pathname === "/blog" ? "active" : ""}>
                                     Blog
                                 </StyledLink>
                             </Link>
@@ -69,7 +69,7 @@ export const Nav: React.FC<Props> = ({ isSticky }) => {
                                 aria-label="About me page"
                                 prefetch={false}
                             >
-                                <StyledLink className={pathname == "/about" ? "active" : ""}>
+                                <StyledLink className={pathname === "/about" ? "active" : ""}>
                                     About
                                 </StyledLink>
                             </Link>
@@ -83,7 +83,7 @@ export const Nav: React.FC<Props> = ({ isSticky }) => {
                                 aria-label="Uses page"
                                 prefetch={false}
                             >
-                                <StyledLink className={pathname == "/uses" ? "active" : ""}>
+                                <StyledLink className={pathname === "/uses" ? "active" : ""}>
                                     Uses
                                 </StyledLink>
                             </Link>
@@ -96,7 +96,7 @@ export const Nav: React.FC<Props> = ({ isSticky }) => {
                                 data-hover="Tips"
                                 aria-label="Tips page"
                             >
-                                <StyledLink className={pathname == "/tips" ? "active" : ""}>
+                                <StyledLink className={pathname === "/tips" ? "active" : ""}>
                                     Tips
                                 </StyledLink>
                             </Link>

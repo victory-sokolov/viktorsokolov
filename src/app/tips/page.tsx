@@ -1,11 +1,11 @@
-import { getAllTips } from "@/common/tips";
+import process from "node:process";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import Balancer from "react-wrap-balancer";
 import type { TipFrontmatter } from "src/types/Post";
-
 import { DevelopmentTipsTop, TipItem, TipsContainer, TipsWrapper } from "./styles";
+import { getAllTips } from "@/common/tips";
 
 export const metadata: Metadata = {
     title: "Developments tips",
@@ -13,9 +13,9 @@ export const metadata: Metadata = {
     alternates: {
         canonical: `${process.env.BASE_URL}/tips`,
         languages: {
-            "en-US": "/en-US"
-        }
-    }
+            "en-US": "/en-US",
+        },
+    },
 };
 
 const Tips = async () => {

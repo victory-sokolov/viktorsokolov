@@ -1,7 +1,5 @@
 "use client";
 
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import React from "react";
@@ -10,11 +8,13 @@ import styled, { ThemeProvider } from "styled-components";
 
 import { ContainerStyle, GlobalStyles, MainStyles } from "../../styles/global-styles";
 import { theme } from "../../styles/theme";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const variants = {
     hidden: { opacity: 0, x: -150, y: 0 },
     enter: { opacity: 1, x: 0, y: 0 },
-    exit: { opacity: 0, x: 0, y: -100 }
+    exit: { opacity: 0, x: 0, y: -100 },
 };
 
 const SiteWrapper = styled.div`

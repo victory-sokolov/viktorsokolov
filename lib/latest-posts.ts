@@ -1,18 +1,18 @@
-import { config } from "@/src/common/appconfig";
+import fs from "node:fs";
 import axios from "axios";
-import fs from "fs";
 import parser from "xml2json";
+import { config } from "@/src/common/appconfig";
 
 const FEED_URL = `${config.siteUrl}/rss.xml`;
 const TEMPLATE = [
     {
         open: "<!-- POST-START -->",
-        close: "<!-- POST-END -->"
+        close: "<!-- POST-END -->",
     },
     {
         open: "<!-- TIP-START -->",
-        close: "<!-- TIP-END -->"
-    }
+        close: "<!-- TIP-END -->",
+    },
 ];
 const LATEST_N_POSTS = 5;
 
@@ -28,15 +28,15 @@ const fetchLatestContent = async () => {
     const articlesText = await articles.data;
     const articlesJSON = parser.toJson(articlesText);
     const posts = JSON.parse(articlesJSON).rss.channel.item.filter(
-        item => !item.link.includes("/tips/")
+        item => !item.link.includes("/tips/"),
     );
     const tips = JSON.parse(articlesJSON).rss.channel.item.filter(item =>
-        item.link.includes("/tips/")
+        item.link.includes("/tips/"),
     );
 
     return {
         post: toMarkDownLinks(posts),
-        tip: toMarkDownLinks(tips)
+        tip: toMarkDownLinks(tips),
     };
 };
 

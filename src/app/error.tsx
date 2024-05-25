@@ -1,6 +1,6 @@
 "use client";
 
-import { NextPage } from "next";
+import type { NextPage } from "next";
 import Link from "next/link";
 
 const PageNotFound: NextPage = () => {

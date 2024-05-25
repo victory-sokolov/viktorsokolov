@@ -1,3 +1,4 @@
+import process from "node:process";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -10,10 +11,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const result = await fetch("https://www.getrevue.co/api/v2/subscribers", {
         method: "POST",
         headers: {
-            Authorization: `Token ${process.env.REVUE_API_KEY}`,
-            "Content-Type": "application/json"
+            "Authorization": `Token ${process.env.REVUE_API_KEY}`,
+            "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, double_opt_in: false })
+        body: JSON.stringify({ email, double_opt_in: false }),
     });
 
     const data = await result.json();

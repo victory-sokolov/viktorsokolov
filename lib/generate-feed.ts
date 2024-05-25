@@ -1,11 +1,13 @@
-import { config } from "@/src/common/appconfig";
-import { getAllPosts } from "@/src/common/posts";
-import { getAllTips } from "@/src/common/tips";
+/* eslint no-console: 0 */
+import { writeFileSync } from "node:fs";
+import process from "node:process";
 import { Feed } from "feed";
-import { writeFileSync } from "fs";
 import { remark } from "remark";
 import remarkHtml from "remark-html";
-import { PostFrontmatter, TipFrontmatter } from "src/types/Post";
+import type { PostFrontmatter, TipFrontmatter } from "src/types/Post";
+import { getAllTips } from "@/src/common/tips";
+import { getAllPosts } from "@/src/common/posts";
+import { config } from "@/src/common/appconfig";
 
 async function markdownToHtml(markdown) {
     const result = await remark().use(remarkHtml).process(markdown);
@@ -22,7 +24,7 @@ export default (async () => {
     const author = {
         name: config.author,
         email: config.email,
-        link: config.social.twitter
+        link: config.social.twitter,
     };
     const feed = new Feed({
         title: config.title,
@@ -38,9 +40,9 @@ export default (async () => {
         feedLinks: {
             rss2: `${baseUrl}/rss.xml`,
             json: `${baseUrl}/feed.json`,
-            atom: `${baseUrl}/atom.xml`
+            atom: `${baseUrl}/atom.xml`,
         },
-        author
+        author,
     });
     const posts = await getAllPosts();
     const tips = await getAllTips();
@@ -54,10 +56,10 @@ export default (async () => {
             id: url,
             link: url,
             description: post.description,
-            content: content,
+            content,
             author: [author],
             contributor: [author],
-            date: new Date(post.date)
+            date: new Date(post.date),
         });
     });
 
@@ -70,10 +72,10 @@ export default (async () => {
             id: url,
             link: url,
             description: tip.description,
-            content: content,
+            content,
             author: [author],
             contributor: [author],
-            date: new Date(tip.date)
+            date: new Date(tip.date),
         });
     });
 

@@ -17,10 +17,10 @@ export const ScrollIndicator = () => {
 
     const updateProgressIndicator = () => {
         const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-        //Full height
-        const height =
-            document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        //Percentage scrolled
+        // Full height
+        const height
+            = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        // Percentage scrolled
         const scrolledPercentage = (winScroll / height) * 100;
         setProgress(scrolledPercentage);
     };

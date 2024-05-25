@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const HeaderStyles = styled.header.attrs(props => ({
-    className: props.className
+    className: props.className,
 }))`
     .heading-content {
         display: flex;

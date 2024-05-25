@@ -1,7 +1,10 @@
+/* eslint no-console: 0 */
+
+import { Buffer } from "node:buffer";
+import fs from "node:fs";
+import process from "node:process";
 import axios from "axios";
-import { Buffer } from "buffer";
 import { fileTypeFromBuffer } from "file-type";
-import fs from "fs";
 import { TwitterApi } from "twitter-api-v2";
 
 const TIPS_DIR = "content/tips";
@@ -21,12 +24,12 @@ export default async function getTweets(username: string) {
     const timeline = await client.v2.userTimeline(process.env.TWITTER_TIMELINE_ID!, {
         "tweet.fields": ["id", "created_at", "attachments", "entities", "text"],
         "media.fields": ["url", "alt_text", "media_key"],
-        exclude: ["replies", "retweets"],
-        expansions: ["attachments.media_keys"],
-        start_time: startTime.toISOString(),
-        end_time: endTime.toISOString()
+        "exclude": ["replies", "retweets"],
+        "expansions": ["attachments.media_keys"],
+        "start_time": startTime.toISOString(),
+        "end_time": endTime.toISOString(),
     });
-    console.log("TImeline", timeline);
+
     const tweetData = [];
 
     for await (const tweet of timeline) {
@@ -46,7 +49,7 @@ export default async function getTweets(username: string) {
                     text: tipText,
                     altText: code,
                     image: medias.url,
-                    hashTags: entities.hashtags ? entities.hashtags.map(({ tag }) => tag) : []
+                    hashTags: entities.hashtags ? entities.hashtags.map(({ tag }) => tag) : [],
                 };
                 tweetData.push(tweetObj);
             }
@@ -87,7 +90,7 @@ featureImage: ${imgName}
 tags: ${hashTags}
 ---`;
 
-        content += "\n```" + hashTags.toLowerCase() + "\n" + tweet.altText + "\n```";
+        content += `\n\`\`\`${hashTags.toLowerCase()}\n${tweet.altText}\n\`\`\``;
         // Create subfolder
         const subfolder = `${TIPS_DIR}/${slug}`;
         if (!fs.existsSync(subfolder)) {

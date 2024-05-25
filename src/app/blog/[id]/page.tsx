@@ -1,3 +1,10 @@
+import process from "node:process";
+import type { Metadata } from "next";
+import { ArticleJsonLd } from "next-seo";
+import Image from "next/image";
+import Balancer from "react-wrap-balancer";
+import { ContentWrapper } from "src/styles/global-styles";
+import { POST_TYPE } from "src/types/enums";
 import { getPostBySlug } from "@/common/posts";
 import Categories from "@/components/Categories";
 import Comments from "@/components/Comments";
@@ -9,19 +16,13 @@ import { PostMeta } from "@/components/Post/PostMeta";
 import ShareToSocialLink from "@/components/ShareToSocial";
 import { DevToLink, GithubLink } from "@/components/Social/SocialMedia";
 import { config } from "@/src/common/appconfig";
-import { PageParams } from "@/src/types/types";
-import { Metadata } from "next";
-import { ArticleJsonLd } from "next-seo";
-import Image from "next/image";
-import Balancer from "react-wrap-balancer";
-import { ContentWrapper } from "src/styles/global-styles";
-import { POST_TYPE } from "src/types/enums";
+import type { PageParams } from "@/src/types/types";
 
 const baseUrl = process.env.BASE_URL;
 
 export async function generateMetadata({ params }): Promise<Metadata | undefined> {
     const {
-        currentPost: { frontmatter }
+        currentPost: { frontmatter },
     } = await getPostBySlug(params.id);
     if (!frontmatter) {
         return;
@@ -31,13 +32,13 @@ export async function generateMetadata({ params }): Promise<Metadata | undefined
     const ogImage = `${baseUrl}/${featureImage}`;
 
     return {
-        title: title,
-        description: description,
+        title,
+        description,
         alternates: {
             canonical: `${baseUrl}/blog/${slug}`,
             languages: {
-                "en-US": "/en-US"
-            }
+                "en-US": "/en-US",
+            },
         },
         openGraph: {
             title,
@@ -46,16 +47,16 @@ export async function generateMetadata({ params }): Promise<Metadata | undefined
             url: `${process.env.BASE_URL}/blog/${slug}`,
             images: [
                 {
-                    url: ogImage
-                }
-            ]
+                    url: ogImage,
+                },
+            ],
         },
         twitter: {
             card: "summary_large_image",
             title,
             description,
-            images: [ogImage]
-        }
+            images: [ogImage],
+        },
     };
 }
 
@@ -63,7 +64,7 @@ export default async function Page({ params }: PageParams) {
     const {
         currentPost: { frontmatter, mdxSource },
         nextPost,
-        previousPost
+        previousPost,
     } = await getPostBySlug(params.id);
 
     const featureImage = frontmatter.featureImage;

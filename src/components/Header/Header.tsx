@@ -6,26 +6,32 @@ import { HeaderStyles } from "./Header.styled";
 
 const Nav = dynamic(() =>
     import(
-        /*webpackChunkName: 'Navigation' */
+        /* webpackChunkName: 'Navigation' */
         "@/components/Navigation"
-    ).then(module => module.default)
+    ).then(module => module.default),
 );
 
 const Hero = dynamic(() =>
     import(
-        /*webpackChunkName: 'Hero' */
+        /* webpackChunkName: 'Hero' */
         "@/components/Hero"
-    ).then(module => module.default)
+    ).then(module => module.default),
 );
 
 export const Header: React.FC = () => {
     const pathname = usePathname();
-    const [isRootUrl, setIsRootUrl] = useState(pathname === "/" ? true : false);
+    const [isRootUrl, setIsRootUrl] = useState(pathname === "/");
     const [sticky, setSticky] = useState({ isSticky: false, offset: 0 });
     const headerRef = useRef(null);
-
+    const handleScroll = (elTopOffset, elHeight) => {
+        if (window.scrollY > elTopOffset) {
+            setSticky({ isSticky: true, offset: elHeight });
+        } else {
+            setSticky({ isSticky: false, offset: 0 });
+        }
+    };
     useEffect(() => {
-        setIsRootUrl(pathname === "/" ? true : false);
+        setIsRootUrl(pathname === "/");
     }, [pathname]);
 
     useEffect(() => {
@@ -39,14 +45,6 @@ export const Header: React.FC = () => {
             window.removeEventListener("scroll", handleScrollEvent);
         };
     }, [sticky]);
-
-    const handleScroll = (elTopOffset, elHeight) => {
-        if (window.scrollY > elTopOffset) {
-            setSticky({ isSticky: true, offset: elHeight });
-        } else {
-            setSticky({ isSticky: false, offset: 0 });
-        }
-    };
 
     return (
         <div style={{ position: "relative" }}>

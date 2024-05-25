@@ -25,11 +25,13 @@ export const Categories = ({ categories, style }: { categories: string[]; style?
             {categories
                 .map((category: string) => category.trim().toLowerCase())
                 .map((category: string) =>
-                    TagsMapping[category] ? (
-                        <CategorieStyle key={category}>{TagsMapping[category]()}</CategorieStyle>
-                    ) : (
-                        ""
-                    )
+                    TagsMapping[category]
+                        ? (
+                            <CategorieStyle key={category}>{TagsMapping[category]()}</CategorieStyle>
+                            )
+                        : (
+                                ""
+                            ),
                 )}
         </CategorieWrapperStyle>
     );

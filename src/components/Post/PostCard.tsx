@@ -15,7 +15,7 @@ export const PostCard: React.FC<PostFrontmatter> = ({
     excerpt,
     featureImage,
     readTime,
-    id
+    id,
 }) => {
     return (
         <Card key={id}>

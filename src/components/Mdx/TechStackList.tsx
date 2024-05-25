@@ -1,5 +1,5 @@
-import { TagsMapping } from "@/components/Post/PostLabels";
 import styled from "styled-components";
+import { TagsMapping } from "@/components/Post/PostLabels";
 
 const TechContainer = styled.ul`
     list-style: none;
@@ -31,7 +31,7 @@ export const TechStackList = () => {
         "nestjs",
         "react",
         "nodejs",
-        "javascript"
+        "javascript",
     ];
     const tags = Object.entries(TagsMapping).filter(([key]) => TECH_STACK_LIST.includes(key));
     return (

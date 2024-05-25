@@ -1,4 +1,4 @@
-import { MDXRemoteSerializeResult } from "next-mdx-remote";
+import type { MDXRemoteSerializeResult } from "next-mdx-remote";
 
 type Prettify<T> = {
     [K in keyof T]: T[K];

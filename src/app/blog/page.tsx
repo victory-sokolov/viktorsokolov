@@ -1,9 +1,9 @@
+import process from "node:process";
+import type { Metadata } from "next";
+import { BlogContainer, TopBlogMeta } from "./styles";
 import { config } from "@/common/appconfig";
 import { getAllPosts } from "@/common/posts";
 import { PostItem } from "@/components/Post";
-import type { Metadata } from "next";
-
-import { BlogContainer, TopBlogMeta } from "./styles";
 
 export const metadata: Metadata = {
     title: "Blog posts",
@@ -11,9 +11,9 @@ export const metadata: Metadata = {
     alternates: {
         canonical: `${process.env.BASE_URL}/blog`,
         languages: {
-            "en-US": "/en-US"
-        }
-    }
+            "en-US": "/en-US",
+        },
+    },
 };
 
 const Blog = async () => {
@@ -24,7 +24,11 @@ const Blog = async () => {
         <BlogContainer>
             <TopBlogMeta>
                 <h1>Blog Posts ↓</h1>
-                <h4>{posts.length} Articles</h4>
+                <h4>
+                    {posts.length}
+                    {" "}
+                    Articles
+                </h4>
             </TopBlogMeta>
 
             <div className="blog-posts-list">

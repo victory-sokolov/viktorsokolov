@@ -1,6 +1,7 @@
+import process from "node:process";
+import type { Metadata } from "next";
 import { getContent } from "@/common/content-utils";
 import { MdxRemote } from "@/components/Mdx";
-import type { Metadata } from "next";
 
 export const metadata: Metadata = {
     title: "Uses",
@@ -8,9 +9,9 @@ export const metadata: Metadata = {
     alternates: {
         canonical: `${process.env.BASE_URL}/uses`,
         languages: {
-            "en-US": "/en-US"
-        }
-    }
+            "en-US": "/en-US",
+        },
+    },
 };
 
 const UsesPage: React.FC = async () => {

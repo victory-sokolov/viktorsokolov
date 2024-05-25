@@ -140,7 +140,7 @@ export const Hamburger = styled.div<{ isSticky: boolean; isOpen: boolean }>`
 
         ${({ isOpen }: { isOpen: boolean }) =>
             isOpen
-                ? /*css*/ `
+                ? /* css */ `
                 body {
                     overflow: hidden;
                 }

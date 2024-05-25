@@ -6,7 +6,7 @@ import {
     SiNestjs,
     SiPostgresql,
     SiReact,
-    SiTypescript
+    SiTypescript,
 } from "react-icons/si";
 import { TbBrandNextjs } from "react-icons/tb";
 import styled from "styled-components";
@@ -81,7 +81,9 @@ export const React = (size: number = 22) => {
 export const NextJs = (size: number = 22) => {
     return (
         <TagWrapper>
-            <span>Next.js</span> <TbBrandNextjs size={size} />
+            <span>Next.js</span>
+            {" "}
+            <TbBrandNextjs size={size} />
         </TagWrapper>
     );
 };
@@ -123,5 +125,5 @@ export const TagsMapping = {
     react: React,
     nodejs: NodeJs,
     javascript: JavaScript,
-    other: Other
+    other: Other,
 };

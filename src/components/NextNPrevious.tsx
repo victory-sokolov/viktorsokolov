@@ -3,7 +3,6 @@
 import Link from "next/link";
 import styled from "styled-components";
 
-/* eslint-disable react/prop-types */
 export const NextPreviousItem = styled.div`
     display: flex;
     justify-content: space-between;
@@ -48,7 +47,10 @@ const NextNPrevious = ({ next, prev, postType }) => {
             {prev && (
                 <Link href={`/${postType}/${prev.slug}`}>
                     <div className="previous-item">
-                        <p>⇠ Previous {postType}</p>
+                        <p>
+                            ⇠ Previous
+                            {postType}
+                        </p>
                         {prev.title}
                     </div>
                 </Link>
@@ -57,7 +59,12 @@ const NextNPrevious = ({ next, prev, postType }) => {
             {next && (
                 <Link href={`/${postType}/${next.slug}`}>
                     <div className="next-item">
-                        <p>Next {postType} ⇢</p>
+                        <p>
+                            Next
+                            {postType}
+                            {" "}
+                            ⇢
+                        </p>
                         {next.title}
                     </div>
                 </Link>

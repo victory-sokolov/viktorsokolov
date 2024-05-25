@@ -1,14 +1,14 @@
 "use client";
 
-import { useReadTime } from "@/hooks/useReadTime";
 import Image from "next/image";
 import Link from "next/link";
 import Balancer from "react-wrap-balancer";
 import { borderGradient } from "src/styles/global-styles";
-import { PostFrontmatter } from "src/types/Post";
+import type { PostFrontmatter } from "src/types/Post";
 import styled from "styled-components";
 
 import { PostMeta } from "./PostMeta";
+import { useReadTime } from "@/hooks/useReadTime";
 
 const PostItemStyle = styled.article`
     margin-bottom: var(--space-xl);

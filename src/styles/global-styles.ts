@@ -88,18 +88,18 @@ const GlobalStyles = createGlobalStyle`
     } 
   }
 
-  @media (prefere-reduced-motion: no-preference) {
-	:focus {
-		transition: outline-offset .25s ease;
-		outline-offset: 5px;
-	}
-  }   
+    @media (prefere-reduced-motion: no-preference) {
+        :focus {
+            transition: outline-offset .25s ease;
+            outline-offset: 5px;
+        }
+    }   
 
-  *, *:before, *:after {
-    box-sizing: border-box;
-    padding:0;
-    margin: 0;
-  }
+    *, *:before, *:after {
+        box-sizing: border-box;
+        padding:0;
+        margin: 0;
+    }
 
     @media (prefers-reduced-motion: reduce) {
         * {

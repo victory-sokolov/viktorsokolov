@@ -1,5 +1,8 @@
-import fs from "fs";
-import path from "path";
+/* eslint no-console: 0 */
+import fs from "node:fs";
+import path from "node:path";
+import process from "node:process";
+import { endsWithAny } from "@vsokolov/utils";
 
 const fsPromises = fs.promises;
 const imagesDirs = ["content/posts", "content/tips"];
@@ -7,18 +10,14 @@ const extensisons = [".png", ".jpg", ".svg", "webp"];
 const publicPath = path.join(process.cwd(), "public");
 
 const getDirectories = path => {
-    return fs.readdirSync(path).filter(function (file) {
-        return fs.statSync(path + "/" + file).isDirectory();
+    return fs.readdirSync(path).filter((file) => {
+        return fs.statSync(`${path}/${file}`).isDirectory();
     });
 };
 
 const getAllImagesInDirectory = async (directory: string) => {
     const files = await fsPromises.readdir(directory);
-    return files.filter(file => endsWithAny(file));
-};
-
-const endsWithAny = (data: string) => {
-    return extensisons.some(element => data.endsWith(element));
+    return files.filter(file => endsWithAny(file, extensisons));
 };
 
 export default (async () => {
@@ -39,7 +38,7 @@ export default (async () => {
                 if (!fs.existsSync(destinationPath)) {
                     fs.mkdirSync(destinationPath);
                 }
-                console.info(`\x1b[32m 🚀 Moving image from ${sourcePath} to ${destFile}`);
+                console.info(`\x1B[32m 🚀 Moving image from ${sourcePath} to ${destFile}`);
                 fs.copyFileSync(sourcePath, destFile);
             }
         }

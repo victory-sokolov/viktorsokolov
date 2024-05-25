@@ -1,19 +1,10 @@
+/* eslint ts/no-require-imports: 0 */
 "use client";
 
-import { Highlight, Language, Prism, themes } from "prism-react-renderer";
+import { Highlight, themes } from "prism-react-renderer";
 import React, { useState } from "react";
 import { BsClipboardCheck } from "react-icons/bs";
 import styled from "styled-components";
-
-/* eslint-disable react/prop-types */
-(typeof global !== "undefined" ? global : window).Prism = Prism;
-require("prismjs/components/prism-python");
-
-type Code = {
-    codeString: string;
-    language: Language;
-    props: React.ReactNode;
-};
 
 const Line = styled.div`
     display: table-row;
@@ -94,11 +85,13 @@ export const Code: React.FC<unknown> = ({ children }) => {
                     </MacIcons>
                     <pre style={style}>
                         <CopyButton>
-                            {isCopied ? (
-                                "🎉 Copied!"
-                            ) : (
-                                <BsClipboardCheck onClick={copyToClipboard} />
-                            )}
+                            {isCopied
+                                ? (
+                                        "🎉 Copied!"
+                                    )
+                                : (
+                                    <BsClipboardCheck onClick={copyToClipboard} />
+                                    )}
                         </CopyButton>
                         <code className={className}>
                             {tokens.map((line, i) => (

@@ -1,8 +1,9 @@
+import fs from "node:fs";
+import process from "node:process";
+import path from "node:path";
 import { filterFalsyFromObject, toLongDate } from "@vsokolov/utils";
-import fs from "fs";
 import matter from "gray-matter";
-import path from "path";
-import { TipFrontmatter } from "src/types/Post";
+import type { TipFrontmatter } from "src/types/Post";
 
 import { getPostData, sortPostByDate } from "./content-utils";
 
@@ -23,7 +24,7 @@ export const getAllTips = async (): Promise<TipFrontmatter[]> => {
             content: file.content,
             date: toLongDate(data.date as string),
             featureImage: imgPath,
-            lastModified: lastModified
+            lastModified,
         };
     });
     const allTips = await Promise.all(tips);

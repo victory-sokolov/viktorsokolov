@@ -1,13 +1,13 @@
-/* eslint-disable react/prop-types */
-import Image, { ImageProps } from "next/image";
+import type { ImageProps } from "next/image";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ComponentType } from "react";
+import type { ComponentType } from "react";
 
 import { Blockquote } from "./Blockquote";
-import { Code } from "./code";
 import { H1, H2, H3, H4, H5, H6 } from "./Heading";
 import { TechStackList } from "./TechStackList";
+import { Code } from "./code";
 
 type MDXComponentsProp = {
     [key: string]: ComponentType<unknown>;
@@ -25,7 +25,7 @@ const MdxImg: React.FC<ImageProps> = ({ src, width, height, alt, blurDataURL, ..
     const pathname = usePathname();
     const blogPostUrl = pathname.replace("blog", "posts");
     const imgSrc = `${blogPostUrl}/${src}`;
-    
+
     const props = {
         loading: "lazy",
         src: imgSrc,
@@ -33,7 +33,7 @@ const MdxImg: React.FC<ImageProps> = ({ src, width, height, alt, blurDataURL, ..
         width: width || "700",
         blurDataURL,
         placeholder: blurDataURL ? "blur" : "empty",
-        ...prop
+        ...prop,
     } as const;
 
     return <Image alt={alt} {...props} />;
@@ -60,7 +60,7 @@ const MDXComponents: MDXComponentsProp = {
     ul: Ul,
     p: paragraph,
     TechStackList,
-    Blockquote
+    Blockquote,
 };
 
 export default MDXComponents;
