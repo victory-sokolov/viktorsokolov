@@ -1,10 +1,11 @@
 /** @type {import('next').NextConfig} */
+import process from "node:process";
 import NextBundleAnalyzer from "@next/bundle-analyzer";
 import nextPWA from "next-pwa";
 import runtimeCaching from "next-pwa/cache.js";
 
 const withBundleAnalyzer = NextBundleAnalyzer({
-    enabled: process.env.ANALYZE === "true"
+    enabled: process.env.ANALYZE === "true",
 });
 
 const withPWA = nextPWA({
@@ -12,7 +13,7 @@ const withPWA = nextPWA({
     runtimeCaching,
     register: true,
     skipWaiting: true,
-    disable: process.env.NODE_ENV === "development"
+    disable: process.env.NODE_ENV === "development",
 });
 
 const ContentSecurityPolicy = `
@@ -31,36 +32,36 @@ const ContentSecurityPolicy = `
 const securityHeaders = [
     {
         key: "Content-Security-Policy",
-        value: ContentSecurityPolicy.replace(/\n/g, "").trim()
+        value: ContentSecurityPolicy.replace(/\n/g, "").trim(),
     },
     {
         key: "X-Frame-Options",
-        value: "DENY"
+        value: "DENY",
     },
     {
         key: "X-Content-Type-Options",
-        value: "nosniff"
+        value: "nosniff",
     },
     {
         key: "Referrer-Policy",
-        value: "origin-when-cross-origin"
+        value: "origin-when-cross-origin",
     },
     {
         key: "Strict-Transport-Security",
-        value: "max-age=63072000; includeSubDomains; preload"
+        value: "max-age=63072000; includeSubDomains; preload",
     },
     {
         key: "Permissions-Policy",
-        value: "camera=(), geolocation=(), microphone=()"
+        value: "camera=(), geolocation=(), microphone=()",
     },
     {
         key: "X-XSS-Protection",
-        value: "1; mode=block"
+        value: "1; mode=block",
     },
     {
         key: "X-DNS-Prefetch-Control",
-        value: "on"
-    }
+        value: "on",
+    },
 ];
 
 const config = {
@@ -68,20 +69,20 @@ const config = {
         return [
             {
                 source: "/(.*)",
-                headers: securityHeaders
-            }
+                headers: securityHeaders,
+            },
         ];
     },
     poweredByHeader: false,
     swcMinify: true,
     experimental: { webVitalsAttribution: ["CLS", "LCP"] },
     compiler: {
-        styledComponents: true
+        styledComponents: true,
     },
     modularizeImports: {
         "react-icons": {
-            transform: "react-icons/{{member}}"
-        }
+            transform: "react-icons/{{member}}",
+        },
     },
     images: {
         formats: ["image/webp", "image/avif"],
@@ -89,29 +90,29 @@ const config = {
         remotePatterns: [
             {
                 protocol: "https",
-                hostname: "cdn.buymeacoffee.com"
-            }
-        ]
+                hostname: "cdn.buymeacoffee.com",
+            },
+        ],
     },
     async redirects() {
         return [
             {
                 source: "/index",
                 destination: "/",
-                permanent: true
+                permanent: true,
             },
             {
                 source: "/tip/:slug",
                 destination: "/tips/:slug",
-                permanent: true
+                permanent: true,
             },
             {
                 source: "/post/:slug",
                 destination: "/blog/:slug",
-                permanent: true
-            }
+                permanent: true,
+            },
         ];
-    }
+    },
 };
 
 export default withBundleAnalyzer(withPWA(config));
