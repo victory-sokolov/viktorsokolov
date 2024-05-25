@@ -9,7 +9,7 @@
     },
     "license": "MIT",
     "engines": {
-        "pnpm": ">= 8.15",
+        "pnpm": ">= 9.1",
         "npm": "please use pnpm"
     },
     "scripts": {
@@ -24,7 +24,7 @@
         "commit": "cz",
         "prepare": "husky install",
         "format": "prettier --config ./.prettierrc src/**/*.{ts,tsx} --write",
-        "prebuild": "pnpm format && pnpm generate",
+        "prebuild": "pnpm generate",
         "generate": "npm-run-all generate:**",
         "generate:copyimages": "tsx ./lib/copy-images.ts",
         "generate:feed": "tsx ./lib/generate-feed.ts",
