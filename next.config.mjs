@@ -99,6 +99,7 @@ const config = {
         // your project has ESLint errors.
         ignoreDuringBuilds: true
     },
+    transpilePackages: ["next-mdx-remote"],
     async redirects() {
         return [
             {
