@@ -8,7 +8,7 @@
     },
     "license": "MIT",
     "engines": {
-        "pnpm": ">= 9.1",
+        "pnpm": ">= 8.15",
         "npm": "please use pnpm"
     },
     "scripts": {
