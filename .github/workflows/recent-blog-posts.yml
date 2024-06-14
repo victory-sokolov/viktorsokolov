@@ -17,16 +17,21 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4.1.7
 
-      - name: Read .nvmrc
-        run: echo ::set-output name=NODE_VERSION::$(cat .nvmrc)
-        id: nvm
-
-      - name: Use Node.js ${{ steps.nvm.outputs.NODE_VERSION }}
+      - name: Set node version
         uses: actions/setup-node@v4.0.2
         with:
-          node-version: ${{ steps.nvm.outputs.NODE_VERSION }}
+          cache: 'pnpm'
+          node-version-file: '.nvmrc'
+
+      - name: Cache node_modules
+        id: node-modules-cache
+        uses: actions/cache@v4
+        with:
+          path: '**/node_modules'
+          key: node-modules-cache-${{ hashFiles('**/pnpm-lock.yaml') }}
 
       - name: Install node dependencies
+        if: steps.node-modules-cache.outputs.cache-hit != 'true'
         run: pnpm install
 
       - name: Run node script
