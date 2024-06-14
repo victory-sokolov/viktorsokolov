@@ -2,7 +2,7 @@ name: Fetch recent blog posts
 on:
   workflow_dispatch:
   schedule:
-    - cron: "* */24 * * *"
+    - cron: '* */24 * * *'
 
 env:
   TWITTER_TIMELINE_ID: ${{ secrets.TWITTER_TIMELINE_ID }}
@@ -15,14 +15,14 @@ jobs:
 
     steps:
       - name: Check out repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4.1.7
 
       - name: Read .nvmrc
         run: echo ::set-output name=NODE_VERSION::$(cat .nvmrc)
         id: nvm
 
       - name: Use Node.js ${{ steps.nvm.outputs.NODE_VERSION }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4.0.2
         with:
           node-version: ${{ steps.nvm.outputs.NODE_VERSION }}
 
