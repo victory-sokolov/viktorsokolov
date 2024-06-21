@@ -13,7 +13,7 @@ export const BuyMeACoffe = () => {
             <a
                 href="https://www.buymeacoffee.com/vikctorysokolov"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 aria-label="Buy me coffe"
             >
                 <Image
