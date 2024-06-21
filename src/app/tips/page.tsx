@@ -1,11 +1,12 @@
-import process from "node:process";
+import { getAllTips } from "@/common/tips";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import process from "node:process";
 import Balancer from "react-wrap-balancer";
 import type { TipFrontmatter } from "src/types/Post";
+
 import { DevelopmentTipsTop, TipItem, TipsContainer, TipsWrapper } from "./styles";
-import { getAllTips } from "@/common/tips";
 
 export const metadata: Metadata = {
     title: "Developments tips",
@@ -13,9 +14,9 @@ export const metadata: Metadata = {
     alternates: {
         canonical: `${process.env.BASE_URL}/tips`,
         languages: {
-            "en-US": "/en-US",
-        },
-    },
+            "en-US": "/en-US"
+        }
+    }
 };
 
 const Tips = async () => {
@@ -31,7 +32,7 @@ const Tips = async () => {
                     <a
                         href="https://twitter.com/VictorySokolov"
                         target="_blank"
-                        rel="noreferrer"
+                        rel="noopener noreferrer"
                         aria-label="Twitter account"
                     >
                         Twitter account
@@ -63,7 +64,7 @@ const Tips = async () => {
                             <a
                                 href={tip.tweetUrl}
                                 target="_blank"
-                                rel="noreferrer"
+                                rel="noopener noreferrer"
                                 aria-label="Tweet URL"
                             >
                                 <div className="tweet-link">
