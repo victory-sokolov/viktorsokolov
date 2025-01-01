@@ -1,8 +1,8 @@
 /* eslint no-console: 0 */
+import { endsWithAny } from "@vsokolov/utils";
 import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
-import { endsWithAny } from "@vsokolov/utils";
 
 const fsPromises = fs.promises;
 const imagesDirs = ["content/posts", "content/tips"];
@@ -10,7 +10,7 @@ const extensisons = [".png", ".jpg", ".svg", "webp"];
 const publicPath = path.join(process.cwd(), "public");
 
 const getDirectories = path => {
-    return fs.readdirSync(path).filter((file) => {
+    return fs.readdirSync(path).filter(file => {
         return fs.statSync(`${path}/${file}`).isDirectory();
     });
 };

@@ -6,11 +6,13 @@ import process from "node:process";
 import type { TipFrontmatter } from "src/types/Post";
 
 import { getPostData, sortPostByDate } from "./content-utils";
+import { filterFolders } from './utils';
+
 
 export const getAllTips = async (): Promise<TipFrontmatter[]> => {
     const twitterTipsPath = "content/tips";
     const tipsPath = path.join(process.cwd(), twitterTipsPath);
-    const tipsData = await fs.promises.readdir(tipsPath);
+    const tipsData = await filterFolders(tipsPath);
 
     const tips = tipsData.map(async slug => {
         const filePath = `${tipsPath}/${slug}/${slug}.mdx`;
