@@ -115,6 +115,7 @@ const GlobalStyles = createGlobalStyle`
     scrollbar-width: thin;
     scrollbar-color: var(--scrollbar-color);
     scroll-behavior: smooth;
+    overscroll-behavior: none;
     -webkit-text-size-adjust: 100%;
   }
 
