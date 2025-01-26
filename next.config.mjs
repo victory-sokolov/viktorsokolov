@@ -74,7 +74,6 @@ const config = {
         ];
     },
     poweredByHeader: false,
-    swcMinify: true,
     experimental: { webVitalsAttribution: ["CLS", "LCP"] },
     compiler: {
         styledComponents: true
