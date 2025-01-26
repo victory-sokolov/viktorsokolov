@@ -1,6 +1,3 @@
-import type { PageParams } from "@/src/types/types";
-import type { Metadata } from "next";
-import process from "node:process";
 import { getPostBySlug } from "@/common/posts";
 import Categories from "@/components/Categories";
 import Comments from "@/components/Comments";
@@ -12,8 +9,11 @@ import { PostMeta } from "@/components/Post/PostMeta";
 import ShareToSocialLink from "@/components/ShareToSocial";
 import { DevToLink, GithubLink } from "@/components/Social/SocialMedia";
 import { config } from "@/src/common/appconfig";
+import type { PageParams } from "@/src/types/types";
+import type { Metadata } from "next";
 import { ArticleJsonLd } from "next-seo";
 import Image from "next/image";
+import process from "node:process";
 import Balancer from "react-wrap-balancer";
 import { ContentWrapper } from "src/styles/global-styles";
 import { POST_TYPE } from "src/types/enums";
@@ -61,7 +61,7 @@ export async function generateMetadata(props): Promise<Metadata | undefined> {
     };
 }
 
-export default async function Page(props: PageParams) {
+export default async function Page(props: { params: PageParams }) {
     const params = await props.params;
     const {
         currentPost: { frontmatter, mdxSource },
