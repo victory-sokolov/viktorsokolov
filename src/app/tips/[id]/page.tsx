@@ -15,7 +15,8 @@ import { config } from "@/src/common/appconfig";
 
 const baseUrl = process.env.BASE_URL;
 
-export async function generateMetadata({ params }): Promise<Metadata | undefined> {
+export async function generateMetadata(props): Promise<Metadata | undefined> {
+    const params = await props.params;
     const {
         currentPost: { frontmatter },
     } = await getTipBySlug(params.id);
@@ -60,7 +61,8 @@ const TipPage: React.FC = async (id: string) => {
         currentPost: { frontmatter, mdxSource },
         nextPost,
         previousPost,
-    } = await getTipBySlug(id);
+    } = await getTipBySlug(/* @next-codemod-error 'id' is passed as an argument. Any asynchronous properties of 'props' must be awaited when accessed. */
+    id);
     const tipFrontmatter = frontmatter as TipFrontmatter;
 
     if (!tipFrontmatter) {

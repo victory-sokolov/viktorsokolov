@@ -20,7 +20,8 @@ import type { PageParams } from "@/src/types/types";
 
 const baseUrl = process.env.BASE_URL;
 
-export async function generateMetadata({ params }): Promise<Metadata | undefined> {
+export async function generateMetadata(props): Promise<Metadata | undefined> {
+    const params = await props.params;
     const {
         currentPost: { frontmatter },
     } = await getPostBySlug(params.id);
@@ -60,7 +61,8 @@ export async function generateMetadata({ params }): Promise<Metadata | undefined
     };
 }
 
-export default async function Page({ params }: PageParams) {
+export default async function Page(props: PageParams) {
+    const params = await props.params;
     const {
         currentPost: { frontmatter, mdxSource },
         nextPost,
