@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import { TagsMapping } from "@/components/Post/PostLabels";
+import styled from "styled-components";
 
 const TechContainer = styled.ul`
     list-style: none;

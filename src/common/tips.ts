@@ -1,13 +1,12 @@
-import { filterFalsyFromObject, toLongDate } from "@vsokolov/utils";
-import matter from "gray-matter";
+import type { TipFrontmatter } from "src/types/Post";
 import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
-import type { TipFrontmatter } from "src/types/Post";
+import { filterFalsyFromObject, toLongDate } from "@vsokolov/utils";
+import matter from "gray-matter";
 
 import { getPostData, sortPostByDate } from "./content-utils";
-import { filterFolders } from './utils';
-
+import { filterFolders } from "./utils";
 
 export const getAllTips = async (): Promise<TipFrontmatter[]> => {
     const twitterTipsPath = "content/tips";

@@ -27,7 +27,7 @@ export const Categories = ({ categories, style }: { categories: string[]; style?
                 .map((category: string) =>
                     TagsMapping[category]
                         ? (
-                            <CategorieStyle key={category}>{TagsMapping[category]()}</CategorieStyle>
+                                <CategorieStyle key={category}>{TagsMapping[category]()}</CategorieStyle>
                             )
                         : (
                                 ""

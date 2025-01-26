@@ -1,17 +1,17 @@
-import process from "node:process";
-import { ArticleJsonLd } from "next-seo";
 import type { Metadata } from "next/types";
-import React from "react";
-import Balancer from "react-wrap-balancer";
-import { ContentWrapper } from "src/styles/global-styles";
 import type { TipFrontmatter } from "src/types/Post";
-import { POST_TYPE } from "src/types/enums";
+import process from "node:process";
 import { getTipBySlug } from "@/common/tips";
 import Categories from "@/components/Categories";
 import { MdxRemote } from "@/components/Mdx";
 import NewsLetterForm from "@/components/NewsLetter";
 import NextNPrevious from "@/components/NextNPrevious";
 import { config } from "@/src/common/appconfig";
+import { ArticleJsonLd } from "next-seo";
+import React from "react";
+import Balancer from "react-wrap-balancer";
+import { ContentWrapper } from "src/styles/global-styles";
+import { POST_TYPE } from "src/types/enums";
 
 const baseUrl = process.env.BASE_URL;
 
@@ -61,8 +61,7 @@ const TipPage: React.FC = async (id: string) => {
         currentPost: { frontmatter, mdxSource },
         nextPost,
         previousPost,
-    } = await getTipBySlug(/* @next-codemod-error 'id' is passed as an argument. Any asynchronous properties of 'props' must be awaited when accessed. */
-    id);
+    } = await getTipBySlug(id);
     const tipFrontmatter = frontmatter as TipFrontmatter;
 
     if (!tipFrontmatter) {

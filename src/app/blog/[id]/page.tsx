@@ -1,10 +1,6 @@
-import process from "node:process";
+import type { PageParams } from "@/src/types/types";
 import type { Metadata } from "next";
-import { ArticleJsonLd } from "next-seo";
-import Image from "next/image";
-import Balancer from "react-wrap-balancer";
-import { ContentWrapper } from "src/styles/global-styles";
-import { POST_TYPE } from "src/types/enums";
+import process from "node:process";
 import { getPostBySlug } from "@/common/posts";
 import Categories from "@/components/Categories";
 import Comments from "@/components/Comments";
@@ -16,7 +12,11 @@ import { PostMeta } from "@/components/Post/PostMeta";
 import ShareToSocialLink from "@/components/ShareToSocial";
 import { DevToLink, GithubLink } from "@/components/Social/SocialMedia";
 import { config } from "@/src/common/appconfig";
-import type { PageParams } from "@/src/types/types";
+import { ArticleJsonLd } from "next-seo";
+import Image from "next/image";
+import Balancer from "react-wrap-balancer";
+import { ContentWrapper } from "src/styles/global-styles";
+import { POST_TYPE } from "src/types/enums";
 
 const baseUrl = process.env.BASE_URL;
 

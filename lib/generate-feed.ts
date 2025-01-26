@@ -1,13 +1,13 @@
+import type { PostFrontmatter, TipFrontmatter } from "src/types/Post";
 /* eslint no-console: 0 */
 import { writeFileSync } from "node:fs";
 import process from "node:process";
+import { config } from "@/src/common/appconfig";
+import { getAllPosts } from "@/src/common/posts";
+import { getAllTips } from "@/src/common/tips";
 import { Feed } from "feed";
 import { remark } from "remark";
 import remarkHtml from "remark-html";
-import type { PostFrontmatter, TipFrontmatter } from "src/types/Post";
-import { getAllTips } from "@/src/common/tips";
-import { getAllPosts } from "@/src/common/posts";
-import { config } from "@/src/common/appconfig";
 
 async function markdownToHtml(markdown) {
     const result = await remark().use(remarkHtml).process(markdown);

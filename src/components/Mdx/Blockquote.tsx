@@ -1,5 +1,5 @@
-import { BiInfoCircle } from "react-icons/bi";
 import type { ReactProps } from "src/types/types";
+import { BiInfoCircle } from "react-icons/bi";
 import styled from "styled-components";
 
 export const BlockquoteContainer = styled.div`

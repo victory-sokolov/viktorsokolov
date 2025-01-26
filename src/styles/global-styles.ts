@@ -462,4 +462,4 @@ const ContentWrapper = styled.article`
     }
 `;
 
-export { GlobalStyles, ContainerStyle, MainStyles, ContentWrapper };
+export { ContainerStyle, ContentWrapper, GlobalStyles, MainStyles };

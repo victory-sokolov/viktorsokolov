@@ -90,7 +90,7 @@ export const Code: React.FC<unknown> = ({ children }) => {
                                         "🎉 Copied!"
                                     )
                                 : (
-                                    <BsClipboardCheck onClick={copyToClipboard} />
+                                        <BsClipboardCheck onClick={copyToClipboard} />
                                     )}
                         </CopyButton>
                         <code className={className}>

@@ -1,5 +1,5 @@
-import process from "node:process";
 import type { NextApiRequest, NextApiResponse } from "next";
+import process from "node:process";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const { email } = req.body;

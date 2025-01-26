@@ -1,5 +1,5 @@
-import process from "node:process";
 import type { Metadata } from "next";
+import process from "node:process";
 import { getContent } from "@/common/content-utils";
 import { MdxRemote } from "@/components/Mdx";
 

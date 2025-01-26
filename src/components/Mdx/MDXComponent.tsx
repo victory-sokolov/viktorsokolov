@@ -1,13 +1,13 @@
 import type { ImageProps } from "next/image";
+import type { ComponentType } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import type { ComponentType } from "react";
 
 import { Blockquote } from "./Blockquote";
+import { Code } from "./code";
 import { H1, H2, H3, H4, H5, H6 } from "./Heading";
 import { TechStackList } from "./TechStackList";
-import { Code } from "./code";
 
 type MDXComponentsProp = {
     [key: string]: ComponentType<unknown>;

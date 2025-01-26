@@ -1,9 +1,9 @@
 "use client";
 
+import type { PostFrontmatter } from "src/types/Post";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import type { PostFrontmatter } from "src/types/Post";
 
 import { Card } from "./Post.styled";
 import { PostMeta } from "./PostMeta";

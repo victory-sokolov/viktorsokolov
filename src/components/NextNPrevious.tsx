@@ -1,6 +1,6 @@
 "use client";
 
-import { capitalize } from '@vsokolov/utils';
+import { capitalize } from "@vsokolov/utils";
 import Link from "next/link";
 import styled from "styled-components";
 
@@ -61,7 +61,7 @@ const NextNPrevious = ({ next, prev, postType }) => {
                 <Link href={`/${postType}/${next.slug}`}>
                     <div className="next-item">
                         <p>
-                            {`Next ${capitalize(postType).slice(0,-1)} ⇢`}
+                            {`Next ${capitalize(postType).slice(0, -1)} ⇢`}
                         </p>
                         {next.title}
                     </div>

@@ -11,7 +11,7 @@ const TIPS_DIR = "content/tips";
 
 const removeCharacters = (text: string) => {
     return text
-        .replace(/[^\p{L}\p{N}\p{P}\p{Z}^$\n]|#|\./gu, "")
+        .replace(/[^\p{L}\p{N}\p{P}\p{Z}^$\n]|[#.]/gu, "")
         .replace(/(?:https?|ftp):\/\/[\n\S]+/g, "")
         .replace(/,./g, "-");
 };

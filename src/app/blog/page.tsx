@@ -1,9 +1,9 @@
-import process from "node:process";
 import type { Metadata } from "next";
-import { BlogContainer, TopBlogMeta } from "./styles";
+import process from "node:process";
 import { config } from "@/common/appconfig";
 import { getAllPosts } from "@/common/posts";
 import { PostItem } from "@/components/Post";
+import { BlogContainer, TopBlogMeta } from "./styles";
 
 export const metadata: Metadata = {
     title: "Blog posts",

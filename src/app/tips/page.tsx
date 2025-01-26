@@ -1,10 +1,10 @@
-import { getAllTips } from "@/common/tips";
 import type { Metadata } from "next";
+import type { TipFrontmatter } from "src/types/Post";
+import process from "node:process";
+import { getAllTips } from "@/common/tips";
 import Image from "next/image";
 import Link from "next/link";
-import process from "node:process";
 import Balancer from "react-wrap-balancer";
-import type { TipFrontmatter } from "src/types/Post";
 
 import { DevelopmentTipsTop, TipItem, TipsContainer, TipsWrapper } from "./styles";
 

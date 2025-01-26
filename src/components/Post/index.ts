@@ -3,5 +3,5 @@
 import { PostCard } from "./PostCard";
 import { PostMeta } from "./PostMeta";
 
-export { PostMeta, PostCard };
+export { PostCard, PostMeta };
 export { PostItem } from "./PostItem";
