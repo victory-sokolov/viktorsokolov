@@ -1,6 +1,3 @@
-import type { Metadata } from "next/types";
-import type { TipFrontmatter } from "src/types/Post";
-import process from "node:process";
 import { getTipBySlug } from "@/common/tips";
 import Categories from "@/components/Categories";
 import { MdxRemote } from "@/components/Mdx";
@@ -8,10 +5,13 @@ import NewsLetterForm from "@/components/NewsLetter";
 import NextNPrevious from "@/components/NextNPrevious";
 import { config } from "@/src/common/appconfig";
 import { ArticleJsonLd } from "next-seo";
+import type { Metadata } from "next/types";
+import process from "node:process";
 import React from "react";
 import Balancer from "react-wrap-balancer";
 import { ContentWrapper } from "src/styles/global-styles";
 import { POST_TYPE } from "src/types/enums";
+import type { TipFrontmatter } from "src/types/Post";
 
 const baseUrl = process.env.BASE_URL;
 
@@ -89,22 +89,20 @@ const TipPage: React.FC = async (id: string) => {
             <Categories categories={tags} style={{ textAlign: "left" }} />
             <MdxRemote source={mdxSource} />
             <p>{tipFrontmatter.description}</p>
-            <p style={{ paddingTop: "var(--space-md)" }}>
-                Posted on&nbsp;
-                <a
-                    href={tipFrontmatter.tweetUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label="Tweet link"
-                >
-                    Twitter
-                </a>
-                {" "}
-                &nbsp; on
-                {" "}
-                {date}
-                .
-            </p>
+            {tipFrontmatter.tweetUrl && (
+                <p style={{ paddingTop: "var(--space-md)" }}>
+                    Posted on&nbsp;
+                    <a
+                        href={tipFrontmatter.tweetUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        aria-label="Tweet link"
+                    >
+                        Twitter
+                    </a>{" "}
+                    &nbsp; on {date}.
+                </p>
+            )}
             <NextNPrevious next={nextPost} prev={previousPost} postType={POST_TYPE.TIP} />
             <NewsLetterForm />
         </ContentWrapper>

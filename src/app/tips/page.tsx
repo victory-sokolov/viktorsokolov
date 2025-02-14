@@ -1,10 +1,10 @@
-import type { Metadata } from "next";
-import type { TipFrontmatter } from "src/types/Post";
-import process from "node:process";
 import { getAllTips } from "@/common/tips";
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import process from "node:process";
 import Balancer from "react-wrap-balancer";
+import type { TipFrontmatter } from "src/types/Post";
 
 import { DevelopmentTipsTop, TipItem, TipsContainer, TipsWrapper } from "./styles";
 
@@ -14,9 +14,9 @@ export const metadata: Metadata = {
     alternates: {
         canonical: `${process.env.BASE_URL}/tips`,
         languages: {
-            "en-US": "/en-US"
-        }
-    }
+            "en-US": "/en-US",
+        },
+    },
 };
 
 const Tips = async () => {
@@ -61,22 +61,24 @@ const Tips = async () => {
                                 </h3>
                             </Link>
                             <p>{tip.date}</p>
-                            <a
-                                href={tip.tweetUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-label="Tweet URL"
-                            >
-                                <div className="tweet-link">
-                                    <Image
-                                        src="/static/twitter.svg"
-                                        alt="Twitter logo"
-                                        width={30}
-                                        height={30}
-                                    />
-                                </div>
-                                <p>Tweet Url</p>
-                            </a>
+                            {tip.tweetUrl && (
+                                <a
+                                    href={tip.tweetUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label="Tweet URL"
+                                >
+                                    <div className="tweet-link">
+                                        <Image
+                                            src="/static/twitter.svg"
+                                            alt="Twitter logo"
+                                            width={30}
+                                            height={30}
+                                        />
+                                    </div>
+                                    <p>Tweet Url</p>
+                                </a>
+                            )}
                         </div>
                     </TipItem>
                 ))}
