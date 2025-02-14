@@ -4,6 +4,7 @@ import { MdxRemote } from "@/components/Mdx";
 import NewsLetterForm from "@/components/NewsLetter";
 import NextNPrevious from "@/components/NextNPrevious";
 import { config } from "@/src/common/appconfig";
+import { PageParams } from "@/src/types/types";
 import { ArticleJsonLd } from "next-seo";
 import type { Metadata } from "next/types";
 import process from "node:process";
@@ -56,12 +57,13 @@ export async function generateMetadata(props): Promise<Metadata | undefined> {
     };
 }
 
-const TipPage: React.FC = async (id: string) => {
+const TipPage: React.FC = async (props: { params: Promise<PageParams> }) => {
+    const params = await props.params;
     const {
         currentPost: { frontmatter, mdxSource },
         nextPost,
         previousPost,
-    } = await getTipBySlug(id);
+    } = await getTipBySlug(params.id);
     const tipFrontmatter = frontmatter as TipFrontmatter;
 
     if (!tipFrontmatter) {

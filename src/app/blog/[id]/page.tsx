@@ -61,7 +61,7 @@ export async function generateMetadata(props): Promise<Metadata | undefined> {
     };
 }
 
-export default async function Page(props: { params: PageParams }) {
+export default async function Page(props: { params: Promise<PageParams> }) {
     const params = await props.params;
     const {
         currentPost: { frontmatter, mdxSource },
