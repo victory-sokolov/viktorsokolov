@@ -1,0 +1,32 @@
+---
+title: Docker attach to running container
+description: Interactively attach to running Docker container using FZF
+slug: docker-attach-to-running-container
+date: 2025-02-13
+featureImage: docker-attach-to-running-container.png
+tags: bash
+---
+Attach to the running Docker container interactively using [FZF](https://github.com/junegunn/fzf).
+
+Install FZF: `brew install fzf`
+
+Add the following function to the `.bashrc` or `.zshrc`
+
+```bash
+dex() {
+    CONTAINER=$(docker ps | grep -v CONTAINER | awk '-F ' ' {print $NF}' | fzf)
+    if [ ! -z "$CONTAINER" ]
+    then
+        docker exec -it "$CONTAINER" bash
+    fi
+}
+```
+
+Let's break it down:
+
+1. `docker ps` Lists all running Docker containers
+2. `grep -v CONTAINER` Filter out headers from `docker ps` output
+3. `awk '-F ' ' {print $NF}'` Extracts only container names
+4. `fzf` Select a container using FZF
+5. `if [ ! -z "$CONTAINER" ]` Checking if container was selected
+6. `docker exec -it "$CONTAINER" bash` - opens an interactive shell in the selected container.
