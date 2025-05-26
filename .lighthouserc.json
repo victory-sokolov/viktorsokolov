@@ -1,0 +1,32 @@
+{
+    "ci": {
+        "collect": {
+            "url": [
+                // A list of URLs to test
+                "https://localhost:3000",
+                "https://localhost:3000/create-post/",
+                "https://localhost:3000/blogs/"
+            ],
+            // The command that starts your production server
+            "startServerCommand": "npm run start",
+            // If a log line contains this text, Lighthouse will start trying to load pages
+            "startServerReadyPattern": "started server on",
+            // The number of times to run the test for each page
+            // (If set to more than 1, results will be combined/aggregated into one report)
+            "numberOfRuns": 1,
+            "settings": {
+                // Switch between desktop and mobile emulation
+                "preset": "desktop"
+            }
+        },
+        "assert": {
+            // Use recommended audits, including PWA tests
+            "preset": "lighthouse:recommended"
+        },
+        "upload": {
+            // Returns a URL which will be valid for a few days
+            // and accessible to anyone with the link
+            "target": "temporary-public-storage"
+        }
+    }
+}
