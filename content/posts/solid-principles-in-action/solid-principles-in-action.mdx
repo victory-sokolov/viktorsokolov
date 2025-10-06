@@ -1,5 +1,5 @@
 ---
-title: "SOLID Principles in Action: Real-World Examples Using Typescript"
+title: "SOLID Principles in Action: Real-World Examples Using TypeScript"
 description: SOLID principles in TypeScript
 date: 2022-12-10
 featureImage: solid-principles.png
@@ -9,7 +9,7 @@ published: true
 
 SOLID is an acronym used in object-oriented design to achieve maintainable and reusable classes.
 
-The SOLID principle doesn't depend on any particular programming language. It is a principle that could and should be adopted into any medium-large project.
+The SOLID principle doesn't depend on any particular programming language. It is a principle that could and should be adopted into any medium-sized project.
 
 **SOLID** is 5 principles that stand for:
 
@@ -29,7 +29,7 @@ As the name implies, class or function should have a single responsibility and o
 
 This rule is very simple but often is violated the reason you find yourself in a situation where you don’t know to which class, a specific method belongs to. The benefits of following this rule result in better code readability, since it's easier to read and test simple small classes or methods.
 
-Let's take a look at the incorrect example belove
+Let's take a look at the incorrect example below
 
 ```typescript
 import { writeFile } from "fs";
@@ -112,7 +112,7 @@ class FileManager {
 }
 ```
 
-If there will be a new requirement for reading/deleting files we can add them to the related class `FileManager`
+If there is a new requirement for reading/deleting files we can add them to the related class `FileManager`
 
 ## Open-closed principle (OCP)
 
@@ -267,7 +267,7 @@ interface PersistanceStorage {
 }
 ```
 
-Now if we implement this interface on the `DatabaseManager` we will be forced to implement all methods, but `moveData` is not directly related to the database. Let’s fix this and split our interface into two separate interfaces.
+Now if we implement this interface on the `DatabaseManager` we will be forced to implement all methods, but `moveData` it is not directly related to the database. Let’s fix this and split our interface into two separate interfaces.
 
 ```typescript
 interface PersistanceStorage {
@@ -384,4 +384,4 @@ In this example, the `UserRepository` depends on the `Database` interface rather
 
 ## Conclusion
 
-In conclusion, the SOLID principles are a set of guidelines for object-oriented design that can help developers to create maintainable, reusable, and scalable code. By applying the SOLID principles in their Typescript projects, developers can create high-quality code that is well-suited to meet the needs and requirements of their users.
+In conclusion, the SOLID principles are a set of guidelines for object-oriented design that can help developers create maintainable, reusable, and scalable code. By applying the SOLID principles in their TypeScript projects, developers can create high-quality code that is well-suited to meet the needs and requirements of their users.
