@@ -4,8 +4,8 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useState } from "react";
-
 import { StyleSheetManager } from "styled-components";
+
 import { CloseIcon, LinkItem, Menu, NavStyles, StyledLink } from "./Nav.styled";
 
 type Props = {
@@ -34,13 +34,7 @@ export const Nav: React.FC<Props> = ({ isSticky }) => {
                 <div>
                     <ul>
                         <LinkItem onClick={() => setIsOpen(!isOpen)}>
-                            <Link
-                                href="/"
-                                passHref
-                                legacyBehavior
-                                data-hover="Home"
-                                aria-label="Home page"
-                            >
+                            <Link href="/" passHref data-hover="Home" aria-label="Home page">
                                 <StyledLink className={pathname === "/" ? "active" : ""}>
                                     Home
                                 </StyledLink>
@@ -50,7 +44,6 @@ export const Nav: React.FC<Props> = ({ isSticky }) => {
                             <Link
                                 href="/blog"
                                 passHref
-                                legacyBehavior
                                 data-hover="Blog"
                                 aria-label="Blog posts page"
                             >
@@ -64,7 +57,6 @@ export const Nav: React.FC<Props> = ({ isSticky }) => {
                             <Link
                                 href="/about"
                                 passHref
-                                legacyBehavior
                                 data-hover="About"
                                 aria-label="About me page"
                                 prefetch={false}
@@ -78,7 +70,6 @@ export const Nav: React.FC<Props> = ({ isSticky }) => {
                             <Link
                                 href="/uses"
                                 passHref
-                                legacyBehavior
                                 data-hover="Uses"
                                 aria-label="Uses page"
                                 prefetch={false}
@@ -89,13 +80,7 @@ export const Nav: React.FC<Props> = ({ isSticky }) => {
                             </Link>
                         </LinkItem>
                         <LinkItem onClick={() => setIsOpen(!isOpen)}>
-                            <Link
-                                href="/tips"
-                                legacyBehavior
-                                passHref
-                                data-hover="Tips"
-                                aria-label="Tips page"
-                            >
+                            <Link href="/tips" passHref data-hover="Tips" aria-label="Tips page">
                                 <StyledLink className={pathname === "/tips" ? "active" : ""}>
                                     Tips
                                 </StyledLink>
