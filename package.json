@@ -9,8 +9,11 @@
     "license": "MIT",
     "engines": {
         "pnpm": ">= 8.15",
-        "npm": "please use pnpm"
+        "npm": "please use pnpm",
+        "yarn": "please use pnpm",
+        "node": ">=22.0.0"
     },
+    "packageManager": "pnpm@10.18.0",
     "scripts": {
         "dev": "next dev --turbopack --experimental-https",
         "build": "next build --turbopack",
@@ -19,10 +22,11 @@
         "lint": "next lint",
         "lint:fix": "next lint --fix",
         "lint:mdx": "pnpm eslint content/**/*.mdx",
-        "check-types": "tsc --noEmit --pretty",
+        "typecheck": "tsc --noEmit --pretty",
         "commit": "cz",
-        "prepare": "husky install",
+        "prepare": "husky",
         "format": "prettier --config ./.prettierrc src/**/*.{ts,tsx} --write",
+        "format:check": "prettier --config ./.prettierrc src/**/*.{ts,tsx}",
         "prebuild": "pnpm generate",
         "generate": "npm-run-all generate:**",
         "generate:copyimages": "tsx ./lib/copy-images.ts",

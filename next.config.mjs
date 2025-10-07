@@ -81,8 +81,6 @@ const config = {
         webVitalsAttribution: ["CLS", "LCP"],
         useLightningcss: true,
         useCache: true,
-        taint: true,
-        mdxRs: true,
         serverSourceMaps: true,
     },
     compiler: {
