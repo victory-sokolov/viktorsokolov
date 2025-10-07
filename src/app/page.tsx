@@ -1,8 +1,8 @@
 import type { PostFrontmatter } from "src/types/Post";
+import Link from "next/link";
 import { getRecentPosts } from "@/common/posts";
 import { PostItem } from "@/components/Post";
 import { HomeStyled } from "@/styles/Home";
-import Link from "next/link";
 
 export default async function Main() {
     const posts = await getRecentPosts();

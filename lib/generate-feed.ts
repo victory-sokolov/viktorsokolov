@@ -1,13 +1,13 @@
-import { config } from "@/src/common/appconfig";
-import { getAllPosts } from "@/src/common/posts";
-import { getAllTips } from "@/src/common/tips";
-import { Feed } from "feed";
+import type { PostFrontmatter, TipFrontmatter } from "src/types/Post";
 /* eslint no-console: 0 */
 import { writeFileSync } from "node:fs";
 import process from "node:process";
+import { Feed } from "feed";
 import { remark } from "remark";
 import remarkHtml from "remark-html";
-import type { PostFrontmatter, TipFrontmatter } from "src/types/Post";
+import { config } from "@/src/common/appconfig";
+import { getAllPosts } from "@/src/common/posts";
+import { getAllTips } from "@/src/common/tips";
 
 async function markdownToHtml(markdown) {
     const result = await remark().use(remarkHtml).process(markdown);
@@ -15,8 +15,8 @@ async function markdownToHtml(markdown) {
 }
 
 const updateTimeToCurrent = (dateString: string) => {
-    let date = new Date(dateString);
-    let now = new Date();
+    const date = new Date(dateString);
+    const now = new Date();
     date.setHours(now.getHours(), now.getMinutes(), now.getSeconds());
     return date;
 };
@@ -66,7 +66,7 @@ export default (async () => {
             content,
             author: [author],
             contributor: [author],
-            date: date,
+            date,
         });
     });
 
@@ -83,7 +83,7 @@ export default (async () => {
             content,
             author: [author],
             contributor: [author],
-            date: date,
+            date,
         });
     });
 

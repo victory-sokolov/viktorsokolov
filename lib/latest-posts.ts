@@ -1,7 +1,7 @@
 import fs from "node:fs";
-import { config } from "@/src/common/appconfig";
 import axios from "axios";
 import parser from "xml2json";
+import { config } from "@/src/common/appconfig";
 
 const FEED_URL = `${config.siteUrl}/rss.xml`;
 const TEMPLATE = [

@@ -1,18 +1,18 @@
+import type { Metadata } from "next/types";
+import type { TipFrontmatter } from "src/types/Post";
+import type { PageParams } from "@/src/types/types";
+import process from "node:process";
+import { ArticleJsonLd } from "next-seo";
+import React from "react";
+import Balancer from "react-wrap-balancer";
+import { ContentWrapper } from "src/styles/global-styles";
+import { POST_TYPE } from "src/types/enums";
 import { getTipBySlug } from "@/common/tips";
 import Categories from "@/components/Categories";
 import { MdxRemote } from "@/components/Mdx";
 import NewsLetterForm from "@/components/NewsLetter";
 import NextNPrevious from "@/components/NextNPrevious";
 import { config } from "@/src/common/appconfig";
-import { PageParams } from "@/src/types/types";
-import { ArticleJsonLd } from "next-seo";
-import type { Metadata } from "next/types";
-import process from "node:process";
-import React from "react";
-import Balancer from "react-wrap-balancer";
-import { ContentWrapper } from "src/styles/global-styles";
-import { POST_TYPE } from "src/types/enums";
-import type { TipFrontmatter } from "src/types/Post";
 
 const baseUrl = process.env.BASE_URL;
 
@@ -101,8 +101,12 @@ const TipPage: React.FC = async (props: { params: Promise<PageParams> }) => {
                         aria-label="Tweet link"
                     >
                         Twitter
-                    </a>{" "}
-                    &nbsp; on {date}.
+                    </a>
+                    {" "}
+                    &nbsp; on
+                    {" "}
+                    {date}
+                    .
                 </p>
             )}
             <NextNPrevious next={nextPost} prev={previousPost} postType={POST_TYPE.TIP} />

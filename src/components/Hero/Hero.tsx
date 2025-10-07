@@ -1,6 +1,6 @@
-import SocialMedia from "@/components/Social";
-
 import React from "react";
+
+import SocialMedia from "@/components/Social";
 import { HeroStyles } from "./Hero.styled";
 
 export const Hero: React.FC = () => {

@@ -2,9 +2,9 @@ import type { PostFrontmatter } from "src/types/Post";
 import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
-import { useReadTime } from "@/hooks/useReadTime";
 import { slugify, toLongDate } from "@vsokolov/utils";
 import matter from "gray-matter";
+import { useReadTime } from "@/hooks/useReadTime";
 
 import { getPostData, sortPostByDate } from "./content-utils";
 

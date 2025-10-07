@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import type { ReactProps } from "src/types/types";
 import process from "node:process";
-import { config } from "@/common/appconfig";
-import Layout from "@/components/Layout/Layout";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Cairo } from "next/font/google";
 import { Provider } from "react-wrap-balancer";
 import StyledComponentsRegistry from "src/registry";
+import { config } from "@/common/appconfig";
+import Layout from "@/components/Layout/Layout";
 
 import { GlobalStyles } from "../styles/global-styles";
 

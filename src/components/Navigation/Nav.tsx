@@ -1,10 +1,10 @@
-import { ScrollIndicator } from "@/components/ScrollIndicator";
 import isPropValid from "@emotion/is-prop-valid";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useState } from "react";
 import { StyleSheetManager } from "styled-components";
+import { ScrollIndicator } from "@/components/ScrollIndicator";
 
 import { CloseIcon, LinkItem, Menu, NavStyles, StyledLink } from "./Nav.styled";
 
