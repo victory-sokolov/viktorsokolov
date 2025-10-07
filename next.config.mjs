@@ -73,8 +73,18 @@ const config = {
             },
         ];
     },
+    turbopack: {
+        resolveExtensions: [".mdx", ".tsx", ".ts", ".jsx", ".js", ".mjs", ".json"],
+    },
     poweredByHeader: false,
-    experimental: { webVitalsAttribution: ["CLS", "LCP"] },
+    experimental: {
+        webVitalsAttribution: ["CLS", "LCP"],
+        useLightningcss: true,
+        useCache: true,
+        taint: true,
+        mdxRs: true,
+        serverSourceMaps: true,
+    },
     compiler: {
         styledComponents: true,
     },

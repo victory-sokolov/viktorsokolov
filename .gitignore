@@ -46,3 +46,5 @@ public/feed.json
 **/public/workbox-*.js.map
 **/public/worker-*.js.map
 tsconfig.tsbuildinfo
+
+certificates
