@@ -1,8 +1,8 @@
+import process from "node:process";
 /** @type {import('next').NextConfig} */
 import NextBundleAnalyzer from "@next/bundle-analyzer";
 import nextPWA from "next-pwa";
 import runtimeCaching from "next-pwa/cache.js";
-import process from "node:process";
 
 const withBundleAnalyzer = NextBundleAnalyzer({
     enabled: process.env.ANALYZE === "true",

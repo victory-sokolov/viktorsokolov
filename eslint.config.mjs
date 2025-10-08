@@ -9,7 +9,7 @@ export default antfu({
             "antfu/top-level-function": "off",
             "style/arrow-parens": "off",
             "style/comma-dangle": "off",
-            curly: "off",
+            "curly": "off",
             "style/brace-style": "off",
             "antfu/if-newline": "off",
         },

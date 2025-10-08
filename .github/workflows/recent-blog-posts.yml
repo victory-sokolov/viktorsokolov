@@ -2,7 +2,7 @@ name: Fetch recent blog posts
 on:
   workflow_dispatch:
   schedule:
-    - cron: '* */24 * * *'
+    - cron: "* */24 * * *"
 
 env:
   TWITTER_TIMELINE_ID: ${{ secrets.TWITTER_TIMELINE_ID }}
@@ -20,14 +20,14 @@ jobs:
       - name: Set node version
         uses: actions/setup-node@v4.0.2
         with:
-          cache: 'pnpm'
-          node-version-file: '.nvmrc'
+          cache: pnpm
+          node-version-file: .nvmrc
 
       - name: Cache node_modules
         id: node-modules-cache
         uses: actions/cache@v4
         with:
-          path: '**/node_modules'
+          path: "**/node_modules"
           key: node-modules-cache-${{ hashFiles('**/pnpm-lock.yaml') }}
 
       - name: Install node dependencies
