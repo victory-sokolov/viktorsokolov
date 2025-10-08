@@ -61,8 +61,6 @@ ${readmeContentChunkBreakAfter}
     });
 }
 
-try {
-    await main();
-} catch (error) {
+main().catch(error => {
     console.error(error);
-}
+});
