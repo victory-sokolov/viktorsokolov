@@ -1,5 +1,4 @@
-import process from "node:process";
-
+/* eslint-disable node/prefer-global/process */
 export const config = {
     title: "Viktor Sokolov - Developer, creator, writer",
     siteUrl: "https://viktorsokolov.com",
