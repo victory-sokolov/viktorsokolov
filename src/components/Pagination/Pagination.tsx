@@ -13,9 +13,12 @@ export const Pagination: React.FC<PaginationProps> = ({ isFirst, isLast, prevPag
         <div className="col-[2/span_12] py-12 flex items-center justify-center max-md:col-[2/span_6]">
             <Link
                 href={prevPage}
+                aria-disabled={isFirst}
                 aria-label="Previous Page"
                 className={`text-[0.875rem] leading-[1.125rem] font-light no-underline mx-8 hover:underline focus:underline ${
-                    isFirst ? "pointer-events-none cursor-default" : "pointer-events-auto cursor-pointer"
+                    isFirst
+                        ? "pointer-events-none cursor-default"
+                        : "pointer-events-auto cursor-pointer"
                 }`}
             >
                 Previous Page
@@ -23,8 +26,11 @@ export const Pagination: React.FC<PaginationProps> = ({ isFirst, isLast, prevPag
             <Link
                 href={nextPage}
                 aria-label="Next Page"
+                aria-disabled={isLast}
                 className={`text-[0.875rem] leading-[1.125rem] font-light no-underline mx-8 hover:underline focus:underline ${
-                    isLast ? "pointer-events-none cursor-default opacity-50" : "pointer-events-auto cursor-pointer"
+                    isLast
+                        ? "pointer-events-none cursor-default opacity-50"
+                        : "pointer-events-auto cursor-pointer"
                 }`}
             >
                 Next Page

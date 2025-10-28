@@ -51,7 +51,6 @@ const Tips = async () => {
                                     title={tip.title}
                                     alt={tip.title}
                                     fill
-                                    priority
                                     className="object-cover"
                                     sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 300px"
                                 />

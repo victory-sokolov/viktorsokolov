@@ -1,10 +1,3 @@
-import type { Metadata } from "next";
-import type { PageParams } from "@/src/types/types";
-import process from "node:process";
-import { ArticleJsonLd } from "next-seo";
-import Image from "next/image";
-import Balancer from "react-wrap-balancer";
-import { POST_TYPE } from "src/types/enums";
 import { getPostBySlug } from "@/common/posts";
 import Categories from "@/components/Categories";
 import Comments from "@/components/Comments";
@@ -16,6 +9,13 @@ import { PostMeta } from "@/components/Post/PostMeta";
 import ShareToSocialLink from "@/components/ShareToSocial";
 import { DevToLink, GithubLink } from "@/components/Social/SocialMedia";
 import { config } from "@/src/common/appconfig";
+import type { PageParams } from "@/src/types/types";
+import type { Metadata } from "next";
+import { ArticleJsonLd } from "next-seo";
+import Image from "next/image";
+import process from "node:process";
+import Balancer from "react-wrap-balancer";
+import { POST_TYPE } from "src/types/enums";
 
 const baseUrl = process.env.BASE_URL;
 
@@ -95,7 +95,6 @@ export default async function Page(props: { params: Promise<PageParams> }) {
                             alt={title}
                             width={800}
                             height={400}
-                            priority
                             className="w-full h-auto"
                             sizes="(max-width: 640px) 100vw, (max-width: 768px) 90vw, 800px"
                         />

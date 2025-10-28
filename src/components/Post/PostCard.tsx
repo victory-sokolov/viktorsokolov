@@ -28,7 +28,6 @@ export const PostCard: React.FC<PostFrontmatter> = ({
                             src={featureImage}
                             alt={title}
                             title={title}
-                            priority
                             width={380}
                             height={200}
                             className="w-full h-auto object-cover"

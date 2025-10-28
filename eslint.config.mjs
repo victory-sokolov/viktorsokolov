@@ -31,7 +31,6 @@ export default antfu({
         "next",
         "plugin:@typescript-eslint/recommended",
         "plugin:jsx-a11y/recommended",
-        "plugin:styled-components-a11y/recommended",
         "plugin:react-hooks/recommended",
     ],
 });

@@ -34,7 +34,7 @@ export default function ShareToSocialLink({ title }: { title: string }) {
                         aria-labelledby="modal-label"
                     >
                         <div className="mt-8">
-                            <h4 className="pl-5 mb-3">
+                            <h4 id="modal-label" className="pl-5 mb-3">
                                 <span className="relative top-[5px] text-[2.6rem]">
                                     <FaCreativeCommonsShare />
                                 </span>

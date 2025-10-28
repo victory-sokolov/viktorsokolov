@@ -76,10 +76,10 @@ export const Nav: React.FC<Props> = ({ isSticky }) => {
                                 <ThemeToggle />
                             </li>
                         </ul>
-                        {isSticky && !isOpen && <ScrollIndicator />}
                     </div>
                 </div>
             </div>
+            {isSticky && !isOpen && <ScrollIndicator />}
         </nav>
     );
 };

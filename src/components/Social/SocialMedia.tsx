@@ -1,8 +1,8 @@
 "use client";
 
+import { config } from "@/src/common/appconfig";
 import React from "react";
 import { FaDev, FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
-import { config } from "@/src/common/appconfig";
 
 type SocialMediaType = {
     color?: string;
@@ -78,7 +78,12 @@ export const GithubLink = ({ slug }: { slug: string }) => (
 );
 
 export const DevToLink = () => (
-    <a href="#" aria-labelledby="Read on DevTo" target="_blank" rel="noopener noreferrer">
+    <a
+        href="https://dev.to/victorysokolov"
+        aria-labelledby="Read on DevTo"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
         <div className="flex justify-center items-center text-[rgb(var(--color-link))] hover:text-[rgb(var(--color-secondary))]">
             <FaDev size={18} />
             <span>Read on DevTo</span>

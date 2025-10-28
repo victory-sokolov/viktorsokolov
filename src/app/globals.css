@@ -50,12 +50,11 @@
   font-size: 62.5%; /* 10px base */
 }
 
-@supports (font: -apple-system-body) and (-webkit-appearance: none) { 
-  img[loading="lazy"] { 
+@supports (-webkit-appearance: none) {
+  img[loading="lazy"] {
     clip-path: inset(0.6px);
-  } 
+  }
 }
-
 @media (prefers-reduced-motion: no-preference) {
   :focus {
     transition: outline-offset 0.25s ease;
@@ -392,7 +391,6 @@ a.mdx-link:hover {
 
 .border-gradient::after {
   border: none;
-  transition: 0.5s ease-in-out;
   position: absolute;
   content: "";
   top: calc(-1 * var(--border-width));

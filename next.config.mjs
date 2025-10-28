@@ -83,9 +83,6 @@ const config = {
         useCache: true,
         serverSourceMaps: true,
     },
-    compiler: {
-        styledComponents: true,
-    },
     typescript: {
         ignoreBuildErrors: true,
     },

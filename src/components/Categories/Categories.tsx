@@ -15,7 +15,7 @@ export const Categories = ({ categories, style }: { categories: string[]; style?
                                 </div>
                             )
                         : (
-                                ""
+                                null
                             ),
                 )}
         </div>
