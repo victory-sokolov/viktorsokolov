@@ -18,7 +18,7 @@ jobs:
           fetch-depth: 0
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v4.1.0
+        uses: pnpm/action-setup@v4.2.0
 
       - name: Read .nvmrc
         run: echo "NODE_VERSION=$(cat .nvmrc)" >> $GITHUB_OUTPUT
