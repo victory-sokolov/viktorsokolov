@@ -13,12 +13,13 @@ jobs:
       - uses: actions/setup-node@master
         with:
           node-version: 20
+      - uses: pnpm/action-setup@v4.2.0
       - run: pnpm install && pnpm install -g @lhci/cli@0.14.0
       - name: Get changed files
         id: changed-files
         uses: tj-actions/changed-files@v46
         with:
-          separator: ","
+          separator: ','
       - name: Find changed pages
         run: node get_changed_pages.mjs ${{ steps.changed-files.outputs.all_modified_files }}
       - run: npm run build && lhci collect && lhci upload
