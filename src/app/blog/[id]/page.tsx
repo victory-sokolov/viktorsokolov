@@ -4,7 +4,6 @@ import process from "node:process";
 import { ArticleJsonLd } from "next-seo";
 import Image from "next/image";
 import Balancer from "react-wrap-balancer";
-import { ContentWrapper } from "src/styles/global-styles";
 import { POST_TYPE } from "src/types/enums";
 import { getPostBySlug } from "@/common/posts";
 import Categories from "@/components/Categories";
@@ -87,9 +86,9 @@ export default async function Page(props: { params: Promise<PageParams> }) {
                 authorName={config.author}
                 description={frontmatter.description}
             />
-            <ContentWrapper>
+            <article className="w-full max-w-[85rem] mx-auto mt-8 md:mt-12 leading-relaxed max-sm:mt-4">
                 <Modal>
-                    <div className="image-wrapper">
+                    <div className="image-wrapper w-full mb-8 md:mb-12 rounded-lg overflow-hidden">
                         <Image
                             src={featureImage}
                             title={title}
@@ -97,27 +96,33 @@ export default async function Page(props: { params: Promise<PageParams> }) {
                             width={800}
                             height={400}
                             priority
-                            sizes="(max-width: 640px) 100vw, (max-width: 760px) 50vw. 33.3vw"
+                            className="w-full h-auto"
+                            sizes="(max-width: 640px) 100vw, (max-width: 768px) 90vw, 800px"
                         />
                     </div>
                     <h1
-                        className="center"
+                        className="text-center text-3xl md:text-4xl lg:text-5xl mb-6 md:mb-8 article-title"
                         itemProp="headline"
-                        style={{ color: "var(--text-color-secondary)" }}
                     >
                         <Balancer>{title}</Balancer>
                     </h1>
-                    <PostMeta date={date} readTime={readTime} style={{ justifyContent: "center" }}>
+                    <PostMeta
+                        date={date}
+                        readTime={readTime}
+                        style={{ justifyContent: "center", marginBottom: "2rem" }}
+                    >
                         <GithubLink slug={frontmatter.slug} />
                         <DevToLink />
                         <ShareToSocialLink title={title} />
                     </PostMeta>
                     {tags && <Categories categories={tags} />}
-                    <MdxRemote source={mdxSource} />
+                    <div className="prose prose-lg max-w-none mt-8 md:mt-12">
+                        <MdxRemote source={mdxSource} />
+                    </div>
                     <NextNPrevious next={nextPost} prev={previousPost} postType={POST_TYPE.POST} />
                     <NewsLetterForm />
                 </Modal>
-            </ContentWrapper>
+            </article>
             <Comments />
         </>
     );

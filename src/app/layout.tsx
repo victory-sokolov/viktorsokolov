@@ -5,23 +5,22 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Cairo } from "next/font/google";
 import { Provider } from "react-wrap-balancer";
-import StyledComponentsRegistry from "src/registry";
 import { config } from "@/common/appconfig";
 import Layout from "@/components/Layout/Layout";
 
-import { GlobalStyles } from "../styles/global-styles";
+import "./globals.css";
 
 const cairo = Cairo({
     subsets: ["latin"],
     display: "swap",
-    variable: "--cairo-font"
+    variable: "--cairo-font",
 });
 
 export const metadata: Metadata = {
     metadataBase: new URL(process.env.BASE_URL),
     title: {
         default: `${config.author} Development Blog`,
-        template: `%s | ${config.author}`
+        template: `%s | ${config.author}`,
     },
     description: config.description,
     applicationName: `${config.author} Blog`,
@@ -32,18 +31,18 @@ export const metadata: Metadata = {
             {
                 media: "(prefers-color-scheme: dark)",
                 url: "/static/favicons/favicon.svg",
-                href: "/static/favicons/favicon.svg"
-            }
-        ]
+                href: "/static/favicons/favicon.svg",
+            },
+        ],
     },
     alternates: {
         canonical: process.env.BASE_URL,
         languages: {
-            "en-US": "/en-US"
+            "en-US": "/en-US",
         },
         types: {
-            "application/rss+xml": `${process.env.BASE_URL}/rss`
-        }
+            "application/rss+xml": `${process.env.BASE_URL}/rss`,
+        },
     },
     generator: `${config.author} uses NextJs!`,
     openGraph: {
@@ -52,7 +51,7 @@ export const metadata: Metadata = {
         description: config.description,
         siteName: config.siteName,
         images: [{ url: config.ogImage }],
-        locale: "en_US"
+        locale: "en_US",
     },
     twitter: {
         description: config.description,
@@ -60,7 +59,7 @@ export const metadata: Metadata = {
         card: "summary_large_image",
         site: config.social.twitterHandle,
         creator: config.social.twitterHandle,
-        images: config.ogImage
+        images: config.ogImage,
     },
     referrer: "origin",
     manifest: "manifest.json",
@@ -72,14 +71,14 @@ export const metadata: Metadata = {
             "follow": true,
             "max-video-preview": -1,
             "max-image-preview": "large",
-            "max-snippet": -1
-        }
+            "max-snippet": -1,
+        },
     },
     appleWebApp: {
         capable: true,
         title: config.siteName,
-        statusBarStyle: "black-translucent"
-    }
+        statusBarStyle: "black-translucent",
+    },
 };
 
 export default function RootLayout({ children }: ReactProps) {
@@ -90,10 +89,7 @@ export default function RootLayout({ children }: ReactProps) {
                 <Layout>
                     <Analytics />
                     <SpeedInsights />
-                    <GlobalStyles />
-                    <StyledComponentsRegistry>
-                        <Provider>{children}</Provider>
-                    </StyledComponentsRegistry>
+                    <Provider>{children}</Provider>
                 </Layout>
             </body>
         </html>

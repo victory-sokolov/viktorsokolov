@@ -8,8 +8,8 @@ import rehypeSlug from "rehype-slug";
 export const getSerializedContent = async content => {
     const options = {
         mdxOptions: {
-            rehypePlugins: [rehypeSlug]
-        }
+            rehypePlugins: [rehypeSlug],
+        },
     };
     return serialize(content, options);
 };
@@ -22,7 +22,7 @@ export const getPostData = async (posts: PostFrontmatter[] | TipFrontmatter[], s
     return {
         currentPost: { frontmatter: currentPost, mdxSource },
         nextPost: posts[currentIndex + 1] || null,
-        previousPost: posts[currentIndex - 1] || null
+        previousPost: posts[currentIndex - 1] || null,
     };
 };
 
@@ -37,6 +37,6 @@ export const getContent = async (filePath: string) => {
 
 export const sortPostByDate = (posts: PostType[]): PostType[] => {
     return posts.sort(
-        (post1: PostType, post2: PostType) => Date.parse(post2.date) - Date.parse(post1.date)
+        (post1: PostType, post2: PostType) => Date.parse(post2.date) - Date.parse(post1.date),
     );
 };

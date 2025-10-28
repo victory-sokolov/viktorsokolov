@@ -2,52 +2,13 @@
 
 import { capitalize } from "@vsokolov/utils";
 import Link from "next/link";
-import styled from "styled-components";
-
-export const NextPreviousItem = styled.div`
-    display: flex;
-    justify-content: space-between;
-    gap: 2rem;
-    margin-top: 2.5rem;
-
-    @media ${props => props.theme.breakpoints.mobile} {
-        flex-direction: column;
-    }
-
-    .next-item {
-        margin-right: auto;
-    }
-
-    .previous-item {
-        margin-left: auto;
-    }
-
-    .next-item,
-    .previous-item {
-        border: 1px solid #424f9e;
-        border-radius: 8px;
-        padding: 1rem;
-        width: 30rem;
-        height: 100%;
-
-        p {
-            padding: 0;
-            margin: 0;
-        }
-
-        &:hover {
-            background: var(--color-secondary-700);
-            color: #fff;
-        }
-    }
-`;
 
 const NextNPrevious = ({ next, prev, postType }) => {
     return (
-        <NextPreviousItem>
+        <div className="flex justify-between gap-8 mt-10 max-sm:flex-col">
             {prev && (
-                <Link href={`/${postType}/${prev.slug}`}>
-                    <div className="previous-item">
+                <Link href={`/${postType}/${prev.slug}`} className="ml-auto">
+                    <div className="border border-[#424f9e] rounded-lg p-4 w-[30rem] h-full hover:bg-[rgb(var(--color-secondary-700))] hover:text-white transition-colors [&_p]:p-0 [&_p]:m-0">
                         <p>
                             ⇠ Previous
                             {postType}
@@ -58,16 +19,14 @@ const NextNPrevious = ({ next, prev, postType }) => {
             )}
 
             {next && (
-                <Link href={`/${postType}/${next.slug}`}>
-                    <div className="next-item">
-                        <p>
-                            {`Next ${capitalize(postType).slice(0, -1)} ⇢`}
-                        </p>
+                <Link href={`/${postType}/${next.slug}`} className="mr-auto">
+                    <div className="border border-[#424f9e] rounded-lg p-4 w-[30rem] h-full hover:bg-[rgb(var(--color-secondary-700))] hover:text-white transition-colors [&_p]:p-0 [&_p]:m-0">
+                        <p>{`Next ${capitalize(postType).slice(0, -1)} ⇢`}</p>
                         {next.title}
                     </div>
                 </Link>
             )}
-        </NextPreviousItem>
+        </div>
     );
 };
 

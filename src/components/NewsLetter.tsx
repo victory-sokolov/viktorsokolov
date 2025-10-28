@@ -1,17 +1,8 @@
 "use client";
 
-import { borderGradient } from "src/styles/global-styles";
-import styled from "styled-components";
-
-const NewLetterFormStyle = styled.div`
-    height: 250px;
-    margin: 3.5rem 0 2rem;
-    ${borderGradient}
-`;
-
 const NewsLetterForm = () => {
     return (
-        <NewLetterFormStyle>
+        <div className="h-[250px] my-14 mb-8 border-gradient">
             <iframe
                 title="Embedded Substack email subscription form"
                 src="https://viktorsokolov.substack.com/embed"
@@ -20,11 +11,11 @@ const NewsLetterForm = () => {
                     border: "none",
                     background: "#fff",
                     height: "100%",
-                    width: "100%"
+                    width: "100%",
                 }}
             >
             </iframe>
-        </NewLetterFormStyle>
+        </div>
     );
 };
 

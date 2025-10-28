@@ -5,7 +5,6 @@ import process from "node:process";
 import { ArticleJsonLd } from "next-seo";
 import React from "react";
 import Balancer from "react-wrap-balancer";
-import { ContentWrapper } from "src/styles/global-styles";
 import { POST_TYPE } from "src/types/enums";
 import { getTipBySlug } from "@/common/tips";
 import Categories from "@/components/Categories";
@@ -74,7 +73,7 @@ const TipPage: React.FC = async (props: { params: Promise<PageParams> }) => {
     const tags = frontmatter.tags.split(" ");
 
     return (
-        <ContentWrapper>
+        <article className="mx-auto mt-[2rem] relative leading-8 max-sm:p-0 max-sm:bg-none max-sm:shadow-none max-sm:max-w-full max-sm:relative max-sm:bottom-0">
             <ArticleJsonLd
                 useAppDir={true}
                 url={`${baseUrl}/blog/${frontmatter.slug}`}
@@ -111,7 +110,7 @@ const TipPage: React.FC = async (props: { params: Promise<PageParams> }) => {
             )}
             <NextNPrevious next={nextPost} prev={previousPost} postType={POST_TYPE.TIP} />
             <NewsLetterForm />
-        </ContentWrapper>
+        </article>
     );
 };
 

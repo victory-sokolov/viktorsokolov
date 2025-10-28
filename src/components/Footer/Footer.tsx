@@ -1,26 +1,29 @@
 import Link from "next/link";
 import { config } from "@/common/appconfig";
 import SocialMedia from "@/components/Social";
-import { FooterStyles } from "./Footer.styled";
 
 export const Footer: React.FC = () => {
     return (
-        <FooterStyles>
-            <div className="footer-content">
-                <Link href="/" aria-label="Home">
-                    {config.siteName}
-                    .com
-                </Link>
+        <footer className="text-center mt-24 pt-16 pb-8 border-t border-[rgba(52,51,51,0.3)] max-sm:mt-16">
+            <Link
+                href="/"
+                aria-label="Home"
+                className="text-white uppercase tracking-wider font-bold text-lg hover:text-[rgb(var(--color-secondary))] transition-colors inline-block mb-6"
+            >
+                {config.siteName}
+                .com
+            </Link>
+            <div className="my-6">
                 <SocialMedia />
-                <p>
-                    &copy;
-                    {" "}
-                    {new Date().getFullYear()}
-                    . Developed by
-                    {" "}
-                    {config.author}
-                </p>
             </div>
-        </FooterStyles>
+            <p className="text-base opacity-80">
+                &copy;
+                {" "}
+                {new Date().getFullYear()}
+                . Developed by
+                {" "}
+                {config.author}
+            </p>
+        </footer>
     );
 };

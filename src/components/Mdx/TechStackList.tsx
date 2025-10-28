@@ -1,25 +1,4 @@
-import styled from "styled-components";
 import { TagsMapping } from "@/components/Post/PostLabels";
-
-const TechContainer = styled.ul`
-    list-style: none;
-    margin: var(--space-sm) 0 var(--space-lg);
-    border-radius: 6px;
-    border: 1px solid var(--color-secondary-900);
-    padding: var(--space-md);
-    background: var(--color-primary-600);
-    color: #fff;
-
-    li {
-        display: inline-flex;
-    }
-
-    span {
-        padding-right: 1rem;
-        font-size: 1.6rem;
-        font-weight: var(--font-medium);
-    }
-`;
 
 export const TechStackList = () => {
     const TECH_STACK_LIST = [
@@ -35,10 +14,10 @@ export const TechStackList = () => {
     ];
     const tags = Object.entries(TagsMapping).filter(([key]) => TECH_STACK_LIST.includes(key));
     return (
-        <TechContainer>
+        <ul className="list-none my-3 mb-8 rounded-md border border-[rgb(var(--color-secondary-900))] p-5 bg-[rgb(var(--color-primary-600))] text-white [&_li]:inline-flex [&_span]:pr-4 [&_span]:text-base [&_span]:font-medium">
             {tags.map(([key, value]) => (
                 <li key={key}>{value()}</li>
             ))}
-        </TechContainer>
+        </ul>
     );
 };

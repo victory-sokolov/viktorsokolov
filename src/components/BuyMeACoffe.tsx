@@ -1,15 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import styled from "styled-components";
-
-const BuyMeCoffeWrapper = styled.div`
-    margin-top: 1rem;
-`;
 
 export const BuyMeACoffe = () => {
     return (
-        <BuyMeCoffeWrapper>
+        <div className="mt-4">
             <a
                 href="https://www.buymeacoffee.com/vikctorysokolov"
                 target="_blank"
@@ -23,6 +18,6 @@ export const BuyMeACoffe = () => {
                     width={200}
                 />
             </a>
-        </BuyMeCoffeWrapper>
+        </div>
     );
 };

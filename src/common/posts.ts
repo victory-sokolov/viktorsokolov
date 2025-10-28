@@ -35,7 +35,7 @@ export const getAllPosts = async (): Promise<PostFrontmatter[]> => {
                     slug,
                     excerpt: `${file.content.substring(0, 150)}...`,
                     featureImage: imgPath,
-                    readTime: useReadTime(file.content)
+                    readTime: useReadTime(file.content),
                 };
             }
         })

@@ -1,15 +1,6 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import styled from "styled-components";
-
-const CommentSection = styled.div`
-    margin-top: 10rem;
-    h2 {
-        border-bottom: 2px solid var(--mode);
-        padding-bottom: 0.8rem;
-    }
-`;
 
 export const Comments: React.FC = () => {
     const commentBox = useRef<HTMLDivElement>(null);
@@ -35,9 +26,9 @@ export const Comments: React.FC = () => {
     }, []);
 
     return (
-        <CommentSection>
+        <div className="mt-40 [&_h2]:border-b-2 [&_h2]:border-[rgb(var(--mode))] [&_h2]:pb-3">
             <h2>Comments</h2>
             <div ref={commentBox} id="comments-container" />
-        </CommentSection>
+        </div>
     );
 };

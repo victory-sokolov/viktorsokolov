@@ -1,15 +1,10 @@
 "use client";
 
 import type { ReactProps } from "src/types/types";
-import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import React from "react";
-import styled, { ThemeProvider } from "styled-components";
-
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
-import { ContainerStyle, GlobalStyles, MainStyles } from "../../styles/global-styles";
-import { theme } from "../../styles/theme";
 
 const variants = {
     hidden: { opacity: 0, x: -150, y: 0 },
@@ -17,34 +12,17 @@ const variants = {
     exit: { opacity: 0, x: 0, y: -100 },
 };
 
-const SiteWrapper = styled.div`
-    min-height: 100vh;
-`;
-
 const Layout: React.FC<ReactProps> = ({ children }) => {
-    const themeType = theme;
     const pathname = usePathname();
 
     return (
-        <ThemeProvider theme={themeType}>
-            <SiteWrapper>
-                <GlobalStyles />
-                <MainStyles>
-                    <motion.main
-                        key={pathname}
-                        initial="hidden"
-                        animate="enter"
-                        exit="exit"
-                        variants={variants}
-                        transition={{ type: "linear", duration: 0.75 }}
-                    >
-                        <Header />
-                        <ContainerStyle>{children}</ContainerStyle>
-                        <Footer />
-                    </motion.main>
-                </MainStyles>
-            </SiteWrapper>
-        </ThemeProvider>
+        <div className="min-h-screen">
+            <div className="max-w-screen-sm mx-auto px-16 max-sm:px-8">
+                <Header />
+                <div className="mt-24 pb-20 max-sm:mt-16">{children}</div>
+                <Footer />
+            </div>
+        </div>
     );
 };
 
