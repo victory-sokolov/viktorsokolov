@@ -12,7 +12,7 @@ jobs:
           fetch-depth: 50
       - uses: actions/setup-node@master
         with:
-          node-version: 20
+          node-version: 22
       - uses: pnpm/action-setup@v4.2.0
       - run: pnpm install && pnpm install -g @lhci/cli@0.14.0
       - name: Get changed files
