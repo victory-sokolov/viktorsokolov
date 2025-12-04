@@ -17,16 +17,7 @@ jobs:
       - name: Install pnpm
         uses: pnpm/action-setup@v4.2.0
 
-      - run: pnpm install && pnpm install -g @lhci/cli@0.15.1
-      - name: Get changed files
-        id: changed-files
-        uses: tj-actions/changed-files@v46
-        with:
-          separator: ','
-      - name: Find changed pages
-        run: node get_changed_pages.mjs ${{ steps.changed-files.outputs.all_modified_files }}
-      - run: pnpm run build && lhci collect && lhci upload
+      - name: 🚀 Run Lighthouse CI
+        run: pnpm exec lhci autorun
         env:
-          # If you app has any environment variables that
-          # are required at build time, add them here:
-          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LIGHTHOUSE_CHECK_GITHUB_ACCESS_TOKEN }}
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
