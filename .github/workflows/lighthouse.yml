@@ -1,28 +1,37 @@
-name: Lighthouse Check
+name: Lighthouse CI
+
 on:
   workflow_dispatch:
   pull_request:
+    branches: [main, master]
+    types: [opened, reopened, synchronize, labeled]
 
 jobs:
   lighthouseci:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@master
         with:
-          fetch-depth: 50
-      - uses: actions/setup-node@master
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: 📦 Set up pnpm
+        uses: pnpm/action-setup@v4.2.0
         with:
-          node-version: 20
-      - run: npm install && npm install -g @lhci/cli@0.14.0
-      - name: Get changed files
-        id: changed-files
-        uses: tj-actions/changed-files@v46
+          run_install: false
+
+      - uses: actions/setup-node@v6
         with:
-          separator: ","
-      - name: Find changed pages
-        run: node get_changed_pages.mjs ${{ steps.changed-files.outputs.all_modified_files }}
-      - run: npm run build && lhci collect && lhci upload
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - name: 📦 Install dependencies and run Lighthouse CI
+        run: pnpm install
+
+      - name: 🏗️ Build project
+        run: pnpm run build
+
+      - name: 🚀 Run Lighthouse CI
+        run: pnpm exec lhci autorun
         env:
-          # If you app has any environment variables that
-          # are required at build time, add them here:
-          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LIGHTHOUSE_CHECK_GITHUB_ACCESS_TOKEN }}
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
