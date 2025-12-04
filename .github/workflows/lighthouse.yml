@@ -14,15 +14,16 @@ jobs:
       - uses: actions/checkout@master
         with:
           ref: ${{ github.event.pull_request.head.sha }}
-      - uses: actions/setup-node@v6
-        with:
-          node-version-file: .nvmrc
-          cache: pnpm
 
       - name: 📦 Set up pnpm
         uses: pnpm/action-setup@v4.2.0
         with:
           run_install: false
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
 
       - name: 📦 Install dependencies and run Lighthouse CI
         run: pnpm install
