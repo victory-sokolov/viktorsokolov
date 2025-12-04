@@ -16,7 +16,8 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha }}
       - uses: actions/setup-node@v6
         with:
-          node-version: 2
+          node-version-file: .nvmrc
+          cache: pnpm
 
       - name: 📦 Set up pnpm
         uses: pnpm/action-setup@v4.2.0
