@@ -14,11 +14,6 @@
         "yarn": "please use pnpm",
         "node": ">=22.0.0"
     },
-    "pnpm": {
-        "overrides": {
-            "styled-react-modal>react": "19.2.1"
-        }
-    },
     "scripts": {
         "dev": "next dev --turbopack --experimental-https",
         "build": "next build",
@@ -104,6 +99,11 @@
         "tsx": "^4.20.6",
         "typescript": "^5.9.3",
         "xml2json": "^0.12.0"
+    },
+    "pnpm": {
+        "overrides": {
+            "styled-react-modal>react": "19.2.1"
+        }
     },
     "husky": {
         "hooks": {
