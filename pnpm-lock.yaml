@@ -4,6 +4,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  styled-react-modal>react: 19.2.1
+
 importers:
 
   .:
@@ -5678,7 +5681,7 @@ packages:
   styled-react-modal@3.1.1:
     resolution: {integrity: sha512-H6Ga8dBMmIBYQ8s7ZLQbHzToMh7u52WMR65P1n7dmpgJSJs2oDdBipXhwoO518eJF92wTeyqH5tKO7S1p0y/yA==}
     peerDependencies:
-      react: ^18.0.0
+      react: 19.2.1
       react-dom: ^18.0.0
       styled-components: ^6.1.1
 
