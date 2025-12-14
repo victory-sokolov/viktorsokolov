@@ -1,7 +1,6 @@
 import { Buffer } from "node:buffer";
 import fs from "node:fs";
 import process from "node:process";
-/* eslint no-console: 0 */
 import axios from "axios";
 import { fileTypeFromBuffer } from "file-type";
 import { TwitterApi } from "twitter-api-v2";

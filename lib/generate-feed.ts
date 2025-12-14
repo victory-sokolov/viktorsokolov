@@ -1,5 +1,4 @@
 import type { PostFrontmatter, TipFrontmatter } from "src/types/Post";
-/* eslint no-console: 0 */
 import { writeFileSync } from "node:fs";
 import process from "node:process";
 import { Feed } from "feed";
