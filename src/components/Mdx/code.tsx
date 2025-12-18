@@ -20,7 +20,7 @@ export const Code: React.FC<unknown> = ({ children }) => {
         <Highlight code={codeString} language={language} theme={themes.jettwaveDark}>
             {({ className, style, tokens, getLineProps, getTokenProps }) => (
                 <div className="code-highlight" data-language={language}>
-                    <div className="relative top-sm flex flex-row rounded-t-md bg-[#142532] p-4 [&_.green]:bg-[#6aca43] [&_.red]:bg-[#ee5c56] [&_.yellow]:bg-[#fcc12d] [&>span]:mr-2 [&>span]:h-sm [&>span]:w-sm [&>span]:rounded-full">
+                    <div className="top-sm [&>span]:h-sm relative flex flex-row rounded-t-md bg-[#142532] p-4 [&_.green]:bg-[#6aca43] [&_.red]:bg-[#ee5c56] [&_.yellow]:bg-[#fcc12d] [&>span]:mr-2 [&>span]:w-sm [&>span]:rounded-full">
                         <span className="red"></span>
                         <span className="yellow"></span>
                         <span className="green"></span>
