@@ -44,6 +44,10 @@
   --breakpoint-md: 768px;
   --breakpoint-lg: 1024px;
   --breakpoint-xl: 1280px;
+
+  /* Shadows */
+  --shadow-card: 0 5px 15px rgba(154, 160, 185, 0.3);
+  --shadow-card-hover: 0 8px 20px rgba(154, 160, 185, 0.45);
 }
 
 :root {

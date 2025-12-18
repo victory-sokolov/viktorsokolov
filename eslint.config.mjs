@@ -47,7 +47,7 @@ export default antfu(
             "tailwindcss/enforces-negative-arbitrary-values": "warn",
             "tailwindcss/enforces-shorthand": "warn",
             "tailwindcss/migration-from-tailwind-2": "error",
-            "tailwindcss/no-arbitrary-value": "warning",
+            "tailwindcss/no-arbitrary-value": "warn",
             "tailwindcss/no-contradicting-classname": "error",
             "tailwindcss/no-custom-classname": "warn",
             "tailwindcss/no-unnecessary-arbitrary-value": "warn",
