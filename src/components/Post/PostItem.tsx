@@ -20,7 +20,7 @@ export const PostItem = ({ post }: { post: PostFrontmatter }) => {
                     <Image
                         src={post.featureImage}
                         alt={post.title}
-                        title={post.title}                        
+                        title={post.title}
                         width={500}
                         height={300}
                         className="rounded-lg w-full h-auto object-cover"

@@ -1,8 +1,8 @@
 "use client";
 
-import { config } from "@/src/common/appconfig";
 import React from "react";
 import { FaDev, FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { config } from "@/src/common/appconfig";
 
 type SocialMediaType = {
     color?: string;
