@@ -12,6 +12,7 @@ export default antfu({
             "curly": "off",
             "style/brace-style": "off",
             "antfu/if-newline": "off",
+            "no-console": ["warn", { allow: ["warn", "error", "info", "debug"] }],
         },
     },
     typescript: {
