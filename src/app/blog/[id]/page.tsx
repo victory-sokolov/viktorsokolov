@@ -86,7 +86,7 @@ export default async function Page(props: { params: Promise<PageParams> }) {
                 authorName={config.author}
                 description={frontmatter.description}
             />
-            <article className="mx-auto mt-8 w-full max-w-[85rem] leading-relaxed max-sm:mt-4 md:mt-12">
+            <article className="mx-auto mt-8 w-full max-w-340 leading-relaxed max-sm:mt-4 md:mt-12">
                 <Modal>
                     <div className="image-wrapper mb-8 w-full overflow-hidden rounded-lg md:mb-12">
                         <Image

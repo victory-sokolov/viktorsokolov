@@ -10,7 +10,7 @@ export const Categories = ({ categories, style }: { categories: string[]; style?
                 .map((category: string) =>
                     TagsMapping[category]
                         ? (
-                                <div key={category} className="inline-block pb-2 [&:not(:first-child)]:ml-4">
+                                <div key={category} className="inline-block pb-2 not-first:ml-4">
                                     {TagsMapping[category]()}
                                 </div>
                             )

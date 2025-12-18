@@ -26,7 +26,7 @@ export const Nav: React.FC<Props> = ({ isSticky }) => {
         <nav className="z-10 w-full">
             {/* Hamburger Menu - Mobile Only */}
             <div
-                className={`fixed top-4 z-50 hidden h-16 w-16 cursor-pointer items-center justify-center rounded bg-gradient-to-r from-[#3560c5] to-[#6216d8] transition-all duration-300 max-sm:flex ${
+                className={`fixed top-4 z-50 hidden h-16 w-16 cursor-pointer items-center justify-center rounded bg-linear-to-r from-[#3560c5] to-[#6216d8] transition-all duration-300 max-sm:flex ${
                     isSticky ? "right-4" : "-right-20"
                 }`}
                 onClick={() => setIsOpen(!isOpen)}

@@ -28,7 +28,7 @@ export default function ShareToSocialLink({ title }: { title: string }) {
                 <>
                     <div className="fixed inset-0 z-50 bg-black/50" onClick={toggleModal} />
                     <div
-                        className="fixed top-1/2 left-1/2 z-[100] h-[35rem] w-[30rem] -translate-x-1/2 -translate-y-1/2 rounded-lg bg-[#050e4f] shadow-[0_0_0_1px_rgb(var(--color-secondary-700))]"
+                        className="fixed top-1/2 left-1/2 z-100 h-140 w-120 -translate-x-1/2 -translate-y-1/2 rounded-lg bg-[#050e4f] shadow-[0_0_0_1px_rgb(var(--color-secondary-700))]"
                         role="dialog"
                         aria-modal={true}
                         aria-labelledby="modal-label"
