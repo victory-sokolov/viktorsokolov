@@ -20,21 +20,21 @@ export default function ShareToSocialLink({ title }: { title: string }) {
     };
 
     return (
-        <button className="shadow-none border-none outline-none">
+        <button className="border-none shadow-none outline-none">
             <span className="cursor-pointer text-[2.2rem]">
                 <FaShareAlt onClick={toggleModal} />
             </span>
             {isOpen && (
                 <>
-                    <div className="fixed inset-0 bg-black/50 z-50" onClick={toggleModal} />
+                    <div className="fixed inset-0 z-50 bg-black/50" onClick={toggleModal} />
                     <div
-                        className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[100] w-[30rem] h-[35rem] bg-[#050e4f] rounded-lg shadow-[0_0_0_1px_rgb(var(--color-secondary-700))]"
+                        className="fixed top-1/2 left-1/2 z-[100] h-[35rem] w-[30rem] -translate-x-1/2 -translate-y-1/2 rounded-lg bg-[#050e4f] shadow-[0_0_0_1px_rgb(var(--color-secondary-700))]"
                         role="dialog"
                         aria-modal={true}
                         aria-labelledby="modal-label"
                     >
                         <div className="mt-8">
-                            <h4 id="modal-label" className="pl-5 mb-3">
+                            <h4 id="modal-label" className="mb-3 pl-5">
                                 <span className="relative top-[5px] text-[2.6rem]">
                                     <FaCreativeCommonsShare />
                                 </span>
@@ -42,45 +42,45 @@ export default function ShareToSocialLink({ title }: { title: string }) {
                             </h4>
                             <a
                                 href={share.toTwitter(url, title)}
-                                className="p-4 pl-5 font-medium flex items-center w-full hover:bg-[rgb(var(--color-primary-600))]"
+                                className="flex w-full items-center p-4 pl-5 font-medium hover:bg-[rgb(var(--color-primary-600))]"
                             >
-                                <span className="pr-4 text-[2.6rem] h-[2.2rem]">
+                                <span className="h-[2.2rem] pr-4 text-[2.6rem]">
                                     <CiTwitter />
                                 </span>
                                 Share to Twitter
                             </a>
                             <a
                                 href={share.toLinkedIn(url)}
-                                className="p-4 pl-5 font-medium flex items-center w-full hover:bg-[rgb(var(--color-primary-600))]"
+                                className="flex w-full items-center p-4 pl-5 font-medium hover:bg-[rgb(var(--color-primary-600))]"
                             >
-                                <span className="pr-4 text-[2.6rem] h-[2.2rem]">
+                                <span className="h-[2.2rem] pr-4 text-[2.6rem]">
                                     <CiLinkedin />
                                 </span>
                                 Share to LinkedIn
                             </a>
                             <a
                                 href={share.toReddit(url, title)}
-                                className="p-4 pl-5 font-medium flex items-center w-full hover:bg-[rgb(var(--color-primary-600))]"
+                                className="flex w-full items-center p-4 pl-5 font-medium hover:bg-[rgb(var(--color-primary-600))]"
                             >
-                                <span className="pr-4 text-[2.6rem] h-[2.2rem]">
+                                <span className="h-[2.2rem] pr-4 text-[2.6rem]">
                                     <FcReddit />
                                 </span>
                                 Share to Reddit
                             </a>
                             <a
                                 href={share.toHackerNews(url, title)}
-                                className="p-4 pl-5 font-medium flex items-center w-full hover:bg-[rgb(var(--color-primary-600))]"
+                                className="flex w-full items-center p-4 pl-5 font-medium hover:bg-[rgb(var(--color-primary-600))]"
                             >
-                                <span className="pr-4 text-[2.6rem] h-[2.2rem]">
+                                <span className="h-[2.2rem] pr-4 text-[2.6rem]">
                                     <DiHackernews />
                                 </span>
                                 Share to Hacker News
                             </a>
                             <a
                                 href={share.toFacebook(url)}
-                                className="p-4 pl-5 font-medium flex items-center w-full hover:bg-[rgb(var(--color-primary-600))]"
+                                className="flex w-full items-center p-4 pl-5 font-medium hover:bg-[rgb(var(--color-primary-600))]"
                             >
-                                <span className="pr-4 text-[2.6rem] h-[2.2rem]">
+                                <span className="h-[2.2rem] pr-4 text-[2.6rem]">
                                     <CiFacebook />
                                 </span>
                                 Share to Facebook

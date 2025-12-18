@@ -86,21 +86,21 @@ export default async function Page(props: { params: Promise<PageParams> }) {
                 authorName={config.author}
                 description={frontmatter.description}
             />
-            <article className="w-full max-w-[85rem] mx-auto mt-8 md:mt-12 leading-relaxed max-sm:mt-4">
+            <article className="mx-auto mt-8 w-full max-w-[85rem] leading-relaxed max-sm:mt-4 md:mt-12">
                 <Modal>
-                    <div className="image-wrapper w-full mb-8 md:mb-12 rounded-lg overflow-hidden">
+                    <div className="image-wrapper mb-8 w-full overflow-hidden rounded-lg md:mb-12">
                         <Image
                             src={featureImage}
                             title={title}
                             alt={title}
                             width={800}
                             height={400}
-                            className="w-full h-auto"
+                            className="h-auto w-full"
                             sizes="(max-width: 640px) 100vw, (max-width: 768px) 90vw, 800px"
                         />
                     </div>
                     <h1
-                        className="text-center text-3xl md:text-4xl lg:text-5xl mb-6 md:mb-8 article-title"
+                        className="article-title mb-6 text-center text-3xl md:mb-8 md:text-4xl lg:text-5xl"
                         itemProp="headline"
                     >
                         <Balancer>{title}</Balancer>
@@ -115,7 +115,7 @@ export default async function Page(props: { params: Promise<PageParams> }) {
                         <ShareToSocialLink title={title} />
                     </PostMeta>
                     {tags && <Categories categories={tags} />}
-                    <div className="prose prose-lg max-w-none mt-8 md:mt-12">
+                    <div className="prose prose-lg mt-8 max-w-none md:mt-12">
                         <MdxRemote source={mdxSource} />
                     </div>
                     <NextNPrevious next={nextPost} prev={previousPost} postType={POST_TYPE.POST} />

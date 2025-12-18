@@ -73,7 +73,7 @@ const TipPage: React.FC = async (props: { params: Promise<PageParams> }) => {
     const tags = frontmatter.tags.split(" ");
 
     return (
-        <article className="mx-auto mt-[2rem] relative leading-8 max-sm:p-0 max-sm:bg-none max-sm:shadow-none max-sm:max-w-full max-sm:relative max-sm:bottom-0">
+        <article className="relative mx-auto mt-[2rem] leading-8 max-sm:relative max-sm:bottom-0 max-sm:max-w-full max-sm:bg-none max-sm:p-0 max-sm:shadow-none">
             <ArticleJsonLd
                 useAppDir={true}
                 url={`${baseUrl}/blog/${frontmatter.slug}`}

@@ -53,7 +53,7 @@ export const Header: React.FC = () => {
     return (
         <div className="relative">
             <header className={`${sticky.isSticky ? "sticky" : ""}`} ref={headerRef}>
-                <div className="flex items-center justify-center py-16 z-20 max-sm:py-8 max-sm:justify-start">
+                <div className="z-20 flex items-center justify-center py-16 max-sm:justify-start max-sm:py-8">
                     <Nav aria-label="Navigation" isSticky={sticky.isSticky} />
                 </div>
             </header>

@@ -8,7 +8,7 @@ export default async function Main() {
 
     return (
         <div className="max-sm:text-center">
-            <h2 className="text-3xl mb-12 max-sm:text-2xl max-sm:mb-8">Featured Posts</h2>
+            <h2 className="mb-12 text-3xl max-sm:mb-8 max-sm:text-2xl">Featured Posts</h2>
             <div className="grid grid-cols-3 gap-12 max-sm:grid-cols-1 max-sm:gap-10">
                 {posts.map((post: PostFrontmatter, index: number) => (
                     <PostItem key={index} post={post} />
@@ -16,7 +16,7 @@ export default async function Main() {
             </div>
             <Link
                 href="/blog"
-                className="inline-flex items-center gap-3 text-lg mt-12 hover:text-[rgb(var(--color-secondary-600))] transition-colors font-medium max-sm:mt-10"
+                className="mt-12 inline-flex items-center gap-3 text-lg font-medium transition-colors hover:text-[rgb(var(--color-secondary-600))] max-sm:mt-10"
             >
                 Read all posts
                 <svg

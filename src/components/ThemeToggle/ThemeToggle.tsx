@@ -10,10 +10,10 @@ export const ThemeToggle: React.FC = () => {
     if (!mounted) {
         return (
             <button
-                className="p-2 rounded-lg border-2 border-[rgb(var(--color-secondary-700))] hover:bg-[rgba(var(--color-secondary-700),0.1)] transition-colors"
+                className="rounded-lg border-2 border-[rgb(var(--color-secondary-700))] p-2 transition-colors hover:bg-[rgba(var(--color-secondary-700),0.1)]"
                 aria-label="Toggle theme"
             >
-                <div className="w-5 h-5" />
+                <div className="h-5 w-5" />
             </button>
         );
     }
@@ -21,7 +21,7 @@ export const ThemeToggle: React.FC = () => {
     return (
         <button
             onClick={toggleTheme}
-            className="p-2 rounded-lg border-2 border-[rgb(var(--color-secondary-700))] hover:bg-[rgba(var(--color-secondary-700),0.1)] transition-colors"
+            className="rounded-lg border-2 border-[rgb(var(--color-secondary-700))] p-2 transition-colors hover:bg-[rgba(var(--color-secondary-700),0.1)]"
             aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
         >
             {theme === "dark"

@@ -17,8 +17,8 @@ export const SocialMedia: React.FC<SocialMediaType> = ({
 
     return (
         <div className="my-6">
-            <ul className="p-0 flex items-center justify-center gap-4 md:gap-6">
-                <li className="inline-block hover:opacity-70 transition-opacity">
+            <ul className="flex items-center justify-center gap-4 p-0 md:gap-6">
+                <li className="inline-block transition-opacity hover:opacity-70">
                     <a
                         href={meta.social.twitter}
                         target="_blank"
@@ -28,7 +28,7 @@ export const SocialMedia: React.FC<SocialMediaType> = ({
                         <FaTwitter color={`var(${color})`} size={size} />
                     </a>
                 </li>
-                <li className="inline-block hover:opacity-70 transition-opacity">
+                <li className="inline-block transition-opacity hover:opacity-70">
                     <a
                         href={meta.social.linkedin}
                         target="_blank"
@@ -38,7 +38,7 @@ export const SocialMedia: React.FC<SocialMediaType> = ({
                         <FaLinkedin color={`var(${color})`} size={size} />
                     </a>
                 </li>
-                <li className="inline-block hover:opacity-70 transition-opacity">
+                <li className="inline-block transition-opacity hover:opacity-70">
                     <a
                         href={meta.social.github}
                         target="_blank"
@@ -48,7 +48,7 @@ export const SocialMedia: React.FC<SocialMediaType> = ({
                         <FaGithub color={`var(${color})`} size={size} />
                     </a>
                 </li>
-                <li className="inline-block hover:opacity-70 transition-opacity">
+                <li className="inline-block transition-opacity hover:opacity-70">
                     <a
                         href={meta.social.devto}
                         target="_blank"
@@ -70,7 +70,7 @@ export const GithubLink = ({ slug }: { slug: string }) => (
         target="_blank"
         rel="noopener noreferrer"
     >
-        <div className="flex justify-center items-center text-[rgb(var(--color-link))] hover:text-[rgb(var(--color-secondary))]">
+        <div className="flex items-center justify-center text-[rgb(var(--color-link))] hover:text-[rgb(var(--color-secondary))]">
             <FaGithub />
             <span>Edit this post</span>
         </div>
@@ -84,7 +84,7 @@ export const DevToLink = () => (
         target="_blank"
         rel="noopener noreferrer"
     >
-        <div className="flex justify-center items-center text-[rgb(var(--color-link))] hover:text-[rgb(var(--color-secondary))]">
+        <div className="flex items-center justify-center text-[rgb(var(--color-link))] hover:text-[rgb(var(--color-secondary))]">
             <FaDev size={18} />
             <span>Read on DevTo</span>
         </div>

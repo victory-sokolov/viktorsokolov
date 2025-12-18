@@ -2,7 +2,7 @@
 
 const NewsLetterForm = () => {
     return (
-        <div className="h-[250px] my-14 mb-8 border-gradient">
+        <div className="border-gradient my-14 mb-8 h-[250px]">
             <iframe
                 title="Embedded Substack email subscription form"
                 src="https://viktorsokolov.substack.com/embed"

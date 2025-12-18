@@ -19,10 +19,10 @@ export const PostCard: React.FC<PostFrontmatter> = ({
     return (
         <div
             key={id}
-            className="shadow-[0_5px_15px_rgba(154,160,185,0.3)] bg-white rounded-lg text-[rgb(var(--color-text-primary))] w-full max-w-[38rem] mb-12 transition-all duration-300 hover:shadow-[0_8px_20px_rgba(154,160,185,0.45)] hover:scale-[1.02] max-sm:max-w-full"
+            className="mb-12 w-full max-w-[38rem] rounded-lg bg-white text-[rgb(var(--color-text-primary))] shadow-[0_5px_15px_rgba(154,160,185,0.3)] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_8px_20px_rgba(154,160,185,0.45)] max-sm:max-w-full"
         >
             <Link href={`${slug}`} aria-label={title}>
-                <div className="flex flex-col h-full">
+                <div className="flex h-full flex-col">
                     <div className="w-full overflow-hidden rounded-t-lg">
                         <Image
                             src={featureImage}
@@ -30,12 +30,12 @@ export const PostCard: React.FC<PostFrontmatter> = ({
                             title={title}
                             width={380}
                             height={200}
-                            className="w-full h-auto object-cover"
+                            className="h-auto w-full object-cover"
                             sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 380px"
                         />
                     </div>
-                    <div className="p-6 md:p-8 flex flex-col flex-1">
-                        <h3 className="text-center text-xl md:text-2xl mb-4 hover:text-[rgb(var(--color-secondary-600))] transition-colors">
+                    <div className="flex flex-1 flex-col p-6 md:p-8">
+                        <h3 className="mb-4 text-center text-xl transition-colors hover:text-[rgb(var(--color-secondary-600))] md:text-2xl">
                             {title}
                         </h3>
                         <p className="mb-4 flex-1 text-base leading-relaxed">{excerpt}</p>

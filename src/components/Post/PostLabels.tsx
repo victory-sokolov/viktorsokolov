@@ -11,7 +11,7 @@ import {
 import { TbBrandNextjs } from "react-icons/tb";
 
 const TagWrapper = ({ children, style }: { children: React.ReactNode; style?: React.CSSProperties }) => (
-    <span className="border border-white py-3 px-4 inline-flex items-center m-2 [&>span]:relative [&>span]:right-[5px]" style={style}>
+    <span className="m-2 inline-flex items-center border border-white px-4 py-3 [&>span]:relative [&>span]:right-[5px]" style={style}>
         {children}
     </span>
 );

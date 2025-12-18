@@ -9,7 +9,7 @@ import Header from "@/components/Header";
 const Layout: React.FC<ReactProps> = ({ children }) => {
     return (
         <div className="min-h-screen">
-            <div className="w-full max-w-[850px] mx-auto! px-10! max-sm:px-8!">
+            <div className="mx-auto! w-full max-w-[850px] px-10! max-sm:px-8!">
                 <Header />
                 <div className="mt-[6rem] pb-20 max-sm:mt-16">{children}</div>
                 <Footer />

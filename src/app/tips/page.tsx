@@ -23,9 +23,9 @@ const Tips = async () => {
 
     return (
         <div className="w-full">
-            <div className="pb-12 md:pb-16 max-md:text-center">
-                <h1 className="text-3xl md:text-4xl lg:text-5xl mb-6">🔥 Hot Development Tips</h1>
-                <p className="text-lg md:text-xl opacity-80">
+            <div className="pb-12 max-md:text-center md:pb-16">
+                <h1 className="mb-6 text-3xl md:text-4xl lg:text-5xl">🔥 Hot Development Tips</h1>
+                <p className="text-lg opacity-80 md:text-xl">
                     Development tips and snippets that i share on my&nbsp;
                     <a
                         href="https://twitter.com/VictorySokolov"
@@ -38,14 +38,14 @@ const Tips = async () => {
                     </a>
                 </p>
             </div>
-            <div className="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-8 md:gap-10 max-md:grid-cols-1">
+            <div className="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-8 max-md:grid-cols-1 md:gap-10">
                 {tips.map((tip: TipFrontmatter, index: number) => (
                     <div
                         key={index}
-                        className="bg-white rounded-lg shadow-[0_5px_15px_rgba(154,160,185,0.3)] overflow-hidden transition-all duration-300 hover:shadow-[0_8px_20px_rgba(154,160,185,0.45)] hover:scale-[1.02]"
+                        className="overflow-hidden rounded-lg bg-white shadow-[0_5px_15px_rgba(154,160,185,0.3)] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_8px_20px_rgba(154,160,185,0.45)]"
                     >
                         <Link href={`/tips/${tip.slug}`}>
-                            <div className="image-wrapper w-full h-[200px] relative">
+                            <div className="image-wrapper relative h-[200px] w-full">
                                 <Image
                                     src={tip.featureImage}
                                     title={tip.title}
@@ -58,18 +58,18 @@ const Tips = async () => {
                         </Link>
                         <div className="p-6">
                             <Link href={`/tips/${tip.slug}`}>
-                                <h3 className="text-xl md:text-2xl mb-3 text-[rgb(var(--color-text-primary))] hover:text-[rgb(var(--color-secondary))] transition-colors">
+                                <h3 className="mb-3 text-xl text-[rgb(var(--color-text-primary))] transition-colors hover:text-[rgb(var(--color-secondary))] md:text-2xl">
                                     <Balancer>{tip.title}</Balancer>
                                 </h3>
                             </Link>
-                            <p className="text-sm md:text-base opacity-70 mb-4">{tip.date}</p>
+                            <p className="mb-4 text-sm opacity-70 md:text-base">{tip.date}</p>
                             {tip.tweetUrl && (
                                 <a
                                     href={tip.tweetUrl}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     aria-label="Tweet URL"
-                                    className="flex items-center gap-2 text-[rgb(var(--color-secondary))] hover:underline transition-colors"
+                                    className="flex items-center gap-2 text-[rgb(var(--color-secondary))] transition-colors hover:underline"
                                 >
                                     <div className="flex items-center">
                                         <Image

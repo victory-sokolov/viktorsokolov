@@ -13,7 +13,7 @@ type PostMetaInfo = {
 export const PostMeta: React.FC<PostMetaInfo> = ({ date, readTime, children, style }) => {
     return (
         <div
-            className="flex flex-wrap items-center gap-6 font-medium text-[1.6rem] py-6 max-sm:text-sm max-sm:gap-4 max-sm:py-4"
+            className="flex flex-wrap items-center gap-6 py-6 text-[1.6rem] font-medium max-sm:gap-4 max-sm:py-4 max-sm:text-sm"
             style={style}
         >
             <time dateTime={date} itemProp="datePublished" className="flex items-center">
