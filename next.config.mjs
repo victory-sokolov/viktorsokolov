@@ -79,7 +79,6 @@ const config = {
     poweredByHeader: false,
     experimental: {
         webVitalsAttribution: ["CLS", "LCP"],
-        useLightningcss: true,
         useCache: true,
         serverSourceMaps: true,
     },

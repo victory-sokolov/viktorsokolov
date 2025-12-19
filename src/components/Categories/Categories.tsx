@@ -8,15 +8,11 @@ export const Categories = ({ categories, style }: { categories: string[]; style?
             {categories
                 .map((category: string) => category.trim().toLowerCase())
                 .map((category: string) =>
-                    TagsMapping[category]
-                        ? (
-                                <div key={category} className="inline-block pb-2 not-first:ml-4">
-                                    {TagsMapping[category]()}
-                                </div>
-                            )
-                        : (
-                                null
-                            ),
+                    TagsMapping[category] ? (
+                        <div key={category} className="inline-block pb-2 not-first:ml-4">
+                            {TagsMapping[category]()}
+                        </div>
+                    ) : null,
                 )}
         </div>
     );

@@ -64,7 +64,7 @@ export const Nav: React.FC<Props> = ({ isSticky }) => {
                                         data-hover={label}
                                         aria-label={`${label} page`}
                                         prefetch={prefetch}
-                                        className={`relative px-2 py-3 text-[1.8rem] font-medium tracking-wide before:absolute before:bottom-0 before:left-0 before:h-[2px] before:w-full before:origin-left before:scale-x-0 before:bg-white before:transition-transform before:duration-300 hover:before:scale-x-100 max-sm:text-2xl ${
+                                        className={`relative px-2 py-3 text-[1.8rem] font-medium tracking-wide before:absolute before:bottom-0 before:left-0 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:bg-white before:transition-transform before:duration-300 hover:before:scale-x-100 max-sm:text-2xl ${
                                             pathname === href ? "active before:scale-x-100" : ""
                                         }`}
                                     >
