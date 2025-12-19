@@ -1,8 +1,8 @@
-import type { MetadataRoute } from "next/types";
-import fs from "node:fs";
 import { getAllPosts } from "@/common/posts";
 import { getAllTips } from "@/common/tips";
 import { config } from "@/src/common/appconfig";
+import type { MetadataRoute } from "next/types";
+import fs from "node:fs";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const allPosts = await getAllPosts();
