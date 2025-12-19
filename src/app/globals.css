@@ -349,7 +349,7 @@ a.mdx-link:hover {
     transform: translateY(-142px);
   }
   100% {
-    transform: translateY(0px);
+    transform: translateY(0);
   }
 }
 
@@ -370,53 +370,53 @@ a.mdx-link:hover {
   }
 }
 
-/* Image wrapper */
-.image-wrapper {
-  position: relative;
-  width: 100%;
-  height: auto;
-  overflow: hidden;
-}
-
-.image-wrapper img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-}
-
 /* Gradient border utility */
-.border-gradient {
-  --border-width: 3px;
-  position: relative;
-  background: rgb(var(--color-background));
-  border-radius: var(--border-width);
-  animation: moveGradient 4s alternate infinite;
+@layer utilities {
+  .border-gradient {
+    --border-width: 3px;
+    position: relative;
+    background: rgb(var(--color-background));
+    border-radius: var(--border-width);
+    animation: moveGradient 4s alternate infinite;
+  }
+
+  .border-gradient::after {
+    border: none;
+    position: absolute;
+    content: "";
+    top: calc(-1 * var(--border-width));
+    left: calc(-1 * var(--border-width));
+    z-index: -1;
+    width: calc(100% + var(--border-width) * 2);
+    height: calc(100% + var(--border-width) * 2);
+    background: linear-gradient(
+      60deg,
+      hsl(224, 85%, 66%),
+      hsl(269, 85%, 66%),
+      hsl(314, 85%, 66%),
+      hsl(359, 85%, 66%),
+      hsl(44, 85%, 66%),
+      hsl(89, 85%, 66%),
+      hsl(134, 85%, 66%),
+      hsl(179, 85%, 66%)
+    );
+    background-size: 300% 300%;
+    background-position: 0 50%;
+    border-radius: calc(2 * var(--border-width));
+    transition: 0.7s;
+  }
 }
 
-.border-gradient::after {
-  border: none;
-  position: absolute;
-  content: "";
-  top: calc(-1 * var(--border-width));
-  left: calc(-1 * var(--border-width));
-  z-index: -1;
-  width: calc(100% + var(--border-width) * 2);
-  height: calc(100% + var(--border-width) * 2);
-  background: linear-gradient(
-    60deg,
-    hsl(224, 85%, 66%),
-    hsl(269, 85%, 66%),
-    hsl(314, 85%, 66%),
-    hsl(359, 85%, 66%),
-    hsl(44, 85%, 66%),
-    hsl(89, 85%, 66%),
-    hsl(134, 85%, 66%),
-    hsl(179, 85%, 66%)
-  );
-  background-size: 300% 300%;
-  background-position: 0 50%;
-  border-radius: calc(2 * var(--border-width));
-  transition: 0.7s;
+@keyframes moveGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 /* Flex utilities */
@@ -425,12 +425,6 @@ a.mdx-link:hover {
   flex-direction: row;
   flex-wrap: wrap;
   text-align: center;
-}
-
-.flex-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .flex-column {

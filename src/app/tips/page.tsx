@@ -45,7 +45,7 @@ const Tips = async () => {
                         className="overflow-hidden rounded-lg bg-white shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
                     >
                         <Link href={`/tips/${tip.slug}`}>
-                            <div className="image-wrapper relative h-50 w-full">
+                            <div className="overflow-hidden relative h-50 w-full">
                                 <Image
                                     src={tip.featureImage}
                                     title={tip.title}

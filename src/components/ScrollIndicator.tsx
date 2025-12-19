@@ -25,7 +25,7 @@ export const ScrollIndicator = () => {
 
     return (
         <div
-            className="absolute bottom-0 left-0 h-[3px] transition-all duration-500 ease-[cubic-bezier(0.075,0.82,0.165,1)]"
+            className="absolute bottom-0 left-0 h-0.75 transition-all duration-500 ease-[cubic-bezier(0.075,0.82,0.165,1)]"
             style={{
                 width: `${progress}%`,
                 background:
