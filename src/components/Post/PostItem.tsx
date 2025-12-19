@@ -1,10 +1,10 @@
 "use client";
 
-import { useReadTime } from "@/hooks/useReadTime";
+import type { PostFrontmatter } from "src/types/Post";
 import Image from "next/image";
 import Link from "next/link";
 import Balancer from "react-wrap-balancer";
-import type { PostFrontmatter } from "src/types/Post";
+import { useReadTime } from "@/hooks/useReadTime";
 
 import { PostMeta } from "./PostMeta";
 
@@ -16,7 +16,7 @@ export const PostItem = ({ post }: { post: PostFrontmatter }) => {
                 aria-label={post.title}
                 className="flex flex-col gap-0 hover:text-[rgb(var(--color-text-primary))]"
             >
-                <div className="relative h-auto overflow-hidden mb-6 w-full">
+                <div className="relative mb-6 h-auto w-full overflow-hidden">
                     <Image
                         src={post.featureImage}
                         alt={post.title}

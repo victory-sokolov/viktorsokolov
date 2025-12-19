@@ -1,10 +1,10 @@
-import { getAllTips } from "@/common/tips";
 import type { Metadata } from "next";
+import type { TipFrontmatter } from "src/types/Post";
+import process from "node:process";
 import Image from "next/image";
 import Link from "next/link";
-import process from "node:process";
 import Balancer from "react-wrap-balancer";
-import type { TipFrontmatter } from "src/types/Post";
+import { getAllTips } from "@/common/tips";
 
 export const metadata: Metadata = {
     title: "Developments tips",
@@ -38,14 +38,14 @@ const Tips = async () => {
                     </a>
                 </p>
             </div>
-            <div className="grid gap-8 max-md:grid-cols-1 md:gap-10 grid-cols-[repeat(auto-fill,minmax(300px,1fr))]">
+            <div className="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-8 max-md:grid-cols-1 md:gap-10">
                 {tips.map((tip: TipFrontmatter, index: number) => (
                     <div
                         key={index}
                         className="overflow-hidden rounded-lg bg-white shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
                     >
                         <Link href={`/tips/${tip.slug}`}>
-                            <div className="overflow-hidden relative h-50 w-full">
+                            <div className="relative h-50 w-full overflow-hidden">
                                 <Image
                                     src={tip.featureImage}
                                     title={tip.title}
@@ -58,7 +58,7 @@ const Tips = async () => {
                         </Link>
                         <div className="p-6">
                             <Link href={`/tips/${tip.slug}`}>
-                                <h3 className="mb-3 text-xl text-text-primary transition-colors hover:text-secondary md:text-2xl">
+                                <h3 className="text-text-primary hover:text-secondary mb-3 text-xl transition-colors md:text-2xl">
                                     <Balancer>{tip.title}</Balancer>
                                 </h3>
                             </Link>
@@ -69,7 +69,7 @@ const Tips = async () => {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     aria-label="Tweet URL"
-                                    className="flex items-center gap-2 text-secondary transition-colors hover:underline"
+                                    className="text-secondary flex items-center gap-2 transition-colors hover:underline"
                                 >
                                     <div className="flex items-center">
                                         <Image
