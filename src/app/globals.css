@@ -332,6 +332,10 @@ a.mdx-link:hover {
   @apply inline-block transition-opacity hover:opacity-70;
 }
 
+.share-icon {
+  @apply h-[2.2rem] pr-4 text-[2.6rem];
+}
+
 @keyframes smoothScroll {
   0% {
     transform: translateY(-142px);

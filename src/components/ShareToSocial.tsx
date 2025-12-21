@@ -41,31 +41,31 @@ export default function ShareToSocialLink({ title }: { title: string }) {
                                 Share on socials
                             </h4>
                             <a href={share.toTwitter(url, title)} className="share-option">
-                                <span className="h-[2.2rem] pr-4 text-[2.6rem]">
+                                <span className="share-icon">
                                     <CiTwitter />
                                 </span>
                                 Share to Twitter
                             </a>
                             <a href={share.toLinkedIn(url)} className="share-option">
-                                <span className="h-[2.2rem] pr-4 text-[2.6rem]">
+                                <span className="share-icon">
                                     <CiLinkedin />
                                 </span>
                                 Share to LinkedIn
                             </a>
                             <a href={share.toReddit(url, title)} className="share-option">
-                                <span className="h-[2.2rem] pr-4 text-[2.6rem]">
+                                <span className="share-icon">
                                     <FcReddit />
                                 </span>
                                 Share to Reddit
                             </a>
                             <a href={share.toHackerNews(url, title)} className="share-option">
-                                <span className="h-[2.2rem] pr-4 text-[2.6rem]">
+                                <span className="share-icon">
                                     <DiHackernews />
                                 </span>
                                 Share to Hacker News
                             </a>
                             <a href={share.toFacebook(url)} className="share-option">
-                                <span className="h-[2.2rem] pr-4 text-[2.6rem]">
+                                <span className="share-icon">
                                     <CiFacebook />
                                 </span>
                                 Share to Facebook
