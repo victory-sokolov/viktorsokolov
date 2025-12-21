@@ -14,7 +14,7 @@ export const Footer: React.FC = () => {
                 .com
             </Link>
 
-            <SocialMedia />
+            <SocialMedia justify="center" />
             <p className="text-base opacity-80">
                 &copy;
                 {" "}

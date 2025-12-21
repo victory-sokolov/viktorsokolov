@@ -7,17 +7,19 @@ import { FaDev, FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 type SocialMediaType = {
     color?: string;
     size?: number;
+    justify?: "start" | "center";
 };
 
 export const SocialMedia: React.FC<SocialMediaType> = ({
     color = "--text-color-primary",
     size = 22,
+    justify = "start",
 }) => {
     const meta = config;
 
     return (
         <div className="my-6">
-            <ul className="flex items-center justify-start gap-4 p-0 md:gap-6">
+            <ul className={`flex items-center gap-4 p-0 md:gap-6 justify-${justify}`}>
                 <li className="social-link">
                     <a
                         href={meta.social.twitter}
