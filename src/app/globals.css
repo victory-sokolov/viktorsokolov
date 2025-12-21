@@ -110,6 +110,10 @@ ul li, ol li {
   font-size: var(--font-size-base);
 }
 
+a {
+  font-size: var(--font-size-base);
+}
+
 ::selection {
   background-color: rgb(var(--color-selection));
   color: white;

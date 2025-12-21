@@ -16,7 +16,7 @@ export default async function Main() {
             </div>
             <Link
                 href="/blog"
-                className="mt-12 inline-flex items-center gap-3 text-lg font-medium transition-colors hover:text-[rgb(var(--color-secondary-600))] max-sm:mt-10"
+                className="mt-12 inline-flex items-center gap-3 font-medium transition-colors hover:text-[rgb(var(--color-secondary-600))] max-sm:mt-10"
             >
                 Read all posts
                 <svg
