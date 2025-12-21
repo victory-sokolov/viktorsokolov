@@ -1,13 +1,13 @@
 "use client";
 
+import { config } from "@/common/appconfig";
+import share from "@/common/share";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { CiFacebook, CiLinkedin, CiTwitter } from "react-icons/ci";
 import { DiHackernews } from "react-icons/di";
 import { FaCreativeCommonsShare, FaShareAlt } from "react-icons/fa";
 import { FcReddit } from "react-icons/fc";
-import { config } from "@/common/appconfig";
-import share from "@/common/share";
 
 export default function ShareToSocialLink({ title }: { title: string }) {
     const pathname = usePathname();
@@ -40,46 +40,31 @@ export default function ShareToSocialLink({ title }: { title: string }) {
                                 </span>
                                 Share on socials
                             </h4>
-                            <a
-                                href={share.toTwitter(url, title)}
-                                className="share-option"
-                            >
+                            <a href={share.toTwitter(url, title)} className="share-option">
                                 <span className="h-[2.2rem] pr-4 text-[2.6rem]">
                                     <CiTwitter />
                                 </span>
                                 Share to Twitter
                             </a>
-                            <a
-                                href={share.toLinkedIn(url)}
-                                className="share-option"
-                            >
+                            <a href={share.toLinkedIn(url)} className="share-option">
                                 <span className="h-[2.2rem] pr-4 text-[2.6rem]">
                                     <CiLinkedin />
                                 </span>
                                 Share to LinkedIn
                             </a>
-                            <a
-                                href={share.toReddit(url, title)}
-                                className="share-option"
-                            >
+                            <a href={share.toReddit(url, title)} className="share-option">
                                 <span className="h-[2.2rem] pr-4 text-[2.6rem]">
                                     <FcReddit />
                                 </span>
                                 Share to Reddit
                             </a>
-                            <a
-                                href={share.toHackerNews(url, title)}
-                                className="share-option"
-                            >
+                            <a href={share.toHackerNews(url, title)} className="share-option">
                                 <span className="h-[2.2rem] pr-4 text-[2.6rem]">
                                     <DiHackernews />
                                 </span>
                                 Share to Hacker News
                             </a>
-                            <a
-                                href={share.toFacebook(url)}
-                                className="share-option"
-                            >
+                            <a href={share.toFacebook(url)} className="share-option">
                                 <span className="h-[2.2rem] pr-4 text-[2.6rem]">
                                     <CiFacebook />
                                 </span>

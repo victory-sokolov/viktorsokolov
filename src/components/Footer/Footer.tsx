@@ -13,9 +13,8 @@ export const Footer: React.FC = () => {
                 {config.siteName}
                 .com
             </Link>
-            <div className="my-6">
-                <SocialMedia />
-            </div>
+
+            <SocialMedia />
             <p className="text-base opacity-80">
                 &copy;
                 {" "}

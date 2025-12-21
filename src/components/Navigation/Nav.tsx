@@ -1,10 +1,10 @@
 "use client";
 
+import { ScrollIndicator } from "@/components/ScrollIndicator";
+import ThemeToggle from "@/components/ThemeToggle";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useState } from "react";
-import { ScrollIndicator } from "@/components/ScrollIndicator";
-import ThemeToggle from "@/components/ThemeToggle";
 
 type Props = {
     isSticky: boolean;
