@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+
 @theme {
   --font-size-sm: 1.2rem;
   --font-size-base: 1.6rem;
@@ -8,6 +9,8 @@
   --font-size-xl: 2.8rem;
   --font-size-2xl: 3.2rem;
   --font-size-3xl: 3.6rem;
+
+  --spacing: 0.4rem;
 
   --spacing-xxs: 0.4rem;
   --spacing-xs: 0.8rem;
@@ -50,6 +53,12 @@
   --shadow-card-hover: 0 8px 20px rgba(154, 160, 185, 0.45);
 }
 
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 :root {
   font-size: 62.5%; /* 10px base */
 }
@@ -64,12 +73,6 @@
     transition: outline-offset 0.25s ease;
     outline-offset: 5px;
   }
-}
-
-*, *:before, *:after {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -92,13 +95,11 @@ html {
 body {
   background: rgb(var(--color-background));
   color: rgb(var(--color-text-primary));
-  font-size: 1.8rem;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   position: relative;
   min-height: 100vh;
-  line-height: 1.618;
 }
 
 ::selection {
@@ -126,24 +127,6 @@ fieldset {
   border-width: 1px;
 }
 
-button {
-  color: rgb(var(--color-text-primary));
-  padding: 0.8rem;
-  border-radius: 4px;
-  cursor: pointer;
-  text-shadow: 0.5px 0.5px 0 rgba(0, 0, 0, 0.2);
-  transition: all 0.2s;
-  background: none;
-  font-size: var(--font-size-base);
-  letter-spacing: 0.6px;
-  border: 2px solid rgb(var(--color-secondary-700));
-  font-weight: 500;
-}
-
-button:hover {
-  box-shadow: 0 0 0 1px rgb(var(--color-secondary-700));
-}
-
 /* Scrollbar Styles */
 body::-webkit-scrollbar {
   width: 12px;
@@ -159,31 +142,11 @@ body::-webkit-scrollbar-thumb {
   border: 3px solid rgb(var(--color-surface));
 }
 
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-ul {
-  text-decoration: none;
-}
-
-a {
-  text-decoration: none;
-  font-size: var(--font-size-base);
-  line-height: calc(18px * 1.618);
-  color: rgb(var(--color-text-primary));
-  transition: color 0.2s;
-}
 
 a:hover {
   color: rgb(var(--color-secondary-600));
 }
 
-h1, h2, h3, h4, h5, h6 {
-  margin: 0;
-  line-height: calc(1.8rem * 1.618);
-}
 
 .article-title {
   color: rgb(var(--color-text-secondary));
@@ -419,21 +382,6 @@ a.mdx-link:hover {
   }
 }
 
-/* Flex utilities */
-.flex-row {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  text-align: center;
-}
-
-.flex-column {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
 /* Prose styling for blog content */
 .prose {
   max-width: 75ch;
@@ -479,23 +427,4 @@ a.mdx-link:hover {
   margin-top: 2rem;
   margin-bottom: 2rem;
   border-radius: 8px;
-}
-
-/* Responsive typography adjustments */
-@media only screen and (max-width: 768px) {
-  h1 {
-    font-size: var(--font-size-2xl);
-  }
-  
-  h2 {
-    font-size: var(--font-size-xl);
-  }
-  
-  h3 {
-    font-size: var(--font-size-lg);
-  }
-  
-  h4 {
-    font-size: var(--font-size-md);
-  }
 }
