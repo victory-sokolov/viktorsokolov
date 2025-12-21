@@ -3,7 +3,7 @@ import SocialMedia from "@/components/Social";
 
 export const Hero: React.FC = () => {
     return (
-        <section className="max-w-260 py-16 pb-20 max-sm:py-12 max-sm:pb-16">
+        <section className="py-16 pb-20 max-sm:py-12 max-sm:pb-16">
             <h1 itemProp="headline" className="mb-6 text-4xl max-sm:text-3xl">
                 Hi! I&apos;m Viktor.
                 <span className="wavy ml-2">👋</span>
