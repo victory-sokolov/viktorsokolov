@@ -23,7 +23,7 @@ export const Nav: React.FC<Props> = ({ isSticky }) => {
     const pathname = usePathname();
 
     return (
-        <nav className="z-10 w-full">
+        <nav className="z-10 max-w-212.5 mx-auto">
             {/* Hamburger Menu - Mobile Only */}
             <div
                 className={`fixed top-4 z-50 hidden h-16 w-16 cursor-pointer items-center justify-center rounded bg-linear-to-r from-[#3560c5] to-[#6216d8] transition-all duration-300 max-sm:flex ${

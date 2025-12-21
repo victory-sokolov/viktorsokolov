@@ -115,7 +115,7 @@ export default async function Page(props: { params: Promise<PageParams> }) {
                         <ShareToSocialLink title={title} />
                     </PostMeta>
                     {tags && <Categories categories={tags} />}
-                    <div className="prose prose-lg mt-8 max-w-none md:mt-12">
+                    <div className="mt-8 max-w-none md:mt-12">
                         <MdxRemote source={mdxSource} />
                     </div>
                     <NextNPrevious next={nextPost} prev={previousPost} postType={POST_TYPE.POST} />

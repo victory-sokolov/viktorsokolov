@@ -411,12 +411,6 @@ a.mdx-link:hover {
   }
 }
 
-/* Prose styling for blog content */
-.prose {
-  max-width: 75ch;
-  margin-left: auto;
-  margin-right: auto;
-}
 
 .prose h2 {
   font-size: var(--font-size-xl);
