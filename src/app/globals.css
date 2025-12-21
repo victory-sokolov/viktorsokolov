@@ -102,6 +102,14 @@ body {
   min-height: 100vh;
 }
 
+p {
+  font-size: var(--font-size-base);
+}
+
+ul li, ol li {
+  font-size: var(--font-size-base);
+}
+
 ::selection {
   background-color: rgb(var(--color-selection));
   color: white;
@@ -307,6 +315,19 @@ a.mdx-link:hover {
   display: inline-block;
 }
 
+/* Reusable component classes */
+.post-nav-card {
+  @apply hover:bg-[rgb(var(--color-secondary-700))] h-full w-120 rounded-lg border border-[#424f9e] p-4 transition-colors hover:text-white [&_p]:m-0 [&_p]:p-0;
+}
+
+.share-option {
+  @apply flex w-full items-center p-4 pl-5 font-medium hover:bg-[rgb(var(--color-primary-600))];
+}
+
+.social-link {
+  @apply inline-block transition-opacity hover:opacity-70;
+}
+
 @keyframes smoothScroll {
   0% {
     transform: translateY(-142px);
@@ -341,6 +362,10 @@ a.mdx-link:hover {
     background: rgb(var(--color-background));
     border-radius: var(--border-width);
     animation: moveGradient 4s alternate infinite;
+  }
+
+  .text-list {
+    font-size: var(--font-size-base);
   }
 
   .border-gradient::after {
@@ -404,6 +429,7 @@ a.mdx-link:hover {
 }
 
 .prose p {
+  font-size: var(--font-size-base);
   margin-bottom: 1.5rem;
   line-height: 1.75;
 }
@@ -414,6 +440,7 @@ a.mdx-link:hover {
 }
 
 .prose li {
+  font-size: var(--font-size-base);
   margin-bottom: 0.5rem;
   line-height: 1.75;
 }

@@ -42,7 +42,7 @@ export default function ShareToSocialLink({ title }: { title: string }) {
                             </h4>
                             <a
                                 href={share.toTwitter(url, title)}
-                                className="flex w-full items-center p-4 pl-5 font-medium hover:bg-[rgb(var(--color-primary-600))]"
+                                className="share-option"
                             >
                                 <span className="h-[2.2rem] pr-4 text-[2.6rem]">
                                     <CiTwitter />
@@ -51,7 +51,7 @@ export default function ShareToSocialLink({ title }: { title: string }) {
                             </a>
                             <a
                                 href={share.toLinkedIn(url)}
-                                className="flex w-full items-center p-4 pl-5 font-medium hover:bg-[rgb(var(--color-primary-600))]"
+                                className="share-option"
                             >
                                 <span className="h-[2.2rem] pr-4 text-[2.6rem]">
                                     <CiLinkedin />
@@ -60,7 +60,7 @@ export default function ShareToSocialLink({ title }: { title: string }) {
                             </a>
                             <a
                                 href={share.toReddit(url, title)}
-                                className="flex w-full items-center p-4 pl-5 font-medium hover:bg-[rgb(var(--color-primary-600))]"
+                                className="share-option"
                             >
                                 <span className="h-[2.2rem] pr-4 text-[2.6rem]">
                                     <FcReddit />
@@ -69,7 +69,7 @@ export default function ShareToSocialLink({ title }: { title: string }) {
                             </a>
                             <a
                                 href={share.toHackerNews(url, title)}
-                                className="flex w-full items-center p-4 pl-5 font-medium hover:bg-[rgb(var(--color-primary-600))]"
+                                className="share-option"
                             >
                                 <span className="h-[2.2rem] pr-4 text-[2.6rem]">
                                     <DiHackernews />
@@ -78,7 +78,7 @@ export default function ShareToSocialLink({ title }: { title: string }) {
                             </a>
                             <a
                                 href={share.toFacebook(url)}
-                                className="flex w-full items-center p-4 pl-5 font-medium hover:bg-[rgb(var(--color-primary-600))]"
+                                className="share-option"
                             >
                                 <span className="h-[2.2rem] pr-4 text-[2.6rem]">
                                     <CiFacebook />

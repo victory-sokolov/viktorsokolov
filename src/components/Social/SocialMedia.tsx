@@ -18,7 +18,7 @@ export const SocialMedia: React.FC<SocialMediaType> = ({
     return (
         <div className="my-6">
             <ul className="flex items-center justify-center gap-4 p-0 md:gap-6">
-                <li className="inline-block transition-opacity hover:opacity-70">
+                <li className="social-link">
                     <a
                         href={meta.social.twitter}
                         target="_blank"
@@ -28,7 +28,7 @@ export const SocialMedia: React.FC<SocialMediaType> = ({
                         <FaTwitter color={`var(${color})`} size={size} />
                     </a>
                 </li>
-                <li className="inline-block transition-opacity hover:opacity-70">
+                <li className="social-link">
                     <a
                         href={meta.social.linkedin}
                         target="_blank"
@@ -38,7 +38,7 @@ export const SocialMedia: React.FC<SocialMediaType> = ({
                         <FaLinkedin color={`var(${color})`} size={size} />
                     </a>
                 </li>
-                <li className="inline-block transition-opacity hover:opacity-70">
+                <li className="social-link">
                     <a
                         href={meta.social.github}
                         target="_blank"
@@ -48,7 +48,7 @@ export const SocialMedia: React.FC<SocialMediaType> = ({
                         <FaGithub color={`var(${color})`} size={size} />
                     </a>
                 </li>
-                <li className="inline-block transition-opacity hover:opacity-70">
+                <li className="social-link">
                     <a
                         href={meta.social.devto}
                         target="_blank"
