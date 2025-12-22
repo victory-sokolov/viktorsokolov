@@ -45,7 +45,7 @@ const Tips = async () => {
                     >
                         <div className="flex flex-col gap-0">
                             <Link href={`/tips/${tip.slug}`} aria-label={tip.title}>
-                                <h3 className="mb-4 text-3xl leading-[1.3] text-[rgb(var(--color-text-secondary))] hover:text-[rgb(var(--color-secondary-600))] transition-colors duration-300 max-sm:text-2xl">
+                                <h3 className="mb-4 text-3xl leading-[1.3] text-[rgb(var(--color-text-secondary))] transition-colors duration-300 max-sm:text-2xl">
                                     <Balancer>{tip.title}</Balancer>
                                 </h3>
                             </Link>
