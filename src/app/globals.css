@@ -441,6 +441,10 @@ a.mdx-link:hover {
   padding-left: 2rem;
 }
 
+li {
+    list-style-type: disc;
+}
+
 .prose li {
   font-size: var(--font-size-base);
   margin-bottom: 0.5rem;
