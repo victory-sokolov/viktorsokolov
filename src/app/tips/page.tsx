@@ -1,10 +1,9 @@
-import type { Metadata } from "next";
-import type { TipFrontmatter } from "src/types/Post";
-import process from "node:process";
-import Image from "next/image";
-import Link from "next/link";
-import Balancer from "react-wrap-balancer";
 import { getAllTips } from "@/common/tips";
+import type { Metadata } from "next";
+import Link from "next/link";
+import process from "node:process";
+import Balancer from "react-wrap-balancer";
+import type { TipFrontmatter } from "src/types/Post";
 
 export const metadata: Metadata = {
     title: "Developments tips",
@@ -38,52 +37,21 @@ const Tips = async () => {
                     </a>
                 </p>
             </div>
-            <div className="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-8 max-md:grid-cols-1 md:gap-10">
-                {tips.map((tip: TipFrontmatter, index: number) => (
-                    <div
-                        key={index}
-                        className="overflow-hidden rounded-lg bg-white shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
+            <div className="grid grid-cols-1 gap-12 max-sm:gap-10">
+                {tips.map((tip: TipFrontmatter) => (
+                    <article
+                        className="border-b border-[rgb(var(--color-border))] pb-4 mb-4 last:border-b-0 last:pb-0 last:mb-0"
+                        key={tips.slug}
                     >
-                        <Link href={`/tips/${tip.slug}`}>
-                            <div className="relative h-50 w-full overflow-hidden">
-                                <Image
-                                    src={tip.featureImage}
-                                    title={tip.title}
-                                    alt={tip.title}
-                                    fill
-                                    className="object-cover"
-                                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 300px"
-                                />
-                            </div>
-                        </Link>
-                        <div className="p-6">
-                            <Link href={`/tips/${tip.slug}`}>
-                                <h3 className="text-text-primary hover:text-secondary mb-3 text-xl transition-colors md:text-2xl">
+                        <div className="flex flex-col gap-0">
+                            <Link href={`/tips/${tip.slug}`} aria-label={tip.title}>
+                                <h3 className="mb-4 text-[2.6rem] leading-[1.3] text-[rgb(var(--color-text-secondary))] hover:text-[rgb(var(--color-secondary-600))] transition-colors duration-300 max-sm:text-2xl">
                                     <Balancer>{tip.title}</Balancer>
                                 </h3>
                             </Link>
                             <p className="mb-4 text-sm opacity-70 md:text-base">{tip.date}</p>
-                            {tip.tweetUrl && (
-                                <a
-                                    href={tip.tweetUrl}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    aria-label="Tweet URL"
-                                    className="text-secondary flex items-center gap-2 transition-colors hover:underline"
-                                >
-                                    <div className="flex items-center">
-                                        <Image
-                                            src="/static/twitter.svg"
-                                            alt="Twitter logo"
-                                            width={24}
-                                            height={24}
-                                        />
-                                    </div>
-                                    <span className="text-sm md:text-base">View Tweet</span>
-                                </a>
-                            )}
                         </div>
-                    </div>
+                    </article>
                 ))}
             </div>
         </div>
