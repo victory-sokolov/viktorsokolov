@@ -1,6 +1,6 @@
+import Link from "next/link";
 import { config } from "@/common/appconfig";
 import SocialMedia from "@/components/Social";
-import Link from "next/link";
 
 export const Footer: React.FC = () => {
     return (
@@ -16,7 +16,12 @@ export const Footer: React.FC = () => {
 
             <SocialMedia justify="center" />
             <p className="text-base opacity-80">
-                &copy; {new Date().getFullYear()}. Developed by {config.author}
+                &copy;
+                {" "}
+                {new Date().getFullYear()}
+                . Developed by
+                {" "}
+                {config.author}
             </p>
         </footer>
     );

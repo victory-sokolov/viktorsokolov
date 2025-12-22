@@ -1,9 +1,9 @@
 "use client";
 
+import type { ReactProps } from "src/types/types";
+import React from "react";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
-import React from "react";
-import type { ReactProps } from "src/types/types";
 
 const Layout: React.FC<ReactProps> = ({ children }) => {
     return (

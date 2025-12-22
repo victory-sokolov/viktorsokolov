@@ -14,7 +14,7 @@ export const TechStackList = () => {
     ];
     const tags = Object.entries(TagsMapping).filter(([key]) => TECH_STACK_LIST.includes(key));
     return (
-        <ul className="my-3 mb-8 list-none rounded-md border border-[rgb(var(--color-secondary-900))] bg-[rgb(var(--color-primary-600))] p-5 text-white [&_li]:inline-flex [&_span]:pr-4 md:font-semibold">
+        <ul className="my-3 mb-8 list-none rounded-md border border-[rgb(var(--color-secondary-900))] bg-[rgb(var(--color-primary-600))] p-5 text-white md:font-semibold [&_li]:inline-flex [&_span]:pr-4">
             {tags.map(([key, value]) => (
                 <li key={key}>{value()}</li>
             ))}

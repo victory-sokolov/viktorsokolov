@@ -1,12 +1,12 @@
-import { config } from "@/common/appconfig";
-import Layout from "@/components/Layout/Layout";
+import type { Metadata } from "next";
+import type { ReactProps } from "src/types/types";
+import process from "node:process";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import type { Metadata } from "next";
 import { Cairo } from "next/font/google";
-import process from "node:process";
 import { Provider } from "react-wrap-balancer";
-import type { ReactProps } from "src/types/types";
+import { config } from "@/common/appconfig";
+import Layout from "@/components/Layout/Layout";
 
 import "./globals.css";
 

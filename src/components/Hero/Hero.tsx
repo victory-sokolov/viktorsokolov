@@ -1,5 +1,5 @@
-import SocialMedia from "@/components/Social";
 import React from "react";
+import SocialMedia from "@/components/Social";
 
 export const Hero: React.FC = () => {
     return (

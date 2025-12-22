@@ -1,10 +1,10 @@
 "use client";
 
-import { ScrollIndicator } from "@/components/ScrollIndicator";
-import ThemeToggle from "@/components/ThemeToggle";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useState } from "react";
+import { ScrollIndicator } from "@/components/ScrollIndicator";
+import ThemeToggle from "@/components/ThemeToggle";
 
 type Props = {
     isSticky: boolean;
@@ -23,7 +23,7 @@ export const Nav: React.FC<Props> = ({ isSticky }) => {
     const pathname = usePathname();
 
     return (
-        <nav className="z-10 max-w-212.5 mx-auto">
+        <nav className="z-10 mx-auto max-w-212.5">
             {/* Hamburger Menu - Mobile Only */}
             <div
                 className={`fixed top-4 z-50 hidden h-16 w-16 cursor-pointer items-center justify-center rounded bg-linear-to-r from-[#3560c5] to-[#6216d8] transition-all duration-300 max-sm:flex ${
@@ -64,7 +64,7 @@ export const Nav: React.FC<Props> = ({ isSticky }) => {
                                         data-hover={label}
                                         aria-label={`${label} page`}
                                         prefetch={prefetch}
-                                        className={`relative px-2 py-3 text-[1.8rem] font-medium tracking-wide before:absolute before:bottom-0 before:left-0 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:bg-white before:transition-transform before:duration-300 hover:before:scale-x-100 max-sm:text-2xl ${
+                                        className={`relative px-2 py-3 text-[1.8rem] font-medium tracking-wide before:absolute before:bottom-0 before:left-0 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:bg-[rgb(var(--color-secondary-600))] before:transition-transform before:duration-300 hover:before:scale-x-100 max-sm:text-2xl ${
                                             pathname === href ? "active before:scale-x-100" : ""
                                         }`}
                                     >
