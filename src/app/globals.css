@@ -386,6 +386,10 @@ a.mdx-link:hover {
     font-size: var(--font-size-base);
   }
 
+  .btn-toggle {
+    @apply rounded-lg p-2 transition-colors hover:bg-[rgba(var(--color-secondary-700),0.1)];
+  }
+
   .border-gradient::after {
     border: none;
     position: absolute;
