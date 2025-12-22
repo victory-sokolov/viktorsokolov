@@ -465,3 +465,8 @@ li {
   margin-bottom: 2rem;
   border-radius: 8px;
 }
+
+.post-list {
+  display: grid;
+  grid-template-columns: 1fr;
+}

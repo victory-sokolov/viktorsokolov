@@ -84,30 +84,12 @@ const TipPage: React.FC = async (props: { params: Promise<PageParams> }) => {
                 authorName={config.author}
                 description={frontmatter.description}
             />
-            <h1>
+            <h1 className="mb-6 text-3xl md:text-4xl lg:text-5xl">
                 <Balancer>{tipFrontmatter.title}</Balancer>
             </h1>
             <Categories categories={tags} style={{ textAlign: "left" }} />
             <MdxRemote source={mdxSource} />
             <p>{tipFrontmatter.description}</p>
-            {tipFrontmatter.tweetUrl && (
-                <p style={{ paddingTop: "var(--space-md)" }}>
-                    Posted on&nbsp;
-                    <a
-                        href={tipFrontmatter.tweetUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        aria-label="Tweet link"
-                    >
-                        Twitter
-                    </a>
-                    {" "}
-                    &nbsp; on
-                    {" "}
-                    {date}
-                    .
-                </p>
-            )}
             <NextNPrevious next={nextPost} prev={previousPost} postType={POST_TYPE.TIP} />
             <NewsLetterForm />
         </article>
