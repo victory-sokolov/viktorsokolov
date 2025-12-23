@@ -5,6 +5,7 @@ import { ArticleJsonLd } from "next-seo";
 import Image from "next/image";
 import Balancer from "react-wrap-balancer";
 import { POST_TYPE } from "src/types/enums";
+import { generatePostMetadata } from "@/common/metadata";
 import { getPostBySlug } from "@/common/posts";
 import Categories from "@/components/Categories";
 import Comments from "@/components/Comments";
@@ -21,43 +22,7 @@ const baseUrl = process.env.BASE_URL;
 
 export async function generateMetadata(props): Promise<Metadata | undefined> {
     const params = await props.params;
-    const {
-        currentPost: { frontmatter },
-    } = await getPostBySlug(params.id);
-    if (!frontmatter) {
-        return;
-    }
-
-    const { title, description, featureImage, slug } = frontmatter;
-    const ogImage = `${baseUrl}/${featureImage}`;
-
-    return {
-        title,
-        description,
-        alternates: {
-            canonical: `${baseUrl}/blog/${slug}`,
-            languages: {
-                "en-US": "/en-US",
-            },
-        },
-        openGraph: {
-            title,
-            description,
-            type: "article",
-            url: `${process.env.BASE_URL}/blog/${slug}`,
-            images: [
-                {
-                    url: ogImage,
-                },
-            ],
-        },
-        twitter: {
-            card: "summary_large_image",
-            title,
-            description,
-            images: [ogImage],
-        },
-    };
+    return generatePostMetadata(params, getPostBySlug, "blog");
 }
 
 export default async function Page(props: { params: Promise<PageParams> }) {

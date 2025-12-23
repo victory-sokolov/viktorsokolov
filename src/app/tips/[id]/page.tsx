@@ -6,6 +6,7 @@ import { ArticleJsonLd } from "next-seo";
 import React from "react";
 import Balancer from "react-wrap-balancer";
 import { POST_TYPE } from "src/types/enums";
+import { generatePostMetadata } from "@/common/metadata";
 import { getTipBySlug } from "@/common/tips";
 import Categories from "@/components/Categories";
 import { MdxRemote } from "@/components/Mdx";
@@ -17,43 +18,7 @@ const baseUrl = process.env.BASE_URL;
 
 export async function generateMetadata(props): Promise<Metadata | undefined> {
     const params = await props.params;
-    const {
-        currentPost: { frontmatter },
-    } = await getTipBySlug(params.id);
-    if (!frontmatter) {
-        return;
-    }
-
-    const { title, description, featureImage, slug } = frontmatter;
-    const ogImage = `${baseUrl}/${featureImage}`;
-
-    return {
-        title,
-        description,
-        alternates: {
-            canonical: `${baseUrl}/tips/${slug}`,
-            languages: {
-                "en-US": "/en-US",
-            },
-        },
-        openGraph: {
-            title,
-            description,
-            type: "article",
-            url: `${baseUrl}/tips/${slug}`,
-            images: [
-                {
-                    url: ogImage,
-                },
-            ],
-        },
-        twitter: {
-            card: "summary_large_image",
-            title,
-            description,
-            images: [ogImage],
-        },
-    };
+    return generatePostMetadata(params, getTipBySlug, "tips");
 }
 
 const TipPage: React.FC = async (props: { params: Promise<PageParams> }) => {
