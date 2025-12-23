@@ -18,7 +18,11 @@ export const PostItem = ({ post }: { post: PostFrontmatter }) => {
                 </Link>
                 <PostMeta
                     date={post.date}
-                    readTime={useReadTime(post.content)}
+                <PostMeta
+                    date={post.date}
+                    readTime={post.readTime}
+                    style={{ justifyContent: "flex-start", paddingLeft: 0 }}
+                />
                     style={{ justifyContent: "flex-start", paddingLeft: 0 }}
                 />
                 <p className="m-0 mt-4 text-[1.6rem] leading-[1.7] max-sm:text-base">
