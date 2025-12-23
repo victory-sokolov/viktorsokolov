@@ -29,6 +29,7 @@
             ]
         },
         "resolveJsonModule": true,
+        "types": ["@types/react"],
         "allowJs": true,
         "strict": false,
         "strictNullChecks": false,
@@ -40,7 +41,6 @@
         "forceConsistentCasingInFileNames": true,
         "isolatedModules": true,
         "skipLibCheck": true,
-        "types": ["@types/react"],
         "plugins": [
             {
                 "name": "next"
