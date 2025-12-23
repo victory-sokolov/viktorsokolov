@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 const createHeading = (level: number) => ({ id, children, ...rest }) => {
-    const Tag = `h${level}` as keyof JSX.IntrinsicElements;
+    const Tag = `h${level}` as "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
     return (
         <Link href={`#${id}`}>
             <Tag id={id} {...rest} className="anchor">
