@@ -24,14 +24,14 @@ const Tips = async () => {
         <div className="w-full">
             <div className="pb-12 max-md:text-center md:pb-16">
                 <h1 className="mb-6 text-3xl md:text-4xl lg:text-5xl">🔥 Hot Development Tips</h1>
-                <p className="text-lg opacity-80 md:text-xl">
+                <p className="text-lg text-[rgb(var(--color-text-primary))] md:text-xl">
                     Development tips and snippets that i share on my&nbsp;
                     <a
                         href="https://twitter.com/VictorySokolov"
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="Twitter account"
-                        className="text-secondary hover:underline"
+                        className="text-[rgb(var(--color-secondary))] hover:underline"
                     >
                         Twitter account
                     </a>
@@ -45,11 +45,11 @@ const Tips = async () => {
                     >
                         <div className="flex flex-col gap-0">
                             <Link href={`/tips/${tip.slug}`} aria-label={tip.title}>
-                                <h3 className="mb-4 text-3xl leading-[1.3] text-[rgb(var(--color-text-secondary))] transition-colors duration-300 max-sm:text-2xl">
+                                <h3 className="mb-4 text-3xl leading-[1.3] text-[rgb(var(--color-text-primary))] transition-colors duration-300 max-sm:text-2xl">
                                     <Balancer>{tip.title}</Balancer>
                                 </h3>
                             </Link>
-                            <p className="mb-4 text-sm opacity-70 md:text-base">{tip.date}</p>
+                            <p className="mb-4 text-sm text-[rgb(var(--color-text-primary))] opacity-80 md:text-base">{tip.date}</p>
                         </div>
                     </article>
                 ))}

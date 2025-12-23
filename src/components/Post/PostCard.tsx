@@ -19,7 +19,7 @@ export const PostCard: React.FC<PostFrontmatter> = ({
     return (
         <div
             key={id}
-            className="shadow-card hover:shadow-card-hover mb-12 w-full max-w-152 rounded-lg bg-white text-[rgb(var(--color-text-primary))] transition-all duration-300 hover:scale-[1.02] max-sm:max-w-full"
+            className="shadow-card hover:shadow-card-hover mb-12 w-full max-w-152 rounded-lg bg-[rgb(var(--color-surface))] text-[rgb(var(--color-text-primary))] transition-all duration-300 hover:scale-[1.02] max-sm:max-w-full"
         >
             <Link href={`${slug}`} aria-label={title}>
                 <div className="flex h-full flex-col">

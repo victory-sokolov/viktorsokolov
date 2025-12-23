@@ -26,13 +26,13 @@ export const Nav: React.FC<Props> = ({ isSticky }) => {
         <>
             <nav className="relative">
                 <div className="mx-auto max-w-212.5 px-2 sm:px-6 lg:px-8">
-                    <div className="flex h-16 items-center justify-between sm:justify-start gap-4">
+                    <div className="flex h-16 items-center justify-between gap-4">
                         {/* Mobile menu button */}
                         <button
                             type="button"
                             onClick={() => setIsOpen(!isOpen)}
                             aria-expanded={isOpen}
-                            className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-white/5 hover:text-white focus:outline-2 focus:-outline-offset-1 focus:outline-indigo-500 sm:hidden"
+                            className="relative inline-flex items-center justify-center rounded-md p-2 text-[rgb(var(--color-text-primary))] hover:bg-black/5 dark:hover:bg-white/5 focus:outline-2 focus:-outline-offset-1 focus:outline-indigo-500 sm:hidden"
                         >
                             <span className="absolute -inset-0.5"></span>
                             <span className="sr-only">Open main menu</span>
@@ -69,17 +69,17 @@ export const Nav: React.FC<Props> = ({ isSticky }) => {
                         </button>
 
                         {/* Desktop Navigation */}
-                        <div className="hidden sm:flex flex-1 items-center">
+                        <div className="hidden sm:flex items-center">
                             <div className="flex space-x-4">
                                 {navLinks.map(({ href, label, prefetch }) => (
                                     <Link
                                         key={href}
                                         href={href}
                                         prefetch={prefetch}
-                                        className={`rounded-md px-3 py-2 text-2xl font-medium transition-colors duration-200 ${
+                                        className={`px-3 py-2 !text-3xl font-medium transition-colors duration-200 ${
                                             pathname === href
-                                                ? "bg-gray-900 dark:bg-gray-950/50 text-white"
-                                                : "text-gray-300 hover:bg-white/5 hover:text-white"
+                                                ? "bg-white dark:bg-white/10 text-[rgb(var(--color-secondary))]"
+                                                : "text-[rgb(var(--color-text-primary))] hover:bg-black/5 dark:hover:bg-white/5"
                                         }`}
                                         aria-current={pathname === href ? "page" : undefined}
                                     >
@@ -90,7 +90,7 @@ export const Nav: React.FC<Props> = ({ isSticky }) => {
                         </div>
 
                         {/* Theme Toggle */}
-                        <div className="flex items-center">
+                        <div className="flex items-center ml-auto">
                             <ThemeToggle />
                         </div>
                     </div>
@@ -106,10 +106,10 @@ export const Nav: React.FC<Props> = ({ isSticky }) => {
                                     href={href}
                                     prefetch={prefetch}
                                     onClick={() => setIsOpen(false)}
-                                    className={`block rounded-md px-3 py-2 text-base font-medium transition-colors duration-200 ${
+                                    className={`block rounded-md px-3 py-2 !text-3xl font-medium transition-colors duration-200 ${
                                         pathname === href
-                                            ? "bg-gray-900 dark:bg-gray-950/50 text-white"
-                                            : "text-gray-300 hover:bg-white/5 hover:text-white"
+                                            ? "bg-white dark:bg-white/10 text-[rgb(var(--color-secondary))]"
+                                            : "text-[rgb(var(--color-text-primary))] hover:bg-black/5 dark:hover:bg-white/5"
                                     }`}
                                     aria-current={pathname === href ? "page" : undefined}
                                 >

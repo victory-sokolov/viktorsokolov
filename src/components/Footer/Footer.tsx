@@ -8,14 +8,14 @@ export const Footer: React.FC = () => {
             <Link
                 href="/"
                 aria-label="Home"
-                className="mb-6 inline-block text-lg font-bold tracking-wider text-white uppercase transition-colors hover:text-[rgb(var(--color-secondary))]"
+                className="mb-6 inline-block text-lg font-bold tracking-wider text-[rgb(var(--color-text-primary))] uppercase transition-colors hover:text-[rgb(var(--color-secondary))]"
             >
                 {config.siteName}
                 .com
             </Link>
 
             <SocialMedia justify="center" />
-            <p className="text-base opacity-80">
+            <p className="text-base text-[rgb(var(--color-text-primary))] opacity-90">
                 &copy;
                 {" "}
                 {new Date().getFullYear()}

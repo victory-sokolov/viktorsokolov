@@ -165,7 +165,7 @@ a:active {
 
 
 .article-title {
-  color: rgb(var(--color-text-secondary));
+  color: rgb(var(--color-text-primary));
 }
 
 input {
