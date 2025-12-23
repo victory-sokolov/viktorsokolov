@@ -32,6 +32,8 @@
 
   --color-accent: 255 185 11;
   
+  --color-link: 59 130 246;
+  
   --color-background: 3 8 42;
   --color-surface: 4 11 56;
   --color-text-primary: 255 255 255;
@@ -132,6 +134,7 @@ a {
   --color-selection: 147 197 253;
   --color-primary: 15 23 42;
   --color-primary-600: 30 41 59;
+  --color-link: 37 99 235;
 }
 
 fieldset {
