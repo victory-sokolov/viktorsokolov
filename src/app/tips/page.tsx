@@ -40,12 +40,12 @@ const Tips = async () => {
             <div className="post-list">
                 {tips.map((tip: TipFrontmatter) => (
                     <article
-                        className="border-b border-[rgb(var(--color-border))] pb-4 mb-4 last:border-b-0 last:pb-0 last:mb-0"
+                        className="post-article pb-4 mb-4"
                         key={tip.slug}
                     >
                         <div className="flex flex-col gap-0">
                             <Link href={`/tips/${tip.slug}`} aria-label={tip.title}>
-                                <h3 className="mb-4 text-3xl leading-[1.3] text-[rgb(var(--color-text-primary))] transition-colors duration-300 max-sm:text-2xl">
+                                <h3 className="post-title text-3xl max-sm:text-2xl">
                                     <Balancer>{tip.title}</Balancer>
                                 </h3>
                             </Link>

@@ -32,7 +32,7 @@ export const Nav: React.FC<Props> = ({ isSticky }) => {
                             type="button"
                             onClick={() => setIsOpen(!isOpen)}
                             aria-expanded={isOpen}
-                            className="relative inline-flex items-center justify-center rounded-md p-2 text-[rgb(var(--color-text-primary))] hover:bg-black/5 dark:hover:bg-white/5 focus:outline-2 focus:-outline-offset-1 focus:outline-indigo-500 sm:hidden"
+                            className="relative inline-flex items-center justify-center rounded-md p-2 text-[rgb(var(--color-text-primary))] hover-bg focus:outline-2 focus:-outline-offset-1 focus:outline-indigo-500 sm:hidden"
                         >
                             <span className="absolute -inset-0.5"></span>
                             <span className="sr-only">Open main menu</span>
@@ -76,10 +76,10 @@ export const Nav: React.FC<Props> = ({ isSticky }) => {
                                         key={href}
                                         href={href}
                                         prefetch={prefetch}
-                                        className={`px-3 py-2 !text-3xl font-medium transition-colors duration-200 ${
+                                        className={`nav-link ${
                                             pathname === href
-                                                ? "bg-white dark:bg-white/10 text-[rgb(var(--color-secondary))]"
-                                                : "text-[rgb(var(--color-text-primary))] hover:bg-black/5 dark:hover:bg-white/5"
+                                                ? "nav-link-active"
+                                                : "nav-link-inactive hover-bg"
                                         }`}
                                         aria-current={pathname === href ? "page" : undefined}
                                     >
@@ -106,10 +106,10 @@ export const Nav: React.FC<Props> = ({ isSticky }) => {
                                     href={href}
                                     prefetch={prefetch}
                                     onClick={() => setIsOpen(false)}
-                                    className={`block rounded-md px-3 py-2 !text-3xl font-medium transition-colors duration-200 ${
+                                    className={`nav-link rounded-md ${
                                         pathname === href
-                                            ? "bg-white dark:bg-white/10 text-[rgb(var(--color-secondary))]"
-                                            : "text-[rgb(var(--color-text-primary))] hover:bg-black/5 dark:hover:bg-white/5"
+                                            ? "nav-link-active"
+                                            : "nav-link-inactive hover-bg"
                                     }`}
                                     aria-current={pathname === href ? "page" : undefined}
                                 >

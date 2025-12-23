@@ -9,10 +9,10 @@ import { PostMeta } from "./PostMeta";
 
 export const PostItem = ({ post }: { post: PostFrontmatter }) => {
     return (
-        <article className="mb-8 border-b border-[rgb(var(--color-border))] pb-8 last:mb-0 last:border-b-0 last:pb-0">
+        <article className="post-article mb-8 pb-8">
             <div className="flex flex-col gap-0">
                 <Link href={`blog/${post.slug}`} aria-label={post.title}>
-                    <h3 className="mb-4 text-[2.6rem] leading-[1.3] text-[rgb(var(--color-text-primary))] transition-colors duration-300 max-sm:text-3xl">
+                    <h3 className="post-title text-[2.6rem] max-sm:text-3xl">
                         <Balancer>{post.title}</Balancer>
                     </h3>
                 </Link>
