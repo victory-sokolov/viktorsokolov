@@ -40,6 +40,10 @@ jobs:
 
       - name: Run typechecker
         run: pnpm typecheck
+
+      - name: Check for duplicate code
+        run: npx jscpd src/ lib/
+
       - name: ✅ Run Knip
         run: pnpm knip
         continue-on-error: true
