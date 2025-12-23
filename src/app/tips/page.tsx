@@ -22,8 +22,8 @@ const Tips = async () => {
 
     return (
         <div className="w-full">
-            <div className="pb-12 max-md:text-center md:pb-16">
-                <h1 className="mb-6 text-3xl md:text-4xl lg:text-5xl">🔥 Hot Development Tips</h1>
+            <div className="section-header">
+                <h1 className="section-title mb-6">🔥 Hot Development Tips</h1>
                 <p className="text-lg text-[rgb(var(--color-text-primary))] md:text-xl">
                     Development tips and snippets that i share on my&nbsp;
                     <a

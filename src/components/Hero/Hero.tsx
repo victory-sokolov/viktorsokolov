@@ -8,11 +8,11 @@ export const Hero: React.FC = () => {
                 Hi! I&apos;m Viktor.
                 <span className="wavy ml-2">👋</span>
             </h1>
-            <p className="mb-6 text-[1.8rem] leading-[1.7] max-sm:text-base max-sm:leading-relaxed">
+            <p className="lead-relaxed mb-6">
                 I'm a Software Engineer mainly working with Python, Node, TypeScript and React.
                 Sharing my learnings and building prodcuts in public.
             </p>
-            <p className="mb-6 text-[1.8rem] leading-[1.7] max-sm:text-base">
+            <p className="lead mb-6">
                 Follow me on other platforms:
             </p>
             <SocialMedia size={24} />

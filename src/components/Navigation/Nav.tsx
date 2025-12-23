@@ -25,7 +25,7 @@ export const Nav: React.FC<Props> = ({ isSticky }) => {
     return (
         <>
             <nav className="relative">
-                <div className="mx-auto max-w-212.5 px-2 sm:px-6 lg:px-8">
+                <div className="page-container px-2 sm:px-6 lg:px-8">
                     <div className="flex h-16 items-center justify-between gap-4">
                         {/* Mobile menu button */}
                         <button

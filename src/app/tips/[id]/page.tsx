@@ -84,7 +84,7 @@ const TipPage: React.FC = async (props: { params: Promise<PageParams> }) => {
                 authorName={config.author}
                 description={frontmatter.description}
             />
-            <h1 className="mb-6 text-3xl md:text-4xl lg:text-5xl">
+            <h1 className="section-title mb-6">
                 <Balancer>{tipFrontmatter.title}</Balancer>
             </h1>
             <Categories categories={tags} style={{ textAlign: "left" }} />

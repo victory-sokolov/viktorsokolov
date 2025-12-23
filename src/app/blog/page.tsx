@@ -21,8 +21,8 @@ const Blog = async () => {
 
     return (
         <div className="w-full">
-            <div className="pb-12 max-md:text-center md:pb-16">
-                <h1 className="mb-4 text-3xl md:text-4xl lg:text-5xl">Blog Posts ↓</h1>
+            <div className="section-header">
+                <h1 className="section-title mb-4">Blog Posts ↓</h1>
                 <h4 className="text-xl md:text-2xl">
                     {posts.length}
                     {" "}

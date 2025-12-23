@@ -351,7 +351,7 @@ a.mdx-link:hover {
 }
 
 .post-title {
-  @apply mb-4 leading-[1.3] text-[rgb(var(--color-text-primary))] transition-colors duration-300;
+  @apply mb-4 leading-[1.3] text-[rgb(var(--color-text-secondary))] transition-colors duration-300;
 }
 
 .post-article {
@@ -436,6 +436,32 @@ a.mdx-link:hover {
   .btn-toggle:hover::before {
     width: 120%;
     height: 120%;
+  }
+
+  /* Layout utilities */
+  .page-container {
+    @apply mx-auto w-full max-w-212.5;
+  }
+
+  .page-shell {
+    @apply mx-auto w-full max-w-212.5 px-10 max-sm:px-8;
+  }
+
+  /* Content utilities */
+  .section-header {
+    @apply pb-12 md:pb-16 max-md:text-center;
+  }
+
+  .section-title {
+    @apply text-3xl md:text-4xl lg:text-5xl text-[rgb(var(--color-secondary))];
+  }
+
+  .lead {
+    @apply text-[1.8rem] leading-[1.7] max-sm:text-base;
+  }
+
+  .lead-relaxed {
+    @apply text-[1.8rem] leading-[1.7] max-sm:text-base max-sm:leading-relaxed;
   }
 
   .border-gradient::after {
