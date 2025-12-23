@@ -98,26 +98,6 @@
         "webpack": "5.104.1",
         "xml2js": "0.6.2"
     },
-    "pnpm": {
-        "overrides": {
-            "@babel/helpers@<7.26.10": ">=7.26.10",
-            "@babel/runtime@<7.26.10": ">=7.26.10",
-            "@eslint/config-array": "^0.23.0",
-            "brace-expansion@>=1.0.0 <=1.1.11": ">=1.1.12",
-            "brace-expansion@>=2.0.0 <=2.0.1": ">=2.0.2",
-            "cross-spawn@<6.0.6": ">=6.0.6",
-            "ejs@<3.1.10": ">=3.1.10",
-            "glob@>=10.2.0 <10.5.0": ">=10.5.0",
-            "js-yaml@<3.14.2": ">=3.14.2",
-            "mdast-util-to-hast@>=13.0.0 <13.2.1": ">=13.2.1",
-            "nanoid@<3.3.8": ">=3.3.8",
-            "rollup@<2.79.2": ">=2.79.2",
-            "styled-react-modal>react": "19.2.1",
-            "tmp@<=0.2.3": ">=0.2.4",
-            "webpack@>=5.0.0-alpha.0 <5.94.0": ">=5.94.0",
-            "ws@>=7.0.0 <7.5.10": ">=7.5.10"
-        }
-    },
     "husky": {
         "hooks": {
             "pre-commit": "lint-staged"
