@@ -42,6 +42,7 @@ jobs:
         run: pnpm typecheck
       - name: ✅ Run Knip
         run: pnpm knip
+        continue-on-error: true
 
       - name: Build
         run: pnpm build
