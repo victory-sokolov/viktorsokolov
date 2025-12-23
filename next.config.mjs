@@ -19,7 +19,7 @@ const withPWA = nextPWA({
 const ContentSecurityPolicy = `
     default-src 'self';
     img-src * self blob: data:;
-    script-src 'self' 'unsafe-eval' 'unsafe-inline' cdn.vercel-insights.com vercel.live va.vercel-scripts.com; utteranc.es;
+    script-src 'self' 'unsafe-eval' 'unsafe-inline' cdn.vercel-insights.com vercel.live va.vercel-scripts.com utteranc.es;
     style-src 'self' 'unsafe-inline';
     frame-src *.substack.com utteranc.es;
     frame-ancestors true;

@@ -83,7 +83,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: ReactProps) {
     return (
-        <html lang="en" className={cairo.className}>
+        <html lang="en" className={cairo.className} data-scroll-behavior="smooth">
             <head></head>
             <body suppressHydrationWarning>
                 <Layout>
