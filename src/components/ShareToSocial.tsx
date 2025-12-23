@@ -1,13 +1,13 @@
 "use client";
 
+import { config } from "@/common/appconfig";
+import share from "@/common/share";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { CiFacebook, CiLinkedin, CiTwitter } from "react-icons/ci";
 import { DiHackernews } from "react-icons/di";
 import { FaCreativeCommonsShare, FaShareAlt } from "react-icons/fa";
 import { FcReddit } from "react-icons/fc";
-import { config } from "@/common/appconfig";
-import share from "@/common/share";
 
 export default function ShareToSocialLink({ title }: { title: string }) {
     const pathname = usePathname();

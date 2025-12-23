@@ -1,12 +1,12 @@
-import type { Metadata } from "next";
-import type { ReactProps } from "src/types/types";
-import process from "node:process";
-import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next";
-import { Cairo } from "next/font/google";
-import { Provider } from "react-wrap-balancer";
 import { config } from "@/common/appconfig";
 import Layout from "@/components/Layout/Layout";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import type { Metadata } from "next";
+import { Cairo } from "next/font/google";
+import process from "node:process";
+import { Provider } from "react-wrap-balancer";
+import type { ReactProps } from "src/types/types";
 
 import "./globals.css";
 
@@ -67,8 +67,8 @@ export const metadata: Metadata = {
         index: true,
         follow: true,
         googleBot: {
-            "index": true,
-            "follow": true,
+            index: true,
+            follow: true,
             "max-video-preview": -1,
             "max-image-preview": "large",
             "max-snippet": -1,
