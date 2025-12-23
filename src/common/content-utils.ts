@@ -1,9 +1,9 @@
+import type { PostFrontmatter, PostType, TipFrontmatter } from "src/types/Post";
+import fs from "node:fs";
 import { toLongDate } from "@vsokolov/utils";
 import matter from "gray-matter";
 import { serialize } from "next-mdx-remote/serialize";
-import fs from "node:fs";
 import rehypeSlug from "rehype-slug";
-import type { PostFrontmatter, PostType, TipFrontmatter } from "src/types/Post";
 
 export const getSerializedContent = async content => {
     const options = {

@@ -1,10 +1,10 @@
 "use client";
 
-import { ScrollIndicator } from "@/components/ScrollIndicator";
-import ThemeToggle from "@/components/ThemeToggle";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useState } from "react";
+import { ScrollIndicator } from "@/components/ScrollIndicator";
+import ThemeToggle from "@/components/ThemeToggle";
 
 type Props = {
     isSticky: boolean;
@@ -32,7 +32,7 @@ export const Nav: React.FC<Props> = ({ isSticky }) => {
                             type="button"
                             onClick={() => setIsOpen(!isOpen)}
                             aria-expanded={isOpen}
-                            className="relative inline-flex items-center justify-center rounded-md p-2 text-[rgb(var(--color-text-primary))] hover-bg focus:outline-2 focus:-outline-offset-1 focus:outline-indigo-500 sm:hidden"
+                            className="hover-bg relative inline-flex items-center justify-center rounded-md p-2 text-[rgb(var(--color-text-primary))] focus:outline-2 focus:-outline-offset-1 focus:outline-indigo-500 sm:hidden"
                         >
                             <span className="absolute -inset-0.5"></span>
                             <span className="sr-only">Open main menu</span>
@@ -69,7 +69,7 @@ export const Nav: React.FC<Props> = ({ isSticky }) => {
                         </button>
 
                         {/* Desktop Navigation */}
-                        <div className="hidden sm:flex items-center">
+                        <div className="hidden items-center sm:flex">
                             <div className="flex space-x-4">
                                 {navLinks.map(({ href, label, prefetch }) => (
                                     <Link
@@ -90,7 +90,7 @@ export const Nav: React.FC<Props> = ({ isSticky }) => {
                         </div>
 
                         {/* Theme Toggle */}
-                        <div className="flex items-center ml-auto">
+                        <div className="ml-auto flex items-center">
                             <ThemeToggle />
                         </div>
                     </div>

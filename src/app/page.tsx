@@ -1,7 +1,7 @@
+import type { PostFrontmatter } from "src/types/Post";
+import Link from "next/link";
 import { getRecentPosts } from "@/common/posts";
 import { PostItem } from "@/components/Post";
-import Link from "next/link";
-import type { PostFrontmatter } from "src/types/Post";
 
 export default async function Main() {
     const posts = await getRecentPosts();
@@ -33,7 +33,8 @@ export default async function Main() {
                         strokeLinejoin="round"
                         strokeWidth="2"
                         d="M17.5 12h-15m11.667-4l3.333 4-3.333-4zm3.333 4l-3.333 4 3.333-4z"
-                    ></path>
+                    >
+                    </path>
                 </svg>
             </Link>
             {/* <NewsLetterForm /> */}

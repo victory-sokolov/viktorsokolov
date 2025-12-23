@@ -19,7 +19,7 @@ export const SocialMedia: React.FC<SocialMediaType> = ({
 
     return (
         <div className="my-6">
-            <ul className={`flex items-center gap-4 p-0 md:gap-6 justify-${justify}`}>
+            <ul className={`justify- flex items-center gap-4 p-0 md:gap-6${justify}`}>
                 <li className="social-link">
                     <a
                         href={meta.social.twitter}
