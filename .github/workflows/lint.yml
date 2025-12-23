@@ -40,6 +40,8 @@ jobs:
 
       - name: Run typechecker
         run: pnpm typecheck
+      - name: ✅ Run Knip
+        run: pnpm knip
 
       - name: Build
         run: pnpm build
