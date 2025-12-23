@@ -1,5 +1,4 @@
 import type { ImageProps } from "next/image";
-import type { ComponentType } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
