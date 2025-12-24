@@ -6,7 +6,7 @@ export const BuyMeACoffe = () => {
     return (
         <div className="mt-4">
             <a
-                href="https://www.buymeacoffee.com/vikctorysokolov"
+                href="https://www.buymeacoffee.com/viktorsokolov"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Buy Me A Coffee"
