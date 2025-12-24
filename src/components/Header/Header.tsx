@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 
 const Nav = dynamic(() =>
     import(
@@ -23,14 +23,32 @@ export const Header: React.FC = () => {
     const [isRootUrl, setIsRootUrl] = useState(pathname === "/");
     const [sticky, setSticky] = useState({ isSticky: false, offset: 0 });
     const headerRef = useRef<HTMLElement>(null);
+    const sentinelRef = useRef<HTMLDivElement>(null);
 
-    const handleScroll = (elTopOffset: number, elHeight: number) => {
-        if (window.scrollY > elTopOffset) {
-            setSticky({ isSticky: true, offset: elHeight });
-        } else {
-            setSticky({ isSticky: false, offset: 0 });
-        }
-    };
+    const handleScroll = useCallback(() => {
+        const headerEl = headerRef.current;
+        const sentinelEl = sentinelRef.current;
+        if (!headerEl || !sentinelEl) return;
+
+        const sentinelTop = sentinelEl.getBoundingClientRect().top;
+
+        // Hysteresis based on a sentinel element that stays in normal flow.
+        const stickOnThreshold = -24; // start sticking once sentinel is 24px above viewport
+        const stickOffThreshold = 0; // unstick when sentinel returns to viewport
+
+        setSticky(prev => {
+            let nextIsSticky = prev.isSticky;
+
+            if (!prev.isSticky && sentinelTop <= stickOnThreshold) {
+                nextIsSticky = true;
+            } else if (prev.isSticky && sentinelTop >= stickOffThreshold) {
+                nextIsSticky = false;
+            }
+
+            if (prev.isSticky === nextIsSticky) return prev;
+            return { isSticky: nextIsSticky, offset: nextIsSticky ? headerEl.offsetHeight : 0 };
+        });
+    }, []);
 
     useEffect(() => {
         setIsRootUrl(pathname === "/");
@@ -38,20 +56,20 @@ export const Header: React.FC = () => {
 
     useEffect(() => {
         if (!headerRef.current) return;
+        handleScroll();
 
-        const header = headerRef.current.getBoundingClientRect();
-        const handleScrollEvent = () => {
-            handleScroll(header.top, header.height);
-        };
-        window.addEventListener("scroll", handleScrollEvent);
+        window.addEventListener("scroll", handleScroll, { passive: true });
+        window.addEventListener("resize", handleScroll);
 
         return () => {
-            window.removeEventListener("scroll", handleScrollEvent);
+            window.removeEventListener("scroll", handleScroll);
+            window.removeEventListener("resize", handleScroll);
         };
-    }, [sticky]);
+    }, [handleScroll]);
 
     return (
         <div className="relative">
+            <div ref={sentinelRef} aria-hidden className="h-px w-px" />
             <header className={`${sticky.isSticky ? "sticky" : ""}`} ref={headerRef}>
                 <div className="z-20 w-full py-6">
                     <Nav aria-label="Navigation" isSticky={sticky.isSticky} />
