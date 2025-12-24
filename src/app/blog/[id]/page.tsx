@@ -42,13 +42,12 @@ export default async function Page(props: { params: Promise<PageParams> }) {
     return (
         <>
             <ArticleJsonLd
-                useAppDir={true}
                 url={`${baseUrl}/blog/${frontmatter.slug}`}
-                title={title}
-                images={[featureImage]}
+                headline={title}
+                image={featureImage}
                 datePublished={date}
                 dateModified={frontmatter.lastModified}
-                authorName={config.author}
+                author={config.author}
                 description={frontmatter.description}
             />
             <article className="mx-auto mt-8 w-full max-w-340 leading-relaxed max-sm:mt-4 md:mt-12">

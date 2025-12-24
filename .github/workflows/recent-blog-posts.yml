@@ -17,25 +17,16 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4.1.7
 
-      - name: Set node version
-        uses: actions/setup-node@v4.0.2
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
         with:
-          cache: pnpm
-          node-version-file: .nvmrc
-
-      - name: Cache node_modules
-        id: node-modules-cache
-        uses: actions/cache@v4
-        with:
-          path: "**/node_modules"
-          key: node-modules-cache-${{ hashFiles('**/pnpm-lock.yaml') }}
+          bun-version: latest
 
       - name: Install node dependencies
-        if: steps.node-modules-cache.outputs.cache-hit != 'true'
-        run: pnpm install
+        run: bun install
 
       - name: Run node script
-        run: pnpm build
+        run: bun run build
 
       - name: Git setup
         run: git config --global user.email readme-bot@example.com && git config --global user.name readme-bot
