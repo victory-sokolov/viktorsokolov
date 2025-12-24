@@ -68,7 +68,7 @@ export const SocialMedia: React.FC<SocialMediaType> = ({
 export const GithubLink = ({ slug }: { slug: string }) => (
     <a
         href={`https://github.com/victory-sokolov/viktorsokolov/tree/master/content/posts/${slug}/${slug}.mdx`}
-        aria-labelledby="Edit this post"
+        aria-label="Edit this post"
         target="_blank"
         rel="noopener noreferrer"
     >
@@ -82,7 +82,7 @@ export const GithubLink = ({ slug }: { slug: string }) => (
 export const DevToLink = () => (
     <a
         href="https://dev.to/victorysokolov"
-        aria-labelledby="Read on DevTo"
+        aria-label="Read on DevTo"
         target="_blank"
         rel="noopener noreferrer"
     >

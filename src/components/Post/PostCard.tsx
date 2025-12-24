@@ -21,7 +21,7 @@ export const PostCard: React.FC<PostFrontmatter> = ({
             key={id}
             className="post-card"
         >
-            <Link href={`${slug}`} aria-label={title}>
+            <Link href={`${slug}`}>
                 <div className="flex h-full flex-col">
                     <div className="w-full overflow-hidden rounded-t-lg">
                         <Image

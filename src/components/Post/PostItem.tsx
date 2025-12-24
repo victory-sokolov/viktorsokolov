@@ -10,7 +10,7 @@ export const PostItem = ({ post }: { post: PostFrontmatter }) => {
     return (
         <article className="post-article mb-8 pb-8">
             <div className="flex flex-col gap-0">
-                <Link href={`blog/${post.slug}`} aria-label={post.title}>
+                <Link href={`blog/${post.slug}`}>
                     <h3 className="post-title text-[2.6rem] max-sm:text-3xl">
                         <Balancer>{post.title}</Balancer>
                     </h3>

@@ -85,7 +85,7 @@ export default function RootLayout({ children }: ReactProps) {
     return (
         <html lang="en" className={cairo.className} data-scroll-behavior="smooth">
             <head></head>
-            <body suppressHydrationWarning>
+            <body>
                 <Layout>
                     <Analytics />
                     <SpeedInsights />
