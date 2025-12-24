@@ -44,7 +44,7 @@ const Tips = async () => {
                         key={tip.slug}
                     >
                         <div className="flex flex-col gap-0">
-                            <Link href={`/tips/${tip.slug}`}>
+                            <Link href={`/tips/${tip.slug}`} aria-label={tip.title}>
                                 <h3 className="post-title text-[2.6rem] max-sm:text-3xl">
                                     <Balancer>{tip.title}</Balancer>
                                 </h3>

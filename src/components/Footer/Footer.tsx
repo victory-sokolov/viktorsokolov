@@ -7,7 +7,6 @@ export const Footer: React.FC = () => {
         <footer className="mt-12 pt-16 pb-8 text-center max-sm:mt-16">
             <Link
                 href="/"
-                aria-label="Home"
                 className="mb-6 inline-block text-lg font-bold tracking-wider text-[rgb(var(--color-text-primary))] uppercase transition-colors hover:text-[rgb(var(--color-secondary))]"
             >
                 {config.siteName}

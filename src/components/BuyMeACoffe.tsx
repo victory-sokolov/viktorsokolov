@@ -9,7 +9,7 @@ export const BuyMeACoffe = () => {
                 href="https://www.buymeacoffee.com/vikctorysokolov"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Buy me coffee"
+                aria-label="Buy Me A Coffee"
             >
                 <Image
                     src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png"
