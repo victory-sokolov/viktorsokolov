@@ -40,13 +40,12 @@ const TipPage: React.FC = async (props: { params: Promise<PageParams> }) => {
     return (
         <article className="relative mx-auto mt-[2rem] leading-8 max-sm:relative max-sm:bottom-0 max-sm:max-w-full max-sm:bg-none max-sm:p-0 max-sm:shadow-none">
             <ArticleJsonLd
-                useAppDir={true}
                 url={`${baseUrl}/blog/${frontmatter.slug}`}
-                title={frontmatter.title}
-                images={[frontmatter.featureImage]}
+                headline={frontmatter.title}
+                image={frontmatter.featureImage}
                 datePublished={date}
                 dateModified={frontmatter.lastModified}
-                authorName={config.author}
+                author={config.author}
                 description={frontmatter.description}
             />
             <h1 className="section-title mb-6">
