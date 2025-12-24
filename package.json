@@ -15,7 +15,7 @@
         "node": ">=24.0.0"
     },
     "scripts": {
-        "dev": "next dev --turbopack --experimental-https",
+        "dev": "next dev --experimental-https",
         "build": "next build",
         "start": "next start",
         "analyze": "ANALYZE=true bun run build",
