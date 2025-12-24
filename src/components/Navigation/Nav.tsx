@@ -1,95 +1,127 @@
-import isPropValid from "@emotion/is-prop-valid";
-import dynamic from "next/dynamic";
+"use client";
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useState } from "react";
-import { StyleSheetManager } from "styled-components";
 import { ScrollIndicator } from "@/components/ScrollIndicator";
-
-import { CloseIcon, LinkItem, Menu, NavStyles, StyledLink } from "./Nav.styled";
+import ThemeToggle from "@/components/ThemeToggle";
 
 type Props = {
     isSticky: boolean;
 };
 
-const Hamburger = dynamic(() =>
-    import(
-        /* webpackChunkName: 'HamburgerMenuComponent' */
-        "@/components/Navigation/Nav.styled"
-    ).then(module => module.Hamburger),
-);
+const navLinks = [
+    { href: "/", label: "Home" },
+    { href: "/blog", label: "Blog" },
+    { href: "/about", label: "About", prefetch: false },
+    { href: "/uses", label: "Uses", prefetch: false },
+    { href: "/tips", label: "Tips" },
+];
 
 export const Nav: React.FC<Props> = ({ isSticky }) => {
     const [isOpen, setIsOpen] = useState(false);
     const pathname = usePathname();
 
     return (
-        <NavStyles>
-            <StyleSheetManager enableVendorPrefixes shouldForwardProp={prop => isPropValid(prop)}>
-                <Hamburger isSticky={isSticky} isOpen={isOpen} onClick={() => setIsOpen(!isOpen)}>
-                    <CloseIcon />
-                </Hamburger>
-            </StyleSheetManager>
-            <Menu>
-                <div>
-                    <ul>
-                        <LinkItem onClick={() => setIsOpen(!isOpen)}>
-                            <Link href="/" passHref data-hover="Home" aria-label="Home page">
-                                <StyledLink className={pathname === "/" ? "active" : ""}>
-                                    Home
-                                </StyledLink>
-                            </Link>
-                        </LinkItem>
-                        <LinkItem onClick={() => setIsOpen(!isOpen)}>
-                            <Link
-                                href="/blog"
-                                passHref
-                                data-hover="Blog"
-                                aria-label="Blog posts page"
+        <>
+            <nav className="relative">
+                <div className="page-container px-2 sm:px-6 lg:px-8">
+                    <div className="flex h-16 items-center justify-between gap-4">
+                        {/* Mobile menu button */}
+                        <button
+                            type="button"
+                            onClick={() => setIsOpen(!isOpen)}
+                            aria-expanded={isOpen}
+                            className="hover-bg relative inline-flex items-center justify-center rounded-md p-2 text-[rgb(var(--color-text-primary))] focus:outline-2 focus:-outline-offset-1 focus:outline-indigo-500 sm:hidden"
+                        >
+                            <span className="absolute -inset-0.5"></span>
+                            <span className="sr-only">Open main menu</span>
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="1.5"
+                                data-slot="icon"
+                                aria-hidden="true"
+                                className={`size-6 ${isOpen ? "hidden" : "block"}`}
                             >
-                                <StyledLink className={pathname === "/blog" ? "active" : ""}>
-                                    Blog
-                                </StyledLink>
-                            </Link>
-                        </LinkItem>
+                                <path
+                                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                            </svg>
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="1.5"
+                                data-slot="icon"
+                                aria-hidden="true"
+                                className={`size-6 ${isOpen ? "block" : "hidden"}`}
+                            >
+                                <path
+                                    d="M6 18 18 6M6 6l12 12"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                            </svg>
+                        </button>
 
-                        <LinkItem onClick={() => setIsOpen(!isOpen)}>
-                            <Link
-                                href="/about"
-                                passHref
-                                data-hover="About"
-                                aria-label="About me page"
-                                prefetch={false}
-                            >
-                                <StyledLink className={pathname === "/about" ? "active" : ""}>
-                                    About
-                                </StyledLink>
-                            </Link>
-                        </LinkItem>
-                        <LinkItem onClick={() => setIsOpen(!isOpen)}>
-                            <Link
-                                href="/uses"
-                                passHref
-                                data-hover="Uses"
-                                aria-label="Uses page"
-                                prefetch={false}
-                            >
-                                <StyledLink className={pathname === "/uses" ? "active" : ""}>
-                                    Uses
-                                </StyledLink>
-                            </Link>
-                        </LinkItem>
-                        <LinkItem onClick={() => setIsOpen(!isOpen)}>
-                            <Link href="/tips" passHref data-hover="Tips" aria-label="Tips page">
-                                <StyledLink className={pathname === "/tips" ? "active" : ""}>
-                                    Tips
-                                </StyledLink>
-                            </Link>
-                        </LinkItem>
-                    </ul>
-                    {isSticky && !isOpen && <ScrollIndicator />}
+                        {/* Desktop Navigation */}
+                        <div className="hidden items-center sm:flex">
+                            <div className="flex space-x-4">
+                                {navLinks.map(({ href, label, prefetch }) => (
+                                    <Link
+                                        key={href}
+                                        href={href}
+                                        prefetch={prefetch}
+                                        className={`nav-link ${
+                                            pathname === href
+                                                ? "nav-link-active"
+                                                : "nav-link-inactive hover-bg"
+                                        }`}
+                                        aria-current={pathname === href ? "page" : undefined}
+                                    >
+                                        {label}
+                                    </Link>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Theme Toggle */}
+                        <div className="ml-auto flex items-center">
+                            <ThemeToggle />
+                        </div>
+                    </div>
                 </div>
-            </Menu>
-        </NavStyles>
+
+                {/* Mobile menu */}
+                {isOpen && (
+                    <div className="sm:hidden">
+                        <div className="flex flex-col items-center space-y-1 px-2 pt-2 pb-3">
+                            {navLinks.map(({ href, label, prefetch }) => (
+                                <Link
+                                    key={href}
+                                    href={href}
+                                    prefetch={prefetch}
+                                    onClick={() => setIsOpen(false)}
+                                    className={`nav-link rounded-md ${
+                                        pathname === href
+                                            ? "nav-link-active"
+                                            : "nav-link-inactive hover-bg"
+                                    }`}
+                                    aria-current={pathname === href ? "page" : undefined}
+                                >
+                                    {label}
+                                </Link>
+                            ))}
+                        </div>
+                    </div>
+                )}
+            </nav>
+
+            {isSticky && !isOpen && <ScrollIndicator />}
+        </>
     );
 };

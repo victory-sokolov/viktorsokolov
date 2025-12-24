@@ -19,7 +19,7 @@ const withPWA = nextPWA({
 const ContentSecurityPolicy = `
     default-src 'self';
     img-src * self blob: data:;
-    script-src 'self' 'unsafe-eval' 'unsafe-inline' cdn.vercel-insights.com vercel.live va.vercel-scripts.com; utteranc.es;
+    script-src 'self' 'unsafe-eval' 'unsafe-inline' cdn.vercel-insights.com vercel.live va.vercel-scripts.com utteranc.es;
     style-src 'self' 'unsafe-inline';
     frame-src *.substack.com utteranc.es;
     frame-ancestors true;
@@ -79,12 +79,8 @@ const config = {
     poweredByHeader: false,
     experimental: {
         webVitalsAttribution: ["CLS", "LCP"],
-        useLightningcss: true,
         useCache: true,
         serverSourceMaps: true,
-    },
-    compiler: {
-        styledComponents: true,
     },
     typescript: {
         ignoreBuildErrors: true,
@@ -103,6 +99,9 @@ const config = {
                 hostname: "cdn.buymeacoffee.com",
             },
         ],
+    },
+    removeConsole: {
+        exclude: ["error"],
     },
     eslint: {
         // Warning: This allows production builds to successfully complete even if

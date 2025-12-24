@@ -824,7 +824,7 @@ textarea.form-control-lg { min-height: calc(1.5em + 1rem + 2px); }
 .border-dark { border-color: rgb(33, 37, 41) !important; }
 .border-white { border-color: rgb(255, 255, 255) !important; }
 .border-0 { border-width: 0px !important; }
-.border-1 { border-width: 1px !important; }
+.border { border-width: 1px !important; }
 .border-2 { border-width: 2px !important; }
 .border-3 { border-width: 3px !important; }
 .border-4 { border-width: 4px !important; }
@@ -850,10 +850,10 @@ textarea.form-control-lg { min-height: calc(1.5em + 1rem + 2px); }
 .flex-column { flex-direction: column !important; }
 .flex-row-reverse { flex-direction: row-reverse !important; }
 .flex-column-reverse { flex-direction: column-reverse !important; }
-.flex-grow-0 { flex-grow: 0 !important; }
-.flex-grow-1 { flex-grow: 1 !important; }
-.flex-shrink-0 { flex-shrink: 0 !important; }
-.flex-shrink-1 { flex-shrink: 1 !important; }
+.grow-0 { flex-grow: 0 !important; }
+.grow { flex-grow: 1 !important; }
+.shrink-0 { flex-shrink: 0 !important; }
+.shrink { flex-shrink: 1 !important; }
 .flex-wrap { flex-wrap: wrap !important; }
 .flex-nowrap { flex-wrap: nowrap !important; }
 .flex-wrap-reverse { flex-wrap: wrap-reverse !important; }
@@ -1925,7 +1925,7 @@ textarea.form-control-lg { min-height: calc(1.5em + 1rem + 2px); }
 .border-light { border-color: rgb(248, 249, 250) !important; }
 .border-dark { border-color: rgb(33, 37, 41) !important; }
 .border-white { border-color: rgb(255, 255, 255) !important; }
-.border-1 { border-width: 1px !important; }
+.border { border-width: 1px !important; }
 .border-2 { border-width: 2px !important; }
 .border-3 { border-width: 3px !important; }
 .border-4 { border-width: 4px !important; }
@@ -1951,10 +1951,10 @@ textarea.form-control-lg { min-height: calc(1.5em + 1rem + 2px); }
 .flex-column { flex-direction: column !important; }
 .flex-row-reverse { flex-direction: row-reverse !important; }
 .flex-column-reverse { flex-direction: column-reverse !important; }
-.flex-grow-0 { flex-grow: 0 !important; }
-.flex-grow-1 { flex-grow: 1 !important; }
-.flex-shrink-0 { flex-shrink: 0 !important; }
-.flex-shrink-1 { flex-shrink: 1 !important; }
+.grow-0 { flex-grow: 0 !important; }
+.grow { flex-grow: 1 !important; }
+.shrink-0 { flex-shrink: 0 !important; }
+.shrink { flex-shrink: 1 !important; }
 .flex-wrap { flex-wrap: wrap !important; }
 .flex-nowrap { flex-wrap: nowrap !important; }
 .flex-wrap-reverse { flex-wrap: wrap-reverse !important; }

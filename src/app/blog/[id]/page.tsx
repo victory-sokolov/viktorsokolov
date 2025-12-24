@@ -4,8 +4,8 @@ import process from "node:process";
 import { ArticleJsonLd } from "next-seo";
 import Image from "next/image";
 import Balancer from "react-wrap-balancer";
-import { ContentWrapper } from "src/styles/global-styles";
 import { POST_TYPE } from "src/types/enums";
+import { generatePostMetadata } from "@/common/metadata";
 import { getPostBySlug } from "@/common/posts";
 import Categories from "@/components/Categories";
 import Comments from "@/components/Comments";
@@ -22,43 +22,7 @@ const baseUrl = process.env.BASE_URL;
 
 export async function generateMetadata(props): Promise<Metadata | undefined> {
     const params = await props.params;
-    const {
-        currentPost: { frontmatter },
-    } = await getPostBySlug(params.id);
-    if (!frontmatter) {
-        return;
-    }
-
-    const { title, description, featureImage, slug } = frontmatter;
-    const ogImage = `${baseUrl}/${featureImage}`;
-
-    return {
-        title,
-        description,
-        alternates: {
-            canonical: `${baseUrl}/blog/${slug}`,
-            languages: {
-                "en-US": "/en-US",
-            },
-        },
-        openGraph: {
-            title,
-            description,
-            type: "article",
-            url: `${process.env.BASE_URL}/blog/${slug}`,
-            images: [
-                {
-                    url: ogImage,
-                },
-            ],
-        },
-        twitter: {
-            card: "summary_large_image",
-            title,
-            description,
-            images: [ogImage],
-        },
-    };
+    return generatePostMetadata(params, getPostBySlug, "blog");
 }
 
 export default async function Page(props: { params: Promise<PageParams> }) {
@@ -87,37 +51,42 @@ export default async function Page(props: { params: Promise<PageParams> }) {
                 authorName={config.author}
                 description={frontmatter.description}
             />
-            <ContentWrapper>
+            <article className="mx-auto mt-8 w-full max-w-340 leading-relaxed max-sm:mt-4 md:mt-12">
                 <Modal>
-                    <div className="image-wrapper">
+                    <div className="relative mb-8 h-auto w-full overflow-hidden rounded-lg md:mb-12">
                         <Image
                             src={featureImage}
                             title={title}
                             alt={title}
                             width={800}
                             height={400}
-                            priority
-                            sizes="(max-width: 640px) 100vw, (max-width: 760px) 50vw. 33.3vw"
+                            className="h-auto w-full object-cover"
+                            sizes="(max-width: 640px) 100vw, (max-width: 768px) 90vw, 800px"
                         />
                     </div>
                     <h1
-                        className="center"
+                        className="article-title mb-6 text-center text-3xl md:mb-8 md:text-4xl lg:text-5xl"
                         itemProp="headline"
-                        style={{ color: "var(--text-color-secondary)" }}
                     >
                         <Balancer>{title}</Balancer>
                     </h1>
-                    <PostMeta date={date} readTime={readTime} style={{ justifyContent: "center" }}>
+                    <PostMeta
+                        date={date}
+                        readTime={readTime}
+                        style={{ justifyContent: "center", marginBottom: "2rem" }}
+                    >
                         <GithubLink slug={frontmatter.slug} />
                         <DevToLink />
                         <ShareToSocialLink title={title} />
                     </PostMeta>
                     {tags && <Categories categories={tags} />}
-                    <MdxRemote source={mdxSource} />
+                    <div className="mt-8 max-w-none md:mt-12">
+                        <MdxRemote source={mdxSource} />
+                    </div>
                     <NextNPrevious next={nextPost} prev={previousPost} postType={POST_TYPE.POST} />
                     <NewsLetterForm />
                 </Modal>
-            </ContentWrapper>
+            </article>
             <Comments />
         </>
     );

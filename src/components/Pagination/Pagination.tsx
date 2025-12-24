@@ -1,6 +1,5 @@
 import Link from "next/link";
 import React from "react";
-import styled from "styled-components";
 
 type PaginationProps = {
     isFirst: boolean;
@@ -9,52 +8,33 @@ type PaginationProps = {
     nextPage: string;
 };
 
-const PaginationWrapper = styled.div<PaginationProps>`
-    grid-column: 2 / span 12;
-    padding: 3rem 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    a:nth-child(1) {
-        pointer-events: ${props => (props.isFirst ? "none" : "auto")};
-        cursor: ${props => (props.isFirst ? "default" : "pointer")};
-    }
-
-    a:nth-child(2) {
-        color: ${props => (props.isLast ? props.theme.colors.dark3 : props.theme.colors.dark1)};
-        pointer-events: ${props => (props.isLast ? "none" : "auto")};
-        cursor: ${props => (props.isLast ? "default" : "pointer")};
-    }
-
-    @media ${props => props.theme.breakpoints.tablet} {
-        grid-column: 2 / span 6;
-    }
-`;
-
-const PaginationElement = styled(props => <Link {...props} />)`
-    font-size: 0.875rem;
-    line-height: 1.125rem;
-    font-weight: var(--font-light);
-    text-decoration: none;
-    margin: 0 2rem;
-
-    &:hover,
-    &:focus {
-        text-decoration: underline;
-    }
-`;
-
 export const Pagination: React.FC<PaginationProps> = ({ isFirst, isLast, prevPage, nextPage }) => {
     return (
-        // @ts-expect-error Disable isFirst
-        <PaginationWrapper isFirst={isFirst} isLast={isLast}>
-            <PaginationElement to={prevPage} aria-label="Previous Page">
+        <div className="col-[2/span_12] flex items-center justify-center py-12 max-md:col-[2/span_6]">
+            <Link
+                href={prevPage}
+                aria-disabled={isFirst}
+                aria-label="Previous Page"
+                className={`mx-8 text-[0.875rem] leading-4.5 font-light no-underline hover:underline focus:underline ${
+                    isFirst
+                        ? "pointer-events-none cursor-default"
+                        : "pointer-events-auto cursor-pointer"
+                }`}
+            >
                 Previous Page
-            </PaginationElement>
-            <PaginationElement to={nextPage} aria-label="Next Page">
+            </Link>
+            <Link
+                href={nextPage}
+                aria-label="Next Page"
+                aria-disabled={isLast}
+                className={`mx-8 text-[0.875rem] leading-4.5 font-light no-underline hover:underline focus:underline ${
+                    isLast
+                        ? "pointer-events-none cursor-default opacity-50"
+                        : "pointer-events-auto cursor-pointer"
+                }`}
+            >
                 Next Page
-            </PaginationElement>
-        </PaginationWrapper>
+            </Link>
+        </div>
     );
 };

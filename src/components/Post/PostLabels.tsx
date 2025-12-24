@@ -9,20 +9,12 @@ import {
     SiTypescript,
 } from "react-icons/si";
 import { TbBrandNextjs } from "react-icons/tb";
-import styled from "styled-components";
 
-const TagWrapper = styled.span`
-    border: 1px solid white;
-    padding: 0.7rem 1rem;
-    display: inline-flex;
-    align-items: center;
-    margin: 0.5rem;
-
-    > span {
-        position: relative;
-        right: 5px;
-    }
-`;
+const TagWrapper = ({ children, style }: { children: React.ReactNode; style?: React.CSSProperties }) => (
+    <span className="m-2 inline-flex items-center border border-white px-4 py-3 [&>span]:relative [&>span]:right-[5px]" style={style}>
+        {children}
+    </span>
+);
 
 export const Python = (size: number = 22) => {
     return (

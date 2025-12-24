@@ -1,12 +1,9 @@
 import type { Metadata } from "next";
 import type { TipFrontmatter } from "src/types/Post";
 import process from "node:process";
-import Image from "next/image";
 import Link from "next/link";
 import Balancer from "react-wrap-balancer";
 import { getAllTips } from "@/common/tips";
-
-import { DevelopmentTipsTop, TipItem, TipsContainer, TipsWrapper } from "./styles";
 
 export const metadata: Metadata = {
     title: "Developments tips",
@@ -24,66 +21,40 @@ const Tips = async () => {
     if (!tips) return <p className="not-found-text">No Tips found!</p>;
 
     return (
-        <TipsWrapper>
-            <DevelopmentTipsTop>
-                <h1>🔥 Hot Development Tips</h1>
-                <p>
+        <div className="w-full">
+            <div className="section-header">
+                <h1 className="section-title mb-6">🔥 Hot Development Tips</h1>
+                <p className="text-lg text-[rgb(var(--color-text-primary))] md:text-xl">
                     Development tips and snippets that i share on my&nbsp;
                     <a
                         href="https://twitter.com/VictorySokolov"
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="Twitter account"
+                        className="text-[rgb(var(--color-secondary))] hover:underline"
                     >
                         Twitter account
                     </a>
                 </p>
-            </DevelopmentTipsTop>
-            <TipsContainer>
-                {tips.map((tip: TipFrontmatter, index: number) => (
-                    <TipItem key={index}>
-                        <Link href={`/tips/${tip.slug}`}>
-                            <div className="image-wrapper">
-                                <Image
-                                    src={tip.featureImage}
-                                    title={tip.title}
-                                    alt={tip.title}
-                                    fill
-                                    priority
-                                    sizes="(max-width: 640px) 100vw, (max-width: 760px) 50vw. 33.3vw"
-                                />
-                            </div>
-                        </Link>
-                        <div className="tip-details">
-                            <Link href={`/tips/${tip.slug}`}>
-                                <h3>
+            </div>
+            <div className="post-list">
+                {tips.map((tip: TipFrontmatter) => (
+                    <article
+                        className="post-article mb-4 pb-4"
+                        key={tip.slug}
+                    >
+                        <div className="flex flex-col gap-0">
+                            <Link href={`/tips/${tip.slug}`} aria-label={tip.title}>
+                                <h3 className="post-title text-[2.6rem] max-sm:text-3xl">
                                     <Balancer>{tip.title}</Balancer>
                                 </h3>
                             </Link>
-                            <p>{tip.date}</p>
-                            {tip.tweetUrl && (
-                                <a
-                                    href={tip.tweetUrl}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    aria-label="Tweet URL"
-                                >
-                                    <div className="tweet-link">
-                                        <Image
-                                            src="/static/twitter.svg"
-                                            alt="Twitter logo"
-                                            width={30}
-                                            height={30}
-                                        />
-                                    </div>
-                                    <p>Tweet Url</p>
-                                </a>
-                            )}
+                            <p className="mb-4 text-sm text-[rgb(var(--color-text-primary))] opacity-80 md:text-base">{tip.date}</p>
                         </div>
-                    </TipItem>
+                    </article>
                 ))}
-            </TipsContainer>
-        </TipsWrapper>
+            </div>
+        </div>
     );
 };
 

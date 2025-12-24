@@ -5,8 +5,8 @@ import process from "node:process";
 import { ArticleJsonLd } from "next-seo";
 import React from "react";
 import Balancer from "react-wrap-balancer";
-import { ContentWrapper } from "src/styles/global-styles";
 import { POST_TYPE } from "src/types/enums";
+import { generatePostMetadata } from "@/common/metadata";
 import { getTipBySlug } from "@/common/tips";
 import Categories from "@/components/Categories";
 import { MdxRemote } from "@/components/Mdx";
@@ -18,43 +18,7 @@ const baseUrl = process.env.BASE_URL;
 
 export async function generateMetadata(props): Promise<Metadata | undefined> {
     const params = await props.params;
-    const {
-        currentPost: { frontmatter },
-    } = await getTipBySlug(params.id);
-    if (!frontmatter) {
-        return;
-    }
-
-    const { title, description, featureImage, slug } = frontmatter;
-    const ogImage = `${baseUrl}/${featureImage}`;
-
-    return {
-        title,
-        description,
-        alternates: {
-            canonical: `${baseUrl}/tips/${slug}`,
-            languages: {
-                "en-US": "/en-US",
-            },
-        },
-        openGraph: {
-            title,
-            description,
-            type: "article",
-            url: `${baseUrl}/tips/${slug}`,
-            images: [
-                {
-                    url: ogImage,
-                },
-            ],
-        },
-        twitter: {
-            card: "summary_large_image",
-            title,
-            description,
-            images: [ogImage],
-        },
-    };
+    return generatePostMetadata(params, getTipBySlug, "tips");
 }
 
 const TipPage: React.FC = async (props: { params: Promise<PageParams> }) => {
@@ -74,7 +38,7 @@ const TipPage: React.FC = async (props: { params: Promise<PageParams> }) => {
     const tags = frontmatter.tags.split(" ");
 
     return (
-        <ContentWrapper>
+        <article className="relative mx-auto mt-[2rem] leading-8 max-sm:relative max-sm:bottom-0 max-sm:max-w-full max-sm:bg-none max-sm:p-0 max-sm:shadow-none">
             <ArticleJsonLd
                 useAppDir={true}
                 url={`${baseUrl}/blog/${frontmatter.slug}`}
@@ -85,33 +49,15 @@ const TipPage: React.FC = async (props: { params: Promise<PageParams> }) => {
                 authorName={config.author}
                 description={frontmatter.description}
             />
-            <h1>
+            <h1 className="section-title mb-6">
                 <Balancer>{tipFrontmatter.title}</Balancer>
             </h1>
             <Categories categories={tags} style={{ textAlign: "left" }} />
             <MdxRemote source={mdxSource} />
             <p>{tipFrontmatter.description}</p>
-            {tipFrontmatter.tweetUrl && (
-                <p style={{ paddingTop: "var(--space-md)" }}>
-                    Posted on&nbsp;
-                    <a
-                        href={tipFrontmatter.tweetUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        aria-label="Tweet link"
-                    >
-                        Twitter
-                    </a>
-                    {" "}
-                    &nbsp; on
-                    {" "}
-                    {date}
-                    .
-                </p>
-            )}
             <NextNPrevious next={nextPost} prev={previousPost} postType={POST_TYPE.TIP} />
             <NewsLetterForm />
-        </ContentWrapper>
+        </article>
     );
 };
 

@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
+/* eslint no-console: 0 */
 import { endsWithAny } from "@vsokolov/utils";
 
 const fsPromises = fs.promises;

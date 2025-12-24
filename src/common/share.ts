@@ -6,20 +6,20 @@ export function shareToLinkedIn(url: string) {
 
 export function shareToTwitter(url: string, title: string, author?: string) {
     const text = `${encodeURIComponent(
-        `"${title}" by ${author ?? config.social.twitterHandle}`
+        `"${title}" by ${author ?? config.social.twitterHandle}`,
     )}%0A%0A${encodeURIComponent(url)}`;
     return `https://twitter.com/intent/tweet?text=${text}`;
 }
 
 export function shareToReddit(url: string, title: string) {
     return `https://www.reddit.com/submit?url=${encodeURIComponent(url)}&title=${encodeURIComponent(
-        title
+        title,
     )}`;
 }
 
 export function shareToHackerNews(url: string, title: string) {
     return `https://news.ycombinator.com/submitlink?u=${encodeURIComponent(
-        url
+        url,
     )}&t=${encodeURIComponent(title)}`;
 }
 
@@ -32,7 +32,7 @@ const shareLinks = {
     toTwitter: shareToTwitter,
     toReddit: shareToReddit,
     toHackerNews: shareToHackerNews,
-    toFacebook: shareToFacebook
+    toFacebook: shareToFacebook,
 };
 
 export default shareLinks;

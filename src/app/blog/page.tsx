@@ -3,7 +3,6 @@ import process from "node:process";
 import { config } from "@/common/appconfig";
 import { getAllPosts } from "@/common/posts";
 import { PostItem } from "@/components/Post";
-import { BlogContainer, TopBlogMeta } from "./styles";
 
 export const metadata: Metadata = {
     title: "Blog posts",
@@ -21,22 +20,23 @@ const Blog = async () => {
     if (!posts) return <h2>No Post found!</h2>;
 
     return (
-        <BlogContainer>
-            <TopBlogMeta>
-                <h1>Blog Posts ↓</h1>
-                <h4>
+        <div className="w-full">
+            <div className="section-header">
+                <h1 className="section-title mb-4">Blog Posts ↓</h1>
+                <h4 className="text-xl md:text-2xl">
                     {posts.length}
                     {" "}
-                    Articles
+                    Article
+                    {posts.length !== 1 ? "s" : ""}
                 </h4>
-            </TopBlogMeta>
+            </div>
 
-            <div className="blog-posts-list">
+            <div className="blog-posts-list w-full">
                 {posts.map((post, index) => (
                     <PostItem key={index} post={post} />
                 ))}
             </div>
-        </BlogContainer>
+        </div>
     );
 };
 

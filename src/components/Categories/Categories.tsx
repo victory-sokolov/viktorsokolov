@@ -1,38 +1,21 @@
 "use client";
 
-import styled from "styled-components";
-
 import { TagsMapping } from "../Post/PostLabels";
-
-const CategorieWrapperStyle = styled.div`
-    padding: 0.5rem 0 2rem;
-    text-align: center;
-    span {
-        border-radius: 5px;
-    }
-`;
-const CategorieStyle = styled.div`
-    display: inline-block;
-    padding-bottom: 0.5rem;
-    &:not(:first-child) {
-        margin-left: 1rem;
-    }
-`;
 
 export const Categories = ({ categories, style }: { categories: string[]; style?: object }) => {
     return (
-        <CategorieWrapperStyle style={{ ...style }}>
+        <div className="text-center [&_span]:rounded-[5px]" style={style}>
             {categories
                 .map((category: string) => category.trim().toLowerCase())
                 .map((category: string) =>
                     TagsMapping[category]
                         ? (
-                                <CategorieStyle key={category}>{TagsMapping[category]()}</CategorieStyle>
+                                <div key={category} className="inline-block pb-2 not-first:ml-4">
+                                    {TagsMapping[category]()}
+                                </div>
                             )
-                        : (
-                                ""
-                            ),
+                        : null,
                 )}
-        </CategorieWrapperStyle>
+        </div>
     );
 };

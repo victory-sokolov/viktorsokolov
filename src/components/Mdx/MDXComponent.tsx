@@ -1,5 +1,4 @@
 import type { ImageProps } from "next/image";
-import type { ComponentType } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -10,7 +9,7 @@ import { H1, H2, H3, H4, H5, H6 } from "./Heading";
 import { TechStackList } from "./TechStackList";
 
 type MDXComponentsProp = {
-    [key: string]: ComponentType<unknown>;
+    [key: string]: React.FC<any>;
 };
 
 const CustomLink = ({ href, children }) => {

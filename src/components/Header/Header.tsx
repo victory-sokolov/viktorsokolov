@@ -1,8 +1,8 @@
+"use client";
+
 import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
-
-import { HeaderStyles } from "./Header.styled";
 
 const Nav = dynamic(() =>
     import(
@@ -22,19 +22,23 @@ export const Header: React.FC = () => {
     const pathname = usePathname();
     const [isRootUrl, setIsRootUrl] = useState(pathname === "/");
     const [sticky, setSticky] = useState({ isSticky: false, offset: 0 });
-    const headerRef = useRef(null);
-    const handleScroll = (elTopOffset, elHeight) => {
+    const headerRef = useRef<HTMLElement>(null);
+
+    const handleScroll = (elTopOffset: number, elHeight: number) => {
         if (window.scrollY > elTopOffset) {
             setSticky({ isSticky: true, offset: elHeight });
         } else {
             setSticky({ isSticky: false, offset: 0 });
         }
     };
+
     useEffect(() => {
         setIsRootUrl(pathname === "/");
     }, [pathname]);
 
     useEffect(() => {
+        if (!headerRef.current) return;
+
         const header = headerRef.current.getBoundingClientRect();
         const handleScrollEvent = () => {
             handleScroll(header.top, header.height);
@@ -47,12 +51,12 @@ export const Header: React.FC = () => {
     }, [sticky]);
 
     return (
-        <div style={{ position: "relative" }}>
-            <HeaderStyles className={`${sticky.isSticky ? "sticky" : ""}`} ref={headerRef}>
-                <div className="heading-content">
+        <div className="relative">
+            <header className={`${sticky.isSticky ? "sticky" : ""}`} ref={headerRef}>
+                <div className="z-20 w-full py-6">
                     <Nav aria-label="Navigation" isSticky={sticky.isSticky} />
                 </div>
-            </HeaderStyles>
+            </header>
             {isRootUrl && <Hero />}
         </div>
     );

@@ -29,6 +29,7 @@
             ]
         },
         "resolveJsonModule": true,
+        "types": ["@types/react"],
         "allowJs": true,
         "strict": false,
         "strictNullChecks": false,

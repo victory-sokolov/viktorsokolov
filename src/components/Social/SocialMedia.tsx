@@ -2,40 +2,25 @@
 
 import React from "react";
 import { FaDev, FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
-import { IconWrapper } from "src/app/blog/styles";
-import styled from "styled-components";
 import { config } from "@/src/common/appconfig";
 
 type SocialMediaType = {
     color?: string;
     size?: number;
+    justify?: "start" | "center";
 };
-
-const SocialMedias = styled.div`
-    li {
-        display: inline-block;
-        padding: 0 var(--space-sm);
-    }
-
-    li:hover {
-        filter: brightness(50%);
-    }
-
-    ul {
-        padding: 0;
-    }
-`;
 
 export const SocialMedia: React.FC<SocialMediaType> = ({
     color = "--text-color-primary",
     size = 22,
+    justify = "start",
 }) => {
     const meta = config;
 
     return (
-        <SocialMedias>
-            <ul>
-                <li>
+        <div className="my-6">
+            <ul className={`justify-${justify} flex items-center gap-4 p-0 md:gap-6`}>
+                <li className="social-link">
                     <a
                         href={meta.social.twitter}
                         target="_blank"
@@ -45,7 +30,7 @@ export const SocialMedia: React.FC<SocialMediaType> = ({
                         <FaTwitter color={`var(${color})`} size={size} />
                     </a>
                 </li>
-                <li>
+                <li className="social-link">
                     <a
                         href={meta.social.linkedin}
                         target="_blank"
@@ -55,7 +40,7 @@ export const SocialMedia: React.FC<SocialMediaType> = ({
                         <FaLinkedin color={`var(${color})`} size={size} />
                     </a>
                 </li>
-                <li>
+                <li className="social-link">
                     <a
                         href={meta.social.github}
                         target="_blank"
@@ -65,7 +50,7 @@ export const SocialMedia: React.FC<SocialMediaType> = ({
                         <FaGithub color={`var(${color})`} size={size} />
                     </a>
                 </li>
-                <li>
+                <li className="social-link">
                     <a
                         href={meta.social.devto}
                         target="_blank"
@@ -76,29 +61,34 @@ export const SocialMedia: React.FC<SocialMediaType> = ({
                     </a>
                 </li>
             </ul>
-        </SocialMedias>
+        </div>
     );
 };
 
 export const GithubLink = ({ slug }: { slug: string }) => (
     <a
         href={`https://github.com/victory-sokolov/viktorsokolov/tree/master/content/posts/${slug}/${slug}.mdx`}
-        aria-labelledby="Edit this post"
+        aria-label="Edit this post"
         target="_blank"
         rel="noopener noreferrer"
     >
-        <IconWrapper>
+        <div className="flex items-center justify-center text-[rgb(var(--color-link))] hover:text-[rgb(var(--color-secondary))]">
             <FaGithub />
             <span>Edit this post</span>
-        </IconWrapper>
+        </div>
     </a>
 );
 
 export const DevToLink = () => (
-    <a href="#" aria-labelledby="Read on DevTo" target="_blank" rel="noopener noreferrer">
-        <IconWrapper>
+    <a
+        href="https://dev.to/victorysokolov"
+        aria-label="Read on DevTo"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+        <div className="flex items-center justify-center text-[rgb(var(--color-link))] hover:text-[rgb(var(--color-secondary))]">
             <FaDev size={18} />
             <span>Read on DevTo</span>
-        </IconWrapper>
+        </div>
     </a>
 );

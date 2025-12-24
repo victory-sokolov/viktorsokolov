@@ -25,7 +25,7 @@ export const getAllTips = async (): Promise<TipFrontmatter[]> => {
             content: file.content,
             date: toLongDate(data.date as string),
             featureImage: imgPath,
-            lastModified
+            lastModified,
         };
     });
     const allTips = await Promise.all(tips);

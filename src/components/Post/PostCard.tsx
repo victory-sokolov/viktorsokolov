@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-import { Card } from "./Post.styled";
 import { PostMeta } from "./PostMeta";
 
 export const PostCard: React.FC<PostFrontmatter> = ({
@@ -18,27 +17,36 @@ export const PostCard: React.FC<PostFrontmatter> = ({
     id,
 }) => {
     return (
-        <Card key={id}>
+        <div
+            key={id}
+            className="post-card"
+        >
             <Link href={`${slug}`} aria-label={title}>
-                <div className="post-meta-data">
-                    <Image
-                        src={featureImage}
-                        alt={title}
-                        title={title}
-                        priority
-                        fill
-                        width="0"
-                        height="0"
-                        style={{ width: "100%", height: "auto" }}
-                        sizes="(max-width: 640px) 100vw, (max-width: 760px) 50vw. 33.3vw"
-                    />
-                    <div className="post-data">
-                        <h3 className="post-title">{title}</h3>
-                        <p className="post-description">{excerpt}</p>
+                <div className="flex h-full flex-col">
+                    <div className="w-full overflow-hidden rounded-t-lg">
+                        <Image
+                            src={featureImage}
+                            alt={title}
+                            title={title}
+                            width={380}
+                            height={200}
+                            className="h-auto w-full object-cover"
+                            sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 380px"
+                        />
                     </div>
-                    <PostMeta date={date} readTime={readTime}></PostMeta>
+                    <div className="flex flex-1 flex-col p-6 md:p-8">
+                        <h3 className="post-title text-center text-xl hover:text-[rgb(var(--color-secondary-600))] md:text-2xl">
+                            {title}
+                        </h3>
+                        <p className="mb-4 flex-1 text-base leading-relaxed">{excerpt}</p>
+                        <PostMeta
+                            date={date}
+                            readTime={readTime}
+                            style={{ justifyContent: "center" }}
+                        />
+                    </div>
                 </div>
             </Link>
-        </Card>
+        </div>
     );
 };

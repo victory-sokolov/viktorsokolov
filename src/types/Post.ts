@@ -12,7 +12,7 @@ type Content = {
     date: string;
     slug: string;
     lastModified?: string;
-    featureImage: string;
+    featureImage?: string;
 };
 
 type PostMeta = {
@@ -23,7 +23,7 @@ type PostMeta = {
 };
 
 type TipMeta = {
-    tweetUrl: string;
+    tweetUrl?: string;
     tags: string;
     readTime?: string;
 };
