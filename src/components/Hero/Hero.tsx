@@ -10,7 +10,7 @@ export const Hero: React.FC = () => {
             </h1>
             <p className="lead-relaxed mb-6">
                 I'm a Software Engineer mainly working with Python, Node, TypeScript and React.
-                Sharing my learnings and building prodcuts in public.
+                Sharing my learnings and building products in public.
             </p>
             <p className="lead mb-6">
                 Follow me on other platforms:
