@@ -1,66 +1,69 @@
 {
-    "compilerOptions": {
-        "incremental": true,
-        "target": "esnext",
-        "jsx": "preserve",
-        "lib": [
-            "dom",
-            "dom.iterable",
-            "esnext"
-        ],
-        "baseUrl": ".",
-        "module": "esnext",
-        "moduleResolution": "node",
-        "paths": {
-            "@/*": [
-                "./*"
-            ],
-            "@/components/*": [
-                "src/components/*"
-            ],
-            "@/common/*": [
-                "src/common/*"
-            ],
-            "@/hooks/*": [
-                "src/hooks/*"
-            ],
-            "@/styles/*": [
-                "src/styles/*"
-            ]
-        },
-        "resolveJsonModule": true,
-        "types": ["@types/react"],
-        "allowJs": true,
-        "strict": false,
-        "strictNullChecks": false,
-        "noEmit": true,
-        "removeComments": true,
-        "sourceMap": true,
-        "allowSyntheticDefaultImports": true,
-        "esModuleInterop": true,
-        "forceConsistentCasingInFileNames": true,
-        "isolatedModules": true,
-        "skipLibCheck": true,
-        "plugins": [
-            {
-                "name": "next"
-            }
-        ]
+  "compilerOptions": {
+    "incremental": true,
+    "target": "esnext",
+    "jsx": "react-jsx",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "baseUrl": ".",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "paths": {
+      "@/*": [
+        "./*"
+      ],
+      "@/components/*": [
+        "src/components/*"
+      ],
+      "@/common/*": [
+        "src/common/*"
+      ],
+      "@/hooks/*": [
+        "src/hooks/*"
+      ],
+      "@/styles/*": [
+        "src/styles/*"
+      ]
     },
-    "include": [
-        "next-env.d.ts",
-        "**/*.ts",
-        "**/*.tsx",
-        "lib/generate-feed.ts",
-        ".next/types/**/*.ts",
-        "src/common/content-utils.ts",
-        "eslint.config.mjs"
+    "resolveJsonModule": true,
+    "types": [
+      "@types/react"
     ],
-    "exclude": [
-        "node_modules"
-    ],
-    "mdx": {
-        // Enable strict type checking in MDX files.
-        "checkMdx": true
-    }
+    "allowJs": true,
+    "strict": false,
+    "strictNullChecks": false,
+    "noEmit": true,
+    "removeComments": true,
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "lib/generate-feed.ts",
+    ".next/types/**/*.ts",
+    "src/common/content-utils.ts",
+    "eslint.config.mjs",
+    ".next/dev/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ],
+  "mdx": {
+    // Enable strict type checking in MDX files.
+    "checkMdx": true
+  }
 }

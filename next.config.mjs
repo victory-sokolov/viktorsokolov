@@ -1,8 +1,8 @@
-import process from "node:process";
 /** @type {import('next').NextConfig} */
 import NextBundleAnalyzer from "@next/bundle-analyzer";
 import nextPWA from "next-pwa";
 import runtimeCaching from "next-pwa/cache.js";
+import process from "node:process";
 
 const withBundleAnalyzer = NextBundleAnalyzer({
     enabled: process.env.ANALYZE === "true",
@@ -76,11 +76,13 @@ const config = {
     turbopack: {
         resolveExtensions: [".mdx", ".tsx", ".ts", ".jsx", ".js", ".mjs", ".json"],
     },
+    typedRoutes: true,
     poweredByHeader: false,
     experimental: {
         webVitalsAttribution: ["CLS", "LCP"],
         useCache: true,
         serverSourceMaps: true,
+        turbopackFileSystemCacheForDev: true,
     },
     typescript: {
         ignoreBuildErrors: true,
@@ -100,13 +102,10 @@ const config = {
             },
         ],
     },
-    removeConsole: {
-        exclude: ["error"],
-    },
-    eslint: {
-        // Warning: This allows production builds to successfully complete even if
-        // your project has ESLint errors.
-        ignoreDuringBuilds: true,
+    compiler: {
+        removeConsole: {
+            exclude: ["error"],
+        },
     },
     transpilePackages: ["next-mdx-remote"],
     async redirects() {
