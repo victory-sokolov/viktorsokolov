@@ -2,7 +2,7 @@ module.exports = {
     ci: {
         collect: {
             // Use a production build for more accurate results
-            startServerCommand: "pnpm build && pnpm start",
+            startServerCommand: "bun run build && bun run start",
             startServerReadyPattern: "ready",
             startServerReadyTimeout: 60000, // Give it more time to build
             url: ["http://localhost:3000"],

@@ -15,23 +15,18 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
 
-      - name: 📦 Set up pnpm
-        uses: pnpm/action-setup@v4.2.0
+      - name: 📦 Set up Bun
+        uses: oven-sh/setup-bun@v2
         with:
-          run_install: false
-
-      - uses: actions/setup-node@v6
-        with:
-          node-version-file: .nvmrc
-          cache: pnpm
+          bun-version: latest
 
       - name: 📦 Install dependencies and run Lighthouse CI
-        run: pnpm install
+        run: bun install
 
       - name: 🏗️ Build project
-        run: pnpm run build
+        run: bun run build
 
       - name: 🚀 Run Lighthouse CI
-        run: pnpm exec lhci autorun
+        run: bunx lhci autorun
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}

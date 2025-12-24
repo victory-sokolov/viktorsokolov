@@ -17,39 +17,32 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4.2.0
-
-      - name: Read .nvmrc
-        run: echo "NODE_VERSION=$(cat .nvmrc)" >> $GITHUB_OUTPUT
-        id: nvm
-
-      - name: Use Node.js ${{ steps.nvm.outputs.NODE_VERSION }}
-        uses: actions/setup-node@v4.4.0
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
         with:
-          node-version: ${{ steps.nvm.outputs.NODE_VERSION }}
+          bun-version: latest
 
       - name: Install Dependencies
-        run: pnpm install
+        run: bun install
 
       - name: Run linter
-        run: pnpm lint
+        run: bun run lint
 
       - name: Run formatter
-        run: pnpm format:check
+        run: bun run format:check
 
       - name: Run typechecker
-        run: pnpm typecheck
+        run: bun run typecheck
 
       - name: Check for duplicate code
-        run: npx jscpd src/ lib/
+        run: bunx jscpd src/ lib/
 
       - name: ✅ Run Knip
-        run: pnpm knip
+        run: bun run knip
         continue-on-error: true
 
       - name: Build
-        run: pnpm build
+        run: bun run build
 
       - name: Audit packages
-        run: pnpm audit --audit-level=moderate
+        run: bun audit
