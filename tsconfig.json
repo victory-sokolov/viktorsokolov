@@ -2,7 +2,7 @@
     "compilerOptions": {
         "incremental": true,
         "target": "esnext",
-        "jsx": "preserve",
+        "jsx": "react-jsx",
         "lib": [
             "dom",
             "dom.iterable",
@@ -29,7 +29,9 @@
             ]
         },
         "resolveJsonModule": true,
-        "types": ["@types/react"],
+        "types": [
+            "@types/react"
+        ],
         "allowJs": true,
         "strict": false,
         "strictNullChecks": false,
@@ -54,13 +56,14 @@
         "lib/generate-feed.ts",
         ".next/types/**/*.ts",
         "src/common/content-utils.ts",
-        "eslint.config.mjs"
+        "eslint.config.mjs",
+        ".next/dev/types/**/*.ts"
     ],
     "exclude": [
         "node_modules"
     ],
     "mdx": {
-        // Enable strict type checking in MDX files.
+    // Enable strict type checking in MDX files.
         "checkMdx": true
     }
 }

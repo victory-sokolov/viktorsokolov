@@ -76,11 +76,13 @@ const config = {
     turbopack: {
         resolveExtensions: [".mdx", ".tsx", ".ts", ".jsx", ".js", ".mjs", ".json"],
     },
+    typedRoutes: true,
     poweredByHeader: false,
     experimental: {
         webVitalsAttribution: ["CLS", "LCP"],
         useCache: true,
         serverSourceMaps: true,
+        turbopackFileSystemCacheForDev: true,
     },
     typescript: {
         ignoreBuildErrors: true,
@@ -100,13 +102,10 @@ const config = {
             },
         ],
     },
-    removeConsole: {
-        exclude: ["error"],
-    },
-    eslint: {
-        // Warning: This allows production builds to successfully complete even if
-        // your project has ESLint errors.
-        ignoreDuringBuilds: true,
+    compiler: {
+        removeConsole: {
+            exclude: ["error"],
+        },
     },
     transpilePackages: ["next-mdx-remote"],
     async redirects() {
