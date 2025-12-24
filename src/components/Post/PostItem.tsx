@@ -1,8 +1,8 @@
 "use client";
 
+import type { PostFrontmatter } from "src/types/Post";
 import Link from "next/link";
 import Balancer from "react-wrap-balancer";
-import type { PostFrontmatter } from "src/types/Post";
 
 import { PostMeta } from "./PostMeta";
 
