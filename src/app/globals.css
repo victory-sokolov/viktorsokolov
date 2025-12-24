@@ -135,6 +135,7 @@ a {
   --color-primary: 15 23 42;
   --color-primary-600: 30 41 59;
   --color-link: 37 99 235;
+  --color-secondary: 91 58 255;
 }
 
 fieldset {
@@ -305,6 +306,11 @@ a.mdx-link:hover {
   color: #fff;
 }
 
+.light .sticky {
+  background-color: rgba(255, 255, 255, 0.8);
+  color: rgb(var(--color-text-primary));
+}
+
 .anchor {
   margin: 1.2rem 0;
   scroll-margin-top: 12rem;
@@ -334,7 +340,11 @@ a.mdx-link:hover {
 
 /* New utility classes for common styles */
 .hover-bg {
-  @apply hover:bg-black/5 dark:hover:bg-white/5;
+  @apply hover:bg-white/5;
+}
+
+.light .hover-bg {
+  @apply hover:bg-black/5;
 }
 
 .nav-link {
@@ -342,7 +352,11 @@ a.mdx-link:hover {
 }
 
 .nav-link-active {
-  @apply bg-white dark:bg-white/10 text-[rgb(var(--color-secondary))];
+  @apply bg-white/10 text-[rgb(var(--color-secondary))];
+}
+
+.light .nav-link-active {
+  @apply bg-[rgb(var(--color-secondary))] text-white;
 }
 
 .nav-link-inactive {
