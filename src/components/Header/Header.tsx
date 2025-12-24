@@ -33,7 +33,7 @@ export const Header: React.FC = () => {
         const sentinelTop = sentinelEl.getBoundingClientRect().top;
 
         // Hysteresis based on a sentinel element that stays in normal flow.
-        const stickOnThreshold = -24; // start sticking once sentinel is 24px above viewport
+        const stickOnThreshold = -20; // start sticking once sentinel is 20px above viewport
         const stickOffThreshold = 0; // unstick when sentinel returns to viewport
 
         setSticky(prev => {
@@ -69,13 +69,22 @@ export const Header: React.FC = () => {
 
     return (
         <div className="relative">
-            <div ref={sentinelRef} aria-hidden className="h-px w-px" />
+            <div
+                ref={sentinelRef}
+                aria-hidden
+                className="absolute top-0 h-1 w-full"
+            />
+            {sticky.isSticky && <div style={{ height: sticky.offset }} />}
             <header className={`${sticky.isSticky ? "sticky" : ""}`} ref={headerRef}>
                 <div className="z-20 w-full py-6">
                     <Nav aria-label="Navigation" isSticky={sticky.isSticky} />
                 </div>
             </header>
-            {isRootUrl && <Hero />}
+            {isRootUrl && (
+                <div className="page-shell">
+                    <Hero />
+                </div>
+            )}
         </div>
     );
 };

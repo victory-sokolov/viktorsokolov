@@ -8,8 +8,8 @@ import Header from "@/components/Header";
 const Layout: React.FC<ReactProps> = ({ children }) => {
     return (
         <div className="min-h-screen">
+            <Header />
             <div className="page-shell">
-                <Header />
                 {children}
                 <Footer />
             </div>
