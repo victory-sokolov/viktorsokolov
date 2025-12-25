@@ -1,11 +1,12 @@
+import type { Route } from "next";
 import Link from "next/link";
 import React from "react";
 
 type PaginationProps = {
     isFirst: boolean;
     isLast: boolean;
-    prevPage: string;
-    nextPage: string;
+    prevPage: Route;
+    nextPage: Route;
 };
 
 export const Pagination: React.FC<PaginationProps> = ({ isFirst, isLast, prevPage, nextPage }) => {

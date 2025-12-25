@@ -51,19 +51,21 @@
     },
     "include": [
         "next-env.d.ts",
+        ".next/dev/types/**/*.ts",
+        ".next/types/**/*.ts",
         "**/*.ts",
         "**/*.tsx",
         "lib/generate-feed.ts",
-        ".next/types/**/*.ts",
         "src/common/content-utils.ts",
-        "eslint.config.mjs",
-        ".next/dev/types/**/*.ts"
+        "eslint.config.mjs"
     ],
     "exclude": [
-        "node_modules"
+        "node_modules",
+        "dist",
+        "out"
     ],
     "mdx": {
-    // Enable strict type checking in MDX files.
+        // Enable strict type checking in MDX files.
         "checkMdx": true
     }
 }

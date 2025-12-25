@@ -5,7 +5,7 @@ import process from "node:process";
 import { filterFalsyFromObject, toLongDate } from "@vsokolov/utils";
 import matter from "gray-matter";
 
-import { getPostData, sortPostByDate } from "./content-utils";
+import { getPostData, parseTags, sortPostByDate, tagToSlug } from "./content-utils";
 import { filterFolders } from "./utils";
 
 export const getAllTips = async (): Promise<TipFrontmatter[]> => {
@@ -19,9 +19,11 @@ export const getAllTips = async (): Promise<TipFrontmatter[]> => {
         const data = filterFalsyFromObject(file.data);
         const imgPath = `/tips/${slug}/${data.featureImage}`;
         const lastModified = fs.statSync(filePath).mtime.toString();
+        const tags = parseTags(data.tags as string | string[]);
 
         return {
             ...data,
+            tags,
             content: file.content,
             date: toLongDate(data.date as string),
             featureImage: imgPath,
@@ -36,4 +38,17 @@ export const getAllTips = async (): Promise<TipFrontmatter[]> => {
 export const getTipBySlug = async (slug: string) => {
     const tips = await getAllTips();
     return getPostData(tips, slug);
+};
+
+export const getAllTipTags = async (): Promise<string[]> => {
+    const tips = await getAllTips();
+    const tagSet = new Set<string>();
+    tips.forEach(tip => tip.tags?.forEach(tag => tagSet.add(tag)));
+    return Array.from(tagSet);
+};
+
+export const getTipsByTag = async (tag: string) => {
+    const tips = await getAllTips();
+    const tagSlug = tagToSlug(tag);
+    return tips.filter(tip => tip.tags?.some(currentTag => tagToSlug(currentTag) === tagSlug));
 };

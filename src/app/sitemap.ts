@@ -1,7 +1,8 @@
 import type { MetadataRoute } from "next/types";
 import fs from "node:fs";
-import { getAllPosts } from "@/common/posts";
-import { getAllTips } from "@/common/tips";
+import { tagToSlug } from "@/common/content-utils";
+import { getAllPosts, getAllPostTags } from "@/common/posts";
+import { getAllTips, getAllTipTags } from "@/common/tips";
 import { config } from "@/src/common/appconfig";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -32,5 +33,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         lastModified: new Date().toISOString(),
     }));
 
-    return [...routes, ...posts, ...tips];
+    const [postTags, tipTags] = await Promise.all([getAllPostTags(), getAllTipTags()]);
+    const allTags = Array.from(new Set([...postTags, ...tipTags]));
+
+    const tagRoutes = allTags.map(tag => ({
+        url: `${config.siteUrl}/blog/tag/${tagToSlug(tag)}`,
+        lastModified: new Date().toISOString(),
+    }));
+
+    return [...routes, ...posts, ...tips, ...tagRoutes];
 }

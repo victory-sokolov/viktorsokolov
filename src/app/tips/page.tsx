@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import type { TipFrontmatter } from "src/types/Post";
 import process from "node:process";
-import Link from "next/link";
-import Balancer from "react-wrap-balancer";
 import { getAllTips } from "@/common/tips";
+import { PostItem } from "@/components/Post";
 
 export const metadata: Metadata = {
     title: "Developments tips",
@@ -39,19 +38,7 @@ const Tips = async () => {
             </div>
             <div className="post-list">
                 {tips.map((tip: TipFrontmatter) => (
-                    <article
-                        className="post-article mb-4 pb-4"
-                        key={tip.slug}
-                    >
-                        <div className="flex flex-col gap-0">
-                            <Link href={`/tips/${tip.slug}`} aria-label={tip.title}>
-                                <h3 className="post-title text-[2.6rem] max-sm:text-3xl">
-                                    <Balancer>{tip.title}</Balancer>
-                                </h3>
-                            </Link>
-                            <p className="mb-4 text-sm text-[rgb(var(--color-text-primary))] opacity-80 md:text-base">{tip.date}</p>
-                        </div>
-                    </article>
+                    <PostItem key={tip.slug} post={tip} type="tips" />
                 ))}
             </div>
         </div>

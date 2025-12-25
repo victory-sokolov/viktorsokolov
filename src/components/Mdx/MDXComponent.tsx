@@ -1,3 +1,4 @@
+import type { Route } from "next";
 import type { ImageProps } from "next/image";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,9 +13,19 @@ type MDXComponentsProp = {
     [key: string]: React.FC<any>;
 };
 
-const CustomLink = ({ href, children }) => {
+const CustomLink = ({ href, children }: { href: Route | string; children: React.ReactNode }) => {
+    const isExternal = typeof href === "string" && (href.startsWith("http") || href.startsWith("//"));
+
+    if (isExternal) {
+        return (
+            <a href={href} target="_blank" rel="noopener noreferrer" className="mdx-link">
+                {children}
+            </a>
+        );
+    }
+
     return (
-        <Link href={href} target="_blank" rel="noopener noreferrer" className="mdx-link">
+        <Link href={href as Route} className="mdx-link">
             {children}
         </Link>
     );

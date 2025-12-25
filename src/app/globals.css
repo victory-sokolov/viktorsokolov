@@ -367,6 +367,14 @@ a.mdx-link:hover {
   @apply shadow-card hover:shadow-card-hover mb-12 w-full max-w-152 rounded-lg bg-[rgb(var(--color-surface))] text-[rgb(var(--color-text-primary))] transition-all duration-300 hover:scale-[1.02] max-sm:max-w-full;
 }
 
+.tag-list {
+  @apply flex flex-wrap gap-2 text-[1.2rem] font-semibold tracking-wide;
+}
+
+.tag-pill {
+  @apply inline-block rounded-full border border-[rgb(var(--color-secondary))] bg-[rgb(var(--color-secondary-700))] px-3.5 py-1.5 text-[1.2rem] leading-normal text-white transition hover:-translate-y-0.5 hover:border-[rgb(var(--color-secondary-600))] hover:bg-[rgb(var(--color-secondary-600))];
+}
+
 .post-title {
   @apply mb-4 leading-[1.3] text-[rgb(var(--color-text-secondary))] transition-colors duration-300;
 }

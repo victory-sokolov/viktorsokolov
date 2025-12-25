@@ -1,9 +1,16 @@
 "use client";
 
-import { capitalize } from "@vsokolov/utils";
+import type { POST_TYPE } from "src/types/enums";
+import type { PostType } from "src/types/Post";
 import Link from "next/link";
 
-const NextNPrevious = ({ next, prev, postType }) => {
+type NextNPreviousProps = {
+    next: PostType | null;
+    prev: PostType | null;
+    postType: POST_TYPE;
+};
+
+const NextNPrevious = ({ next, prev, postType }: NextNPreviousProps) => {
     return (
         <div className="mt-10 flex justify-between gap-8 max-sm:flex-col">
             {prev && (
@@ -21,7 +28,7 @@ const NextNPrevious = ({ next, prev, postType }) => {
             {next && (
                 <Link href={`/${postType}/${next.slug}`} className="mr-auto">
                     <div className="post-nav-card">
-                        <p>{`Next ${capitalize(postType).slice(0, -1)} ⇢`}</p>
+                        <p>{`Next ${postType} ⇢`}</p>
                         {next.title}
                     </div>
                 </Link>
