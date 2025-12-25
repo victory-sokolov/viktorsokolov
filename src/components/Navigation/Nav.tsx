@@ -1,5 +1,6 @@
 "use client";
 
+import type { Route } from "next";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useState } from "react";
@@ -10,7 +11,13 @@ type Props = {
     isSticky: boolean;
 };
 
-const navLinks = [
+interface NavLink {
+    href: Route;
+    label: string;
+    prefetch?: boolean;
+}
+
+const navLinks: NavLink[] = [
     { href: "/", label: "Home" },
     { href: "/blog", label: "Blog" },
     { href: "/about", label: "About", prefetch: false },

@@ -17,14 +17,14 @@ type Content = {
 
 type PostMeta = {
     excerpt: string;
-    tags: string;
+    tags: string[];
     published: boolean;
     readTime?: string;
 };
 
 type TipMeta = {
     tweetUrl?: string;
-    tags: string;
+    tags: string[];
     readTime?: string;
 };
 

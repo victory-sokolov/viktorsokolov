@@ -1,9 +1,18 @@
 "use client";
 
+import type { Route } from "next";
+import type { PostType } from "src/types/Post";
+import type { POST_TYPE } from "src/types/enums";
 import { capitalize } from "@vsokolov/utils";
 import Link from "next/link";
 
-const NextNPrevious = ({ next, prev, postType }) => {
+type NextNPreviousProps = {
+    next: PostType | null;
+    prev: PostType | null;
+    postType: POST_TYPE;
+};
+
+const NextNPrevious = ({ next, prev, postType }: NextNPreviousProps) => {
     return (
         <div className="mt-10 flex justify-between gap-8 max-sm:flex-col">
             {prev && (
