@@ -17,6 +17,8 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: victory-sokolov/astgrep-rules
+          token: ${{ secrets.ASTGREP_RULES_TOKEN }}
+          ref: main
           path: external-rules
 
       - name: Install ast-grep
