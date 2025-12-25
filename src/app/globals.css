@@ -385,7 +385,7 @@ a.mdx-link:hover {
 
 /* Reusable component classes */
 .post-nav-card {
-  @apply hover:bg-[rgb(var(--color-secondary-700))] h-full w-120 rounded-lg border border-[#424f9e] p-4 transition-colors hover:text-white [&_p]:m-0 [&_p]:p-0;
+  @apply hover:bg-[rgb(var(--color-secondary-700))] h-full w-full max-w-120 max-sm:max-w-full max-sm:w-full rounded-lg border border-[#424f9e] p-4 transition-colors hover:text-white [&_p]:m-0 [&_p]:p-0;
 }
 
 .share-option {

@@ -12,9 +12,12 @@ type NextNPreviousProps = {
 
 const NextNPrevious = ({ next, prev, postType }: NextNPreviousProps) => {
     return (
-        <div className="mt-10 flex justify-between gap-8 max-sm:flex-col">
+        <div className="mt-10 flex justify-between gap-8 max-sm:w-full max-sm:flex-col max-sm:items-stretch">
             {prev && (
-                <Link href={`/${postType}/${prev.slug}`} className="ml-auto">
+                <Link
+                    href={`/${postType}/${prev.slug}`}
+                    className="ml-auto block max-sm:ml-0 max-sm:w-full"
+                >
                     <div className="post-nav-card">
                         <p>
                             ⇠ Previous
@@ -26,7 +29,10 @@ const NextNPrevious = ({ next, prev, postType }: NextNPreviousProps) => {
             )}
 
             {next && (
-                <Link href={`/${postType}/${next.slug}`} className="mr-auto">
+                <Link
+                    href={`/${postType}/${next.slug}`}
+                    className="mr-auto block max-sm:mr-0 max-sm:w-full"
+                >
                     <div className="post-nav-card">
                         <p>{`Next ${postType} ⇢`}</p>
                         {next.title}

@@ -37,11 +37,11 @@ export const Code: React.FC<unknown> = ({ children }) => {
                         </div>
                         <code className={className}>
                             {tokens.map((line, i) => (
-                                <div key={i} {...getLineProps({ line, key: i })} className="table-row">
+                                <div key={i} {...getLineProps({ line })} className="table-row">
                                     <span className="table-cell px-6 pr-4 text-right opacity-50 select-none">{i + 1}</span>
                                     <span className="table-cell">
                                         {line.map((token, key) => (
-                                            <span key={key} {...getTokenProps({ token, key })} />
+                                            <span key={key} {...getTokenProps({ token })} />
                                         ))}
                                     </span>
                                 </div>
