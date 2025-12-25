@@ -1,0 +1,26 @@
+name: Run ast-grep validation rules
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+
+jobs:
+  ast-grep-validation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Checkout Rules Repo
+        uses: actions/checkout@v4
+        with:
+          repository: victory-sokolov/astgrep-rules
+          path: external-rules
+
+      - name: Install ast-grep
+        run: npm install -g @ast-grep/cli
+
+      - name: Run Rules
+        run: ast-grep scan -c external-rules/sgconfig.yml
