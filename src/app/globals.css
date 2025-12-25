@@ -372,7 +372,7 @@ a.mdx-link:hover {
 }
 
 .tag-pill {
-  @apply inline-block rounded-full border border-[rgb(var(--color-secondary))] bg-[rgb(var(--color-secondary-700))] px-3.5 py-1.5 text-[1.2rem] leading-normal text-white transition hover:-translate-y-0.5 hover:border-[rgb(var(--color-secondary-500))] hover:bg-[rgb(var(--color-secondary-600))];
+  @apply inline-block rounded-full border border-[rgb(var(--color-secondary))] bg-[rgb(var(--color-secondary-700))] px-3.5 py-1.5 text-[1.2rem] leading-normal text-white transition hover:-translate-y-0.5 hover:border-[rgb(var(--color-secondary-600))] hover:bg-[rgb(var(--color-secondary-600))];
 }
 
 .post-title {

@@ -1,4 +1,3 @@
-import type { Route } from "next";
 import Link from "next/link";
 import { tagToSlug } from "@/common/content-utils";
 
@@ -29,7 +28,7 @@ const TagList = ({ tags = [], linkBase, className = "" }: TagListProps) => {
                     ? (
                             <Link
                                 key={slug}
-                                href={`${linkBase}/${slug}` as Route}
+                                href={`${linkBase}/${slug}`}
                                 className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[rgb(var(--color-secondary-400))]"
                                 aria-label={`View posts tagged ${label}`}
                             >
