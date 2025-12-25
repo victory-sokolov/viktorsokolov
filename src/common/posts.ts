@@ -6,7 +6,7 @@ import { slugify, toLongDate } from "@vsokolov/utils";
 import matter from "gray-matter";
 import { calculateReadTime } from "@/common/readTime";
 
-import { getPostData, sortPostByDate } from "./content-utils";
+import { getPostData, parseTags, sortPostByDate, tagToSlug } from "./content-utils";
 
 export const getAllPosts = async (): Promise<PostFrontmatter[]> => {
     const contentPath = "content/posts";
@@ -22,12 +22,13 @@ export const getAllPosts = async (): Promise<PostFrontmatter[]> => {
             const slug = slugify(postSlug);
             const imgPath = `/posts/${slug}/${post.featureImage}`;
             const lastModified = fs.statSync(filePath).mtime.toString();
+            const tags = parseTags(post.tags);
 
             if (post.published) {
                 return {
                     title: post.title,
                     description: post.description,
-                    tags: post.tags.replace(/\s+/g, "").trim(),
+                    tags,
                     published: post.published,
                     content: file.content,
                     date: toLongDate(post.date),
@@ -54,4 +55,20 @@ export const getRecentPosts = async (amount = 3): Promise<PostFrontmatter[]> => 
 export const getPostBySlug = async (slug: string) => {
     const posts = await getAllPosts();
     return getPostData(posts, slug);
+};
+
+export const getAllPostTags = async (): Promise<string[]> => {
+    const posts = await getAllPosts();
+    const tagSet = new Set<string>();
+
+    posts.forEach(post => post.tags?.forEach(tag => tagSet.add(tag)));
+
+    return Array.from(tagSet);
+};
+
+export const getPostsByTag = async (tag: string): Promise<PostFrontmatter[]> => {
+    const posts = await getAllPosts();
+    const tagSlug = tagToSlug(tag);
+
+    return posts.filter(post => post.tags?.some(currentTag => tagToSlug(currentTag) === tagSlug));
 };

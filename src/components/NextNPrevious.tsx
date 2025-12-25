@@ -1,9 +1,7 @@
 "use client";
 
-import type { Route } from "next";
-import type { PostType } from "src/types/Post";
 import type { POST_TYPE } from "src/types/enums";
-import { capitalize } from "@vsokolov/utils";
+import type { PostType } from "src/types/Post";
 import Link from "next/link";
 
 type NextNPreviousProps = {
@@ -30,7 +28,7 @@ const NextNPrevious = ({ next, prev, postType }: NextNPreviousProps) => {
             {next && (
                 <Link href={`/${postType}/${next.slug}`} className="mr-auto">
                     <div className="post-nav-card">
-                        <p>{`Next ${capitalize(postType).slice(0, -1)} ⇢`}</p>
+                        <p>{`Next ${postType} ⇢`}</p>
                         {next.title}
                     </div>
                 </Link>

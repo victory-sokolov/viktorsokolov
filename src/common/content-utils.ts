@@ -1,6 +1,6 @@
 import type { PostFrontmatter, PostType, TipFrontmatter } from "src/types/Post";
 import fs from "node:fs";
-import { toLongDate } from "@vsokolov/utils";
+import { slugify, toLongDate } from "@vsokolov/utils";
 import matter from "gray-matter";
 import { serialize } from "next-mdx-remote/serialize";
 import rehypeSlug from "rehype-slug";
@@ -40,3 +40,16 @@ export const sortPostByDate = (posts: PostType[]): PostType[] => {
         (post1: PostType, post2: PostType) => Date.parse(post2.date) - Date.parse(post1.date),
     );
 };
+
+const normalizeTag = (tag: string): string => tag.trim().toLowerCase();
+
+export const parseTags = (tags?: string | string[]): string[] => {
+    if (!tags) return [];
+
+    const tagList = Array.isArray(tags) ? tags : tags.split(/[, ]+/);
+    const normalizedTags = tagList.map(normalizeTag).filter(Boolean);
+
+    return Array.from(new Set(normalizedTags));
+};
+
+export const tagToSlug = (tag: string): string => slugify(normalizeTag(tag));
