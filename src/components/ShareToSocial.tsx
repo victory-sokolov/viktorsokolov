@@ -99,7 +99,12 @@ export default function ShareToSocialLink({ title }: { title: string }) {
 
                         <div className="px-3 pb-8">
                             <nav className="space-y-2">
-                                <a href={share.toTwitter(url, title)} className="share-option group">
+                                <a
+                                    href={share.toTwitter(url, title)}
+                                    className="share-option group"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
                                     <div className="share-icon-wrapper group-hover:bg-white/20">
                                         <FaXTwitter className="text-3xl text-white" />
                                     </div>
@@ -116,7 +121,12 @@ export default function ShareToSocialLink({ title }: { title: string }) {
                                     </div>
                                 </a>
 
-                                <a href={share.toLinkedIn(url)} className="share-option group">
+                                <a
+                                    href={share.toLinkedIn(url)}
+                                    className="share-option group"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
                                     <div className="share-icon-wrapper bg-blue-500/10 group-hover:bg-blue-500/20">
                                         <FaLinkedin className="text-3xl text-[#0A66C2]" />
                                     </div>
@@ -136,6 +146,8 @@ export default function ShareToSocialLink({ title }: { title: string }) {
                                 <a
                                     href={share.toReddit(url, title)}
                                     className="share-option group"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                 >
                                     <div className="share-icon-wrapper bg-orange-500/10 group-hover:bg-orange-500/20">
                                         <FaRedditAlien className="text-3xl text-[#FF4500]" />
@@ -156,6 +168,8 @@ export default function ShareToSocialLink({ title }: { title: string }) {
                                 <a
                                     href={share.toHackerNews(url, title)}
                                     className="share-option group"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                 >
                                     <div className="share-icon-wrapper bg-orange-500/10 group-hover:bg-orange-500/20">
                                         <FaYCombinator className="text-3xl text-[#FF6600]" />
@@ -173,7 +187,12 @@ export default function ShareToSocialLink({ title }: { title: string }) {
                                     </div>
                                 </a>
 
-                                <a href={share.toFacebook(url)} className="share-option group">
+                                <a
+                                    href={share.toFacebook(url)}
+                                    className="share-option group"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
                                     <div className="share-icon-wrapper bg-blue-600/10 group-hover:bg-blue-600/20">
                                         <FaFacebook className="text-3xl text-[#1877F2]" />
                                     </div>
