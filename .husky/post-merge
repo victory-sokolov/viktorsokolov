@@ -1,5 +1,4 @@
 #!/bin/zsh
-. "$(dirname "$0")/_/husky.sh"
 
 IFS=$'\n'
 # regex supports mono-repos with a package.json at root-level and at package-level
