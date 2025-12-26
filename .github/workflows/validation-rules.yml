@@ -9,6 +9,9 @@ on:
 permissions:
   contents: read
 
+env:
+  GIT_CREDENTIALS: ${{ secrets.ASTGREP_RULES_TOKEN }}
+
 jobs:
   ast-grep-validation:
     runs-on: ubuntu-latest
