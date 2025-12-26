@@ -23,6 +23,7 @@ jobs:
           token: ${{ secrets.ASTGREP_RULES_TOKEN }}
           ref: main
           path: external-rules
+          fetch-depth: 1
 
       - name: Install ast-grep
         run: npm install -g @ast-grep/cli
