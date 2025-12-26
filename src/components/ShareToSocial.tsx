@@ -1,24 +1,19 @@
 "use client";
 
-import { config } from "@/common/appconfig";
-import share from "@/common/share";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { FaFacebook, FaLinkedin, FaRedditAlien, FaShareNodes, FaXTwitter, FaYCombinator } from "react-icons/fa6";
+import {
+    FaFacebook,
+    FaLinkedin,
+    FaRedditAlien,
+    FaShareNodes,
+    FaXTwitter,
+    FaYCombinator,
+} from "react-icons/fa6";
 import { IoClose } from "react-icons/io5";
 import { MdArrowForwardIos, MdContentCopy } from "react-icons/md";
-
-
-
-
-
-
-
-
-
-
-
-
+import { config } from "@/common/appconfig";
+import share from "@/common/share";
 
 export default function ShareToSocialLink({ title }: { title: string }) {
     const pathname = usePathname();
