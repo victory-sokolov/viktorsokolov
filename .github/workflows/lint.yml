@@ -28,6 +28,9 @@ jobs:
       - name: Run linter
         run: bun run lint
 
+      - name: Run style linter
+        run: bun run lint:style
+
       - name: Run formatter
         run: bun run format:check
 
