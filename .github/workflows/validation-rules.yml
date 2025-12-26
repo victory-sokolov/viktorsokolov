@@ -33,4 +33,4 @@ jobs:
         run: npm install -g @ast-grep/cli
 
       - name: Run Rules
-        run: ast-grep scan -c external-rules/sgconfig.yml
+        run: ast-grep scan -c external-rules/sgconfig.yml --format=color
