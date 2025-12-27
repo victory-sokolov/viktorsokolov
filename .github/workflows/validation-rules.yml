@@ -32,16 +32,26 @@ jobs:
       - name: Install ast-grep
         run: npm install -g @ast-grep/cli
 
-      - name: Get changed files
-        id: changed-files
-        uses: tj-actions/changed-files@v47
+      # - name: Get changed files
+      #   id: changed-files
+      #   uses: tj-actions/changed-files@v47
+      #   with:
+      #     files: |
+      #       **/*.tsx
+      #       **/*.ts
+      #       **/*.jsx
+      #       **/*.js
+
+      # - name: Run Rules
+      #   if: steps.changed-files.outputs.any_changed == 'true'
+      #   run: ast-grep scan -c external-rules/sgconfig.yml ${{ steps.changed-files.outputs.all_changed_files }}
+
+      - uses: victory-sokolov/ast-grep-review-action@v1
         with:
-          files: |
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          config-path: sgconfig.yml
+          file-patterns: |
             **/*.tsx
             **/*.ts
-            **/*.jsx
-            **/*.js
-
-      - name: Run Rules
-        if: steps.changed-files.outputs.any_changed == 'true'
-        run: ast-grep scan -c external-rules/sgconfig.yml ${{ steps.changed-files.outputs.all_changed_files }}
+            !**/*.test.ts
+            !**/*.config.ts
