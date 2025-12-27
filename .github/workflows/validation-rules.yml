@@ -20,40 +20,16 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      # - name: Checkout Rules Repo
-      #   if: github.event.pull_request.head.repo.full_name == github.repository
-      #   uses: actions/checkout@v4
-      #   with:
-      #     repository: victory-sokolov/astgrep-rules
-      #     token: ${{ secrets.ASTGREP_RULES_TOKEN }}
-      #     ref: main
-      #     path: external-rules
-      #     fetch-depth: 1
-
       # Checkout the private action repository
       - uses: actions/checkout@v6
         with:
           repository: victory-sokolov/astgrep-reviewer
-          ref: v1.0.3
+          ref: v1.0.4
           token: ${{ secrets.ASTGREP_REVIEWER_TOKEN }}
           path: .github/actions/astgrep-reviewer
 
       - name: Install ast-grep
         run: npm install -g @ast-grep/cli
-
-      # - name: Get changed files
-      #   id: changed-files
-      #   uses: tj-actions/changed-files@v47
-      #   with:
-      #     files: |
-      #       **/*.tsx
-      #       **/*.ts
-      #       **/*.jsx
-      #       **/*.js
-
-      # - name: Run Rules
-      #   if: steps.changed-files.outputs.any_changed == 'true'
-      #   run: ast-grep scan -c external-rules/sgconfig.yml ${{ steps.changed-files.outputs.all_changed_files }}
 
       - uses: ./.github/actions/astgrep-reviewer
         with:
@@ -62,8 +38,3 @@ jobs:
           rules-repo: victory-sokolov/astgrep-rules
           rules-token: ${{ secrets.ASTGREP_RULES_TOKEN }}
           rules-ref: main
-          # file-patterns: |
-          #   **/*.tsx
-          #   **/*.ts
-          #   !**/*.test.ts
-          #   !**/*.config.ts
