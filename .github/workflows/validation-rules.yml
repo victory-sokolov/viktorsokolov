@@ -58,7 +58,7 @@ jobs:
       - uses: ./.github/actions/astgrep-reviewer
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          config-path: sgconfig.yml
+          config-path: external-rules/sgconfig.yml 
           rules-repo: victory-sokolov/astgrep-rules
           rules-token: ${{ secrets.ASTGREP_RULES_TOKEN }}
           rules-ref: main
