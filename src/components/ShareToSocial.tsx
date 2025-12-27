@@ -61,7 +61,7 @@ export default function ShareToSocialLink({ title }: { title: string }) {
                             >
                                 <button
                                     onClick={toggleModal}
-                                    className="text-text-primary/60 hover:text-text-primary absolute top-4 right-4 z-10 cursor-pointer rounded-full p-2 transition-colors hover:bg-white/10"
+                                    className="text-text-primary/60 hover:text-text-primary absolute top-4 right-4 z-10 cursor-pointer rounded-full p-2 transition-colors hover:bg-white/10 [.light_&]:hover:bg-black/[0.05]"
                                     aria-label="Close modal"
                                 >
                                     <IoClose className="text-2xl" />
@@ -80,7 +80,7 @@ export default function ShareToSocialLink({ title }: { title: string }) {
                                 </div>
 
                                 <div className="px-6 py-8">
-                                    <div className="group focus-within:border-accent focus-within:ring-accent/50 flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 p-2.5 transition-colors focus-within:ring-2">
+                                    <div className="group focus-within:border-accent focus-within:ring-accent/50 border-text-primary/10 bg-text-primary/5 flex items-center gap-3 rounded-xl border p-2.5 transition-colors focus-within:ring-2">
                                         <div className="flex-1 overflow-hidden pl-3">
                                             <div className="text-text-primary/60 truncate font-mono text-lg">
                                                 {url}
@@ -88,7 +88,7 @@ export default function ShareToSocialLink({ title }: { title: string }) {
                                         </div>
                                         <button
                                             onClick={copyToClipboard}
-                                            className="text-text-primary flex items-center gap-2 rounded-lg border border-white/10 bg-white/10 px-5 py-2.5 text-lg font-medium shadow-sm transition-all hover:bg-white/20 active:scale-95"
+                                            className="text-text-primary border-text-primary/10 bg-text-primary/10 flex items-center gap-2 rounded-lg border px-5 py-2.5 text-lg font-medium shadow-sm transition-all hover:bg-white/20 active:scale-95 [.light_&]:hover:bg-black/[0.05]"
                                             title="Copy to clipboard"
                                         >
                                             <MdContentCopy className="text-2xl" />
@@ -97,7 +97,7 @@ export default function ShareToSocialLink({ title }: { title: string }) {
                                     </div>
                                 </div>
 
-                                <div className="mb-2 h-px w-full bg-white/5"></div>
+                                <div className="bg-text-primary/5 mb-2 h-px w-full"></div>
 
                                 <div className="px-3 pb-8">
                                     <nav className="space-y-2">
@@ -107,14 +107,14 @@ export default function ShareToSocialLink({ title }: { title: string }) {
                                             target="_blank"
                                             rel="noopener noreferrer"
                                         >
-                                            <div className="share-icon-wrapper group-hover:bg-white/20">
-                                                <FaXTwitter className="text-3xl text-white" />
+                                            <div className="share-icon-wrapper group-hover:bg-text-primary/20">
+                                                <FaXTwitter className="text-text-primary text-3xl" />
                                             </div>
                                             <div className="flex flex-col justify-center">
-                                                <span className="text-2xl font-bold transition-colors group-hover:text-white">
+                                                <span className="share-title group-hover:text-text-primary">
                                                     X
                                                 </span>
-                                                <span className="text-text-primary/60 text-lg">
+                                                <span className="share-description">
                                                     Share to your feed
                                                 </span>
                                             </div>
@@ -133,10 +133,10 @@ export default function ShareToSocialLink({ title }: { title: string }) {
                                                 <FaLinkedin className="text-3xl text-[#0A66C2]" />
                                             </div>
                                             <div className="flex flex-col justify-center">
-                                                <span className="text-2xl font-bold transition-colors group-hover:text-[#0A66C2]">
+                                                <span className="share-title group-hover:text-[#0A66C2]">
                                                     LinkedIn
                                                 </span>
-                                                <span className="text-text-primary/60 text-lg">
+                                                <span className="share-description">
                                                     Share with your network
                                                 </span>
                                             </div>
@@ -155,10 +155,10 @@ export default function ShareToSocialLink({ title }: { title: string }) {
                                                 <FaRedditAlien className="text-3xl text-[#FF4500]" />
                                             </div>
                                             <div className="flex flex-col justify-center">
-                                                <span className="text-2xl font-bold transition-colors group-hover:text-[#FF4500]">
+                                                <span className="share-title group-hover:text-[#FF4500]">
                                                     Reddit
                                                 </span>
-                                                <span className="text-text-primary/60 text-lg">
+                                                <span className="share-description">
                                                     Post to a community
                                                 </span>
                                             </div>
@@ -177,10 +177,10 @@ export default function ShareToSocialLink({ title }: { title: string }) {
                                                 <FaYCombinator className="text-3xl text-[#FF6600]" />
                                             </div>
                                             <div className="flex flex-col justify-center">
-                                                <span className="text-2xl font-bold transition-colors group-hover:text-[#FF6600]">
+                                                <span className="share-title group-hover:text-[#FF6600]">
                                                     Hacker News
                                                 </span>
-                                                <span className="text-text-primary/60 text-lg">
+                                                <span className="share-description">
                                                     Submit a story
                                                 </span>
                                             </div>
@@ -199,10 +199,10 @@ export default function ShareToSocialLink({ title }: { title: string }) {
                                                 <FaFacebook className="text-3xl text-[#1877F2]" />
                                             </div>
                                             <div className="flex flex-col justify-center">
-                                                <span className="text-2xl font-bold transition-colors group-hover:text-[#1877F2]">
+                                                <span className="share-title group-hover:text-[#1877F2]">
                                                     Facebook
                                                 </span>
-                                                <span className="text-text-primary/60 text-lg">
+                                                <span className="share-description">
                                                     Share to your timeline
                                                 </span>
                                             </div>
@@ -215,9 +215,7 @@ export default function ShareToSocialLink({ title }: { title: string }) {
                             </div>
                         </>
                     )
-                :
-
-                  null}
+                : null}
         </div>
     );
 }
