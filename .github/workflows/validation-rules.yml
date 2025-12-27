@@ -34,7 +34,7 @@ jobs:
       - uses: actions/checkout@v6
         with:
           repository: victory-sokolov/astgrep-reviewer
-          ref: v1.0.2
+          ref: v1.0.3
           token: ${{ secrets.ASTGREP_REVIEWER_TOKEN }}
           path: .github/actions/astgrep-reviewer
 
