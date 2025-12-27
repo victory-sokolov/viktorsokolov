@@ -1,5 +1,7 @@
 "use client";
 
+import { config } from "@/common/appconfig";
+import share from "@/common/share";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import {
@@ -12,8 +14,6 @@ import {
 } from "react-icons/fa6";
 import { IoClose } from "react-icons/io5";
 import { MdArrowForwardIos, MdContentCopy } from "react-icons/md";
-import { config } from "@/common/appconfig";
-import share from "@/common/share";
 
 export default function ShareToSocialLink({ title }: { title: string }) {
     const pathname = usePathname();
@@ -49,7 +49,7 @@ export default function ShareToSocialLink({ title }: { title: string }) {
                 <span>Share</span>
             </button>
 
-            {isOpen && (
+            {isOpen ? (
                 <>
                     <div className="share-modal-overlay" onClick={toggleModal} />
                     <div
@@ -117,7 +117,7 @@ export default function ShareToSocialLink({ title }: { title: string }) {
                                             Share to your feed
                                         </span>
                                     </div>
-                                    <div className="ml-auto -translate-x-2 opacity-0 transition-all group-hover:translate-x-0 group-hover:opacity-100">
+                                    <div className="share-block-wrapper">
                                         <MdArrowForwardIos className="text-text-primary/40 text-xl" />
                                     </div>
                                 </a>
@@ -139,7 +139,7 @@ export default function ShareToSocialLink({ title }: { title: string }) {
                                             Share with your network
                                         </span>
                                     </div>
-                                    <div className="ml-auto -translate-x-2 opacity-0 transition-all group-hover:translate-x-0 group-hover:opacity-100">
+                                    <div className="share-block-wrapper">
                                         <MdArrowForwardIos className="text-text-primary/40 text-xl" />
                                     </div>
                                 </a>
@@ -161,7 +161,7 @@ export default function ShareToSocialLink({ title }: { title: string }) {
                                             Post to a community
                                         </span>
                                     </div>
-                                    <div className="ml-auto -translate-x-2 opacity-0 transition-all group-hover:translate-x-0 group-hover:opacity-100">
+                                    <div className="share-block-wrapper">
                                         <MdArrowForwardIos className="text-text-primary/40 text-xl" />
                                     </div>
                                 </a>
@@ -183,7 +183,7 @@ export default function ShareToSocialLink({ title }: { title: string }) {
                                             Submit a story
                                         </span>
                                     </div>
-                                    <div className="ml-auto -translate-x-2 opacity-0 transition-all group-hover:translate-x-0 group-hover:opacity-100">
+                                    <div className="share-block-wrapper">
                                         <MdArrowForwardIos className="text-text-primary/40 text-xl" />
                                     </div>
                                 </a>
@@ -205,7 +205,7 @@ export default function ShareToSocialLink({ title }: { title: string }) {
                                             Share to your timeline
                                         </span>
                                     </div>
-                                    <div className="ml-auto -translate-x-2 opacity-0 transition-all group-hover:translate-x-0 group-hover:opacity-100">
+                                    <div className="share-block-wrapper">
                                         <MdArrowForwardIos className="text-text-primary/40 text-xl" />
                                     </div>
                                 </a>
@@ -213,7 +213,7 @@ export default function ShareToSocialLink({ title }: { title: string }) {
                         </div>
                     </div>
                 </>
-            )}
+            ) : null}
         </div>
     );
 }

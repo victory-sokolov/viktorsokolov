@@ -9,9 +9,7 @@
   --font-size-xl: 2.8rem;
   --font-size-2xl: 3.2rem;
   --font-size-3xl: 3.6rem;
-
   --spacing: 0.4rem;
-
   --spacing-xxs: 0.4rem;
   --spacing-xs: 0.8rem;
   --spacing-sm: 1.2rem;
@@ -23,17 +21,13 @@
   /* Colors - Dark theme (default) */
   --color-primary: 3 9 54;
   --color-primary-600: 2 5 30;
-  
   --color-secondary: 155 135 255;
   --color-secondary-600: 134 109 255;
   --color-secondary-700: 91 58 255;
   --color-secondary-800: 49 7 255;
   --color-secondary-900: 35 0 211;
-
   --color-accent: 255 185 11;
-  
   --color-link: 59 130 246;
-  
   --color-background: 3 8 42;
   --color-surface: 4 11 56;
   --color-text-primary: 255 255 255;
@@ -51,8 +45,8 @@
   --breakpoint-xl: 1280px;
 
   /* Shadows */
-  --shadow-card: 0 5px 15px rgba(154, 160, 185, 0.3);
-  --shadow-card-hover: 0 8px 20px rgba(154, 160, 185, 0.45);
+  --shadow-card: 0 5px 15px rgb(154 160 185 / 30%);
+  --shadow-card-hover: 0 8px 20px rgb(154 160 185 / 45%);
 }
 
 @utility share-modal-overlay {
@@ -86,6 +80,7 @@
     clip-path: inset(0.6px);
   }
 }
+
 @media (prefers-reduced-motion: no-preference) {
   :focus {
     transition: outline-offset 0.25s ease;
@@ -107,7 +102,7 @@ html {
   scrollbar-color: rgb(var(--color-scrollbar)) transparent;
   scroll-behavior: smooth;
   overscroll-behavior: none;
-  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
@@ -122,6 +117,10 @@ body {
 
 p {
   font-size: var(--font-size-base);
+}
+
+li {
+    list-style-type: disc;
 }
 
 ul li, ol li {
@@ -155,7 +154,7 @@ a {
 }
 
 fieldset {
-  border-color: rgba(0, 0, 0, 0.1);
+  border-color: rgb(0 0 0 / 10%);
   border-width: 1px;
 }
 
@@ -199,6 +198,12 @@ input {
   text-align: left;
 }
 
+input:active,
+input:focus {
+  outline: 1px solid rgb(var(--color-secondary-900));
+  background: none;
+}
+
 /* Change Autocomplete styles in Chrome */
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
@@ -211,15 +216,8 @@ select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
   border: 1px solid green;
   -webkit-text-fill-color: rgb(var(--color-secondary));
-  -webkit-box-shadow: 0 0 0 1000px #000 inset;
   box-shadow: 0 0 0 1000px #000 inset;
   transition: background-color 5000s ease-in-out 0s;
-}
-
-input:focus,
-input:active {
-  outline: 1px solid rgb(var(--color-secondary-900));
-  background: none;
 }
 
 .tilt {
@@ -245,7 +243,7 @@ code {
 code:not(:has(pre, span, div)) {
   display: inline;
   color: rgb(var(--color-code));
-  background-color: rgba(var(--color-code-bg), 0.6);
+  background-color: rgb(var(--color-code-bg), 0.6);
   border: 1px solid rgb(var(--color-secondary));
   border-radius: 5px;
   line-height: 3.8rem;
@@ -316,14 +314,14 @@ a.mdx-link:hover {
   left: 0;
   width: 100%;
   transition: all 0.5s ease-in-out;
-  animation: smoothScroll 1s forwards;
-  background-color: rgba(46, 52, 64, 0.5);
+  animation: smooth-scroll 1s forwards;
+  background-color: rgb(46 52 64 / 50%);
   backdrop-filter: blur(8px);
   color: #fff;
 }
 
 .light .sticky {
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgb(255 255 255 / 80%);
   color: rgb(var(--color-text-primary));
 }
 
@@ -408,6 +406,10 @@ a.mdx-link:hover {
   @apply flex w-full items-center p-4 pl-5 font-medium hover:bg-[rgb(var(--color-primary-600))];
 }
 
+.share-block-wrapper {
+    @apply ml-auto -translate-x-2 opacity-0 transition-all group-hover:translate-x-0 group-hover:opacity-100;
+}
+
 .social-link {
   @apply inline-block transition-opacity hover:opacity-70;
 }
@@ -416,10 +418,11 @@ a.mdx-link:hover {
   @apply h-[2.2rem] pr-4 text-[2.6rem];
 }
 
-@keyframes smoothScroll {
+@keyframes smooth-scroll {
   0% {
     transform: translateY(-142px);
   }
+
   100% {
     transform: translateY(0);
   }
@@ -436,7 +439,7 @@ a.mdx-link:hover {
   100% { transform: rotate(0.0deg) }
 }
 
-@media only screen and (max-width: 640px) {
+@media only screen and (width <= 640px) {
   html {
     font-size: 1.5rem;
   }
@@ -446,10 +449,11 @@ a.mdx-link:hover {
 @layer utilities {
   .border-gradient {
     --border-width: 3px;
+
     position: relative;
     background: rgb(var(--color-background));
     border-radius: var(--border-width);
-    animation: moveGradient 4s alternate infinite;
+    animation: move-gradient 4s alternate infinite;
   }
 
   .text-list {
@@ -467,7 +471,7 @@ a.mdx-link:hover {
     left: 50%;
     width: 0;
     height: 0;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgb(255 255 255 / 10%);
     border-radius: 50%;
     transform: translate(-50%, -50%);
     transition: all 0.3s ease;
@@ -516,14 +520,14 @@ a.mdx-link:hover {
     height: calc(100% + var(--border-width) * 2);
     background: linear-gradient(
       60deg,
-      hsl(224, 85%, 66%),
-      hsl(269, 85%, 66%),
-      hsl(314, 85%, 66%),
-      hsl(359, 85%, 66%),
-      hsl(44, 85%, 66%),
-      hsl(89, 85%, 66%),
-      hsl(134, 85%, 66%),
-      hsl(179, 85%, 66%)
+      hsl(224deg 85% 66%),
+      hsl(269deg 85% 66%),
+      hsl(314deg 85% 66%),
+      hsl(359deg 85% 66%),
+      hsl(44deg 85% 66%),
+      hsl(89deg 85% 66%),
+      hsl(134deg 85% 66%),
+      hsl(179deg 85% 66%)
     );
     background-size: 300% 300%;
     background-position: 0 50%;
@@ -532,13 +536,15 @@ a.mdx-link:hover {
   }
 }
 
-@keyframes moveGradient {
+@keyframes move-gradient {
   0% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
+
   100% {
     background-position: 0% 50%;
   }
@@ -576,10 +582,6 @@ h2 {
 .prose ul, .prose ol {
   margin-bottom: 1.5rem;
   padding-left: 2rem;
-}
-
-li {
-    list-style-type: disc;
 }
 
 .prose li {
