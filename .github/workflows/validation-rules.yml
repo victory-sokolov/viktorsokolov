@@ -46,7 +46,7 @@ jobs:
       #   if: steps.changed-files.outputs.any_changed == 'true'
       #   run: ast-grep scan -c external-rules/sgconfig.yml ${{ steps.changed-files.outputs.all_changed_files }}
 
-      - uses: victory-sokolov/astgrep-reviewer@v1.0.1
+      - uses: victory-sokolov/astgrep-reviewer@v1.0.2
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           config-path: sgconfig.yml
