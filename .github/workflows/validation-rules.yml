@@ -1,0 +1,40 @@
+name: Run ast-grep validation rules
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+env:
+  GIT_CREDENTIALS: ${{ secrets.ASTGREP_RULES_TOKEN }}
+
+jobs:
+  ast-grep-validation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      # Checkout the private action repository
+      - uses: actions/checkout@v6
+        with:
+          repository: victory-sokolov/astgrep-reviewer
+          ref: v1.0.4
+          token: ${{ secrets.ASTGREP_REVIEWER_TOKEN }}
+          path: .github/actions/astgrep-reviewer
+
+      - name: Install ast-grep
+        run: npm install -g @ast-grep/cli
+
+      - uses: ./.github/actions/astgrep-reviewer
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          config-path: external-rules/sgconfig.yml
+          rules-repo: victory-sokolov/astgrep-rules
+          rules-token: ${{ secrets.ASTGREP_RULES_TOKEN }}
+          rules-ref: main
