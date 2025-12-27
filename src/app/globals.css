@@ -54,7 +54,7 @@
 }
 
 @utility share-modal-content {
-  @apply fixed top-1/2 left-1/2 z-100 w-[90%] max-w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-surface border border-border shadow-2xl overflow-hidden transition-all;
+  @apply fixed top-1/2 left-1/2 z-[100] w-[90%] max-w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-surface border border-border shadow-2xl overflow-hidden transition-all;
 }
 
 @utility share-option {
