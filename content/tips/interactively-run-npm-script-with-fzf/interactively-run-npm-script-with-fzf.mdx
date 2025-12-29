@@ -1,0 +1,57 @@
+---
+title: Interactively run npm script with FZF
+description: Interactively attach to running Docker container using FZF
+slug: interactive-npm-run-script-with-fzf
+date: 2025-12-28
+featureImage: interactively-run-npm-script-with-fzf.png
+tags: bash, fzf
+---
+
+
+### Tired of Long npm Script Names? Run Them Interactively with FZF
+
+I was tired of typing out long `npm run` commands or constantly checking `package.json`.
+
+This bash command lets you interactively search and run your npm scripts using the fuzzy-finding power of **FZF**.
+
+**Here's the code to add to your shell config (e.g., `.bashrc` or `.zshrc`):**
+
+First we will add Bash function that will determine package manager current project is using
+
+```bash
+p() # Determine package manager and run command with it
+{
+  if [[ -f bun.lock ]]; then
+    command bun "$@"
+  elif [[ -f pnpm-lock.yaml ]]; then
+    command pnpm "$@"
+  elif [[ -f yarn.lock ]]; then
+    command yarn "$@"
+  elif [[ -f package-lock.json ]]; then
+    command npm "$@"
+  else
+    command pnpm "$@"
+  fi
+}
+```
+
+```bash
+nrs() {
+  local selected_script=$(
+      jq -r '
+          .scripts
+          | keys[]
+      ' "$(npm root | sed 's/node_modules//')package.json" \
+      | sort \
+      | fzf -q "$1"
+  )
+
+  if [[ -n "$selected_script" ]]; then
+    p run "$selected_script"
+  fi
+}
+```
+
+Now, just type `nrs` to pop up a searchable list of all your scripts. Find what you need instantly and boost your command-line productivity
+
+<img src="/tips/interactively-run-npm-script-with-fzf/fzf-npm-run-script.gif" alt="Script in action" width={800} height={450} />
