@@ -2,10 +2,16 @@
 
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { CiFacebook, CiLinkedin, CiTwitter } from "react-icons/ci";
-import { DiHackernews } from "react-icons/di";
-import { FaCreativeCommonsShare, FaShareAlt } from "react-icons/fa";
-import { FcReddit } from "react-icons/fc";
+import {
+    FaFacebook,
+    FaLinkedin,
+    FaRedditAlien,
+    FaShareNodes,
+    FaXTwitter,
+    FaYCombinator,
+} from "react-icons/fa6";
+import { IoClose } from "react-icons/io5";
+import { MdArrowForwardIos, MdContentCopy } from "react-icons/md";
 import { config } from "@/common/appconfig";
 import share from "@/common/share";
 
@@ -14,66 +20,202 @@ export default function ShareToSocialLink({ title }: { title: string }) {
     const url = `${config.siteUrl}${pathname}`;
 
     const [isOpen, setIsOpen] = useState(false);
+    const [copied, setCopied] = useState(false);
 
     const toggleModal = () => {
         setIsOpen(!isOpen);
+        setCopied(false);
+    };
+
+    const copyToClipboard = async () => {
+        try {
+            await navigator.clipboard.writeText(url);
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+        } catch (err) {
+            console.error("Failed to copy: ", err);
+            setCopied(false);
+        }
     };
 
     return (
-        <button className="border-none shadow-none outline-none">
-            <span className="cursor-pointer text-[2.2rem]">
-                <FaShareAlt onClick={toggleModal} />
-            </span>
-            {isOpen && (
-                <>
-                    <div className="fixed inset-0 z-50 bg-black/50" onClick={toggleModal} />
-                    <div
-                        className="fixed top-1/2 left-1/2 z-100 h-140 w-120 -translate-x-1/2 -translate-y-1/2 rounded-lg bg-[#050e4f] shadow-[0_0_0_1px_rgb(var(--color-secondary-700))]"
-                        role="dialog"
-                        aria-modal={true}
-                        aria-labelledby="modal-label"
-                    >
-                        <div className="mt-8">
-                            <h4 id="modal-label" className="mb-3 pl-5">
-                                <span className="relative top-[5px] text-[2.6rem]">
-                                    <FaCreativeCommonsShare />
-                                </span>
-                                Share on socials
-                            </h4>
-                            <a href={share.toTwitter(url, title)} className="share-option">
-                                <span className="share-icon">
-                                    <CiTwitter />
-                                </span>
-                                Share to Twitter
-                            </a>
-                            <a href={share.toLinkedIn(url)} className="share-option">
-                                <span className="share-icon">
-                                    <CiLinkedin />
-                                </span>
-                                Share to LinkedIn
-                            </a>
-                            <a href={share.toReddit(url, title)} className="share-option">
-                                <span className="share-icon">
-                                    <FcReddit />
-                                </span>
-                                Share to Reddit
-                            </a>
-                            <a href={share.toHackerNews(url, title)} className="share-option">
-                                <span className="share-icon">
-                                    <DiHackernews />
-                                </span>
-                                Share to Hacker News
-                            </a>
-                            <a href={share.toFacebook(url)} className="share-option">
-                                <span className="share-icon">
-                                    <CiFacebook />
-                                </span>
-                                Share to Facebook
-                            </a>
-                        </div>
-                    </div>
-                </>
-            )}
-        </button>
+        <div className="relative inline-block">
+            <button
+                onClick={toggleModal}
+                className="flex cursor-pointer items-center gap-2 border-none bg-transparent p-0 text-[1.6rem] font-medium text-[rgb(var(--color-link))] shadow-none transition-colors outline-none hover:text-[rgb(var(--color-secondary))]"
+                aria-label="Share"
+            >
+                <FaShareNodes className="text-[2rem]" />
+                <span>Share</span>
+            </button>
+
+            {isOpen
+                ? (
+                        <>
+                            <div className="share-modal-overlay" onClick={toggleModal} />
+                            <div
+                                className="share-modal-content"
+                                role="dialog"
+                                aria-modal={true}
+                                aria-labelledby="modal-label"
+                            >
+                                <button
+                                    onClick={toggleModal}
+                                    className="text-text-primary/60 hover:text-text-primary absolute top-4 right-4 z-10 cursor-pointer rounded-full p-2 transition-colors hover:bg-white/10 [.light_&]:hover:bg-black/[0.05]"
+                                    aria-label="Close modal"
+                                >
+                                    <IoClose className="text-2xl" />
+                                </button>
+
+                                <div className="px-6 pt-10 pb-2 text-center">
+                                    <h2
+                                        id="modal-label"
+                                        className="text-text-primary text-3xl font-bold tracking-tight"
+                                    >
+                                        Share on socials
+                                    </h2>
+                                    <p className="text-text-primary/60 mt-2 text-lg">
+                                        Share this link with your network
+                                    </p>
+                                </div>
+
+                                <div className="px-6 py-8">
+                                    <div className="group focus-within:border-accent focus-within:ring-accent/50 border-text-primary/10 bg-text-primary/5 flex items-center gap-3 rounded-xl border p-2.5 transition-colors focus-within:ring-2">
+                                        <div className="flex-1 overflow-hidden pl-3">
+                                            <div className="text-text-primary/60 truncate font-mono text-lg">
+                                                {url}
+                                            </div>
+                                        </div>
+                                        <button
+                                            onClick={copyToClipboard}
+                                            className="text-text-primary border-text-primary/10 bg-text-primary/10 flex items-center gap-2 rounded-lg border px-5 py-2.5 text-lg font-medium shadow-sm transition-all hover:bg-white/20 active:scale-95 [.light_&]:hover:bg-black/[0.05]"
+                                            title="Copy to clipboard"
+                                        >
+                                            <MdContentCopy className="text-2xl" />
+                                            <span>{copied ? "Copied!" : "Copy"}</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div className="bg-text-primary/5 mb-2 h-px w-full"></div>
+
+                                <div className="px-3 pb-8">
+                                    <nav className="space-y-2">
+                                        <a
+                                            href={share.toTwitter(url, title)}
+                                            className="share-option group"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            <div className="share-icon-wrapper group-hover:bg-text-primary/20">
+                                                <FaXTwitter className="text-text-primary text-3xl" />
+                                            </div>
+                                            <div className="flex flex-col justify-center">
+                                                <span className="share-title group-hover:text-text-primary">
+                                                    X
+                                                </span>
+                                                <span className="share-description">
+                                                    Share to your feed
+                                                </span>
+                                            </div>
+                                            <div className="share-block-wrapper">
+                                                <MdArrowForwardIos className="text-text-primary/40 text-xl" />
+                                            </div>
+                                        </a>
+
+                                        <a
+                                            href={share.toLinkedIn(url)}
+                                            className="share-option group"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            <div className="share-icon-wrapper bg-blue-500/10 group-hover:bg-blue-500/20">
+                                                <FaLinkedin className="text-3xl text-[#0A66C2]" />
+                                            </div>
+                                            <div className="flex flex-col justify-center">
+                                                <span className="share-title group-hover:text-[#0A66C2]">
+                                                    LinkedIn
+                                                </span>
+                                                <span className="share-description">
+                                                    Share with your network
+                                                </span>
+                                            </div>
+                                            <div className="share-block-wrapper">
+                                                <MdArrowForwardIos className="text-text-primary/40 text-xl" />
+                                            </div>
+                                        </a>
+
+                                        <a
+                                            href={share.toReddit(url, title)}
+                                            className="share-option group"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            <div className="share-icon-wrapper bg-orange-500/10 group-hover:bg-orange-500/20">
+                                                <FaRedditAlien className="text-3xl text-[#FF4500]" />
+                                            </div>
+                                            <div className="flex flex-col justify-center">
+                                                <span className="share-title group-hover:text-[#FF4500]">
+                                                    Reddit
+                                                </span>
+                                                <span className="share-description">
+                                                    Post to a community
+                                                </span>
+                                            </div>
+                                            <div className="share-block-wrapper">
+                                                <MdArrowForwardIos className="text-text-primary/40 text-xl" />
+                                            </div>
+                                        </a>
+
+                                        <a
+                                            href={share.toHackerNews(url, title)}
+                                            className="share-option group"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            <div className="share-icon-wrapper bg-orange-500/10 group-hover:bg-orange-500/20">
+                                                <FaYCombinator className="text-3xl text-[#FF6600]" />
+                                            </div>
+                                            <div className="flex flex-col justify-center">
+                                                <span className="share-title group-hover:text-[#FF6600]">
+                                                    Hacker News
+                                                </span>
+                                                <span className="share-description">
+                                                    Submit a story
+                                                </span>
+                                            </div>
+                                            <div className="share-block-wrapper">
+                                                <MdArrowForwardIos className="text-text-primary/40 text-xl" />
+                                            </div>
+                                        </a>
+
+                                        <a
+                                            href={share.toFacebook(url)}
+                                            className="share-option group"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            <div className="share-icon-wrapper bg-blue-600/10 group-hover:bg-blue-600/20">
+                                                <FaFacebook className="text-3xl text-[#1877F2]" />
+                                            </div>
+                                            <div className="flex flex-col justify-center">
+                                                <span className="share-title group-hover:text-[#1877F2]">
+                                                    Facebook
+                                                </span>
+                                                <span className="share-description">
+                                                    Share to your timeline
+                                                </span>
+                                            </div>
+                                            <div className="share-block-wrapper">
+                                                <MdArrowForwardIos className="text-text-primary/40 text-xl" />
+                                            </div>
+                                        </a>
+                                    </nav>
+                                </div>
+                            </div>
+                        </>
+                    )
+                : null}
+        </div>
     );
 }
