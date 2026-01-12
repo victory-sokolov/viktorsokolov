@@ -4,9 +4,9 @@ My blog where I share things related to software development.
 
 ## Tech Stack
 
--   **Framework**: Next.js, TypeScript
--   **Deployment**: Vercel
--   **Styling**: Styled Components
+- **Framework**: Next.js, TypeScript
+- **Deployment**: Vercel
+- **Styling**: Styled Components
 
 ![Viktor Sokolov Blog](https://i.imgur.com/46BTIiF.png)
 
