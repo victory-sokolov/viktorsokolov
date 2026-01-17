@@ -25,8 +25,8 @@ export const Code: React.FC<unknown> = ({ children }) => {
                         <span className="yellow"></span>
                         <span className="green"></span>
                         <div
-                            className="cursor-pointer max-sm:hidden ml-auto flex items-center"
-                            onClick={copyToClipboard}
+                            className={`ml-auto flex items-center max-sm:hidden ${isCopied ? "cursor-default" : "cursor-pointer"}`}
+                            onClick={isCopied ? undefined : copyToClipboard}
                         >
                             {isCopied ? (
                                 <span className="text-xl text-white font-medium">🎉 Copied!</span>
