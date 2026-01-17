@@ -34,6 +34,7 @@
         "generate": "npm-run-all generate:**",
         "generate:copyimages": "tsx ./lib/copy-images.ts",
         "generate:feed": "tsx ./lib/generate-feed.ts",
+        "generate:validate": "tsx ./lib/validate-content.ts",
         "fetch-tips": "tsx --env-file .env ./lib/twitter-tips.mts",
         "spell-check": "spellchecker --config .spellcheckerrc.json",
         "knip": "knip",
