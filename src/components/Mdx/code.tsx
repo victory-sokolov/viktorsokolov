@@ -28,11 +28,13 @@ export const Code: React.FC<unknown> = ({ children }) => {
                             className={`ml-auto flex items-center max-sm:hidden ${isCopied ? "cursor-default" : "cursor-pointer"}`}
                             onClick={isCopied ? undefined : copyToClipboard}
                         >
-                            {isCopied ? (
-                                <span className="text-xl text-white font-medium">🎉 Copied!</span>
-                            ) : (
-                                <BsClipboardCheck className="w-5 h-5" />
-                            )}
+                            {isCopied
+                                ? (
+                                        <span className="text-xl font-medium text-white">🎉 Copied!</span>
+                                    )
+                                : (
+                                        <BsClipboardCheck className="h-5 w-5" />
+                                    )}
                         </div>
                     </div>
                     <pre style={style}>
