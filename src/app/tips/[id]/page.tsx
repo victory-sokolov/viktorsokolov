@@ -1,11 +1,3 @@
-import type { Metadata } from "next/types";
-import type { TipFrontmatter } from "src/types/Post";
-import type { PageParams } from "@/src/types/types";
-import process from "node:process";
-import { ArticleJsonLd } from "next-seo";
-import React from "react";
-import Balancer from "react-wrap-balancer";
-import { POST_TYPE } from "src/types/enums";
 import { generatePostMetadata } from "@/common/metadata";
 import { getTipBySlug } from "@/common/tips";
 import { MdxRemote } from "@/components/Mdx";
@@ -13,10 +5,21 @@ import NewsLetterForm from "@/components/NewsLetter";
 import NextNPrevious from "@/components/NextNPrevious";
 import TagList from "@/components/Tags";
 import { config } from "@/src/common/appconfig";
+import type { PageParams } from "@/src/types/types";
+import { ArticleJsonLd } from "next-seo";
+import type { Metadata } from "next/types";
+import process from "node:process";
+import Balancer from "react-wrap-balancer";
+import { POST_TYPE } from "src/types/enums";
+import type { TipFrontmatter } from "src/types/Post";
 
 const baseUrl = process.env.BASE_URL;
 
-export async function generateMetadata({ params }: { params: Promise<PageParams> }): Promise<Metadata | undefined> {
+export async function generateMetadata({
+    params,
+}: {
+    params: Promise<PageParams>;
+}): Promise<Metadata | undefined> {
     const resolvedParams = await params;
     return generatePostMetadata(resolvedParams, getTipBySlug, "tips");
 }
