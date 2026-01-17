@@ -24,17 +24,11 @@ export const Code: React.FC<unknown> = ({ children }) => {
                         <span className="red"></span>
                         <span className="yellow"></span>
                         <span className="green"></span>
+                        <div className="cursor-pointer max-sm:hidden ml-auto flex items-center" onClick={copyToClipboard}>
+                            {isCopied ? <span className="text-xl text-white font-medium">🎉 Copied!</span> : <BsClipboardCheck className="w-5 h-5" />}
+                        </div>
                     </div>
                     <pre style={style}>
-                        <div className="absolute right-0 mr-4 cursor-pointer p-0 px-5 max-sm:hidden">
-                            {isCopied
-                                ? (
-                                        "🎉 Copied!"
-                                    )
-                                : (
-                                        <BsClipboardCheck onClick={copyToClipboard} />
-                                    )}
-                        </div>
                         <code className={className}>
                             {tokens.map((line, i) => (
                                 <div key={i} {...getLineProps({ line })} className="table-row">
