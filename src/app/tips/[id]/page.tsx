@@ -53,7 +53,6 @@ export default async function TipPage({ params }: { params: Promise<PageParams> 
             </h1>
             <TagList tags={tags} linkBase="/blog/tag" className="mb-8" />
             <MdxRemote source={mdxSource} />
-            <p>{tipFrontmatter.description}</p>
             <NextNPrevious next={nextPost} prev={previousPost} postType={POST_TYPE.TIP} />
             <NewsLetterForm />
         </article>
