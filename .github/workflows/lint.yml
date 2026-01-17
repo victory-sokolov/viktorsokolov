@@ -47,5 +47,8 @@ jobs:
       - name: Build
         run: bun run build
 
+      - name: markdownlint-cli2-action
+        uses: DavidAnson/markdownlint-cli2-action@main
+
       - name: Audit packages
         run: bun audit
