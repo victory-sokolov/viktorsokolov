@@ -16,6 +16,28 @@ import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const contentDir = path.join(process.cwd(), "content");
 
 function validateContent(type: "posts" | "tips") {
@@ -64,7 +86,7 @@ function validateContent(type: "posts" | "tips") {
     }
 }
 
-console.log("Validating content structure...");
+console.info("Validating content structure...");
 validateContent("posts");
 validateContent("tips");
-console.log("✅ Content validation passed!");
+console.info("✅ Content validation passed!");

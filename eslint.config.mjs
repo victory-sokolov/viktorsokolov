@@ -3,8 +3,10 @@ import antfu from "@antfu/eslint-config";
 export default antfu(
     {
         prettier: true,
+        stylistic: false,
         rules: {
             "no-console": ["warn", { allow: ["warn", "error", "info"] }],
+            "indent": "off",
         },
         typescript: {
             overrides: {
@@ -30,6 +32,7 @@ export default antfu(
     },
     {
         files: ["**/*.{js,ts,jsx,tsx}"],
+
         settings: {
             tailwindcss: {
                 config: null, // Tailwind v4 uses CSS-based config
