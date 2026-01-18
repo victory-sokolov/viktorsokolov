@@ -15,23 +15,32 @@ This bash function lets you interactively search and kill processes using the fu
 **Here's the code to add to your shell config (e.g., `.bashrc` or `.zshrc`):**
 
 ```bash
-kport() # Kill processes interactively with fzf (supports port number search)
+kport()
 {
     local pids signal port_info
     signal="15"
 
+    # Format strings and commands
+    local header_format="%-8s %-6s %-6s %-s %s\n"
+    local header="PID    CPU%   MEM%   COMMAND PORT"
+
+    local ps_filter='NR>1 && $11 !~ /^\[|\/System\/|\/usr\/libexec\// && $11 != "ps"'
+    # Filter: skip header, exclude system processes and ps command itself
+    local ps_printf='{printf "%-8s %-6.1f %-6.1f %-s %s\n", $2, $3, $4, $11, "N/A"}'
+    # Format: PID, CPU%, MEM%, COMMAND, PORT (N/A for regular processes)
+    local ps_awk_cmd="$ps_filter $ps_printf"
+
+    local lsof_awk_cmd='NR>1 {printf "%-8s %-6s %-6s %-s %s\n", $2, "N/A", "N/A", $1, $9}'
+    local fzf_header="Select process(es) to kill [Usage: kport or kport [port]]"
+
     # Unified function to get process list
     _get_process_list() {
         { \
-            printf "%-8s %-6s %-6s %-s %s\n" "PID" "CPU%" "MEM%" "COMMAND" "PORT"; \
+            printf "$header_format" "PID" "CPU%" "MEM%" "COMMAND" "PORT"; \
             # Regular processes
-            ps aux \
-                | awk 'NR>1 && $11 !~ /^\[|\/System\/|\/usr\/libexec\// && $11 != "ps" {printf "%-8s %-6.1f %-6.1f %-s %s\n", $2, $3, $4, $11, "N/A"}' \
-                | sort -k2 -nr; \
+            ps aux | awk "$ps_awk_cmd" | sort -k2 -nr; \
             # Processes listening on ports
-            lsof -iTCP -sTCP:LISTEN -n -P 2>/dev/null \
-                | awk 'NR>1 {printf "%-8s %-6s %-6s %-s %s\n", $2, "N/A", "N/A", $1, $9}' \
-                | sort -k5; \
+            lsof -iTCP -sTCP:LISTEN -n -P 2>/dev/null | awk "$lsof_awk_cmd" | sort -k5; \
         }
     }
 
@@ -67,7 +76,7 @@ kport() # Kill processes interactively with fzf (supports port number search)
     fi
 
     # Interactive mode
-    pids=$(_get_process_list | fzf -m --header="Select process(es) to kill [Usage: kport or kport [port]]" --header-lines=1 | awk '{print $1}')
+    pids=$(_get_process_list | fzf -m --header="$fzf_header" --header-lines=1 | awk '{print $1}')
     _kill_processes "$pids" "Selected PIDs: $pids"
 }
 ```
@@ -96,4 +105,4 @@ kport 8080  # Kill processes listening on port 8080
 
 Now, just type `kport` to pop up a searchable list of all your user processes and listening ports, or use `kport <port>` to quickly kill processes on a specific port. Find what you need to kill instantly and manage your system processes like a pro.
 
-<img src="/tips/kill-port-with-fzf/kport-with-fzf.gif" alt="Kill processes interactively with FZF" width={800} height={450} />
+<img src="/tips/interactively-kill-processes-with-fzf/kport-with-fzf.gif" alt="Kill processes interactively with FZF" width={800} height={450} />
