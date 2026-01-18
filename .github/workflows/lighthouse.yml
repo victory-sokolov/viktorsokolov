@@ -21,7 +21,7 @@ jobs:
           bun-version: latest
 
       - name: 📦 Install dependencies and run Lighthouse CI
-        run: bun install
+        run: bun install --frozen-lockfile
 
       - name: 🏗️ Build project
         run: bun run build
