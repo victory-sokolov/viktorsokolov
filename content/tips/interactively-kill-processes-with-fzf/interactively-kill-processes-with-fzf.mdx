@@ -17,67 +17,66 @@ This bash function lets you interactively search and kill processes using the fu
 ```bash
 kport()
 {
-    local pids signal port_info
-    signal="15"
+  local pids signal port_info
+  signal="15"
 
-    # Format strings and commands
-    local header_format="%-8s %-6s %-6s %-s %s\n"
-    local header="PID    CPU%   MEM%   COMMAND PORT"
+  # Format strings and commands
+  local header_format="%-8s %-6s %-6s %-s %s\n"
 
-    local ps_filter='NR>1 && $11 !~ /^\[|\/System\/|\/usr\/libexec\// && $11 != "ps"'
-    # Filter: skip header, exclude system processes and ps command itself
-    local ps_printf='{printf "%-8s %-6.1f %-6.1f %-s %s\n", $2, $3, $4, $11, "N/A"}'
-    # Format: PID, CPU%, MEM%, COMMAND, PORT (N/A for regular processes)
-    local ps_awk_cmd="$ps_filter $ps_printf"
+  local ps_filter='NR>1 && $11 !~ /^\[|/System/|/usr/libexec/ && $11 != "ps"'
+  # Filter: skip header, exclude system processes and ps command itself
+  local ps_printf='{printf "%-8s %-6.1f %-6.1f %-s %s\n", $2, $3, $4, $11, "N/A"}'
+  # Format: PID, CPU%, MEM%, COMMAND, PORT (N/A for regular processes)
+  local ps_awk_cmd="$ps_filter $ps_printf"
 
-    local lsof_awk_cmd='NR>1 {printf "%-8s %-6s %-6s %-s %s\n", $2, "N/A", "N/A", $1, $9}'
-    local fzf_header="Select process(es) to kill [Usage: kport or kport [port]]"
+  local lsof_awk_cmd='NR>1 {printf "%-8s %-6s %-6s %-s %s\n", $2, "N/A", "N/A", $1, $9}'
+  local fzf_header="Select process(es) to kill [Usage: kport or kport [port]]"
 
-    # Unified function to get process list
-    _get_process_list() {
-        { \
-            printf "$header_format" "PID" "CPU%" "MEM%" "COMMAND" "PORT"; \
-            # Regular processes
-            ps aux | awk "$ps_awk_cmd" | sort -k2 -nr; \
-            # Processes listening on ports
-            lsof -iTCP -sTCP:LISTEN -n -P 2>/dev/null | awk "$lsof_awk_cmd" | sort -k5; \
-        }
-    }
+  # Unified function to get process list
+  _get_process_list() {
+      {
+          printf "$header_format" "PID" "CPU%" "MEM%" "COMMAND" "PORT";
+          # Regular processes
+          ps aux | awk "$ps_awk_cmd" | sort -k2 -nr;
+          # Processes listening on ports
+          lsof -iTCP -sTCP:LISTEN -n -P 2>/dev/null | awk "$lsof_awk_cmd" | sort -k5;
+      }
+  }
 
-    # Unified function to kill processes
-    _kill_processes() {
-        local target_pids="$1"
-        local description="$2"
+  # Unified function to kill processes
+  _kill_processes() {
+      local target_pids="$1"
+      local description="$2"
 
-        if [[ -n "$target_pids" ]]; then
-            echo "$description"
-            if echo "$target_pids" | xargs kill -"$signal" 2>/dev/null; then
-                echo "Successfully killed process(es)"
-            else
-                echo "Error: Failed to kill some processes. Try with signal 9." >&2
-                return 1
-            fi
-        fi
-    }
+      if [[ -n "$target_pids" ]]; then
+          echo "$description"
+          if echo "$target_pids" | xargs kill -"$signal" 2>/dev/null; then
+              echo "Successfully killed process(es)"
+          else
+              echo "Error: Failed to kill some processes. Try with signal 9." >&2
+              return 1
+          fi
+      fi
+  }
 
-    # Parse arguments: if first arg is a port number, kill processes on that port
-    if [[ -n "$1" && "$1" =~ ^[0-9]+$ ]]; then
-        # Filter process list for specific port
-        port_info=$(_get_process_list | grep -i ":$1 ")
-        if [[ -z "$port_info" ]]; then
-            echo "No processes found listening on port $1"
-            return 1
-        fi
+  # Parse arguments: if first arg is a port number, kill processes on that port
+  if [[ -n "$1" && "$1" =~ ^[0-9]+$ ]]; then
+      # Filter process list for specific port
+      port_info=$(_get_process_list | grep -i ":$1 ")
+      if [[ -z "$port_info" ]]; then
+          echo "No processes found listening on port $1"
+          return 1
+      fi
 
-        # Extract PIDs and kill
-        pids=$(echo "$port_info" | awk '{print $1}')
-        _kill_processes "$pids" "Processes listening on port $1:"
-        return
-    fi
+      # Extract PIDs and kill
+      pids=$(echo "$port_info" | awk '{print $1}')
+      _kill_processes "$pids" "Processes listening on port $1:"
+      return
+  fi
 
-    # Interactive mode
-    pids=$(_get_process_list | fzf -m --header="$fzf_header" --header-lines=1 | awk '{print $1}')
-    _kill_processes "$pids" "Selected PIDs: $pids"
+  # Interactive mode
+  pids=$(_get_process_list | fzf -m --header="$fzf_header" --header-lines=1 | awk '{print $1}')
+  _kill_processes "$pids" "Selected PIDs: $pids"
 }
 ```
 

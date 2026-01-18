@@ -24,7 +24,9 @@ jobs:
         uses: lycheeverse/lychee-action@v2
         with:
           # Check all .md and .mdx files in the repository
-          args: --include "**/*.md" --include "**/*.mdx" --exclude "http://localhost*" --timeout 30
+          include: "**/*.md,**/*.mdx"
+          exclude: "http://localhost*"
+          timeout: 30
           # Fail on broken links
           fail: true
           # Output format for CI
