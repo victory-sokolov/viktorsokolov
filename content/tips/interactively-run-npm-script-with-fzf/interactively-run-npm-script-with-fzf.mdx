@@ -18,7 +18,7 @@ These bash functions let you interactively search and run your package manager s
 
 First, we will add a Bash function that determines the package manager the current project is using:
 
-```bash
+```zsh
 p() # Determine package manager and run command with it
 {
   if [[ -f bun.lock ]]; then
@@ -35,7 +35,7 @@ p() # Determine package manager and run command with it
 }
 ```
 
-```bash
+```zsh
 nrs() {
   local selected_script=$(
       jq -r '
