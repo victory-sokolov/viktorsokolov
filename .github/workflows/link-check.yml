@@ -1,0 +1,28 @@
+name: Link Check
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+    types: [opened, reopened, synchronize]
+  workflow_dispatch:
+
+jobs:
+  link-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout commit
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Check links in Markdown files
+        uses: lycheeverse/lychee-action@v2
+        with:
+          # Check all .md and .mdx files in the repository
+          args: --include "**/*.md" --include "**/*.mdx" --exclude "http://localhost*" --timeout 30
+          # Fail on broken links
+          fail: true
+          # Output format for CI
+          format: markdown
