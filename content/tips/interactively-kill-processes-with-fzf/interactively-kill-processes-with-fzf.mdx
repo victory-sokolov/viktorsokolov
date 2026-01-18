@@ -1,6 +1,6 @@
 ---
 title: Kill processes interactively with FZF
-description: Interactively search and kill processes using FZF
+description: Interactively search and kill processes using FZF, with support for direct port-specific killing
 slug: interactively-kill-processes-with-fzf
 date: 2026-01-18
 featureImage: kport-with-fzf.gif
@@ -18,7 +18,7 @@ This bash function lets you interactively search and kill processes using the fu
 kport() # Kill processes interactively with fzf (supports port number search)
 {
     local pids signal port_info
-    signal="15"  # Always use SIGTERM (15)
+    signal="15"
 
     # Unified function to get process list
     _get_process_list() {
@@ -26,7 +26,7 @@ kport() # Kill processes interactively with fzf (supports port number search)
             printf "%-8s %-6s %-6s %-s %s\n" "PID" "CPU%" "MEM%" "COMMAND" "PORT"; \
             # Regular processes
             ps aux \
-                | awk 'NR>1 && $11 !~ /^\[|\/System\//|\/usr\/libexec\// && $11 != "ps" {printf "%-8s %-6.1f %-6.1f %-s %s\n", $2, $3, $4, $11, "N/A"}' \
+                | awk 'NR>1 && $11 !~ /^\[|\/System\/|\/usr\/libexec\// && $11 != "ps" {printf "%-8s %-6.1f %-6.1f %-s %s\n", $2, $3, $4, $11, "N/A"}' \
                 | sort -k2 -nr; \
             # Processes listening on ports
             lsof -iTCP -sTCP:LISTEN -n -P 2>/dev/null \
