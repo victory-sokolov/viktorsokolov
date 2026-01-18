@@ -2,8 +2,7 @@ import antfu from "@antfu/eslint-config";
 
 export default antfu(
     {
-        prettier: true, // Use .prettierrc file
-        stylistic: false, // Disable stylistic rules, let Prettier handle everything
+        prettier: true,
         rules: {
             "no-console": ["warn", { allow: ["warn", "error", "info"] }],
         },
@@ -31,9 +30,6 @@ export default antfu(
     },
     {
         files: ["**/*.{js,ts,jsx,tsx}"],
-        rules: {
-            "no-console": ["warn", { allow: ["warn", "error", "info"] }],
-        },
         settings: {
             tailwindcss: {
                 config: null, // Tailwind v4 uses CSS-based config
