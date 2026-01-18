@@ -1,0 +1,84 @@
+---
+title: Clone repositories interactively with FZF
+description: Interactively search and clone GitHub repositories using FZF, with support for multi-selection and filtering
+slug: interactively-clone-repositories-with-fzf
+date: 2026-01-18
+featureImage: clone-repos-with-fzf.gif
+tags: bash, fzf, github
+---
+
+# Clone repositories interactively with FZF
+
+Recently I got a new Macbook and needed to clone quite a lot of public and private repositories. Manually cloning each one was tedious, so I created this script to simplify the process using GitHub CLI and FZF.
+
+## Prerequisites
+
+Install the required tools:
+
+```bash
+brew install gh fzf jq
+```
+
+## How it works
+
+<img src="/tips/interactively-clone-repositories-with-fzf/clone-repos-interactively.gif" alt="Clone repositories interactively with FZF" width={800} height={450} />
+
+
+The script fetches your GitHub repositories, filters out archived and forked repos, and presents them in a searchable FZF interface. You can select multiple repos using TAB and clone them all at once.
+
+## Code example
+
+```bash
+#!/bin/zsh
+
+# Check if required commands are available
+command -v gh >/dev/null 2>&1 || { echo "Error: gh CLI is not installed"; exit 1; }
+command -v fzf >/dev/null 2>&1 || { echo "Error: fzf is not installed"; exit 1; }
+
+# Fetch repos, filter out archived and forked, format for fzf
+echo "Fetching repositories..."
+repos=$(gh repo list --limit 1000 --json name,url,description,isArchived,isFork | \
+  jq -r '.[] | select(.isArchived == false and .isFork == false) | "\(.url)\t\(.description // "No description")"')
+
+# Use fzf for selection with custom display
+selected=$(echo "$repos" | \
+  fzf --multi \
+      --delimiter='\t' \
+      --with-nth=1 \
+      --preview 'echo {2}' \
+      --preview-window=right:50%:wrap \
+      --header="Select repos to clone (TAB to select multiple, ENTER to confirm)")
+
+# Extract only the URLs from selected
+selected=$(echo "$selected" | awk -F'\t' '{print $1}')
+
+# Clone selected repositories
+echo "$selected" | while read -r url; do
+  repo_name=$(basename "$url" .git)
+  if [ ! -d "$repo_name" ]; then
+    gh repo clone "$url"
+    echo "✓ Successfully cloned $repo_name"
+  fi
+done
+```
+
+## Key features
+
+- **Multi-selection**: Use TAB to select multiple repositories
+- **Live preview**: See repository descriptions in the preview pane
+- **Smart filtering**: Automatically excludes archived and forked repositories
+- **Safety checks**: Skips cloning if directory already exists
+
+## Usage
+
+To use this script, save the code above to a file (e.g., `clone-repos.sh`), make it executable with `chmod +x clone-repos.sh`, and run it with `./clone-repos.sh`.
+
+For global access, create a symlink:
+
+```bash
+sudo ln -s "$(pwd)/clone-repos.sh" /usr/local/bin/clone-repos
+```
+
+Then you can run `clone-repos` from anywhere in your terminal.
+
+More useful functions in my [dotfiles repo](https://github.com/victory-sokolov/dotfiles)
