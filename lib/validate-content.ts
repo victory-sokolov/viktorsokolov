@@ -16,28 +16,6 @@ import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 const contentDir = path.join(process.cwd(), "content");
 
 function validateContent(type: "posts" | "tips") {
@@ -61,7 +39,11 @@ function validateContent(type: "posts" | "tips") {
 
         // Check required fields
         for (const field of requiredFields) {
-            if (!data[field] || (Array.isArray(data[field]) && data[field].length === 0)) {
+            if (
+                data[field] === undefined ||
+                data[field] === null ||
+                (Array.isArray(data[field]) && data[field].length === 0)
+            ) {
                 console.error(`Missing or empty required field '${field}' in ${type}/${folder}`);
                 process.exit(1);
             }
