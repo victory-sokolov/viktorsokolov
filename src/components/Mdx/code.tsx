@@ -24,21 +24,26 @@ export const Code: React.FC<unknown> = ({ children }) => {
                         <span className="red"></span>
                         <span className="yellow"></span>
                         <span className="green"></span>
-                    </div>
-                    <pre style={style}>
-                        <div className="absolute right-0 mr-4 cursor-pointer p-0 px-5 max-sm:hidden">
+                        <div
+                            className={`ml-auto flex items-center max-sm:hidden ${isCopied ? "cursor-default" : "cursor-pointer"}`}
+                            onClick={isCopied ? undefined : copyToClipboard}
+                        >
                             {isCopied
                                 ? (
-                                        "🎉 Copied!"
+                                        <span className="text-xl font-medium text-white">🎉 Copied!</span>
                                     )
                                 : (
-                                        <BsClipboardCheck onClick={copyToClipboard} />
+                                        <BsClipboardCheck className="h-5 w-5" />
                                     )}
                         </div>
+                    </div>
+                    <pre style={style}>
                         <code className={className}>
                             {tokens.map((line, i) => (
                                 <div key={i} {...getLineProps({ line })} className="table-row">
-                                    <span className="table-cell px-6 pr-4 text-right opacity-50 select-none">{i + 1}</span>
+                                    <span className="table-cell px-6 pr-4 text-right opacity-50 select-none">
+                                        {i + 1}
+                                    </span>
                                     <span className="table-cell">
                                         {line.map((token, key) => (
                                             <span key={key} {...getTokenProps({ token })} />

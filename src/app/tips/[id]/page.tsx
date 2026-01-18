@@ -3,7 +3,6 @@ import type { TipFrontmatter } from "src/types/Post";
 import type { PageParams } from "@/src/types/types";
 import process from "node:process";
 import { ArticleJsonLd } from "next-seo";
-import React from "react";
 import Balancer from "react-wrap-balancer";
 import { POST_TYPE } from "src/types/enums";
 import { generatePostMetadata } from "@/common/metadata";
@@ -16,7 +15,11 @@ import { config } from "@/src/common/appconfig";
 
 const baseUrl = process.env.BASE_URL;
 
-export async function generateMetadata({ params }: { params: Promise<PageParams> }): Promise<Metadata | undefined> {
+export async function generateMetadata({
+    params,
+}: {
+    params: Promise<PageParams>;
+}): Promise<Metadata | undefined> {
     const resolvedParams = await params;
     return generatePostMetadata(resolvedParams, getTipBySlug, "tips");
 }
@@ -53,7 +56,6 @@ export default async function TipPage({ params }: { params: Promise<PageParams> 
             </h1>
             <TagList tags={tags} linkBase="/blog/tag" className="mb-8" />
             <MdxRemote source={mdxSource} />
-            <p>{tipFrontmatter.description}</p>
             <NextNPrevious next={nextPost} prev={previousPost} postType={POST_TYPE.TIP} />
             <NewsLetterForm />
         </article>
