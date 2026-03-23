@@ -83,6 +83,7 @@ const config = {
         useCache: true,
         serverSourceMaps: true,
         turbopackFileSystemCacheForDev: true,
+        optimizePackageImports: ["prism-react-renderer", "react-wrap-balancer"],
     },
     typescript: {
         ignoreBuildErrors: true,
