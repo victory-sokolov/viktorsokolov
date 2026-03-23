@@ -32,8 +32,8 @@ const Blog = async () => {
             </div>
 
             <div className="blog-posts-list w-full">
-                {posts.map((post, index) => (
-                    <PostItem key={index} post={post} />
+                {posts.map((post) => (
+                    <PostItem key={post.slug} post={post} />
                 ))}
             </div>
         </div>
