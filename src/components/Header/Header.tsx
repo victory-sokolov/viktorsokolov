@@ -20,7 +20,7 @@ const Hero = dynamic(() =>
 
 export const Header: React.FC = () => {
     const pathname = usePathname();
-    const [isRootUrl, setIsRootUrl] = useState(pathname === "/");
+    const isRootUrl = pathname === "/";
     const [sticky, setSticky] = useState({ isSticky: false, offset: 0 });
     const headerRef = useRef<HTMLElement>(null);
     const sentinelRef = useRef<HTMLDivElement>(null);
@@ -49,10 +49,6 @@ export const Header: React.FC = () => {
             return { isSticky: nextIsSticky, offset: nextIsSticky ? headerEl.offsetHeight : 0 };
         });
     }, []);
-
-    useEffect(() => {
-        setIsRootUrl(pathname === "/");
-    }, [pathname]);
 
     useEffect(() => {
         if (!headerRef.current) return;

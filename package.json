@@ -48,7 +48,6 @@
         "@vsokolov/utils": "0.31.5",
         "axios": "^1.13.6",
         "file-type": "^21.3.4",
-        "framer-motion": "^12.38.0",
         "gray-matter": "^4.0.3",
         "next": "^16.2.1",
         "next-mdx-remote": "^6.0.0",

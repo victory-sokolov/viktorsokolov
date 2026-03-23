@@ -17,7 +17,7 @@ export const ScrollIndicator = () => {
 
     useEffect(() => {
         updateProgressIndicator();
-        window.addEventListener("scroll", updateProgressIndicator);
+        window.addEventListener("scroll", updateProgressIndicator, { passive: true });
         return () => {
             window.removeEventListener("scroll", updateProgressIndicator);
         };

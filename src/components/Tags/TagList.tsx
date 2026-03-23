@@ -1,12 +1,14 @@
 import Link from "next/link";
 import { tagToSlug } from "@/common/content-utils";
 
+const EMPTY_TAGS: string[] = [];
+
 export type TagListProps = {
     tags?: string[];
     linkBase?: string;
     className?: string;
 };
-const TagList = ({ tags = [], linkBase, className = "" }: TagListProps) => {
+const TagList = ({ tags = EMPTY_TAGS, linkBase, className = "" }: TagListProps) => {
     const normalizedTags = tags.filter(Boolean);
     if (!normalizedTags.length) return null;
 

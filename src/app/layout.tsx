@@ -5,7 +5,6 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import { Cairo } from "next/font/google";
 import process from "node:process";
-import { Provider } from "react-wrap-balancer";
 import type { ReactProps } from "src/types/types";
 
 import "./globals.css";
@@ -13,6 +12,8 @@ import "./globals.css";
 const cairo = Cairo({
     subsets: ["latin"],
     display: "swap",
+    preload: true,
+    adjustFontFallback: true,
     variable: "--cairo-font",
 });
 
@@ -89,7 +90,7 @@ export default function RootLayout({ children }: ReactProps) {
                 <Layout>
                     <Analytics />
                     <SpeedInsights />
-                    <Provider>{children}</Provider>
+                    {children}
                 </Layout>
             </body>
         </html>

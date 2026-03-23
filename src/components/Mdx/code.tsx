@@ -27,6 +27,15 @@ export const Code: React.FC<unknown> = ({ children }) => {
                         <div
                             className={`ml-auto flex items-center max-sm:hidden ${isCopied ? "cursor-default" : "cursor-pointer"}`}
                             onClick={isCopied ? undefined : copyToClipboard}
+                            onKeyDown={(e) => {
+                                    if ((e.key === 'Enter' || e.key === ' ') && !isCopied) {
+                                        if (e.key === ' ') e.preventDefault();
+                                        copyToClipboard();
+                                    }
+                                }}
+                            role="button"
+                            tabIndex={0}
+                            aria-label="Copy code to clipboard"
                         >
                             {isCopied
                                 ? (

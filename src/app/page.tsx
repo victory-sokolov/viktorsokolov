@@ -1,7 +1,14 @@
+import type { Metadata } from "next";
 import { getRecentPosts } from "@/common/posts";
 import { PostItem } from "@/components/Post";
+import { config } from "@/common/appconfig";
 import Link from "next/link";
 import type { PostFrontmatter } from "src/types/Post";
+
+export const metadata: Metadata = {
+    title: config.title,
+    description: config.description,
+};
 
 export default async function Main() {
     const posts = await getRecentPosts();
@@ -10,8 +17,8 @@ export default async function Main() {
         <div className="max-sm:text-center">
             <h2 className="mb-12 text-3xl max-sm:mb-8 max-sm:text-2xl">Featured Posts</h2>
             <div className="post-list">
-                {posts.map((post: PostFrontmatter, index: number) => (
-                    <PostItem key={index} post={post} />
+                {posts.map((post: PostFrontmatter) => (
+                    <PostItem key={post.slug} post={post} />
                 ))}
             </div>
             <Link
