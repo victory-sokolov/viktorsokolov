@@ -54,7 +54,12 @@ export default function ShareToSocialLink({ title }: { title: string }) {
                     <div
                         className="share-modal-overlay"
                         onClick={toggleModal}
-                        onKeyDown={(e) => e.key === 'Escape' && toggleModal()}
+                        onKeyDown={(e) => {
+                                    if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') {
+                                        if (e.key === ' ') e.preventDefault();
+                                        toggleModal();
+                                    }
+                                }}
                         role="button"
                         tabIndex={0}
                         aria-label="Close modal"
