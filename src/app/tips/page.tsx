@@ -1,18 +1,13 @@
 import type { Metadata } from "next";
 import type { TipFrontmatter } from "src/types/Post";
-import process from "node:process";
+import { buildCanonicalAlternates } from "@/common/metadata";
 import { getAllTips } from "@/common/tips";
 import { PostItem } from "@/components/Post";
 
 export const metadata: Metadata = {
     title: "Developments tips",
     description: "Developments tips and snippets.",
-    alternates: {
-        canonical: `${process.env.BASE_URL}/tips`,
-        languages: {
-            "en-US": "/en-US",
-        },
-    },
+    alternates: buildCanonicalAlternates("/tips"),
 };
 
 const Tips = async () => {

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Balancer from "react-wrap-balancer";
 import { tagToSlug } from "@/common/content-utils";
+import { buildCanonicalAlternates } from "@/common/metadata";
 import { getAllPostTags, getPostsByTag } from "@/common/posts";
 import { getAllTipTags, getTipsByTag } from "@/common/tips";
 import { PostItem } from "@/components/Post";
@@ -26,6 +27,7 @@ export async function generateMetadata({ params }: TagPageProps): Promise<Metada
     return {
         title: `Posts tagged #${tagLabel}`,
         description: `Browse all blog posts tagged with #${tagLabel}.`,
+        alternates: buildCanonicalAlternates(`/blog/tag/${resolvedParams.tag}`),
     };
 }
 

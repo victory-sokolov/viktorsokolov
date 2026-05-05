@@ -1,18 +1,13 @@
 import type { Metadata } from "next";
-import process from "node:process";
 import { config } from "@/common/appconfig";
+import { buildCanonicalAlternates } from "@/common/metadata";
 import { getAllPosts } from "@/common/posts";
 import { PostItem } from "@/components/Post";
 
 export const metadata: Metadata = {
     title: "Blog posts",
     description: `Browse through ${config.author}'s blog posts to learn more about frontend and backend development`,
-    alternates: {
-        canonical: `${process.env.BASE_URL}/blog`,
-        languages: {
-            "en-US": "/en-US",
-        },
-    },
+    alternates: buildCanonicalAlternates("/blog"),
 };
 
 const Blog = async () => {
