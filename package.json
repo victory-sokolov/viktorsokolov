@@ -17,6 +17,7 @@
         "dev": "bun --bun next dev --experimental-https",
         "build": "bun --bun next build",
         "start": "bun --bun next start",
+        "test": "vitest run",
         "analyze": "ANALYZE=true bun run build",
         "lint": "eslint .",
         "lint:fix": "eslint --fix .",
@@ -100,6 +101,7 @@
         "stylelint-config-standard": "40.0.0",
         "tsx": "^4.21.0",
         "typescript": "^5.9.3",
+        "vitest": "^4.1.5",
         "webpack": "5.104.1",
         "xml2js": "0.6.2"
     },

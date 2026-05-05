@@ -1,10 +1,10 @@
 import { calculateReadTime } from "@/common/readTime";
+import type { PostFrontmatter } from "@/types/Post";
 import { slugify, toLongDate } from "@vsokolov/utils";
 import matter from "gray-matter";
 import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
-import type { PostFrontmatter } from "@/types/Post";
 
 import { getPostData, parseTags, sortPostByDate, tagToSlug } from "./content-utils";
 
