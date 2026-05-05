@@ -1,7 +1,6 @@
 "use client";
 
 import { TagsMapping } from "../Post/PostLabels"
-import Image from 'next/image';
 
 
 type TagKey = keyof typeof TagsMapping;

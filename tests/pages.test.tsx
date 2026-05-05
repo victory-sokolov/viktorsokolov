@@ -4,6 +4,8 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { getPostBySlug } from "@/common/posts";
 import { getTipBySlug } from "@/common/tips";
 
+let currentPathname = "/blog/solid-principles-in-action";
+
 vi.mock("next/dynamic", () => ({
     default: (): React.ComponentType => () => null,
 }));
@@ -13,7 +15,7 @@ vi.mock("next/image", () => ({
 }));
 
 vi.mock("next/navigation", () => ({
-    usePathname: () => "/blog/solid-principles-in-action",
+    usePathname: () => currentPathname,
 }));
 
 const jsonLdCalls: Array<{ data: Record<string, unknown>; id: string }> = [];
@@ -43,14 +45,11 @@ beforeAll(async () => {
 });
 
 beforeEach(() => {
+    currentPathname = "/blog/solid-principles-in-action";
     jsonLdCalls.length = 0;
 });
 
-function makeParams(id: string) {
-    return new Promise<Promise<{ id: string }>>(resolve => {
-        resolve(Promise.resolve({ id }));
-    });
-}
+const makeParams = (id: string) => Promise.resolve({ id });
 
 describe("content route pages", () => {
     it("builds blog metadata from the real post content", async () => {
@@ -65,6 +64,8 @@ describe("content route pages", () => {
     });
 
     it("renders the real blog page with canonical JSON-LD", async () => {
+        currentPathname = `/blog/${blogSlug}`;
+
         const element = await blogPageModule.default({
             params: makeParams(blogSlug),
         });
@@ -89,6 +90,8 @@ describe("content route pages", () => {
     });
 
     it("renders the real tip page with canonical JSON-LD", async () => {
+        currentPathname = `/tips/${tipSlug}`;
+
         const element = await tipPageModule.default({
             params: makeParams(tipSlug),
         });

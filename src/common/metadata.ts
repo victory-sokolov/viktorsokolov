@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 const baseUrl = config.siteUrl.endsWith("/") ? config.siteUrl.slice(0, -1) : config.siteUrl;
 
 export function buildCanonicalUrl(pathname = ""): string {
-    const normalizedPath = pathname.startsWith("/") ? pathname : "/" + pathname;
+    const normalizedPath = pathname.startsWith("/") ? pathname : `/${pathname}`;
 
     if (normalizedPath === "/") {
         return baseUrl;

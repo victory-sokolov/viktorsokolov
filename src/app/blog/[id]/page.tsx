@@ -1,4 +1,4 @@
-import { generatePostMetadata } from "@/common/metadata";
+import { buildCanonicalUrl, generatePostMetadata } from "@/common/metadata";
 import { getPostBySlug } from "@/common/posts";
 import { MdxRemote } from "@/components/Mdx";
 import { Modal } from "@/components/Modal";
@@ -9,7 +9,6 @@ import ShareToSocialLink from "@/components/ShareToSocial";
 import { DevToLink, GithubLink } from "@/components/Social/SocialMedia";
 import TagList from "@/components/Tags";
 import { config } from "@/common/appconfig";
-import { buildCanonicalUrl } from "@/common/metadata";
 import type { PageParams } from "@/types/types";
 import { POST_TYPE } from "@/types/enums";
 import type { Metadata } from "next";
