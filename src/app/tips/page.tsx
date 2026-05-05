@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import type { TipFrontmatter } from "src/types/Post";
+import type { TipFrontmatter } from "@/types/Post";
 import { buildCanonicalAlternates } from "@/common/metadata";
 import { getAllTips } from "@/common/tips";
 import { PostItem } from "@/components/Post";

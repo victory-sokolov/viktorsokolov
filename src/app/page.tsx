@@ -3,7 +3,7 @@ import { getRecentPosts } from "@/common/posts";
 import { PostItem } from "@/components/Post";
 import type { Metadata } from "next";
 import Link from "next/link";
-import type { PostFrontmatter } from "src/types/Post";
+import type { PostFrontmatter } from "@/types/Post";
 
 export const metadata: Metadata = {
     title: config.title,

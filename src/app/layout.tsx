@@ -5,7 +5,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import { Cairo } from "next/font/google";
-import type { ReactProps } from "src/types/types";
+import type { ReactProps } from "@/types/types";
 
 import "./globals.css";
 
@@ -83,7 +83,7 @@ export default function RootLayout({ children }: ReactProps) {
     return (
         <html lang="en" className={cairo.className} data-scroll-behavior="smooth">
             <head></head>
-            <body>
+            <body suppressHydrationWarning>
                 <Layout>
                     <Analytics />
                     <SpeedInsights />

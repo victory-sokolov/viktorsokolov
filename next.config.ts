@@ -79,6 +79,7 @@ const config = {
     typedRoutes: true,
     poweredByHeader: false,
     experimental: {
+        typedEnv: true,
         webVitalsAttribution: ["CLS", "LCP"],
         useCache: true,
         serverSourceMaps: true,

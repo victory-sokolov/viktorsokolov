@@ -1,7 +1,7 @@
 import { tagToSlug } from "@/common/content-utils";
 import { getAllPosts, getAllPostTags } from "@/common/posts";
 import { getAllTips, getAllTipTags } from "@/common/tips";
-import { config } from "@/src/common/appconfig";
+import { config } from "@/common/appconfig";
 import type { MetadataRoute } from "next/types";
 import fs from "node:fs";
 

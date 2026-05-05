@@ -4,7 +4,7 @@ import matter from "gray-matter";
 import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
-import type { PostFrontmatter } from "src/types/Post";
+import type { PostFrontmatter } from "@/types/Post";
 
 import { getPostData, parseTags, sortPostByDate, tagToSlug } from "./content-utils";
 

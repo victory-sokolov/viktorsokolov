@@ -3,7 +3,7 @@ import matter from "gray-matter";
 import { serialize } from "next-mdx-remote/serialize";
 import fs from "node:fs";
 import rehypeSlug from "rehype-slug";
-import type { PostFrontmatter, PostType, TipFrontmatter } from "src/types/Post";
+import type { PostFrontmatter, PostType, TipFrontmatter } from "@/types/Post";
 
 const TAG_SPLIT_REGEX = /[, ]+/;
 

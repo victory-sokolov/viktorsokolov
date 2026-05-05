@@ -1,6 +1,6 @@
 "use client";
 
-import type { PostType } from "src/types/Post";
+import type { PostType } from "@/types/Post";
 import Link from "next/link";
 import Balancer from "react-wrap-balancer";
 
