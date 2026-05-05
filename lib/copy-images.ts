@@ -11,7 +11,7 @@ const publicPath = path.join(process.cwd(), "public");
 
 const getDirectories = (directoryPath: string): string[] => {
     return fs.readdirSync(directoryPath).filter(file => {
-        return fs.statSync(`${directoryPath}/${file}`).isDirectory();
+        return fs.statSync(path.join(directoryPath, file)).isDirectory();
     });
 };
 
