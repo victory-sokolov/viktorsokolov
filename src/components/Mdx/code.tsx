@@ -5,7 +5,12 @@ import { Highlight, themes } from "prism-react-renderer";
 import React, { useState } from "react";
 import { BsClipboardCheck } from "react-icons/bs";
 
-export const Code: React.FC<unknown> = ({ children }) => {
+type CodeBlockElement = React.ReactElement<{
+    children: string;
+    className: string;
+}>;
+
+export const Code: React.FC<{ children: CodeBlockElement }> = ({ children }) => {
     const [isCopied, setIsCopied] = useState(false);
     const codeString = children.props.children.trim();
     const language = children.props.className.split("-")[1];

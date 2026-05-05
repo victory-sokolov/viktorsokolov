@@ -30,7 +30,7 @@ const TagList = ({ tags = EMPTY_TAGS, linkBase, className = "" }: TagListProps) 
                     ? (
                             <Link
                                 key={slug}
-                                href={`${linkBase}/${slug}`}
+                                href={{ pathname: `${linkBase}/${slug}` }}
                                 className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[rgb(var(--color-secondary-400))]"
                                 aria-label={`View posts tagged ${label}`}
                             >

@@ -7,7 +7,7 @@ import type { PostFrontmatter, PostType, TipFrontmatter } from "@/types/Post";
 
 const TAG_SPLIT_REGEX = /[, ]+/;
 
-export const getSerializedContent = async content => {
+export const getSerializedContent = async (content: string) => {
     const options = {
         mdxOptions: {
             rehypePlugins: [rehypeSlug],

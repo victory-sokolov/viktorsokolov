@@ -8,7 +8,7 @@ import { config } from "@/common/appconfig";
 import { getAllPosts } from "@/common/posts";
 import { getAllTips } from "@/common/tips";
 
-async function markdownToHtml(markdown) {
+async function markdownToHtml(markdown: string) {
     const result = await remark().use(remarkHtml).process(markdown);
     return result.toString();
 }
@@ -86,7 +86,7 @@ export default (async () => {
         });
     });
 
-    await Promise.all([postPromise, tipPromise]);
+    await Promise.all([...postPromise, ...tipPromise]);
 
     writeFileSync("./public/rss.xml", feed.rss2());
     writeFileSync("./public/atom.xml", feed.atom1());

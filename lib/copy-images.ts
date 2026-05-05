@@ -9,9 +9,9 @@ const imagesDirs = ["content/posts", "content/tips"];
 const extensisons = [".png", ".jpg", ".svg", "webp", ".gif"];
 const publicPath = path.join(process.cwd(), "public");
 
-const getDirectories = path => {
-    return fs.readdirSync(path).filter(file => {
-        return fs.statSync(`${path}/${file}`).isDirectory();
+const getDirectories = (directoryPath: string): string[] => {
+    return fs.readdirSync(directoryPath).filter(file => {
+        return fs.statSync(`${directoryPath}/${file}`).isDirectory();
     });
 };
 
