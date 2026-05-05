@@ -1,14 +1,14 @@
-import type { PostFrontmatter, TipFrontmatter } from "src/types/Post";
+import type { PostFrontmatter, TipFrontmatter } from "@/types/Post";
 import { writeFileSync } from "node:fs";
 import process from "node:process";
 import { Feed } from "feed";
 import { remark } from "remark";
 import remarkHtml from "remark-html";
-import { config } from "@/src/common/appconfig";
-import { getAllPosts } from "@/src/common/posts";
-import { getAllTips } from "@/src/common/tips";
+import { config } from "@/common/appconfig";
+import { getAllPosts } from "@/common/posts";
+import { getAllTips } from "@/common/tips";
 
-async function markdownToHtml(markdown) {
+async function markdownToHtml(markdown: string) {
     const result = await remark().use(remarkHtml).process(markdown);
     return result.toString();
 }
@@ -86,7 +86,7 @@ export default (async () => {
         });
     });
 
-    await Promise.all([postPromise, tipPromise]);
+    await Promise.all([...postPromise, ...tipPromise]);
 
     writeFileSync("./public/rss.xml", feed.rss2());
     writeFileSync("./public/atom.xml", feed.atom1());

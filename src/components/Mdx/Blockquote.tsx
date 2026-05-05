@@ -1,4 +1,4 @@
-import type { ReactProps } from "src/types/types";
+import type { ReactProps } from "@/types/types";
 import { BiInfoCircle } from "react-icons/bi";
 
 export const Blockquote = ({ children }: ReactProps) => {

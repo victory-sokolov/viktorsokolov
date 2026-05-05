@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
 import Balancer from "react-wrap-balancer";
 import { tagToSlug } from "@/common/content-utils";
+import { buildCanonicalAlternates } from "@/common/metadata";
 import { getAllPostTags, getPostsByTag } from "@/common/posts";
 import { getAllTipTags, getTipsByTag } from "@/common/tips";
 import { PostItem } from "@/components/Post";
 import TagList from "@/components/Tags";
 
-const formatTagLabel = (tagSlug: string): string => tagSlug.replace(/-/g, " ").toLowerCase();
+const TAG_SEPARATOR_REGEX = /-/g;
+
+const formatTagLabel = (tagSlug: string): string =>
+    tagSlug.replace(TAG_SEPARATOR_REGEX, " ").toLowerCase();
 
 type TagPageProps = {
     params: Promise<{ tag: string }>;
@@ -26,6 +30,7 @@ export async function generateMetadata({ params }: TagPageProps): Promise<Metada
     return {
         title: `Posts tagged #${tagLabel}`,
         description: `Browse all blog posts tagged with #${tagLabel}.`,
+        alternates: buildCanonicalAlternates(`/blog/tag/${resolvedParams.tag}`),
     };
 }
 

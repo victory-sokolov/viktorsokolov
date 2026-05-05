@@ -1,11 +1,11 @@
 import { config } from "@/common/appconfig";
+import { buildCanonicalAlternates } from "@/common/metadata";
 import Layout from "@/components/Layout/Layout";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import { Cairo } from "next/font/google";
-import process from "node:process";
-import type { ReactProps } from "src/types/types";
+import type { ReactProps } from "@/types/types";
 
 import "./globals.css";
 
@@ -18,14 +18,14 @@ const cairo = Cairo({
 });
 
 export const metadata: Metadata = {
-    metadataBase: new URL(process.env.BASE_URL),
+    metadataBase: new URL(config.siteUrl),
     title: {
         default: `${config.author} Development Blog`,
         template: `%s | ${config.author}`,
     },
     description: config.description,
     applicationName: `${config.author} Blog`,
-    authors: [{ name: config.author, url: process.env.BASE_URL }],
+    authors: [{ name: config.author, url: config.siteUrl }],
     keywords: config.keywords.join(", "),
     icons: {
         icon: [
@@ -37,18 +37,15 @@ export const metadata: Metadata = {
         ],
     },
     alternates: {
-        canonical: process.env.BASE_URL,
-        languages: {
-            "en-US": "/en-US",
-        },
+        ...buildCanonicalAlternates(),
         types: {
-            "application/rss+xml": `${process.env.BASE_URL}/rss`,
+            "application/rss+xml": `${config.siteUrl}/rss`,
         },
     },
     generator: `${config.author} uses NextJs!`,
     openGraph: {
         type: "website",
-        url: process.env.BASE_URL,
+        url: config.siteUrl,
         description: config.description,
         siteName: config.siteName,
         images: [{ url: config.ogImage }],
@@ -86,7 +83,7 @@ export default function RootLayout({ children }: ReactProps) {
     return (
         <html lang="en" className={cairo.className} data-scroll-behavior="smooth">
             <head></head>
-            <body>
+            <body suppressHydrationWarning>
                 <Layout>
                     <Analytics />
                     <SpeedInsights />

@@ -31,7 +31,7 @@ export default function ShareToSocialLink({ title }: { title: string }) {
         try {
             await navigator.clipboard.writeText(url);
             setCopied(true);
-            setTimeout(() => setCopied(false), 2000);
+            setTimeout(setCopied, 2000, false);
         } catch (err) {
             console.error("Failed to copy: ", err);
             setCopied(false);
@@ -54,12 +54,12 @@ export default function ShareToSocialLink({ title }: { title: string }) {
                     <div
                         className="share-modal-overlay"
                         onClick={toggleModal}
-                        onKeyDown={(e) => {
-                                    if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') {
-                                        if (e.key === ' ') e.preventDefault();
-                                        toggleModal();
-                                    }
-                                }}
+                        onKeyDown={e => {
+                            if (e.key === "Escape" || e.key === "Enter" || e.key === " ") {
+                                if (e.key === " ") e.preventDefault();
+                                toggleModal();
+                            }
+                        }}
                         role="button"
                         tabIndex={0}
                         aria-label="Close modal"

@@ -1,7 +1,23 @@
+import { config } from "@/common/appconfig";
 import type { Metadata } from "next";
-import process from "node:process";
 
-const baseUrl = process.env.BASE_URL;
+const baseUrl = config.siteUrl.endsWith("/") ? config.siteUrl.slice(0, -1) : config.siteUrl;
+
+export function buildCanonicalUrl(pathname = ""): string {
+    const normalizedPath = pathname.startsWith("/") ? pathname : "/" + pathname;
+
+    if (normalizedPath === "/") {
+        return baseUrl;
+    }
+
+    return baseUrl + normalizedPath;
+}
+
+export function buildCanonicalAlternates(pathname = ""): Metadata["alternates"] {
+    return {
+        canonical: buildCanonicalUrl(pathname),
+    };
+}
 
 export async function generatePostMetadata(
     params: { id: string },
@@ -21,17 +37,12 @@ export async function generatePostMetadata(
     return {
         title,
         description,
-        alternates: {
-            canonical: `${baseUrl}/${path}/${slug}`,
-            languages: {
-                "en-US": "/en-US",
-            },
-        },
+        alternates: buildCanonicalAlternates(`/${path}/${slug}`),
         openGraph: {
             title,
             description,
             type: "article",
-            url: `${process.env.BASE_URL}/${path}/${slug}`,
+            url: buildCanonicalUrl(`/${path}/${slug}`),
             images: [
                 {
                     url: ogImage,

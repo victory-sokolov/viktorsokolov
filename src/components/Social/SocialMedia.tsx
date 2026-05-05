@@ -2,7 +2,7 @@
 
 import React from "react";
 import { FaDev, FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
-import { config } from "@/src/common/appconfig";
+import { config } from "@/common/appconfig";
 
 type SocialMediaType = {
     color?: string;

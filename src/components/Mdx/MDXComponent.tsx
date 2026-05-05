@@ -10,7 +10,7 @@ import { H1, H2, H3, H4, H5, H6 } from "./Heading";
 import { TechStackList } from "./TechStackList";
 
 type MDXComponentsProp = {
-    [key: string]: React.FC<any>;
+    [key: string]: React.ComponentType<any>;
 };
 
 const CustomLink = ({ href, children }: { href: Route | string; children: React.ReactNode }) => {
@@ -49,11 +49,11 @@ const MdxImg: React.FC<ImageProps> = ({ src, width, height, alt, blurDataURL, ..
     return <Image alt={alt} {...props} />;
 };
 
-const Ul = ({ children }) => {
+const Ul = ({ children }: { children?: React.ReactNode }) => {
     return <ul style={{ paddingLeft: "3.5rem", paddingBottom: "2rem" }}>{children}</ul>;
 };
 
-const paragraph = ({ children }) => {
+const paragraph = ({ children }: { children?: React.ReactNode }) => {
     return <p style={{ paddingBottom: "2rem" }}>{children}</p>;
 };
 

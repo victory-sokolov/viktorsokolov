@@ -1,6 +1,6 @@
 "use client";
 
-import type { ReactProps } from "src/types/types";
+import type { ReactProps } from "@/types/types";
 import React from "react";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";

@@ -1,5 +1,5 @@
 import process from "node:process";
-/** @type {import('next').NextConfig} */
+import type { NextConfig } from "next";
 import NextBundleAnalyzer from "@next/bundle-analyzer";
 import nextPWA from "next-pwa";
 import runtimeCaching from "next-pwa/cache.js";
@@ -64,7 +64,7 @@ const securityHeaders = [
     },
 ];
 
-const config = {
+const config: NextConfig = {
     async headers() {
         return [
             {
@@ -79,6 +79,7 @@ const config = {
     typedRoutes: true,
     poweredByHeader: false,
     experimental: {
+        typedEnv: true,
         webVitalsAttribution: ["CLS", "LCP"],
         useCache: true,
         serverSourceMaps: true,

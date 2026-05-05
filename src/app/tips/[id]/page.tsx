@@ -1,19 +1,16 @@
-import type { Metadata } from "next/types";
-import type { TipFrontmatter } from "src/types/Post";
-import type { PageParams } from "@/src/types/types";
-import process from "node:process";
-import { ArticleJsonLd } from "next-seo";
-import Balancer from "react-wrap-balancer";
-import { POST_TYPE } from "src/types/enums";
+import { config } from "@/common/appconfig";
 import { generatePostMetadata } from "@/common/metadata";
 import { getTipBySlug } from "@/common/tips";
 import { MdxRemote } from "@/components/Mdx";
 import NewsLetterForm from "@/components/NewsLetter";
 import NextNPrevious from "@/components/NextNPrevious";
+import { JsonLd } from "@/components/Seo/JsonLd";
 import TagList from "@/components/Tags";
-import { config } from "@/src/common/appconfig";
-
-const baseUrl = process.env.BASE_URL;
+import { POST_TYPE } from "@/types/enums";
+import type { TipFrontmatter } from "@/types/Post";
+import type { PageParams } from "@/types/types";
+import type { Metadata } from "next/types";
+import Balancer from "react-wrap-balancer";
 
 export async function generateMetadata({
     params,
@@ -42,14 +39,22 @@ export default async function TipPage({ params }: { params: Promise<PageParams> 
 
     return (
         <article className="relative mx-auto mt-[2rem] leading-8 max-sm:relative max-sm:bottom-0 max-sm:max-w-full max-sm:bg-none max-sm:p-0 max-sm:shadow-none">
-            <ArticleJsonLd
-                url={`${baseUrl}/tips/${frontmatter.slug}`}
-                headline={frontmatter.title}
-                image={frontmatter.featureImage}
-                datePublished={date}
-                dateModified={frontmatter.lastModified}
-                author={config.author}
-                description={frontmatter.description}
+            <JsonLd
+                id={`tip-${frontmatter.slug}-jsonld`}
+                data={{
+                    "@context": "https://schema.org",
+                    "@type": "Article",
+                    author: {
+                        "@type": "Person",
+                        name: config.author,
+                    },
+                    dateModified: frontmatter.lastModified,
+                    datePublished: date,
+                    description: frontmatter.description,
+                    headline: frontmatter.title,
+                    image: buildCanonicalUrl(frontmatter.featureImage),
+                    url: buildCanonicalUrl(`/tips/${frontmatter.slug}`),
+                }}
             />
             <h1 className="section-title mb-6">
                 <Balancer>{tipFrontmatter.title}</Balancer>

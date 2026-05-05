@@ -1,9 +1,9 @@
-import type { Metadata } from "next";
+import { config } from "@/common/appconfig";
 import { getRecentPosts } from "@/common/posts";
 import { PostItem } from "@/components/Post";
-import { config } from "@/common/appconfig";
+import type { Metadata } from "next";
 import Link from "next/link";
-import type { PostFrontmatter } from "src/types/Post";
+import type { PostFrontmatter } from "@/types/Post";
 
 export const metadata: Metadata = {
     title: config.title,

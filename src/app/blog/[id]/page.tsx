@@ -1,26 +1,24 @@
-import type { Metadata } from "next";
-import type { PageParams } from "@/src/types/types";
-import dynamic from "next/dynamic";
-import process from "node:process";
-import { ArticleJsonLd } from "next-seo";
-import Image from "next/image";
-import Balancer, { Provider } from "react-wrap-balancer";
-import { POST_TYPE } from "src/types/enums";
 import { generatePostMetadata } from "@/common/metadata";
 import { getPostBySlug } from "@/common/posts";
 import { MdxRemote } from "@/components/Mdx";
 import { Modal } from "@/components/Modal";
 import NextNPrevious from "@/components/NextNPrevious";
 import { PostMeta } from "@/components/Post/PostMeta";
+import { JsonLd } from "@/components/Seo/JsonLd";
 import ShareToSocialLink from "@/components/ShareToSocial";
 import { DevToLink, GithubLink } from "@/components/Social/SocialMedia";
 import TagList from "@/components/Tags";
-import { config } from "@/src/common/appconfig";
+import { config } from "@/common/appconfig";
+import { buildCanonicalUrl } from "@/common/metadata";
+import type { PageParams } from "@/types/types";
+import { POST_TYPE } from "@/types/enums";
+import type { Metadata } from "next";
+import dynamic from "next/dynamic";
+import Image from "next/image";
+import Balancer, { Provider } from "react-wrap-balancer";
 
 const Comments = dynamic(() => import("@/components/Comments"));
 const NewsLetterForm = dynamic(() => import("@/components/NewsLetter"));
-
-const baseUrl = process.env.BASE_URL;
 
 export async function generateMetadata({ params }: { params: Promise<PageParams> }): Promise<Metadata | undefined> {
     const resolvedParams = await params;
@@ -43,14 +41,22 @@ export default async function Page({ params }: { params: Promise<PageParams> }) 
 
     return (
         <>
-            <ArticleJsonLd
-                url={`${baseUrl}/blog/${frontmatter.slug}`}
-                headline={title}
-                image={featureImage}
-                datePublished={date}
-                dateModified={frontmatter.lastModified}
-                author={config.author}
-                description={frontmatter.description}
+            <JsonLd
+                id={`blog-post-${frontmatter.slug}-jsonld`}
+                data={{
+                    "@context": "https://schema.org",
+                    "@type": "Article",
+                    author: {
+                        "@type": "Person",
+                        name: config.author,
+                    },
+                    dateModified: frontmatter.lastModified,
+                    datePublished: date,
+                    description: frontmatter.description,
+                    headline: title,
+                    image: buildCanonicalUrl(featureImage),
+                    url: buildCanonicalUrl(`/blog/${frontmatter.slug}`),
+                }}
             />
             <Provider>
                 <article className="mx-auto mt-8 w-full max-w-340 leading-relaxed max-sm:mt-4 md:mt-12">

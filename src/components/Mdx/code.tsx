@@ -5,7 +5,12 @@ import { Highlight, themes } from "prism-react-renderer";
 import React, { useState } from "react";
 import { BsClipboardCheck } from "react-icons/bs";
 
-export const Code: React.FC<unknown> = ({ children }) => {
+type CodeBlockElement = React.ReactElement<{
+    children: string;
+    className: string;
+}>;
+
+export const Code: React.FC<{ children: CodeBlockElement }> = ({ children }) => {
     const [isCopied, setIsCopied] = useState(false);
     const codeString = children.props.children.trim();
     const language = children.props.className.split("-")[1];
@@ -13,7 +18,7 @@ export const Code: React.FC<unknown> = ({ children }) => {
     const copyToClipboard = () => {
         navigator.clipboard.writeText(codeString);
         setIsCopied(true);
-        setTimeout(() => setIsCopied(false), 4000);
+        setTimeout(setIsCopied, 4000, false);
     };
 
     return (
@@ -28,8 +33,8 @@ export const Code: React.FC<unknown> = ({ children }) => {
                             className={`ml-auto flex items-center max-sm:hidden ${isCopied ? "cursor-default" : "cursor-pointer"}`}
                             onClick={isCopied ? undefined : copyToClipboard}
                             onKeyDown={(e) => {
-                                    if ((e.key === 'Enter' || e.key === ' ') && !isCopied) {
-                                        if (e.key === ' ') e.preventDefault();
+                                    if ((e.key === "Enter" || e.key === " ") && !isCopied) {
+                                        if (e.key === " ") e.preventDefault();
                                         copyToClipboard();
                                     }
                                 }}

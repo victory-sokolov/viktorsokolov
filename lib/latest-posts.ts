@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import axios from "axios";
 import parser from "xml2json";
-import { config } from "@/src/common/appconfig";
+import { config } from "@/common/appconfig";
 
 const FEED_URL = `${config.siteUrl}/rss.xml`;
 const TEMPLATE = [
@@ -16,7 +16,14 @@ const TEMPLATE = [
 ];
 const LATEST_N_POSTS = 5;
 
-const toMarkDownLinks = (links: []) => {
+type FeedItem = {
+    title: string;
+    link: string;
+};
+
+type ContentType = "post" | "tip";
+
+const toMarkDownLinks = (links: FeedItem[]) => {
     return links
         .slice(0, LATEST_N_POSTS)
         .map(({ title, link }) => `- [${title}](${link})`)
@@ -27,12 +34,9 @@ const fetchLatestContent = async () => {
     const articles = await axios.get(FEED_URL);
     const articlesText = await articles.data;
     const articlesJSON = parser.toJson(articlesText);
-    const posts = JSON.parse(articlesJSON).rss.channel.item.filter(
-        item => !item.link.includes("/tips/"),
-    );
-    const tips = JSON.parse(articlesJSON).rss.channel.item.filter(item =>
-        item.link.includes("/tips/"),
-    );
+    const items = JSON.parse(articlesJSON).rss.channel.item as FeedItem[];
+    const posts = items.filter(item => !item.link.includes("/tips/"));
+    const tips = items.filter(item => item.link.includes("/tips/"));
 
     return {
         post: toMarkDownLinks(posts),
@@ -50,7 +54,7 @@ async function main() {
         const indexAfter = readme.indexOf(tag.close);
         const readmeContentChunkBreakBefore = readme.substring(0, indexBefore);
         const readmeContentChunkBreakAfter = readme.substring(indexAfter);
-        const contentType = tag.open.split("-").at(2)?.toLowerCase()?.trim() as string;
+        const contentType = tag.open.split("-").at(2)?.toLowerCase()?.trim() as ContentType;
         const latestContent = `
 ${readmeContentChunkBreakBefore}
 ${content[contentType]}

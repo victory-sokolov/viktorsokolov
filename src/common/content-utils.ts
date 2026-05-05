@@ -3,9 +3,11 @@ import matter from "gray-matter";
 import { serialize } from "next-mdx-remote/serialize";
 import fs from "node:fs";
 import rehypeSlug from "rehype-slug";
-import type { PostFrontmatter, PostType, TipFrontmatter } from "src/types/Post";
+import type { PostFrontmatter, PostType, TipFrontmatter } from "@/types/Post";
 
-export const getSerializedContent = async content => {
+const TAG_SPLIT_REGEX = /[, ]+/;
+
+export const getSerializedContent = async (content: string) => {
     const options = {
         mdxOptions: {
             rehypePlugins: [rehypeSlug],
@@ -46,7 +48,7 @@ const normalizeTag = (tag: string): string => tag.trim().toLowerCase();
 export const parseTags = (tags?: string | string[]): string[] => {
     if (!tags) return [];
 
-    const tagList = Array.isArray(tags) ? tags : tags.split(/[, ]+/);
+    const tagList = Array.isArray(tags) ? tags : tags.split(TAG_SPLIT_REGEX);
     const normalizedTags = tagList.map(normalizeTag).filter(Boolean);
 
     return Array.from(new Set(normalizedTags));

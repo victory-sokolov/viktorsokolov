@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import type { POST_TYPE } from "src/types/enums";
-import type { PostType } from "src/types/Post";
+import type { POST_TYPE } from "@/types/enums";
+import type { PostType } from "@/types/Post";
 
 type NextNPreviousProps = {
     next: PostType | null;

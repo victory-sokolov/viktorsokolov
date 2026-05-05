@@ -8,32 +8,22 @@
             "dom.iterable",
             "esnext"
         ],
-        "baseUrl": ".",
         "module": "esnext",
-        "moduleResolution": "node",
+        "moduleResolution": "bundler",
+        "baseUrl": ".",
+        "rootDir": "./",
         "paths": {
             "@/*": [
-                "./*"
+                "./src/*"
             ],
-            "@/components/*": [
-                "src/components/*"
-            ],
-            "@/common/*": [
-                "src/common/*"
-            ],
-            "@/hooks/*": [
-                "src/hooks/*"
-            ],
-            "@/styles/*": [
-                "src/styles/*"
-            ]
         },
         "resolveJsonModule": true,
         "types": [
-            "@types/react"
+            "@types/react",
+            "node"
         ],
         "allowJs": true,
-        "strict": false,
+        "strict": true,
         "strictNullChecks": false,
         "noEmit": true,
         "removeComments": true,
@@ -57,6 +47,7 @@
         "**/*.tsx",
         "lib/generate-feed.ts",
         "src/common/content-utils.ts",
+        "next-env.d.ts",
         "eslint.config.mjs"
     ],
     "exclude": [
