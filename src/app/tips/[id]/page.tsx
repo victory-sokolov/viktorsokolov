@@ -1,5 +1,5 @@
 import { config } from "@/common/appconfig";
-import { generatePostMetadata } from "@/common/metadata";
+import { buildCanonicalUrl, generatePostMetadata } from "@/common/metadata";
 import { getTipBySlug } from "@/common/tips";
 import { MdxRemote } from "@/components/Mdx";
 import NewsLetterForm from "@/components/NewsLetter";
