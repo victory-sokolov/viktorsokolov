@@ -9,6 +9,7 @@ import ShareToSocialLink from "@/components/ShareToSocial";
 import { DevToLink, GithubLink } from "@/components/Social/SocialMedia";
 import TagList from "@/components/Tags";
 import { config } from "@/common/appconfig";
+import { buildCanonicalUrl } from "@/common/metadata";
 import type { PageParams } from "@/types/types";
 import { POST_TYPE } from "@/types/enums";
 import type { Metadata } from "next";
