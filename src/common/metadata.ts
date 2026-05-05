@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
 import { config } from "@/common/appconfig";
 
-const baseUrl = config.siteUrl;
+const baseUrl = config.siteUrl.endsWith("/") ? config.siteUrl.slice(0, -1) : config.siteUrl;
 
 export function buildCanonicalUrl(pathname = ""): string {
-    const normalizedPath = pathname.startsWith("/") ? pathname : `/${pathname}`;
+    const normalizedPath = pathname.startsWith("/") ? pathname : "/" + pathname;
 
     if (normalizedPath === "/") {
         return baseUrl;
     }
 
-    return `${baseUrl}${normalizedPath}`;
+    return baseUrl + normalizedPath;
 }
 
 export function buildCanonicalAlternates(pathname = ""): Metadata["alternates"] {
