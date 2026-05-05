@@ -52,8 +52,8 @@ export default async function TipPage({ params }: { params: Promise<PageParams> 
                     datePublished: date,
                     description: frontmatter.description,
                     headline: frontmatter.title,
-                    image: frontmatter.featureImage,
-                    url: `${config.siteUrl}/tips/${frontmatter.slug}`,
+                    image: buildCanonicalUrl(frontmatter.featureImage),
+                    url: buildCanonicalUrl(`/tips/${frontmatter.slug}`),
                 }}
             />
             <h1 className="section-title mb-6">
