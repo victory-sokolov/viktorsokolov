@@ -6,12 +6,18 @@ import { fileTypeFromBuffer } from "file-type";
 import { TwitterApi } from "twitter-api-v2";
 
 const TIPS_DIR = "content/tips";
+const REGEX = {
+    invalidTipCharacters: /[^\p{L}\p{N}\p{P}\p{Z}^$\n]|[#.]/gu,
+    url: /(?:https?|ftp):\/\/[\n\S]+/g,
+    commaDot: /,./g,
+    space: / /g,
+} as const;
 
 const removeCharacters = (text: string) => {
     return text
-        .replace(/[^\p{L}\p{N}\p{P}\p{Z}^$\n]|[#.]/gu, "")
-        .replace(/(?:https?|ftp):\/\/[\n\S]+/g, "")
-        .replace(/,./g, "-");
+        .replace(REGEX.invalidTipCharacters, "")
+        .replace(REGEX.url, "")
+        .replace(REGEX.commaDot, "-");
 };
 
 export default async function getTweets(username: string) {
@@ -74,7 +80,7 @@ async function renderTips() {
     for (const tweet of tweets) {
         // Create tip directory
         const description = tweet.text.replace("\n", " ").trim();
-        const slug = removeCharacters(tweet.title).toLowerCase().trim().replace(/ /g, "-");
+        const slug = removeCharacters(tweet.title).toLowerCase().trim().replace(REGEX.space, "-");
         const imgName = `${slug}.jpg`;
         const hashTags = tweet.hashTags.join(",") || "text";
 

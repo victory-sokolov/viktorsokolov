@@ -1,5 +1,5 @@
-import type { Metadata } from "next";
 import { config } from "@/common/appconfig";
+import type { Metadata } from "next";
 
 const baseUrl = config.siteUrl.endsWith("/") ? config.siteUrl.slice(0, -1) : config.siteUrl;
 
