@@ -53,8 +53,8 @@ export default async function Page({ params }: { params: Promise<PageParams> }) 
                     datePublished: date,
                     description: frontmatter.description,
                     headline: title,
-                    image: featureImage,
-                    url: `${config.siteUrl}/blog/${frontmatter.slug}`,
+                    image: buildCanonicalUrl(featureImage),
+                    url: buildCanonicalUrl(`/blog/${frontmatter.slug}`),
                 }}
             />
             <Provider>
