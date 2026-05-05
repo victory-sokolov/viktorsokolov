@@ -87,7 +87,6 @@ and we want to find an opening and closing HTML tags, we can achieve it using th
 **Lookahead** will find some regex that is followed immediately after another expression. Structure of lookahead `/match (?=element)/`
 
 For example, we have a list of email-like values and we want to match only entries that contain the Gmail domain.
-The sample below intentionally uses `[at]` instead of `@` to avoid email auto-link rewriting during deployment.
 
 ```bash
 myemail@gmail.com
