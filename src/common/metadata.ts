@@ -22,7 +22,9 @@ export function buildCanonicalAlternates(pathname = ""): Metadata["alternates"] 
 
 export async function generatePostMetadata(
     params: { id: string },
-    getPost: (id: string) => Promise<{ currentPost: { frontmatter: PostFrontmatter | TipFrontmatter } } | null>,
+    getPost: (
+        id: string,
+    ) => Promise<{ currentPost: { frontmatter: PostFrontmatter | TipFrontmatter } } | null>,
     path: string,
 ): Promise<Metadata | undefined> {
     const post = await getPost(params.id);
@@ -38,7 +40,9 @@ export async function generatePostMetadata(
     const title = frontmatter.title;
     const description = frontmatter.description;
     const slug = frontmatter.slug;
-    const ogImage = frontmatter.featureImage ? buildCanonicalUrl(frontmatter.featureImage) : buildCanonicalUrl("/static/OG.png");
+    const ogImage = frontmatter.featureImage
+        ? buildCanonicalUrl(frontmatter.featureImage)
+        : buildCanonicalUrl("/static/OG.png");
 
     return {
         title,
