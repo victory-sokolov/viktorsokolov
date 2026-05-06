@@ -1,7 +1,6 @@
 import React from "react";
 import { beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
 import { renderToStaticMarkup } from "react-dom/server";
-import { generatePostMetadata } from "@/common/metadata";
 import { getPostBySlug } from "@/common/posts";
 import { getTipBySlug } from "@/common/tips";
 
