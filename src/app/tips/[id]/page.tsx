@@ -7,7 +7,6 @@ import NextNPrevious from "@/components/NextNPrevious";
 import { JsonLd } from "@/components/Seo/JsonLd";
 import TagList from "@/components/Tags";
 import { POST_TYPE } from "@/types/enums";
-import type { TipFrontmatter } from "@/types/Post";
 import type { PageParams } from "@/types/types";
 import type { Metadata } from "next/types";
 import Balancer from "react-wrap-balancer";
