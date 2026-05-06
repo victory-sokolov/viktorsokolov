@@ -20,7 +20,7 @@ export const getAllPosts = async (): Promise<PostFrontmatter[]> => {
             const file = matter.read(filePath);
             const post = file.data as PostFrontmatter;
             const slug = slugify(postSlug);
-            const imgPath = `/posts/${slug}/${post.featureImage}`;
+            const imgPath = post.featureImage ? `/posts/${slug}/${post.featureImage}` : undefined;
             const lastModified = fs.statSync(filePath).mtime.toString();
             const tags = parseTags(post.tags);
 

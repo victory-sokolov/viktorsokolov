@@ -9,6 +9,7 @@ import TagList from "@/components/Tags";
 import { POST_TYPE } from "@/types/enums";
 import type { PageParams } from "@/types/types";
 import type { Metadata } from "next/types";
+import { notFound } from "next/navigation";
 import Balancer from "react-wrap-balancer";
 
 export async function generateMetadata({
@@ -22,11 +23,17 @@ export async function generateMetadata({
 
 export default async function TipPage({ params }: { params: Promise<PageParams> }) {
     const resolvedParams = await params;
+    const post = await getTipBySlug(resolvedParams.id);
+
+    if (!post) {
+        notFound();
+    }
+
     const {
         currentPost: { frontmatter, mdxSource },
         nextPost,
         previousPost,
-    } = await getTipBySlug(resolvedParams.id);
+    } = post;
 
     const date = frontmatter.date;
     const tags = frontmatter.tags || [];
@@ -46,8 +53,12 @@ export default async function TipPage({ params }: { params: Promise<PageParams> 
                     datePublished: date,
                     description: frontmatter.description,
                     headline: frontmatter.title,
-                    image: buildCanonicalUrl(frontmatter.featureImage || ""),
                     url: buildCanonicalUrl(`/tips/${frontmatter.slug}`),
+                    ...(frontmatter.featureImage
+                        ? {
+                              image: buildCanonicalUrl(frontmatter.featureImage),
+                          }
+                        : {}),
                 }}
             />
             <h1 className="section-title mb-6">

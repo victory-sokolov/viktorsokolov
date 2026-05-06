@@ -1,6 +1,7 @@
 "use client";
 
 import type { PostFrontmatter } from "@/types/Post";
+import { config } from "@/common/appconfig";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";

@@ -22,18 +22,23 @@ export function buildCanonicalAlternates(pathname = ""): Metadata["alternates"] 
 
 export async function generatePostMetadata(
     params: { id: string },
-    getPost: (id: string) => Promise<{ currentPost: { frontmatter: PostFrontmatter | TipFrontmatter } }>,
+    getPost: (id: string) => Promise<{ currentPost: { frontmatter: PostFrontmatter | TipFrontmatter } } | null>,
     path: string,
 ): Promise<Metadata | undefined> {
+    const post = await getPost(params.id);
+
+    if (!post) {
+        return undefined;
+    }
+
     const {
         currentPost: { frontmatter },
-    } = await getPost(params.id);
+    } = post;
 
     const title = frontmatter.title;
     const description = frontmatter.description;
-    const featureImage = frontmatter.featureImage || "";
     const slug = frontmatter.slug;
-    const ogImage = `${baseUrl}/${featureImage}`;
+    const ogImage = frontmatter.featureImage ? buildCanonicalUrl(frontmatter.featureImage) : buildCanonicalUrl("/static/OG.png");
 
     return {
         title,
@@ -44,17 +49,19 @@ export async function generatePostMetadata(
             description,
             type: "article",
             url: buildCanonicalUrl(`/${path}/${slug}`),
-            images: [
-                {
-                    url: ogImage,
-                },
-            ],
+            images: ogImage
+                ? [
+                      {
+                          url: ogImage,
+                      },
+                  ]
+                : undefined,
         },
         twitter: {
             card: "summary_large_image",
             title,
             description,
-            images: [ogImage],
+            images: ogImage ? [ogImage] : undefined,
         },
     };
 }

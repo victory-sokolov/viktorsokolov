@@ -1,6 +1,7 @@
 import React from "react";
 import { beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
 import { renderToStaticMarkup } from "react-dom/server";
+import { generatePostMetadata } from "@/common/metadata";
 import { getPostBySlug } from "@/common/posts";
 import { getTipBySlug } from "@/common/tips";
 
@@ -16,6 +17,9 @@ vi.mock("next/image", () => ({
 
 vi.mock("next/navigation", () => ({
     usePathname: () => currentPathname,
+    notFound: () => {
+        throw new Error("NEXT_NOT_FOUND");
+    },
 }));
 
 const jsonLdCalls: Array<{ data: Record<string, unknown>; id: string }> = [];
@@ -32,16 +36,14 @@ const tipSlug = "delete-all-your-node_modules-venv-and-vendor-folders-periodical
 
 let blogPageModule: typeof import("../src/app/blog/[id]/page");
 let tipPageModule: typeof import("../src/app/tips/[id]/page");
-let blogPost: Awaited<ReturnType<typeof getPostBySlug>>;
-let tipPost: Awaited<ReturnType<typeof getTipBySlug>>;
+let blogPost: NonNullable<Awaited<ReturnType<typeof getPostBySlug>>>;
+let tipPost: NonNullable<Awaited<ReturnType<typeof getTipBySlug>>>;
 
 beforeAll(async () => {
-    [blogPageModule, tipPageModule, blogPost, tipPost] = await Promise.all([
-        import("../src/app/blog/[id]/page"),
-        import("../src/app/tips/[id]/page"),
-        getPostBySlug(blogSlug),
-        getTipBySlug(tipSlug),
-    ]);
+    blogPageModule = await import("../src/app/blog/[id]/page");
+    tipPageModule = await import("../src/app/tips/[id]/page");
+    blogPost = (await getPostBySlug(blogSlug)) as NonNullable<Awaited<ReturnType<typeof getPostBySlug>>>;
+    tipPost = (await getTipBySlug(tipSlug)) as NonNullable<Awaited<ReturnType<typeof getTipBySlug>>>;
 });
 
 beforeEach(() => {
@@ -102,5 +104,13 @@ describe("content route pages", () => {
         expect(jsonLdCalls).toHaveLength(1);
         expect(jsonLdCalls[0].data.url).toBe(`https://viktorsokolov.com/tips/${tipSlug}`);
         expect(jsonLdCalls[0].data.image).toBe(`https://viktorsokolov.com${tipPost.currentPost.frontmatter.featureImage}`);
+    });
+
+    it("returns a 404 signal when the requested post does not exist", async () => {
+        await expect(
+            blogPageModule.default({
+                params: makeParams("does-not-exist"),
+            }),
+        ).rejects.toThrow("NEXT_NOT_FOUND");
     });
 });
