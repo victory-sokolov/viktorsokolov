@@ -1,4 +1,5 @@
 import { config } from "@/common/appconfig";
+import type { PostFrontmatter, TipFrontmatter } from "@/types/Post";
 import type { Metadata } from "next";
 
 const baseUrl = config.siteUrl.endsWith("/") ? config.siteUrl.slice(0, -1) : config.siteUrl;
@@ -21,17 +22,17 @@ export function buildCanonicalAlternates(pathname = ""): Metadata["alternates"] 
 
 export async function generatePostMetadata(
     params: { id: string },
-    getPost: (id: string) => Promise<{ currentPost: { frontmatter: any } }>,
+    getPost: (id: string) => Promise<{ currentPost: { frontmatter: PostFrontmatter | TipFrontmatter } }>,
     path: string,
 ): Promise<Metadata | undefined> {
     const {
         currentPost: { frontmatter },
     } = await getPost(params.id);
-    if (!frontmatter) {
-        return;
-    }
 
-    const { title, description, featureImage, slug } = frontmatter;
+    const title = frontmatter.title;
+    const description = frontmatter.description;
+    const featureImage = frontmatter.featureImage || "";
+    const slug = frontmatter.slug;
     const ogImage = `${baseUrl}/${featureImage}`;
 
     return {

@@ -24,7 +24,7 @@
         ],
         "allowJs": true,
         "strict": true,
-        "strictNullChecks": false,
+        "strictNullChecks": true,
         "noEmit": true,
         "removeComments": true,
         "sourceMap": true,

@@ -25,7 +25,7 @@ export const PostCard: React.FC<PostFrontmatter> = ({
                 <div className="flex h-full flex-col">
                     <div className="w-full overflow-hidden rounded-t-lg">
                         <Image
-                            src={featureImage}
+                            src={featureImage || ""}
                             alt={title}
                             title={title}
                             width={380}
@@ -41,7 +41,7 @@ export const PostCard: React.FC<PostFrontmatter> = ({
                         <p className="mb-4 flex-1 text-base leading-relaxed">{excerpt}</p>
                         <PostMeta
                             date={date}
-                            readTime={readTime}
+                            readTime={readTime || ""}
                             style={{ justifyContent: "center" }}
                         />
                     </div>

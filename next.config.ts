@@ -86,9 +86,6 @@ const config: NextConfig = {
         turbopackFileSystemCacheForDev: true,
         optimizePackageImports: ["prism-react-renderer", "react-wrap-balancer"],
     },
-    typescript: {
-        ignoreBuildErrors: true,
-    },
     modularizeImports: {
         "react-icons": {
             transform: "react-icons/{{member}}",

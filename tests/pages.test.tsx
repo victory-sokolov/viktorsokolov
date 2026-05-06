@@ -72,7 +72,7 @@ describe("content route pages", () => {
         const html = renderToStaticMarkup(element);
 
         expect(html).toContain(blogPost.currentPost.frontmatter.title);
-        expect(html).toContain(blogPost.currentPost.frontmatter.featureImage);
+        expect(html).toContain(blogPost.currentPost.frontmatter.featureImage!);
         expect(jsonLdCalls).toHaveLength(1);
         expect(jsonLdCalls[0].data.url).toBe(`https://viktorsokolov.com/blog/${blogSlug}`);
         expect(jsonLdCalls[0].data.image).toBe(`https://viktorsokolov.com${blogPost.currentPost.frontmatter.featureImage}`);

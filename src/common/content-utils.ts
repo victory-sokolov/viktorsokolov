@@ -19,6 +19,11 @@ export const getSerializedContent = async (content: string) => {
 export const getPostData = async (posts: PostFrontmatter[] | TipFrontmatter[], slug: string) => {
     const currentIndex = posts.findIndex(post => post.slug === slug);
     const currentPost = posts.at(currentIndex);
+
+    if (!currentPost) {
+        throw new Error(`Post with slug "${slug}" not found`);
+    }
+
     const mdxSource = await getSerializedContent(currentPost.content);
 
     return {

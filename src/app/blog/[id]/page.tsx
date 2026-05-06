@@ -32,10 +32,10 @@ export default async function Page({ params }: { params: Promise<PageParams> }) 
         previousPost,
     } = await getPostBySlug(resolvedParams.id);
 
-    const featureImage = frontmatter.featureImage;
+    const featureImage = frontmatter.featureImage || "";
     const date = frontmatter.date;
     const title = frontmatter.title;
-    const readTime = frontmatter.readTime;
+    const readTime = frontmatter.readTime || "";
     const tags = frontmatter.tags || [];
 
     return (

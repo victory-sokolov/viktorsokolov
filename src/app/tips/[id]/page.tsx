@@ -28,11 +28,6 @@ export default async function TipPage({ params }: { params: Promise<PageParams> 
         nextPost,
         previousPost,
     } = await getTipBySlug(resolvedParams.id);
-    const tipFrontmatter = frontmatter as TipFrontmatter;
-
-    if (!tipFrontmatter) {
-        return <h1>Tip is not found!</h1>;
-    }
 
     const date = frontmatter.date;
     const tags = frontmatter.tags || [];
@@ -52,12 +47,12 @@ export default async function TipPage({ params }: { params: Promise<PageParams> 
                     datePublished: date,
                     description: frontmatter.description,
                     headline: frontmatter.title,
-                    image: buildCanonicalUrl(frontmatter.featureImage),
+                    image: buildCanonicalUrl(frontmatter.featureImage || ""),
                     url: buildCanonicalUrl(`/tips/${frontmatter.slug}`),
                 }}
             />
             <h1 className="section-title mb-6">
-                <Balancer>{tipFrontmatter.title}</Balancer>
+                <Balancer>{frontmatter.title}</Balancer>
             </h1>
             <TagList tags={tags} linkBase="/blog/tag" className="mb-8" />
             <MdxRemote source={mdxSource} />

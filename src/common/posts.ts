@@ -42,7 +42,7 @@ export const getAllPosts = async (): Promise<PostFrontmatter[]> => {
         })
         .filter(Boolean);
 
-    const allPosts = await Promise.all(posts);
+    const allPosts = (await Promise.all(posts)).filter(Boolean) as PostFrontmatter[];
     const sortedPosts = sortPostByDate(allPosts);
     return JSON.parse(JSON.stringify(sortedPosts));
 };
