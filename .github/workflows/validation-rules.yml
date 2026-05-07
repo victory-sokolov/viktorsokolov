@@ -1,29 +1,29 @@
 name: Run ast-grep validation rules
 on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
-  workflow_dispatch:
+    push:
+        branches: [ main ]
+    pull_request:
+        branches: [ main ]
+    workflow_dispatch:
 
 permissions:
-  contents: read
-  pull-requests: write
+    contents: read
+    pull-requests: write
 
 env:
-  GIT_CREDENTIALS: ${{ secrets.ASTGREP_RULES_TOKEN }}
+    GIT_CREDENTIALS: ${{ secrets.ASTGREP_RULES_TOKEN }}
 
 jobs:
-  ast-grep-validation:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v6
+    ast-grep-validation:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Check out repository
+              uses: actions/checkout@v6
 
-      - uses: victory-sokolov/astgrep-reviewer@v1
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          config-path: external-rules/sgconfig.yml
-          rules-repo: victory-sokolov/astgrep-rules
-          rules-token: ${{ secrets.ASTGREP_RULES_TOKEN }}
-          rules-ref: main
+            - uses: victory-sokolov/astgrep-reviewer@v1.3.1
+              with:
+                  github-token: ${{ secrets.GITHUB_TOKEN }}
+                  config-path: external-rules/sgconfig.yml
+                  rules-repo: victory-sokolov/astgrep-rules
+                  rules-token: ${{ secrets.ASTGREP_RULES_TOKEN }}
+                  rules-ref: main
