@@ -5,7 +5,7 @@ import { FaRegCalendarCheck, FaRegClock } from "react-icons/fa";
 
 type PostMetaInfo = {
     date: string;
-    readTime: string;
+    readTime?: string;
     children?: React.ReactNode;
     style?: React.CSSProperties;
 };

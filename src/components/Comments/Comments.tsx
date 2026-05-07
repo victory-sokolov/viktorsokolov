@@ -22,7 +22,9 @@ export const Comments: React.FC = () => {
             }
         };
         commentScript.async = true;
-        commentBox.current.appendChild(commentScript);
+        if (commentBox.current) {
+            commentBox.current.appendChild(commentScript);
+        }
     }, []);
 
     return (

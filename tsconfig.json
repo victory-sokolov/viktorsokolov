@@ -8,10 +8,10 @@
             "dom.iterable",
             "esnext"
         ],
-        "module": "esnext",
-        "moduleResolution": "bundler",
         "baseUrl": ".",
         "rootDir": "./",
+        "module": "esnext",
+        "moduleResolution": "bundler",
         "paths": {
             "@/*": [
                 "./src/*"
@@ -24,7 +24,7 @@
         ],
         "allowJs": true,
         "strict": true,
-        "strictNullChecks": false,
+        "strictNullChecks": true,
         "noEmit": true,
         "removeComments": true,
         "sourceMap": true,

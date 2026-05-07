@@ -7,9 +7,9 @@ import NextNPrevious from "@/components/NextNPrevious";
 import { JsonLd } from "@/components/Seo/JsonLd";
 import TagList from "@/components/Tags";
 import { POST_TYPE } from "@/types/enums";
-import type { TipFrontmatter } from "@/types/Post";
 import type { PageParams } from "@/types/types";
 import type { Metadata } from "next/types";
+import { notFound } from "next/navigation";
 import Balancer from "react-wrap-balancer";
 
 export async function generateMetadata({
@@ -23,16 +23,17 @@ export async function generateMetadata({
 
 export default async function TipPage({ params }: { params: Promise<PageParams> }) {
     const resolvedParams = await params;
+    const post = await getTipBySlug(resolvedParams.id);
+
+    if (!post) {
+        notFound();
+    }
+
     const {
         currentPost: { frontmatter, mdxSource },
         nextPost,
         previousPost,
-    } = await getTipBySlug(resolvedParams.id);
-    const tipFrontmatter = frontmatter as TipFrontmatter;
-
-    if (!tipFrontmatter) {
-        return <h1>Tip is not found!</h1>;
-    }
+    } = post;
 
     const date = frontmatter.date;
     const tags = frontmatter.tags || [];
@@ -52,12 +53,16 @@ export default async function TipPage({ params }: { params: Promise<PageParams> 
                     datePublished: date,
                     description: frontmatter.description,
                     headline: frontmatter.title,
-                    image: buildCanonicalUrl(frontmatter.featureImage),
                     url: buildCanonicalUrl(`/tips/${frontmatter.slug}`),
+                    ...(frontmatter.featureImage
+                        ? {
+                              image: buildCanonicalUrl(frontmatter.featureImage),
+                          }
+                        : {}),
                 }}
             />
             <h1 className="section-title mb-6">
-                <Balancer>{tipFrontmatter.title}</Balancer>
+                <Balancer>{frontmatter.title}</Balancer>
             </h1>
             <TagList tags={tags} linkBase="/blog/tag" className="mb-8" />
             <MdxRemote source={mdxSource} />

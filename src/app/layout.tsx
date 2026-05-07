@@ -1,11 +1,11 @@
 import { config } from "@/common/appconfig";
 import { buildCanonicalAlternates } from "@/common/metadata";
 import Layout from "@/components/Layout/Layout";
+import type { ReactProps } from "@/types/types";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import { Cairo } from "next/font/google";
-import type { ReactProps } from "@/types/types";
 
 import "./globals.css";
 

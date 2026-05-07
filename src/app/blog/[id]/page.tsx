@@ -1,4 +1,4 @@
-import { generatePostMetadata } from "@/common/metadata";
+import { buildCanonicalUrl, generatePostMetadata } from "@/common/metadata";
 import { getPostBySlug } from "@/common/posts";
 import { MdxRemote } from "@/components/Mdx";
 import { Modal } from "@/components/Modal";
@@ -9,12 +9,12 @@ import ShareToSocialLink from "@/components/ShareToSocial";
 import { DevToLink, GithubLink } from "@/components/Social/SocialMedia";
 import TagList from "@/components/Tags";
 import { config } from "@/common/appconfig";
-import { buildCanonicalUrl } from "@/common/metadata";
 import type { PageParams } from "@/types/types";
 import { POST_TYPE } from "@/types/enums";
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import Image from "next/image";
+import { notFound } from "next/navigation";
 import Balancer, { Provider } from "react-wrap-balancer";
 
 const Comments = dynamic(() => import("@/components/Comments"));
@@ -27,16 +27,22 @@ export async function generateMetadata({ params }: { params: Promise<PageParams>
 
 export default async function Page({ params }: { params: Promise<PageParams> }) {
     const resolvedParams = await params;
+    const post = await getPostBySlug(resolvedParams.id);
+
+    if (!post) {
+        notFound();
+    }
+
     const {
         currentPost: { frontmatter, mdxSource },
         nextPost,
         previousPost,
-    } = await getPostBySlug(resolvedParams.id);
+    } = post;
 
     const featureImage = frontmatter.featureImage;
     const date = frontmatter.date;
     const title = frontmatter.title;
-    const readTime = frontmatter.readTime;
+    const readTime = frontmatter.readTime || "";
     const tags = frontmatter.tags || [];
 
     return (
@@ -54,24 +60,30 @@ export default async function Page({ params }: { params: Promise<PageParams> }) 
                     datePublished: date,
                     description: frontmatter.description,
                     headline: title,
-                    image: buildCanonicalUrl(featureImage),
                     url: buildCanonicalUrl(`/blog/${frontmatter.slug}`),
+                    ...(featureImage
+                        ? {
+                              image: buildCanonicalUrl(featureImage),
+                          }
+                        : {}),
                 }}
             />
             <Provider>
                 <article className="mx-auto mt-8 w-full max-w-340 leading-relaxed max-sm:mt-4 md:mt-12">
                     <Modal>
-                        <div className="relative mb-8 h-auto w-full overflow-hidden rounded-lg md:mb-12">
-                            <Image
-                                src={featureImage}
-                                title={title}
-                                alt={title}
-                                width={800}
-                                height={400}
-                                className="h-auto w-full object-cover"
-                                sizes="(max-width: 640px) 100vw, (max-width: 768px) 90vw, 800px"
-                            />
-                        </div>
+                        {featureImage ? (
+                            <div className="relative mb-8 h-auto w-full overflow-hidden rounded-lg md:mb-12">
+                                <Image
+                                    src={featureImage}
+                                    title={title}
+                                    alt={title}
+                                    width={800}
+                                    height={400}
+                                    className="h-auto w-full object-cover"
+                                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 90vw, 800px"
+                                />
+                            </div>
+                        ) : null}
                         <h1
                             className="article-title mb-6 text-left text-3xl md:mb-8 md:text-4xl lg:text-5xl"
                             itemProp="headline"

@@ -1,10 +1,11 @@
 import { config } from "@/common/appconfig";
+import type { PostFrontmatter, TipFrontmatter } from "@/types/Post";
 import type { Metadata } from "next";
 
 const baseUrl = config.siteUrl.endsWith("/") ? config.siteUrl.slice(0, -1) : config.siteUrl;
 
 export function buildCanonicalUrl(pathname = ""): string {
-    const normalizedPath = pathname.startsWith("/") ? pathname : "/" + pathname;
+    const normalizedPath = pathname.startsWith("/") ? pathname : `/${pathname}`;
 
     if (normalizedPath === "/") {
         return baseUrl;
@@ -21,18 +22,27 @@ export function buildCanonicalAlternates(pathname = ""): Metadata["alternates"] 
 
 export async function generatePostMetadata(
     params: { id: string },
-    getPost: (id: string) => Promise<{ currentPost: { frontmatter: any } }>,
+    getPost: (
+        id: string,
+    ) => Promise<{ currentPost: { frontmatter: PostFrontmatter | TipFrontmatter } } | null>,
     path: string,
 ): Promise<Metadata | undefined> {
-    const {
-        currentPost: { frontmatter },
-    } = await getPost(params.id);
-    if (!frontmatter) {
-        return;
+    const post = await getPost(params.id);
+
+    if (!post) {
+        return undefined;
     }
 
-    const { title, description, featureImage, slug } = frontmatter;
-    const ogImage = `${baseUrl}/${featureImage}`;
+    const {
+        currentPost: { frontmatter },
+    } = post;
+
+    const title = frontmatter.title;
+    const description = frontmatter.description;
+    const slug = frontmatter.slug;
+    const ogImage = frontmatter.featureImage
+        ? buildCanonicalUrl(frontmatter.featureImage)
+        : buildCanonicalUrl("/static/OG.png");
 
     return {
         title,
@@ -43,17 +53,19 @@ export async function generatePostMetadata(
             description,
             type: "article",
             url: buildCanonicalUrl(`/${path}/${slug}`),
-            images: [
-                {
-                    url: ogImage,
-                },
-            ],
+            images: ogImage
+                ? [
+                      {
+                          url: ogImage,
+                      },
+                  ]
+                : undefined,
         },
         twitter: {
             card: "summary_large_image",
             title,
             description,
-            images: [ogImage],
+            images: ogImage ? [ogImage] : undefined,
         },
     };
 }

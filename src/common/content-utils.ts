@@ -1,9 +1,9 @@
+import type { PostFrontmatter, PostType, TipFrontmatter } from "@/types/Post";
 import { slugify, toLongDate } from "@vsokolov/utils";
 import matter from "gray-matter";
 import { serialize } from "next-mdx-remote/serialize";
 import fs from "node:fs";
 import rehypeSlug from "rehype-slug";
-import type { PostFrontmatter, PostType, TipFrontmatter } from "@/types/Post";
 
 const TAG_SPLIT_REGEX = /[, ]+/;
 
@@ -18,7 +18,13 @@ export const getSerializedContent = async (content: string) => {
 
 export const getPostData = async (posts: PostFrontmatter[] | TipFrontmatter[], slug: string) => {
     const currentIndex = posts.findIndex(post => post.slug === slug);
-    const currentPost = posts.at(currentIndex);
+
+    if (currentIndex < 0) {
+        return null;
+    }
+
+    const currentPost = posts[currentIndex];
+
     const mdxSource = await getSerializedContent(currentPost.content);
 
     return {
