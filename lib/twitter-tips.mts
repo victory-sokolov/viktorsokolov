@@ -79,7 +79,7 @@ async function renderTips() {
 
     for (const tweet of tweets) {
         // Create tip directory
-        const description = tweet.text.replace("\n", " ").trim();
+        const description = tweet.text.replace(/\r?\n/g, " ").replace(/\\/g, "\\\\").replace(/"/g, '\\"').trim();
         const slug = removeCharacters(tweet.title).toLowerCase().trim().replace(REGEX.space, "-");
         const imgName = `${slug}.jpg`;
         const hashTags = tweet.hashTags.join(",") || "text";
