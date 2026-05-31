@@ -1,35 +1,38 @@
 name: Fetch recent blog posts
 on:
-  workflow_dispatch:
-  schedule:
-    - cron: "* */24 * * *"
+    workflow_dispatch:
+    schedule:
+        - cron: '* */24 * * *'
 
 env:
-  TWITTER_TIMELINE_ID: ${{ secrets.TWITTER_TIMELINE_ID }}
-  TWITTER_TOKEN: ${{ secrets.TWITTER_TOKEN }}
+    TWITTER_TIMELINE_ID: ${{ secrets.TWITTER_TIMELINE_ID }}
+    TWITTER_TOKEN: ${{ secrets.TWITTER_TOKEN }}
 
 jobs:
-  fetch-recent-blog-posts:
-    name: Fetch recent blog posts
-    runs-on: ubuntu-latest
+    fetch-recent-blog-posts:
+        name: Fetch recent blog posts
+        permissions:
+            contents: read
+            pull-requests: write
+        runs-on: ubuntu-latest
 
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v4.1.7
+        steps:
+            - name: Check out repository
+              uses: actions/checkout@v6
 
-      - name: Set up Bun
-        uses: oven-sh/setup-bun@v2
-        with:
-          bun-version: latest
+            - name: Set up Bun
+              uses: oven-sh/setup-bun@v2
+              with:
+                  bun-version: latest
 
-      - name: Install node dependencies
-        run: bun install --frozen-lockfile
+            - name: Install node dependencies
+              run: bun install --frozen-lockfile
 
-      - name: Run node script
-        run: bun run build
+            - name: Run node script
+              run: bun run build
 
-      - name: Git setup
-        run: git config --global user.email readme-bot@example.com && git config --global user.name readme-bot
+            - name: Git setup
+              run: git config --global user.email readme-bot@example.com && git config --global user.name readme-bot
 
-      - name: Git commit README.md file
-        run: git diff --quiet && git diff --staged --quiet || git commit -am '[BOT] Update readme' && git push
+            - name: Git commit README.md file
+              run: git diff --quiet && git diff --staged --quiet || git commit -am '[BOT] Update readme' && git push
